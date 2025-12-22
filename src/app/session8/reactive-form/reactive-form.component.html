@@ -1,0 +1,24 @@
+<!-- <div class="form-group m-2">
+  <input type="text" class="form-control" name="name" [formControl]="name">
+  <input type="text" class="form-control" name="category" [formControl]="category">
+  <input type="text" class="form-control" name="price" [formControl]="price">
+  <button class="btn btn-primary" (click)="onSubmit()"> save</button>
+</div>
+
+<p> Form Control Value: {{name.value |json }}</p>
+<p> Form Control Value: {{name.status |json }}</p>
+
+<p> Form Control Value: {{category.value |json }}</p>
+<p> Form Control Value: {{category.status |json }}</p>
+
+<p> Form Control Value: {{price.value |json }}</p>
+<p> Form Control Value: {{price.status |json }}</p> -->
+
+<div class="form-group m-2">
+  <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+    <input type="text" class="form-control" name="name" formControlName="name">
+    <input type="text" class="form-control" name="category" formControlName="code">
+    <input type="number" class="form-control" name="price" formControlName="price">
+    <button class="btn btn-primary"> save</button>
+  </form>
+</div>

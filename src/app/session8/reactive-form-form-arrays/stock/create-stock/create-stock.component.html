@@ -1,0 +1,65 @@
+<h2>Create Stock Form (Reactive Form Arrays)</h2>
+
+<div class="form-group">
+  <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+    <div class="stock-name">
+      <label for="stockName">Stock Name</label>
+      <input type="text" placeholder="Stock Name" name="stockName" formControlName="name" class="form-control">
+      <div *ngIf="stockForm.get('name')?.invalid && ( stockForm.get('name')?.dirty || stockForm.get('name')?.touched )" class="text-danger">
+        Name is required
+      </div>
+    </div>
+    <div class="stock-code">
+      <label for="stockCode">Stock Code</label>
+      <input type="text" placeholder="Stock Code" formControlName="code" class="form-control">
+      <div *ngIf="stockForm.get('code')?.invalid && ( stockForm.get('code')?.dirty || stockForm.get('code')?.touched )" class="text-danger">
+        <div *ngIf="stockForm.get('code')?.errors?.['required']">
+          Stock Code is required
+        </div>
+        <div *ngIf="stockForm.get('code')?.errors?.['minlength']">
+          Stock Code must be atleast 2 characters
+        </div>
+      </div>
+    </div>
+    <div class="stock-price">
+      <label for="stockPrice">Stock Price</label>
+      <input type="number" placeholder="Stock Price" formControlName="price" class="form-control">
+      <div *ngIf="stockForm.get('price')?.invalid && ( stockForm.get('price')?.dirty || stockForm.get('price')?.touched )" class="text-danger">
+        <div *ngIf="stockForm.get('price')?.errors?.['required']">
+          Stock Price is required
+        </div>
+        <div *ngIf="stockForm.get('price')?.errors?.['min']">
+          Stock price must be positive
+        </div>
+      </div>
+    </div>
+    <br>
+    <div formArrayName="notablePeople">
+      <div *ngFor="let person of notablePeople.controls; let i = index" [formGroupName]="i" class="notable-people">
+        <div>
+          Person {{i + 1}}
+        </div>
+        <br>
+
+        <label for="name">Person Name</label>
+        <input type="text" placeholder="Person Name" formControlName="name" class="form-control">
+
+        <br>
+
+        <label for="title">Person Title</label>
+        <input type="text" placeholder="Person Title" formControlName="title" class="form-control">
+
+        <br>
+        <button type="button" class="btn btn-info" (click)="removeNotablePerson(i)">Remove Person</button>
+      </div>
+    </div>
+    <br>
+    <button type="button" class="btn btn-secondary m-1" (click)="addNotablePerson()">Add Notable Person</button>
+    <button type="submit" class="btn btn-primary m-1">Submit</button>
+    <button type="button" (click)="resetForm()" class="btn btn-warning m-1"> Reset </button>
+  </form>
+</div>
+
+<p>Form Control value: {{ stockForm.value | json }}</p>
+<p>Form Control status: {{ stockForm.status | json }}</p>
+<p>Stock Value: {{stock | json}}</p>

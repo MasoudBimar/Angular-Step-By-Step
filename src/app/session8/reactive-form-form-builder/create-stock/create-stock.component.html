@@ -1,0 +1,41 @@
+<h2>Create Stock Form (Reactive Form)</h2>
+
+<div class="form-group">
+  <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+    <label for="stockName">Stock Name</label>
+    <input type="text" class="form-control" placeholder="Stock Name" name="stockName" formControlName="name">
+    <div *ngIf="stockForm.get('name')?.invalid && ( stockForm.get('name')?.dirty || stockForm.get('name')?.touched )" class="text-danger">
+      Name is required
+    </div>
+
+
+    <label for="stockCode">Stock Code</label>
+    <input type="text" class="form-control" placeholder="Stock Code" formControlName="code">
+    <div class="text-danger"
+      *ngIf="stockForm.get('code')?.errors && stockForm.get('code')?.invalid && ( stockForm.get('code')?.dirty || stockForm.get('code')?.touched )">
+      <div *ngIf="stockForm.get('code')?.errors?.['required']">
+        Stock Code is required
+      </div>
+      <div *ngIf="stockForm.get('code')?.errors?.['minlength']">
+        Stock Code must be atleast 2 characters
+      </div>
+    </div>
+
+    <label for="stockPrice">Stock Price</label>
+    <input type="number" class="form-control" placeholder="Stock Price" formControlName="price">
+    <div class="text-danger" *ngIf="stockForm.get('price')?.invalid && ( stockForm.get('price')?.dirty || stockForm.get('price')?.touched )">
+      <div *ngIf="stockForm.get('price')?.errors?.['required']">
+        Stock Price is required
+      </div>
+      <div *ngIf="stockForm.get('price')?.errors?.['min']">
+        Stock price must be positive
+      </div>
+    </div>
+
+    <br>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>
+
+<p>Form Control value: {{ stockForm.value | json }}</p>
+<p>Form Control status: {{ stockForm.status | json }}</p>
