@@ -1,0 +1,78 @@
+<div class="container">
+  <!-- Session 4 -->
+  <!-- <app-display-data-handling-event></app-display-data-handling-event> -->
+  <!-- Session 5 -->
+  <!-- <app-test-component [persons]="persons" (tell)="sbdTell($event)"></app-test-component> -->
+
+
+  <!-- <app-lifecycles [inputs]="persons"></app-lifecycles>
+
+<button class="btn btn-primary" (click)="addNewPerson()"> Add New Person</button>
+<hr>
+<button class="btn btn-primary" (click)="changePerson()"> change person</button>
+<hr>
+<button class="btn btn-primary" (click)="incCounter()"> Inc Counter</button> -->
+
+  <!-- <h2>Rating Component</h2>
+<p style="text-align: center">
+  <app-rate-sample [stars]="5" [starWidth]="50" [(rate)]="rate"></app-rate-sample>
+  <span>{{rate}}/5</span>
+</p> -->
+
+  <!--
+    <app-rate [selectedValue]="4" (rateSelected)="rateSelected($event)"></app-rate>
+-->
+
+  <!-- <rating [rateNumber]="4" (rateSelected)="rateSelected($event)"></rating> -->
+
+  <!-- <app-template-driven-form></app-template-driven-form> -->
+
+  <!-- <app-full-template-driven></app-full-template-driven> -->
+
+  <!-- <app-product-sample></app-product-sample> -->
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col ">
+        <button class="btn btn-secondary" routerLink="/to-do" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          Session 3 - ToDo App
+        </button>
+        <button class="btn btn-info mx-1" routerLink="data-event" routerLinkActive="active">
+          Display Data & Handling Event
+        </button>
+        <button class="btn btn-primary mx-1" routerLink="components" routerLinkActive="active">
+          Components
+        </button>
+        <button class="btn btn-secondary mx-1" routerLink="/life-cycle" routerLinkActive="active">
+          Lifecycles
+        </button>
+        <button class="btn btn-info mx-1" routerLink="/template/template-driven" routerLinkActive="active">
+          Template Driven Form
+        </button>
+        <button class="btn btn-info mx-1" routerLink="/template/full-template-driven" routerLinkActive="active">
+          Full Template Driven Form
+        </button>
+        <button class="btn btn-info mx-1" routerLink="/template/rate" routerLinkActive="active">
+          rate component
+        </button>
+        <button class="btn btn-info mx-1" routerLink="/product-sample" routerLinkActive="active">
+          product-sample
+        </button>
+        <button class="btn btn-info mx-1" routerLink="/reactive-driven" routerLinkActive="active">
+          Reacive Form
+        </button>
+        <!-- <a class="btn btn-info mx-1" routerLink="/empty-component" routerLinkActive="active">
+          Empty Compponent
+        </button> -->
+        <a [routerLink]="['/empty-component']" routerLinkActive="active">
+          Empty Component
+        </a>
+        <div class="my-2" style="border: 1px solid red;">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <router-outlet></router-outlet> -->
+</div>
