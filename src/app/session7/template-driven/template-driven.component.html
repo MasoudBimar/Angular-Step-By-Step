@@ -1,0 +1,31 @@
+<!-- {{productForm | json}} -->
+<form novalidate class="m-2" (ngSubmit)="onSubmit(productForm, name)" #productForm="ngForm">
+  <div class="form-group">
+    <label for="name"> name</label>
+    <input type="text" class="form-control" required minlength="5" name="name" [(ngModel)]="product.name" #name="ngModel">
+    <div *ngIf="name.errors">
+      <div *ngIf="name.errors['required']" class="text-danger">
+        name is required
+      </div>
+      <div *ngIf="name.errors['minlength']" class="text-danger">
+        name length must be greater than 5 but actual length is {{name.errors['minlength'].actualLength}}
+      </div>
+    </div>
+    <label for="category"> category</label>
+    <!-- <input type="text" class="form-control" name="category" [(ngModel)]="product.category"> -->
+    <select class="form-control" id="category"  required [(ngModel)]="product.category" name="category">
+      <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
+    </select>
+    <label for="price"> price</label>
+    <input type="text" class="form-control" name="price" [(ngModel)]="product.price">
+  </div>
+  <ul class="text-danger list-unstyled" *ngIf="productForm.dirty && productForm.invalid && productForm.submitted">
+    <li *ngFor="let error of getValidationMessages(name)">
+      {{error}}
+    </li>
+  </ul>
+  <button class="btn btn-primary"> save</button>
+</form>
+<hr>
+
+<!-- <app-product-sample></app-product-sample> -->

@@ -1,0 +1,41 @@
+<h2>Create Stock Form</h2>
+
+<div class="form-group">
+  <form (ngSubmit)="createStock(stockForm)" #stockForm="ngForm">
+    <label for="stockName">Stock Name</label>
+    <input type="text" required="true" class="form-control" placeholder="Stock Name" name="stockName" #stockName="ngModel" [(ngModel)]="stock.name">
+    <div *ngIf="stockName.errors" class="text-danger">
+      <div *ngIf="stockName.errors['required']">Stock Name is Mandatory</div>
+    </div>
+
+    <label for="stockCode">Stock Code</label>
+    <input type="text" class="form-control" placeholder="Stock Code" name="stockCode" #stockCode="ngModel" [(ngModel)]="stock.code">
+    <div *ngIf="stockCode.errors && stockCode.dirty && stockCode.invalid">
+      <div *ngIf="stockCode.errors['required']">Stock Code is Mandatory</div>
+      <div *ngIf="stockCode.errors['minlength']">Stock Code must be atleast of length 2</div>
+    </div>
+
+    <label for="stockPrice">Stock Price</label>
+    <input type="number" class="form-control" placeholder="Stock Price" name="stockPrice" [ngModel]="stock.price"
+      (ngModelChange)="setStockPrice($event)">
+
+    <label for="stockExchange">Stock Exchange</label>
+    <select name="stockExchange" class="form-control" [(ngModel)]="stock.exchange">
+      <option *ngFor="let exchange of exchanges" [ngValue]="exchange">{{exchange}}</option>
+    </select>
+
+    <label for="stockConfirm">Stock Confirm</label>
+    <div class="stock-confirm" class="form-control">
+      <input type="checkbox" name="stockConfirm" [(ngModel)]="confirmed">
+      I confirm that the information provided above is accurate!
+    </div>
+    <br>
+    <button class="btn btn-primary mr-1" [disabled]="!confirmed" type="submit">Create</button>
+    <button class="btn btn-secondary" type="button" (click)="resetForm(stockForm)">reset</button>
+  </form>
+</div>
+
+<h4>Stock Name is {{stock | json}}</h4>
+<h4>Stock is {{stockForm.value | json}}</h4>
+<h3>Data has been confirmed: {{confirmed}}</h3>
+<h3 class="text-danger" *ngIf="stockForm.invalid">Form is Invalid</h3>

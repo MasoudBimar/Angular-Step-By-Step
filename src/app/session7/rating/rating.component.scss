@@ -1,0 +1,35 @@
+.container {
+  align-items: center;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 5rem;
+  padding: 30px;
+
+}
+
+.stars-container {
+  display: flex;
+  flex-direction: row;
+  margin: 4px;
+
+}
+
+.star {
+  margin: 4px;
+
+  i {
+    // font-size: 8rem;
+
+    &:hover {
+      color: yellowgreen;
+    }
+  }
+}
+
+.star-hover {
+  color: yellowgreen;
+  // font-size: 11rem;
+
+}

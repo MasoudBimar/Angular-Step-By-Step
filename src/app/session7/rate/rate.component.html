@@ -1,0 +1,13 @@
+<div class="row h-500">
+  <div class="col-sm-6 d-flex m-auto justify-content-center align-item-center">
+    <ul class="list-inline rating-list" *ngFor="let star of stars">
+      <li (click)="countStar(star)" (mouseenter)="hoveredValue = star" (mouseleave)="hoveredValue=-1"
+        [class]="{'selected': star <= selectedValue || star <= hoveredValue }">
+        <i class="fa fa-star"></i>
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm-12 d-flex justify-content-center">
+    <h3>{{selectedValue+ '/'+ stars[stars.length-1]}}</h3>
+  </div>
+</div>
