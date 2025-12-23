@@ -14,9 +14,9 @@ import { PaModel } from './two-way.directive';
 import { RouterModule, Routes } from '@angular/router';
 
 export const Session7Routes: Routes = [
-  {path: 'full-template-driven', component: FullTemplateDrivenComponent},
+  { path: 'full-template-driven', component: FullTemplateDrivenComponent },
   { path: 'template-driven', component: TemplateDrivenComponent },
-  {path: 'rate', component: RateComponent},
+  { path: 'rate', component: RateComponent },
 
 ]
 

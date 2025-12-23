@@ -14,30 +14,26 @@ import { Session7Routes } from './session7/session7.module';
 import { AuthGuard } from './session11/guards/auth-guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'reactive-driven', pathMatch: 'full' },
+  { path: '', redirectTo: 'to-do', pathMatch: 'full' },
   { path: 'to-do', component: ToDoComponent },
   { path: 'data-event', component: DisplayDataHandlingEventComponent },
   { path: 'components', component: TestComponentComponent },
   { path: 'life-cycle', component: CustomElementComponent },
-  // { path: 'template-driven', component: TemplateDrivenComponent },
-  // { path: 'full-template-driven', component: FullTemplateDrivenComponent },
-  // { path: 'template', children: Session7Routes},
-  { path:'template', loadChildren: () => import('./session7/session7.module').then(m => m.Session7Module),canActivate:[AuthGuard]  },
+  { path: 'template-driven', component: TemplateDrivenComponent },
+  { path: 'full-template-driven', component: FullTemplateDrivenComponent },
+  { path: 'template', children: Session7Routes },
+  { path: 'template', loadChildren: () => import('./session7/session7.module').then(m => m.Session7Module), canActivate: [AuthGuard] },
   { path: 'product-sample', component: ProductSampleComponent },
   { path: 'reactive-driven', component: ReactiveFormFormArraysComponent },
   // { path: 'empty-component/:id', component: Session1Component},
-  { path: 'empty-component', component: Session1Component,canActivate:[AuthGuard]}
-  // { path: 'to-do', component: ToDoComponent },
-  // { path: 'to-do', component: ToDoComponent },
-  // { path: 'to-do', component: ToDoComponent },
-  // { path: 'to-do', component: ToDoComponent },
+  { path: 'empty-component', component: Session1Component, canActivate: [AuthGuard] }
   // { path: '**', }
 
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{enableTracing: false, useHash: true,preloadingStrategy:PreloadAllModules})],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false, useHash: true, preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
