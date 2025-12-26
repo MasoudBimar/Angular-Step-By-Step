@@ -8,8 +8,8 @@ Angular Step-By-Step is a progressive learning repository designed to build a de
 
 ## Table of Contents
 
-- **Getting Started** — [Getting Started](src/app/session1/README.md) : prerequisites and setup
-- **Typescript Preliminaries** — [Typescript Preliminaries](src/app/session2/README.md) : essential TypeScript concepts
+- **Getting Started** — [Getting Started](src/app/1.getting-started//README.md) : prerequisites and setup
+- **Typescript Preliminaries** — [Typescript Preliminaries](src/app/2.typescript-preliminaries/README.md) : essential TypeScript concepts
 - **Angular Fundamentals** — [Angular Fundamentals](src/app/session3/README.md) : core Angular concepts and architecture
 - **TODO APP** — [TODO APP](src/app/session4/README.md) : building a simple application step-by-step
 - **Components & Templates** — [Components & Templates](src/app/session5/README.md) : ordered topics and exercises

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Product } from 'src/app/model/product.model';
+import { Product } from 'src/app/shared/model/product.model';
 
 @Component({
   selector: 'app-template-driven-form',
