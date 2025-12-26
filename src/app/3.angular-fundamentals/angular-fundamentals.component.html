@@ -1,1 +1,39 @@
-<p>angular-fundamentals works!</p>
+<div class="m-2">
+  <!-- Interpolation -->
+  <h2>{{ title }}</h2>
+  <!-- Interpolation + Uppercase Pipe -->
+  <h2>{{ title | uppercase }}</h2>
+  <!-- Interpolation + Concatenation -->
+  <h2>{{ "my title is" + title }}</h2>
+  <hr />
+  <!-- Interpolation + Json Pipe -->
+  <h2>{{ person | json }}</h2>
+  <hr />
+  <!-- setting attribute value using Interpolation -->
+  <img src="{{ imgUrl1 }}" alt="angular" style="width: 150px" />
+  <hr />
+  <!-- prperty binding -->
+  <h2 [textContent]="title"></h2>
+  <hr />
+  <!-- setting attribute value using Prperty Binding -->
+  <img [src]="imgUrl2" alt="angular" style="width: 150px" />
+  <hr />
+  <hr />
+  <h1>Calling Method in Interpolation</h1>
+  <p>Greeting: {{ getGreeting() }}</p>
+  <hr />
+
+  <h1>Use expressions in Interpolation</h1>
+  <hr />
+  <p>Total: {{ price * quantity }}</p>
+  <p>User: {{ firstName + " " + lastName }}</p>
+  <p>Enabled: {{ isActive ? "yes" : "no" }}</p>
+  <hr />
+
+  <h1>Interpolation + pipes</h1>
+  <hr />
+  <p>Upper: {{ name | uppercase }}</p>
+  <p>Date: {{ createdAt | date : "yyyy-MM-dd" }}</p>
+  <p>Price: {{ amount | currency : "USD" }}</p>
+  <p>Percent: {{ ratio | percent : "1.0-2" }}</p>
+</div>
