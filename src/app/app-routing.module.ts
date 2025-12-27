@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ToDoComponent } from './session3/to-do-module/to-do/to-do.component';
-import { DisplayDataHandlingEventComponent } from './session4/display-data-handling-event/display-data-handling-event.component';
 import { TestComponentComponent } from './session5/test-component/test-component.component';
 import { LifecyclesComponent } from './session6/lifecycles/lifecycles.component';
 import { FullTemplateDrivenComponent } from './session7/full-template-driven/full-template-driven.component';
@@ -12,11 +11,12 @@ import { ProductSampleComponent } from './session7/product-sample/product-sample
 import { Session1Component } from './session1/session1.component';
 import { Session7Routes } from './session7/session7.module';
 import { AuthGuard } from './session11/guards/auth-guard';
+import { AngularFundamentalsComponent } from './3.angular-fundamentals/angular-fundamentals.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
   { path: 'to-do', component: ToDoComponent },
-  { path: 'data-event', component: DisplayDataHandlingEventComponent },
+  { path: 'data-event', component: AngularFundamentalsComponent },
   { path: 'components', component: TestComponentComponent },
   { path: 'life-cycle', component: CustomElementComponent },
   { path: 'template-driven', component: TemplateDrivenComponent },

@@ -28,5 +28,44 @@ export class AngularFundamentalsComponent {
   createdAt = new Date(2024, 0, 15);
   amount = 1234.5;
   ratio = 0.835;
+  colSpan = 2;
+
+  dateObj: Date = new Date();
+  numberValue: number = 123456789;
+
+  sayHello(event: Event) {
+    // event.stopPropagation();
+    console.log('button => say hello ', event);
+  }
+
+  sayHello2(event: Event) {
+    console.log('div => say hello ', event);
+  }
+
+  anchorClicked(event: MouseEvent) {
+    // event.preventDefault();
+    console.log('Anchor clicked');
+  }
+
+  keyUpHandler(event: KeyboardEvent) {
+
+    console.log('keyUp Event Handler >>>', event);
+    if (event.key === 'Enter') {
+      console.log('Enter KeyUp Event Handler >>>', event);
+    }
+  }
+
+  enterHandler(event: Event) {
+
+    console.log('Enter Event Handler 1 >>>', event);
+  }
+
+  enterHandler2(value: any) {
+
+  }
+
+  enterHandler3(event: any) {
+    console.log('Enter Event Handler 3 >>>', event?.target?.value);
+  }
 
 }
