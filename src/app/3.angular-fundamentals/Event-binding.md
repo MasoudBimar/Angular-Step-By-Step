@@ -116,6 +116,31 @@ export class EventBindingDemoComponent {
 }
 ```
 
+Using event filtering for combo keys directly in the template:
+
+```ts
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "app-event-binding-demo",
+  template: `
+    <input (keydown.shift.y)="handleShift($event)" />
+    <input (keydown)="handleEvent($event)" />
+  `,
+})
+export class EventBindingDemoComponent {
+  handleShift(event: KeyboardEvent): void {
+    console.log("Shift+Y detected");
+  }
+
+  handleEvent(event: KeyboardEvent): void {
+    if (event.shiftKey && event.key === "Y") {
+      console.log("Shift+Y detected in generic handler");
+    }
+  }
+}
+```
+
 ## Notes
 
 - Use `$event` to get event details.

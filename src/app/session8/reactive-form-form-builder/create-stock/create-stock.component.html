@@ -3,16 +3,38 @@
 <div class="form-group">
   <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
     <label for="stockName">Stock Name</label>
-    <input type="text" class="form-control" placeholder="Stock Name" name="stockName" formControlName="name">
-    <div *ngIf="stockForm.get('name')?.invalid && ( stockForm.get('name')?.dirty || stockForm.get('name')?.touched )" class="text-danger">
+    <input
+      type="text"
+      class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Stock Name"
+      name="stockName"
+      formControlName="name"
+    />
+    <div
+      *ngIf="
+        stockForm.get('name')?.invalid &&
+        (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
+      "
+      class="text-red-600 text-sm"
+    >
       Name is required
     </div>
 
-
     <label for="stockCode">Stock Code</label>
-    <input type="text" class="form-control" placeholder="Stock Code" formControlName="code">
-    <div class="text-danger"
-      *ngIf="stockForm.get('code')?.errors && stockForm.get('code')?.invalid && ( stockForm.get('code')?.dirty || stockForm.get('code')?.touched )">
+    <input
+      type="text"
+      class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Stock Code"
+      formControlName="code"
+    />
+    <div
+      class="text-red-600 text-sm"
+      *ngIf="
+        stockForm.get('code')?.errors &&
+        stockForm.get('code')?.invalid &&
+        (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
+      "
+    >
       <div *ngIf="stockForm.get('code')?.errors?.['required']">
         Stock Code is required
       </div>
@@ -22,8 +44,19 @@
     </div>
 
     <label for="stockPrice">Stock Price</label>
-    <input type="number" class="form-control" placeholder="Stock Price" formControlName="price">
-    <div class="text-danger" *ngIf="stockForm.get('price')?.invalid && ( stockForm.get('price')?.dirty || stockForm.get('price')?.touched )">
+    <input
+      type="number"
+      class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Stock Price"
+      formControlName="price"
+    />
+    <div
+      class="text-red-600 text-sm"
+      *ngIf="
+        stockForm.get('price')?.invalid &&
+        (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
+      "
+    >
       <div *ngIf="stockForm.get('price')?.errors?.['required']">
         Stock Price is required
       </div>
@@ -32,8 +65,13 @@
       </div>
     </div>
 
-    <br>
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <br />
+    <button
+      class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+      type="submit"
+    >
+      Submit
+    </button>
   </form>
 </div>
 
