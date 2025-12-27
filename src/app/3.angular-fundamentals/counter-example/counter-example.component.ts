@@ -25,4 +25,12 @@ export class CounterExampleComponent {
 
     direction === 'up' ? this.counter++ : this.counter--;
   }
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'ArrowUp') {
+      this.counter++;
+    } else if (event.key === 'ArrowDown') {
+      this.counter--;
+    }
+  }
 }
