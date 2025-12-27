@@ -42,4 +42,125 @@ What the decorator does:
 
 In short, the decorator links the `.ts` class to the `.html` view and `.scss` styles, and the `.spec.ts` validates that the component works as expected.
 
-[Typescript Preliminaries](/src/app/2.typescript-preliminaries/README.md)
+## Setup environments
+
+Install Node.js (LTS) and npm, then install the Angular CLI globally.
+
+```bash
+node --version
+npm --version
+npm install -g @angular/cli
+ng version
+```
+
+Optional tools:
+
+- Git for source control.
+- A modern editor like VS Code.
+
+## Create our first project
+
+Generate a new project with routing and SCSS, then run it.
+
+```bash
+ng new my-app --routing --style=scss
+cd my-app
+ng serve -o
+```
+
+## Angular Project Structure
+
+Key folders and files you will see:
+
+- `src/` application source code.
+- `src/main.ts` bootstraps the root module.
+- `src/app/` root module, components, and features.
+- `src/assets/` static files like images.
+- `angular.json` workspace configuration.
+- `package.json` dependencies and scripts.
+
+## Angular Architecture
+
+Angular apps are built from:
+
+- Components: UI building blocks.
+- Templates: HTML views for components.
+- Services: reusable business logic.
+- Modules: group related components and services.
+- Routing: navigation between views.
+
+## Angular Modules
+
+Modules organize features and declare which components belong together.
+
+```ts
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { AppComponent } from "./app.component";
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+## Angular Templates
+
+Templates use HTML plus Angular syntax for binding and logic.
+
+```ts
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "app-hello",
+  template: `
+    <h1>{{ title }}</h1>
+    <button (click)="count = count + 1">Clicked {{ count }}</button>
+  `,
+})
+export class HelloComponent {
+  title = "Hello Angular";
+  count = 0;
+}
+```
+
+## Angular Metadata
+
+Angular uses decorators (metadata) to describe how classes should behave.
+
+```ts
+import { Component, Input } from "@angular/core";
+
+@Component({
+  selector: "app-card",
+  template: `<h2>{{ heading }}</h2>`,
+})
+export class CardComponent {
+  @Input() heading = "";
+}
+```
+
+## Angular CLI
+
+Common CLI commands:
+
+```bash
+ng generate component users
+ng generate module admin --route admin --module app.module
+ng generate service data/user
+ng test
+ng build
+```
+
+## Essential Extensions
+
+Recommended VS Code extensions:
+
+- Angular Language Service
+- ESLint
+- Prettier
+- EditorConfig
+
+Next Section: [Typescript Preliminaries](/src/app/2.typescript-preliminaries/README.md)
