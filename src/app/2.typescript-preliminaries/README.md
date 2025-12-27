@@ -250,8 +250,6 @@ c.area();
 - Interfaces describe shape; classes implement behavior.
 - Inheritance and access modifiers help model reusable object hierarchies.
 
-## Next Steps []()
-
 ## For more information and resources check this repository main README.md Angular-Step-BY-Step
 
 [[Typescript-Step-BY-Step](src/app/1.getting-started//README.md)](https://github.com/MasoudBimar/Typescript-Step-by-Step)

@@ -90,4 +90,4 @@ export class InterpolationDemoComponent {
 }
 ```
 
-Nest: [Property Binding](/src/app/3.angular-fundamentals/Property-Binding.md)
+Next: [Property Binding](/src/app/3.angular-fundamentals/Property-Binding.md)

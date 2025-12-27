@@ -5,13 +5,13 @@ Event binding lets you listen to DOM events and run component methods using `(ev
 ## Handle common events
 
 ```ts
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-event-binding-demo',
+  selector: "app-event-binding-demo",
   template: `
     <button (click)="save()">Save</button>
-    <input (input)="onInput()" placeholder="Type here">
+    <input (input)="onInput()" placeholder="Type here" />
     <select (change)="onChange()">
       <option>One</option>
       <option>Two</option>
@@ -20,15 +20,15 @@ import { Component } from '@angular/core';
 })
 export class EventBindingDemoComponent {
   save(): void {
-    console.log('saved');
+    console.log("saved");
   }
 
   onInput(): void {
-    console.log('input event fired');
+    console.log("input event fired");
   }
 
   onChange(): void {
-    console.log('selection changed');
+    console.log("selection changed");
   }
 }
 ```
@@ -38,17 +38,17 @@ export class EventBindingDemoComponent {
 Use `$event` to access the event object and extract values from the target.
 
 ```ts
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-event-binding-demo',
+  selector: "app-event-binding-demo",
   template: `
-    <input (input)="updateName($event)" placeholder="Name">
+    <input (input)="updateName($event)" placeholder="Name" />
     <button (click)="setAge(21)">Set Age</button>
   `,
 })
 export class EventBindingDemoComponent {
-  name = '';
+  name = "";
   age = 0;
 
   updateName(event: Event): void {
@@ -67,25 +67,25 @@ export class EventBindingDemoComponent {
 Use a condition in the template or method to respond only when the event matches your criteria.
 
 ```ts
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-event-binding-demo',
+  selector: "app-event-binding-demo",
   template: `
-    <input (keyup)="onKeyup($event)" placeholder="Press Enter only">
+    <input (keyup)="onKeyup($event)" placeholder="Press Enter only" />
     <button (click)="onClick('save', $event)">Save</button>
   `,
 })
 export class EventBindingDemoComponent {
   onKeyup(event: KeyboardEvent): void {
-    if (event.key === 'Enter') {
-      console.log('enter pressed');
+    if (event.key === "Enter") {
+      console.log("enter pressed");
     }
   }
 
   onClick(action: string, event: MouseEvent): void {
-    if (action === 'save' && event.button === 0) {
-      console.log('left click save');
+    if (action === "save" && event.button === 0) {
+      console.log("left click save");
     }
   }
 }
@@ -96,23 +96,21 @@ export class EventBindingDemoComponent {
 Detect key combinations like Ctrl+S or Alt+Enter in the handler.
 
 ```ts
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-event-binding-demo',
-  template: `
-    <textarea (keydown)="handleShortcut($event)"></textarea>
-  `,
+  selector: "app-event-binding-demo",
+  template: ` <textarea (keydown)="handleShortcut($event)"></textarea> `,
 })
 export class EventBindingDemoComponent {
   handleShortcut(event: KeyboardEvent): void {
-    if (event.ctrlKey && event.key.toLowerCase() === 's') {
+    if (event.ctrlKey && event.key.toLowerCase() === "s") {
       event.preventDefault();
-      console.log('Ctrl+S');
+      console.log("Ctrl+S");
     }
 
-    if (event.altKey && event.key === 'Enter') {
-      console.log('Alt+Enter');
+    if (event.altKey && event.key === "Enter") {
+      console.log("Alt+Enter");
     }
   }
 }

@@ -11,6 +11,7 @@ import { Session5Module } from './session5/session5.module';
 import { Session6Module } from './session6/session6.module';
 import { Session8Module } from './session8/session8.module';
 import { AngularFundamentalsComponent } from './3.angular-fundamentals/angular-fundamentals.component';
+import { CounterExampleComponent } from './3.angular-fundamentals/counter-example/counter-example.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AngularFundamentalsComponent } from './3.angular-fundamentals/angular-f
     GettingStartedComponent,
     TypescriptPreliminariesComponent,
     AngularFundamentalsComponent,
+    CounterExampleComponent,
   ],
   imports: [
     BrowserModule,
