@@ -17,9 +17,9 @@ Example:
 
 ```ts
 @Component({
-  selector: 'app-getting-started',
-  templateUrl: './getting-started.component.html',
-  styleUrls: ['./getting-started.component.scss'],
+  selector: "app-getting-started",
+  templateUrl: "./getting-started.component.html",
+  styleUrls: ["./getting-started.component.scss"],
 })
 export class GettingStartedComponent {
   // component state and logic
@@ -41,3 +41,5 @@ What the decorator does:
 - The `.spec.ts` tests create the component, render the template, and assert behavior or output.
 
 In short, the decorator links the `.ts` class to the `.html` view and `.scss` styles, and the `.spec.ts` validates that the component works as expected.
+
+[Typescript Preliminaries](/src/app/2.typescript-preliminaries/README.md)

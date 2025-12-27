@@ -89,3 +89,5 @@ export class InterpolationDemoComponent {
   ratio = 0.835;
 }
 ```
+
+Nest: [Property Binding](/src/app/3.angular-fundamentals/Property-Binding.md)
