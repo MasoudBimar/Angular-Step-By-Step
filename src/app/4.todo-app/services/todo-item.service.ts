@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { TodoItem } from './to-do-item.model';
-import { TodoList } from './to-do-list.model';
+import { TodoItem } from '../model/to-do-item.model';
+import { TodoList } from '../model/to-do-list.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class TodoItemService {
 
   constructor() { }
 
-  getItems(){
+  getItems() {
     return new TodoList([
       new TodoItem('call ali'),
       new TodoItem('call mohsen'),
@@ -18,6 +18,6 @@ export class TodoItemService {
       new TodoItem('call reza'),
       new TodoItem('call nader')
     ]);
-  
+
   }
 }

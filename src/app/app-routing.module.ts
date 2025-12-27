@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { ToDoComponent } from './session3/to-do-module/to-do/to-do.component';
 import { TestComponentComponent } from './session5/test-component/test-component.component';
 import { LifecyclesComponent } from './session6/lifecycles/lifecycles.component';
 import { FullTemplateDrivenComponent } from './session7/full-template-driven/full-template-driven.component';
@@ -12,6 +11,7 @@ import { Session1Component } from './session1/session1.component';
 import { Session7Routes } from './session7/session7.module';
 import { AuthGuard } from './session11/guards/auth-guard';
 import { AngularFundamentalsComponent } from './3.angular-fundamentals/angular-fundamentals.component';
+import { ToDoComponent } from './4.todo-app/to-do/to-do.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
