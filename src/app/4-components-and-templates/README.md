@@ -165,12 +165,15 @@ export class AccessDemoComponent {
 
 ## Directives overview
 
+One of the most core features of Angular is directives.
 Directives extend HTML by adding behavior to elements.
+A Directive is a set of classes used for addding some usefull behavior or some manipulations to the elements or components of the Angular application (adding, removing, changing element in/from the DOM).
 
 Types of directives in Angular:
 
-- **Component** directive (a directive with a template).
-- **Attribute** directive (changes appearance or behavior).
-- **Structural** directive (changes layout by adding/removing elements).
+- **Component** directive (a directive responsible for controlling the rendering of the Angular components in the template).
+- **Attribute** directive (changes appearance or behavior of html elements).
+- **Structural** directive (responsible of changing DOM structureby adding/deleting or updating elements).
+- **Custom Directive** user created directive by defining new behavior
 
 This overview prepares for the next section where directives are covered in detail.

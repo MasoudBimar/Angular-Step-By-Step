@@ -36,10 +36,10 @@ export class BindingCompareComponent {
 }
 ```
 
-[Interpolation](/src/app/3.angular-fundamentals/Interpolation.md)
+[Interpolation](/src/app/3-angular-fundamentals/Interpolation.md)
 
-[Property Binding](/src/app/3.angular-fundamentals/Property-Binding.md)
+[Property Binding](/src/app/3-angular-fundamentals/Property-Binding.md)
 
-[Event Binding](/src/app/3.angular-fundamentals/Event-Binding.md)
+[Event Binding](/src/app/3-angular-fundamentals/Event-Binding.md)
 
-[Attribute Binding](/src/app/3.angular-fundamentals/Attribute-Binding.md)
+[Attribute Binding](/src/app/3-angular-fundamentals/Attribute-Binding.md)
