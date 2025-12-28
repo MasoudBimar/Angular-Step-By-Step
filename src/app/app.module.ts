@@ -11,8 +11,12 @@ import { Session5Module } from './session5/session5.module';
 import { Session6Module } from './session6/session6.module';
 import { Session8Module } from './session8/session8.module';
 import { PersianDatePipe } from './shared/persian-date.pipe';
-import { ToDoComponent } from './4.todo-app/to-do/to-do.component';
 import { FormsModule } from '@angular/forms';
+import { StructuralDirectivesComponent } from './5.structural-directives/structural-directives.component';
+import { BehavioralDirectivesComponent } from './6.behavioral-directives/behavioral-directives.component';
+import { CustomDirectivesComponent } from './7.custom-directives/custom-directives.component';
+import { ComponentsAndTemplatesComponent } from './4.components-and-templates/components-and-templates.component';
+import { ToDoComponent } from './4.components-and-templates/todo-app/to-do/to-do.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { FormsModule } from '@angular/forms';
     AngularFundamentalsComponent,
     CounterExampleComponent,
     PersianDatePipe,
-    ToDoComponent
+    ToDoComponent,
+    StructuralDirectivesComponent,
+    BehavioralDirectivesComponent,
+    CustomDirectivesComponent,
+    ComponentsAndTemplatesComponent
   ],
   imports: [
     BrowserModule,

@@ -35,6 +35,14 @@
       <div class="col">
         <button
           class="btn btn-secondary"
+          routerLink="/counter"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Session 3 - Counter
+        </button>
+        <button
+          class="btn btn-secondary mx-1"
           routerLink="/to-do"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"

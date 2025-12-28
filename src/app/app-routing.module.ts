@@ -11,10 +11,12 @@ import { Session1Component } from './session1/session1.component';
 import { Session7Routes } from './session7/session7.module';
 import { AuthGuard } from './session11/guards/auth-guard';
 import { AngularFundamentalsComponent } from './3.angular-fundamentals/angular-fundamentals.component';
-import { ToDoComponent } from './4.todo-app/to-do/to-do.component';
+import { CounterExampleComponent } from './3.angular-fundamentals/counter-example/counter-example.component';
+import { ToDoComponent } from './4.components-and-templates/todo-app/to-do/to-do.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
+  { path: 'counter', component: CounterExampleComponent },
   { path: 'to-do', component: ToDoComponent },
   { path: 'data-event', component: AngularFundamentalsComponent },
   { path: 'components', component: TestComponentComponent },
