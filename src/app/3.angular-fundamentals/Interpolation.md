@@ -90,4 +90,43 @@ export class InterpolationDemoComponent {
 }
 ```
 
+## Angular Expression Syntax
+
+Angular expressions are JavaScript-like snippets used inside templates. They run in the context of the component instance and are intentionally limited for safety and predictability.
+
+Rules and tips:
+
+- Allowed: literals, property access, method calls, arithmetic, comparisons, logical operators, ternary, pipes.
+- Not allowed: assignments, `new`, `++/--`, `;`, or control statements like `if` and `for`.
+- Access only component members; avoid direct use of globals like `window` or `document`.
+
+Sample command:
+
+```bash
+ng generate component expression-demo
+```
+
+```ts
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "app-expression-demo",
+  template: `
+    <p>{{ price * quantity }}</p>
+    <p>{{ isActive ? "Enabled" : "Disabled" }}</p>
+    <p>{{ user?.name ?? "Guest" }}</p>
+    <p>{{ message.trim().toUpperCase() }}</p>
+    <p>{{ createdAt | date : "yyyy-MM-dd" }}</p>
+  `,
+})
+export class ExpressionDemoComponent {
+  price = 25;
+  quantity = 3;
+  isActive = true;
+  user: { name: string } | null = null;
+  message = "  hello angular  ";
+  createdAt = new Date(2024, 0, 15);
+}
+```
+
 Next: [Property Binding](/src/app/3.angular-fundamentals/Property-Binding.md)
