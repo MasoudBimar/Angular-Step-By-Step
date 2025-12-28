@@ -126,6 +126,25 @@ export class NgStyleDemoComponent {
 }
 ```
 
+Passing a function with a parameter value to the ngStyle directive is also possible & valid.
+
+```ts
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "app-ngstyle-demo",
+  template: ` <p [ngStyle]="{ color: getColor() }">Styled text</p> `,
+})
+export class NgStyleDemoComponent {
+  color = "seagreen";
+  size = 18;
+
+  getColor(): void {
+    return "white";
+  }
+}
+```
+
 ## ngModel
 
 Use `ngModel` for two-way binding in template-driven forms. You must import `FormsModule` in the module that declares the component.
