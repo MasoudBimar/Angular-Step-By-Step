@@ -13,6 +13,9 @@ import { AuthGuard } from './session11/guards/auth-guard';
 import { AngularFundamentalsComponent } from './3-angular-fundamentals/angular-fundamentals.component';
 import { CounterExampleComponent } from './3-angular-fundamentals/counter-example/counter-example.component';
 import { ToDoComponent } from './4-components-and-templates/todo-app/to-do/to-do.component';
+import { StructuralDirectivesComponent } from './5-structural-directives/structural-directives.component';
+import { AttributeDirectivesComponent } from './6-attribute-directives/attribute-directives.component';
+import { ComponentDirectivesComponent } from './7-component-directives/component-directives.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
@@ -20,6 +23,9 @@ const routes: Routes = [
   { path: 'to-do', component: ToDoComponent },
   { path: 'data-event', component: AngularFundamentalsComponent },
   { path: 'components', component: TestComponentComponent },
+  { path: 'structural-directive', component: StructuralDirectivesComponent },
+  { path: 'attribute-directive', component: AttributeDirectivesComponent },
+  { path: 'component-directive', component: ComponentDirectivesComponent },
   { path: 'life-cycle', component: CustomElementComponent },
   { path: 'template-driven', component: TemplateDrivenComponent },
   { path: 'full-template-driven', component: FullTemplateDrivenComponent },

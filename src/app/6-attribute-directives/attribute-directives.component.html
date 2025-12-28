@@ -1,1 +1,19 @@
-<p>attribute-directives works!</p>
+<button (click)="toggleTheme()">
+  {{ isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode" }}
+</button>
+
+<div class="box" [ngClass]="isDarkMode ? 'darkMode' : 'lightMode'">
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas natus, fugiat
+    minima repellendus culpa tempora quasi cumque ipsam aliquid doloribus odio
+    impedit, accusamus, voluptas et officiis ad a architecto. Enim!
+  </p>
+</div>
+
+<div class="box" [ngClass]="isDarkMode ? 'darkMode' : 'lightMode'">
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas natus, fugiat
+    minima repellendus culpa tempora quasi cumque ipsam aliquid doloribus odio
+    impedit, accusamus, voluptas et officiis ad a architecto. Enim!
+  </p>
+</div>
