@@ -254,4 +254,4 @@ c.area();
 
 [[Typescript-Step-BY-Step](src/app/1.getting-started//README.md)](https://github.com/MasoudBimar/Typescript-Step-by-Step)
 
-Nest : [Angular Fundamentals](/src/app/3-angular-fundamentals/README.md)
+Next Section : [Angular Fundamentals](/src/app/3-angular-fundamentals/README.md)

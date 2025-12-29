@@ -36,7 +36,7 @@ export class BindingCompareComponent {
 }
 ```
 
-[Interpolation](/src/app/3-angular-fundamentals/Interpolation.md)
+Next Section: [Interpolation](/src/app/3-angular-fundamentals/Interpolation.md)
 
 [Property Binding](/src/app/3-angular-fundamentals/Property-Binding.md)
 
