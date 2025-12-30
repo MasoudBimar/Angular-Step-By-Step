@@ -104,6 +104,7 @@ export class NgClassDemoComponent {
 ## ngStyle
 
 Use `ngStyle` to set inline styles from expressions.
+BY using ngStyle we can apply styles based on some condition values that could change dynamically.
 
 ```ts
 import { Component } from "@angular/core";
@@ -123,6 +124,27 @@ export class NgStyleDemoComponent {
     this.color = this.color === "seagreen" ? "crimson" : "seagreen";
     this.size = this.size === 18 ? 22 : 18;
   }
+}
+```
+
+Passing styles as an object
+
+> [!TIP]
+> CSS keys can be either kebab-case with single quotes or camelCase without quotes.
+
+```ts
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "app-ngstyle-demo",
+  template: ` <p [ngStyle]="styleValues">Styled text</p> `,
+})
+export class NgStyleDemoComponent {
+  styleValues = {
+    color: "blue",
+    "font-style": "italic",
+    "font-size": "35px",
+  };
 }
 ```
 
@@ -234,3 +256,7 @@ export class HighlightDirective {
 
 - Attribute directives modify an element (style, behavior) and keep it in the DOM.
 - Structural directives change the DOM layout by adding/removing elements (`*ngIf`, `*ngFor`).
+
+Next Section: [Component Directives](/src/app/7-component-directives/README.md)
+
+[Custom Directives](/src/app/8-custom-directives/README.md)

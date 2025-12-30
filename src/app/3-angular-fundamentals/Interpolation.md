@@ -129,4 +129,4 @@ export class ExpressionDemoComponent {
 }
 ```
 
-Next: [Property Binding](/src/app/3-angular-fundamentals/Property-Binding.md)
+Next Section: [Property Binding](/src/app/3-angular-fundamentals/Property-Binding.md)

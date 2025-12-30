@@ -60,3 +60,5 @@ export class AttributeBindingDemoComponent {
 
 - Use `[attr.name]` for attributes like `aria-*`, `data-*`, and `colspan`.
 - Use `[property]` for real DOM properties like `value`, `checked`, and `disabled`.
+
+Next Section : [Event Binding](/src/app/4-components-and-templates/README.md)

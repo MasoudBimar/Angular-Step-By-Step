@@ -173,3 +173,5 @@ export class EventBindingDemoComponent {
 - copy
 - paste
 - blur
+
+Next Section : [Attribute Binding](/src/app/3-angular-fundamentals/Attribute-Binding.md)

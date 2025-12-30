@@ -177,3 +177,11 @@ Types of directives in Angular:
 - **Custom Directive** user created directive by defining new behavior
 
 This overview prepares for the next section where directives are covered in detail.
+
+Next Section : [Structural Directives](/src/app/5-structural-directives/README.md)
+
+[Attribute Directives](/src/app/6-attribute-directives/README.md)
+
+[Component Directives](/src/app/7-component-directives/README.md)
+
+[Custom Directives](/src/app/8-custom-directives/README.md)

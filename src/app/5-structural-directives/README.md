@@ -183,3 +183,9 @@ If you only have two outcomes, `*ngIf` is usually clearer. If you expect the lis
 - Structural directives reshape the DOM, not just style or behavior.
 - `*` syntax is sugar for `<ng-template>`.
 - Use `ngIf`, `ngFor`, and `ngSwitch` for most layout logic.
+
+Next Section: [Attribute Directives](/src/app/6-attribute-directives/README.md)
+
+[Component Directives](/src/app/7-component-directives/README.md)
+
+[Custom Directives](/src/app/8-custom-directives/README.md)
