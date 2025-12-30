@@ -62,6 +62,9 @@ Avoid heavy work here:
 - No DOM access.
 - Inputs are not set yet.
 
+> [!CATUON]
+> If you try to access input properties in the constructor, they will be undefined.
+
 ```ts
 import { Component } from "@angular/core";
 import { UsersService } from "./users.service";
@@ -106,6 +109,9 @@ export class UsersComponent implements OnInit {
   }
 }
 ```
+
+> [!TIP]
+> When the ngOnInit calls Angular finished creating the component and setting up the inputs But its before rendering the view in the DOM.
 
 ### `ngOnChanges`
 
@@ -156,21 +162,61 @@ export declare class SimpleChange {
 
 ### `ngDoCheck`
 
-Custom change detection hook. Use sparingly.
+Custom change detection hook. Use sparingly (not always).
+This hook used for performing a custom change detection & responding to a change detection in the component.
 
 When to use:
 
 - You need to detect changes that Angular does not track (mutations inside objects/arrays).
 - You need to run custom dirty-check logic.
 
+> [!CAUTION]
+> Never use `ngOnChanges` and `ngDoCheck` hooks together in the same component.
+
+```ts
+import { Component, Input, ngDoCheck } from "@angular/core";
+
+@Component({
+  selector: "app-user-badge",
+  template: `<p>{{ label }}</p>`,
+})
+export class UserBadgeComponent implements OnChanges {
+  @Input() user: { name: string } = {};
+  private previousUserName: string | undefiend;
+
+  ngDoCheck(): void {
+    if (this.user.name !== this.previousUserName) {
+      this.previousUserName = this.user.name;
+      console.log("ngDoCheck called");
+    }
+  }
+}
+```
+
 > [!TIP]
 > Prefer immutable updates over `ngDoCheck` when possible.
 
 ### `ngAfterContentInit` / `ngAfterContentChecked`
 
-Runs after Angular projects content using `ng-content`.
+This hook `ngAfterContentInit` invoked when there is some content projected into the component.
+So it runs after Angular projects content using `ng-content`.
 
-When to use:
+What is [Content Projection](/src/app//5-structural-directives/README.md)?
+
+Inputs (@Input) are great for data. Content projection is for structure and semantics.
+
+We use projection when:
+
+- The parent must control markup, not just values
+- You want reusable layout components (cards, modals, tabs)
+- Accessibility or semantics matter (headings, lists, buttons)
+
+> [!NOTE] > `ngAfterContentInit` Calls only once throught the component lifecycle.
+
+> [!TIP]
+> There are two more child decorators that are used for trigering the `ngAfterContentInit` hook: `@ViewChild `& `@ContentChild`.
+
+When to use `ngAfterContentInit`:
 
 - You need access to projected content (content children).
 - You need to run logic after projected content updates.
@@ -197,9 +243,15 @@ export class PanelComponent implements AfterContentInit {
 }
 ```
 
+The `ngAfterContentChecked` hook checks for the content of the component on event change detection cycle.
+
 ### `ngAfterViewInit` / `ngAfterViewChecked`
 
-Runs after the component view and child views are initialized.
+the `ngAfterViewInit` hook runs after the component view and child views are initialized.
+this hook calls when angular finishes the initialization of the view in the DOM.
+
+> [!NOTE]
+> The view has been Initialized means the component and its templatehave been rendered & ready to be used.
 
 When to use:
 
@@ -225,6 +277,13 @@ export class ChartComponent implements AfterViewInit {
   }
 }
 ```
+
+### How to make sure changes in the 'ngAfterViewInit' won't cause **Expression has changed after it was checked**?
+
+This error happens when something changes after second phase of chnage detection performed by angular usually when change happens in this hook.
+
+> [!NOTE]
+> The `ngAfterViewChecked` hook calls after checking the component's view and child views.
 
 ### `ngOnDestroy`
 
