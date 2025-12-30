@@ -10,13 +10,14 @@ Angular Step-By-Step is a progressive learning repository designed to build a de
 
 - **Getting Started** — [Getting Started](src/app/1.getting-started//README.md) : prerequisites and setup
 - **Typescript Preliminaries** — [Typescript Preliminaries](src/app/2.typescript-preliminaries/README.md) : essential TypeScript concepts
-- **Angular Fundamentals** — [Angular Fundamentals](src/app/session3/README.md) : core Angular concepts and architecture
-- **TODO APP** — [TODO APP](src/app/session4/README.md) : building a simple application step-by-step
-- **Components & Templates** — [Components & Templates](src/app/session5/README.md) : ordered topics and exercises
-- **Display Data & Handling Events** — [Display Data & Handling Events](src/app/session6/README.md) : How to handle data presentation and user interactions
-- **Structural Directives** — [Structural Directives](src/app/session7/README.md) : Angular structural directives explained
-- **Behavioral Directives** — [Behavioral Directives](src/app/session8/README.md) : Angular behavioral directives explained
-- **Custom Directives** — [Custom Directives](src/app/session9/README.md) : Angular custom directives explained
+- **Angular Fundamentals** — [Angular Fundamentals](src/app/3-angular-fundamentals/README.md) : core Angular concepts and architecture
+- **Component & Templates** — [Component & Templates](src/app/4-components-and-templates/README.md) : How to handle data presentation and user interactions
+- **Structural Directives** — [Structural Directives](src/app/5-structural-directives//README.md) : Angular structural directives explained
+- **Attribute Directives** — [Attribute Directives](src/app/6-attribute-directives/README.md) : Angular attribute directives explained
+- **Component Directives** — [Component Directives](src/app/7-component-directives/README.md) : Angular Component directives explained
+- **Custom Directives** — [Custom Directives](src/app/8-custom-directives//README.md) : Angular custom directives explained
+- **Angular Special Elements** — [Special Elements](src/app/9-special-elements/README.md)
+- **Angular Component Lifecycles** — [Component Lifecycles](src/app/10-component-lifecycles/README.md) :
 - **Template Drive Forms** — [Template Drive Forms](src/app/session10/README.md) : Angular template-driven forms explained
 - **Reactive Forms** — [Reactive Forms](src/app/session11/README.md) : Angular reactive forms explained
 - **Sample Project Product** — building a sample project from scratch
