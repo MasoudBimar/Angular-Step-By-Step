@@ -2,6 +2,13 @@
 
 Angular decorators add metadata to classes and class members so Angular can wire up inputs, outputs, DOM access, and content projection.
 
+## Angular Decorator Categories
+
+- Class Decorator
+- Method Decorator
+- Parameter Decorator
+- Property Decorator
+
 ## Class decorators (high level)
 
 Class decorators tell Angular how to treat a class at runtime.
@@ -33,12 +40,7 @@ import { API_URL } from "./tokens";
   providers: [LoggerService],
 })
 export class PanelComponent {
-  constructor(
-    @Inject(API_URL) public apiUrl: string,
-    @Self() private localLogger: LoggerService,
-    @SkipSelf() @Optional() private parentLogger?: LoggerService,
-    @Host() @Optional() private hostLogger?: LoggerService,
-  ) {}
+  constructor(@Inject(API_URL) public apiUrl: string, @Self() private localLogger: LoggerService, @SkipSelf() @Optional() private parentLogger?: LoggerService, @Host() @Optional() private hostLogger?: LoggerService) {}
 }
 ```
 
@@ -49,7 +51,7 @@ This page focuses on the most common member decorators:
 - `@ViewChild()` / `@ViewChildren()` for view queries.
 - `@ContentChild()` / `@ContentChildren()` for projected content queries.
 
-## `@Input()` (parent -> child data)
+## `@Input()` (property decorator, parent -> child data)
 
 Use `@Input()` to accept data from a parent component. Angular updates the value whenever the parent binding changes.
 
@@ -76,7 +78,7 @@ Parent usage:
 <app-user-card [name]="user.name"></app-user-card>
 ```
 
-## `@Output()` (child -> parent events)
+## `@Output()` (property decorator, child -> parent events)
 
 Use `@Output()` with an `EventEmitter` to notify the parent about events or data changes.
 
@@ -109,7 +111,7 @@ Parent usage:
 <app-counter (valueChange)="onValueChanged($event)"></app-counter>
 ```
 
-## `@HostBinding()` (bind to host element)
+## `@HostBinding()` (property decorator, bind to host element)
 
 Use `@HostBinding()` to bind a class, style, or attribute on the component's host element.
 
@@ -131,7 +133,7 @@ export class AlertComponent {
 }
 ```
 
-## `@HostListener()` (listen on the host element)
+## `@HostListener()` (method decorator, listen on the host element)
 
 Use `@HostListener()` to listen for DOM events on the component's host element (or on `window` / `document`).
 
@@ -157,7 +159,7 @@ export class HotkeyComponent {
 }
 ```
 
-## `@ViewChild()` and `@ViewChildren()` (query the component view)
+## `@ViewChild()` and `@ViewChildren()` (property decorator, query the component view)
 
 Use view queries to get references to elements or child components declared in the component's template.
 
@@ -196,16 +198,14 @@ import { Component, QueryList, ViewChildren } from "@angular/core";
 
 @Component({
   selector: "app-tabs",
-  template: `
-    <app-tab *ngFor="let tab of tabs"></app-tab>
-  `,
+  template: ` <app-tab *ngFor="let tab of tabs"></app-tab> `,
 })
 export class TabsComponent {
   @ViewChildren("app-tab") tabComponents?: QueryList<unknown>;
 }
 ```
 
-## `@ContentChild()` and `@ContentChildren()` (query projected content)
+## `@ContentChild()` and `@ContentChildren()` (property decorator, query projected content)
 
 Use content queries to access elements or components projected with `ng-content`.
 
@@ -241,9 +241,7 @@ import { Component, ContentChildren, QueryList } from "@angular/core";
 
 @Component({
   selector: "app-toolbar",
-  template: `
-    <ng-content></ng-content>
-  `,
+  template: ` <ng-content></ng-content> `,
 })
 export class ToolbarComponent {
   @ContentChildren("tool") tools?: QueryList<unknown>;
