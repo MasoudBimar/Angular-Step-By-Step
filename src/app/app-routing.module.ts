@@ -16,6 +16,7 @@ import { ToDoComponent } from './4-components-and-templates/todo-app/to-do/to-do
 import { StructuralDirectivesComponent } from './5-structural-directives/structural-directives.component';
 import { AttributeDirectivesComponent } from './6-attribute-directives/attribute-directives.component';
 import { ComponentDirectivesComponent } from './7-component-directives/component-directives.component';
+import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
@@ -26,6 +27,8 @@ const routes: Routes = [
   { path: 'structural-directive', component: StructuralDirectivesComponent },
   { path: 'attribute-directive', component: AttributeDirectivesComponent },
   { path: 'component-directive', component: ComponentDirectivesComponent },
+  { path: 'special-elements', component: SpecialElementsComponent },
+
   { path: 'life-cycle', component: CustomElementComponent },
   { path: 'template-driven', component: TemplateDrivenComponent },
   { path: 'full-template-driven', component: FullTemplateDrivenComponent },
