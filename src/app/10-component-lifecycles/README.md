@@ -14,8 +14,40 @@ Angular components and directives have lifecycle hooks that let you run code at 
 8. `ngAfterViewChecked`
 9. `ngOnDestroy`
 
-> [!TIP]
-> `ngOnChanges` only runs when the component has `@Input` values and they change.
+> [!TIP] > `ngOnChanges` only runs when the component has `@Input` values and they change.
+
+## General order of lifecycle hooks
+
+Angular runs lifecycle hooks in a predictable sequence, but the exact set depends on whether it is the first render or a later change detection pass.
+
+First render (component creation):
+
+1. `constructor`
+2. `ngOnChanges` (only if `@Input` values exist)
+3. `ngOnInit`
+4. `ngDoCheck`
+5. `ngAfterContentInit`
+6. `ngAfterContentChecked`
+7. `ngAfterViewInit`
+8. `ngAfterViewChecked`
+
+Subsequent change detection passes:
+
+1. `ngOnChanges` (only if `@Input` references changed)
+2. `ngDoCheck`
+3. `ngAfterContentChecked`
+4. `ngAfterViewChecked`
+
+Destruction:
+
+1. `ngOnDestroy`
+
+This hooks mainly used in the child components & DOM manipolation
+
+1. `ngAfterContentInit`
+2. `ngAfterContentChecked`
+3. `ngAfterViewInit`
+4. `ngAfterViewChecked`
 
 ## What is `constructor` good for?
 
@@ -51,6 +83,8 @@ export class UsersComponent {
 
 Runs once after the first `ngOnChanges`. Use it for initialization that needs inputs to be set.
 
+This hook is called only once, after the first change detection cycle, when the component is initialized.
+
 When to use:
 
 - Start HTTP requests.
@@ -75,7 +109,7 @@ export class UsersComponent implements OnInit {
 
 ### `ngOnChanges`
 
-Runs whenever an `@Input` reference changes.
+Runs whenever an `@Input` reference changes(evety time there is a change detected in input properties).
 
 When to use:
 
@@ -100,6 +134,25 @@ export class UserBadgeComponent implements OnChanges {
   }
 }
 ```
+
+> [!TIP]
+> Every time an `@Input` property changes, Angular passes change metadata to the `SimpleChanges` object, and the new value is reflected on the input property before `ngOnChanges` is called.
+
+Simple Change Structure
+
+```ts
+export declare interface SimpleChanges {
+  [propName: string]: SimpleChange;
+}
+export declare class SimpleChange {
+  previousValue: any;
+  currentValue: any;
+  firstChange: boolean;
+}
+```
+
+> [!CAUTION]
+> Intermediate Updates that occur before the detection cycle are ignored by the `SimpleChanges`.
 
 ### `ngDoCheck`
 
@@ -272,7 +325,7 @@ export class MessagesComponent {
 > [!TIP]
 > Use `afterRender`/`afterNextRender` inside an injection context (constructor or field initializer).
 
-## Tips & tricks
+## Tips & Tricks
 
 - Use `ngOnInit` for data loading, not the constructor.
 - Use `ngAfterViewInit` for `@ViewChild` access and DOM-dependent code.
