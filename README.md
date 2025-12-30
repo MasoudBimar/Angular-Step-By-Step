@@ -18,6 +18,7 @@ Angular Step-By-Step is a progressive learning repository designed to build a de
 - **Custom Directives** — [Custom Directives](src/app/8-custom-directives//README.md) : Angular custom directives explained
 - **Angular Special Elements** — [Special Elements](src/app/9-special-elements/README.md)
 - **Angular Component Lifecycles** — [Component Lifecycles](src/app/10-component-lifecycles/README.md) :
+- **Angular Decorators** — [Angular Decorators](src/app/11-decorators/README.md) :
 - **Template Drive Forms** — [Template Drive Forms](src/app/session10/README.md) : Angular template-driven forms explained
 - **Reactive Forms** — [Reactive Forms](src/app/session11/README.md) : Angular reactive forms explained
 - **Sample Project Product** — building a sample project from scratch
