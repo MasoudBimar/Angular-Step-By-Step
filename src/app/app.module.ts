@@ -19,6 +19,7 @@ import { Session6Module } from './session6/session6.module';
 import { Session8Module } from './session8/session8.module';
 import { PersianDatePipe } from './shared/persian-date.pipe';
 import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
+import { ComponentLifecyclesComponent } from './10-component-lifecycles/component-lifecycles.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SpecialElementsComponent } from './9-special-elements/special-elements.
     CustomDirectivesComponent,
     ComponentsAndTemplatesComponent,
     ComponentDirectivesComponent,
-    SpecialElementsComponent
+    SpecialElementsComponent,
+    ComponentLifecyclesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { TestComponentComponent } from './session5/test-component/test-component.component';
-import { LifecyclesComponent } from './session6/lifecycles/lifecycles.component';
+import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecycles.component';
 import { FullTemplateDrivenComponent } from './session7/full-template-driven/full-template-driven.component';
 import { ReactiveFormFormArraysComponent } from './session8/reactive-form-form-arrays/reactive-form-form-arrays.component';
 import { CustomElementComponent } from './session6/custom-element/custom-element.component';
