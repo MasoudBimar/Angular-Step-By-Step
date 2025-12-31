@@ -100,6 +100,20 @@
           Lifecycles
         </button>
         <button
+          class="btn btn-secondary mx-1"
+          routerLink="/decorators"
+          routerLinkActive="active"
+        >
+          decorators
+        </button>
+        <button
+          class="btn btn-secondary mx-1"
+          routerLink="/color-picker"
+          routerLinkActive="active"
+        >
+          color picker
+        </button>
+        <button
           class="btn btn-info mx-1"
           routerLink="/template/template-driven"
           routerLinkActive="active"
@@ -140,7 +154,7 @@
         <a [routerLink]="['/empty-component']" routerLinkActive="active">
           Empty Component
         </a>
-        <div class="my-2" style="border: 1px solid red">
+        <div class="my-2">
           <router-outlet></router-outlet>
           <!-- <app-angular-fundamentals /> -->
           <!-- <app-counter-example></app-counter-example> -->

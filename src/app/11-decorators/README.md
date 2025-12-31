@@ -5,23 +5,37 @@ Angular decorators add metadata to classes and class members so Angular can wire
 ## Angular Decorator Categories
 
 - Class Decorator
-- Method Decorator
 - Parameter Decorator
 - Property Decorator
+- Method Decorator
 
 ## Class decorators (high level)
 
-Class decorators tell Angular how to treat a class at runtime.
+Class decorators tell about a prticular class in Angular and how to treat a class at runtime (component or module).
 
 - `@NgModule` groups related components, directives, pipes, and providers.
 - `@Component` defines a UI building block with a template and styles.
+  - selector
+  - imports(Array)
+  - templateUrl/template
+  - styleUrl(Array)/style
+  - animation(Array)
+  - directives(Array)
+  - pipes(Array)
 - `@Injectable` marks a class as available for dependency injection.
 - `@Directive` adds behavior to existing elements and components.
 - `@Pipe` transforms data for display in templates.
 
+> [!CAUTION]
+> the `@NGModule` decorator no longer used from the Angular version 17th because Angular introduced standalone component by default for applications.
+
 ## Parameter decorators (dependency injection)
 
 Parameter decorators control how Angular resolves a dependency for a specific constructor parameter.
+
+> [!CAUTION]
+> Angular since v14+ and very explicitly by v16–21 — has been re-centering DI around functions, not constructors.
+> This matters because once you move DI out of the constructor, parameter decorators lose their central role
 
 - `@Inject(TOKEN)` injects by token (useful for strings or custom injection tokens).
 - `@Self()` resolves only from the current injector.
@@ -44,7 +58,9 @@ export class PanelComponent {
 }
 ```
 
-This page focuses on the most common member decorators:
+## Property Decorator
+
+Let's focus on the most common Property Decorators:
 
 - `@Input()` and `@Output()` for parent-child communication.
 - `@HostBinding()` for binding to the host element.
@@ -68,7 +84,7 @@ import { Component, Input } from "@angular/core";
   template: `<h3>{{ name }}</h3>`,
 })
 export class UserCardComponent {
-  @Input() name = "";
+  @Input("aliasName") name = "";
 }
 ```
 
@@ -77,6 +93,11 @@ Parent usage:
 ```html
 <app-user-card [name]="user.name"></app-user-card>
 ```
+
+> [!NOTE]
+> Both primitive types and reference types like objects including arrays can be passed to a component through angular `@input`
+> Angular tracks changes to primitive types becuase they are passed by value.
+> For objects angular detect changes only when the reference to the object changes
 
 ## `@Output()` (property decorator, child -> parent events)
 
@@ -115,6 +136,9 @@ Parent usage:
 
 Use `@HostBinding()` to bind a class, style, or attribute on the component's host element.
 
+> [!NOTE]
+> Host Element is the element on which we attach out component or directive.
+
 When to use:
 
 - Toggle host CSS classes based on component state.
@@ -130,38 +154,35 @@ import { Component, HostBinding } from "@angular/core";
 export class AlertComponent {
   @HostBinding("class.is-open") isOpen = true;
   @HostBinding("attr.role") role = "alert";
+  @HostBinding("style.backgroundColor") bgColor = "#fff000";
 }
 ```
 
-## `@HostListener()` (method decorator, listen on the host element)
-
-Use `@HostListener()` to listen for DOM events on the component's host element (or on `window` / `document`).
-
-When to use:
-
-- React to host interactions like hover or key presses.
-- Handle global events (resize, scroll) from within a component.
+Using HostBinding in a Directive:
 
 ```ts
-import { Component, HostListener } from "@angular/core";
+import { Directive, HostBinding } from "@angular/core";
 
-@Component({
-  selector: "app-hotkey",
-  template: `<p>Press "k" to open search.</p>`,
+@Directive({
+  selector: "[appHighlight]",
 })
-export class HotkeyComponent {
-  @HostListener("window:keydown", ["$event"])
-  onKeydown(event: KeyboardEvent): void {
-    if (event.key.toLowerCase() === "k") {
-      console.log("Open search");
-    }
-  }
+export class HighlightDirective {
+  @HostBinding("style.backgroundColor") bgColor = "#fff000";
+  @HostBinding("style.color") color = "#111004ff";
+  constructor() {}
 }
+```
+
+Usage:
+
+```html
+<div appHighlight>Lorem Ipsum</div>
 ```
 
 ## `@ViewChild()` and `@ViewChildren()` (property decorator, query the component view)
 
 Use view queries to get references to elements or child components declared in the component's template.
+So `@ViewChild` decorator is used to get the reference of the DOM element in the component.
 
 When to use:
 
@@ -191,6 +212,37 @@ export class SearchComponent implements AfterViewInit {
 }
 ```
 
+### Accessing different DOM elements using `ViewChild`:
+
+> [!CAUTION]
+> When we are dealing with DOM manipulation, its better to implement the `ngAfterViewInit` hook and access it there.
+
+```ts
+import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
+
+@Component({
+  selector: "app-search",
+  template: `
+    <input  />
+    <button #btnFocus (click)="focus()">Focus</button>
+    <app-child> </app-child> </app-child>
+  `,
+})
+export class SearchComponent implements AfterViewInit {
+  @ViewChild(ChildComponent) childComponent?: ChildComponent; // Accessing angular Component, has no value in initial state
+  @ViewChild("btnFocus") btnFocusRef?: ElementRef<HTMLButtonElement>; // ElementRef: this class used for dealing DOM elements
+
+  ngAfterViewInit(): void {
+    if (this.btnFocusRef?.nativeElement) {
+      this.btnFocusRef?.nativeElement.innerHtml = "new button label";
+    }
+  }
+}
+```
+
+> [!TIP]
+> The `ElementRef` class acts as a wrapper around the native elements of DOM.
+
 `@ViewChildren()` returns a `QueryList` of matching children:
 
 ```ts
@@ -208,6 +260,11 @@ export class TabsComponent {
 ## `@ContentChild()` and `@ContentChildren()` (property decorator, query projected content)
 
 Use content queries to access elements or components projected with `ng-content`.
+So with `@ViewCHild` we get the reference of any DOM elements in the component, with `@ContentChild()` we get the refernce of the content projected into the components view.
+
+Again what is the `Content Projection`?
+
+It is a wa in angular to pass the html content from parent component to the child component's html using `ng-content`.
 
 When to use:
 
@@ -227,9 +284,13 @@ import { AfterContentInit, Component, ContentChild } from "@angular/core";
 })
 export class PanelComponent implements AfterContentInit {
   @ContentChild("title") title?: HTMLElement;
+  @ContentChild("anotherOne") itemRef?: ElementRef;
 
   ngAfterContentInit(): void {
+    // to manipolate the DOm using content child we have to used `ngAfterContentInit` hook
     this.title?.classList.add("is-highlighted");
+    const content = this.itemRef?.nativeElement;
+    content.style.color = `#afeeee`;
   }
 }
 ```
@@ -245,6 +306,62 @@ import { Component, ContentChildren, QueryList } from "@angular/core";
 })
 export class ToolbarComponent {
   @ContentChildren("tool") tools?: QueryList<unknown>;
+}
+```
+
+## `@HostListener()` (method decorator, listen on the host element)
+
+Use `@HostListener()` to listen for DOM events on the component's host element (or on `window` / `document`).
+
+So with `HostListener` we let Angular knowthat when an event on the host happens, the decorated method should be called on that event.
+
+> [!NOTE]
+> HostListener binds the class method to an event of Host Element.
+
+When to use:
+
+- React to host interactions like hover or key presses.
+- Handle global events (resize, scroll) from within a component.
+
+```ts
+import { Component, HostListener } from "@angular/core";
+
+@Component({
+  selector: "app-hotkey",
+  template: `<p>Press "k" to open search.</p>`,
+})
+export class HotkeyComponent {
+  @HostListener("window:keydown", ["$event"])
+  onKeydown(event: KeyboardEvent): void {
+    if (event.key.toLowerCase() === "k") {
+      console.log("Open search");
+    }
+  }
+}
+```
+
+Using HostListener in a Directive:
+
+```ts
+import { Directive, HostBinding } from "@angular/core";
+
+@Directive({
+  selector: "[appHighlight]",
+})
+export class HighlightDirective {
+  @HostBinding("style.backgroundColor") bgColor = "#fff000";
+  @HostBinding("style.color") color = "#111004ff";
+
+  @HostListener("click") onToggle() {
+    if (this.bgColor === "#fff000") {
+      // change the background color and color on click
+    } else {
+      // reset it to the default values
+      this.bgColor = "#fff000";
+      this.color = "#111004ff";
+    }
+  }
+  constructor() {}
 }
 ```
 

@@ -1,1 +1,19 @@
-<p>structural-directives works!</p>
+<div class="row">
+  <div *ngFor="let item of personList">
+    <div class="col">
+      <div class="card" style="width: 18rem; margin: 10px">
+        <img class="card-img-top" [src]="item.img" alt="Card image cap" />
+        <div class="card-body">
+          <h5 class="card-title">{{ item.fn + " " + item.ln }}</h5>
+          <p class="card-text">{{ item.dsc }}</p>
+          <input
+            type="button"
+            (click)="tellWhoIAm(item)"
+            class="btn btn-primary"
+            value="tell"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

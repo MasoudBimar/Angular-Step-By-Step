@@ -1,0 +1,23 @@
+.color-box {
+  color: white;
+  width: 40%;
+  margin: 0 auto;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 9px;
+  transition: all .1s ease;
+  margin-bottom: 15px;
+}
+
+input {
+  position: relative;
+  margin: 0 auto;
+  display: block;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input:hover {
+  background-color: #262525;
+}

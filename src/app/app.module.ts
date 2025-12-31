@@ -14,13 +14,13 @@ import { ComponentDirectivesComponent } from './7-component-directives/component
 import { CustomDirectivesComponent } from './8-custom-directives/custom-directives.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Session5Module } from './session5/session5.module';
 import { Session6Module } from './session6/session6.module';
 import { Session8Module } from './session8/session8.module';
 import { PersianDatePipe } from './shared/persian-date.pipe';
 import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
 import { ComponentLifecyclesComponent } from './10-component-lifecycles/component-lifecycles.component';
 import { DecoratorsComponent } from './11-decorators/decorators.component';
+import { ColorPickerComponent } from './11-decorators/color-picker/color-picker.component';
 
 @NgModule({
   declarations: [
@@ -38,13 +38,13 @@ import { DecoratorsComponent } from './11-decorators/decorators.component';
     ComponentDirectivesComponent,
     SpecialElementsComponent,
     ComponentLifecyclesComponent,
-    DecoratorsComponent
+    DecoratorsComponent,
+    ColorPickerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    Session5Module,
     Session6Module,
     Session8Module
   ],

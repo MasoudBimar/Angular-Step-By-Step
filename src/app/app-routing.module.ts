@@ -7,7 +7,6 @@ import { ReactiveFormFormArraysComponent } from './session8/reactive-form-form-a
 import { CustomElementComponent } from './session6/custom-element/custom-element.component';
 import { TemplateDrivenComponent } from './session7/template-driven/template-driven.component';
 import { ProductSampleComponent } from './session7/product-sample/product-sample.component';
-import { Session1Component } from './session1/session1.component';
 import { Session7Routes } from './session7/session7.module';
 import { AuthGuard } from './session11/guards/auth-guard';
 import { AngularFundamentalsComponent } from './3-angular-fundamentals/angular-fundamentals.component';
@@ -17,6 +16,8 @@ import { StructuralDirectivesComponent } from './5-structural-directives/structu
 import { AttributeDirectivesComponent } from './6-attribute-directives/attribute-directives.component';
 import { ComponentDirectivesComponent } from './7-component-directives/component-directives.component';
 import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
+import { DecoratorsComponent } from './11-decorators/decorators.component';
+import { ColorPickerComponent } from './11-decorators/color-picker/color-picker.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
@@ -30,14 +31,14 @@ const routes: Routes = [
   { path: 'special-elements', component: SpecialElementsComponent },
 
   { path: 'life-cycle', component: CustomElementComponent },
+  { path: 'decorators', component: DecoratorsComponent },
+  { path: 'color-picker', component: ColorPickerComponent },
   { path: 'template-driven', component: TemplateDrivenComponent },
   { path: 'full-template-driven', component: FullTemplateDrivenComponent },
   { path: 'template', children: Session7Routes },
   { path: 'template', loadChildren: () => import('./session7/session7.module').then(m => m.Session7Module), canActivate: [AuthGuard] },
   { path: 'product-sample', component: ProductSampleComponent },
   { path: 'reactive-driven', component: ReactiveFormFormArraysComponent },
-  // { path: 'empty-component/:id', component: Session1Component},
-  { path: 'empty-component', component: Session1Component, canActivate: [AuthGuard] }
   // { path: '**', }
 
 
