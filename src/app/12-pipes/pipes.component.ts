@@ -7,10 +7,10 @@ import { Component } from '@angular/core';
 })
 export class PipesComponent {
   employees = [
-    { name: 'Ava Turner', state: 'California', salary: 82000 },
-    { name: 'Liam Patel', state: 'Texas', salary: 73000 },
-    { name: 'Mia Chen', state: 'New York', salary: 91000 },
-    { name: 'Noah Brooks', state: 'Florida', salary: 68000 },
-    { name: 'Emma Rivera', state: 'Washington', salary: 88000 }
+    { name: 'ava turner', state: 'California', salary: 82000 },
+    { name: 'liam patel', state: 'Texas', salary: 73000 },
+    { name: 'mia chen', state: 'New York', salary: 91000 },
+    { name: 'noah brooks', state: 'Florida', salary: 68000 },
+    { name: 'emma rivera', state: 'Washington', salary: 88000 }
   ];
 }

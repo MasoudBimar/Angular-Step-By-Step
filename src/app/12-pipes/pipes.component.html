@@ -8,9 +8,12 @@
   </thead>
   <tbody>
     <tr *ngFor="let employee of employees">
-      <td>{{ employee.name }}</td>
-      <td>{{ employee.state }}</td>
-      <td>{{ employee.salary | currency }}</td>
+      <!-- titlecase pipe change text to PascalCase -->
+      <td>{{ employee.name | titlecase }}</td>
+      <!-- Using slice to show just 3 words of state and then make it uppercase by upperase pipe -->
+      <td>{{ employee.state | slice : 0 : 3 | uppercase }}</td>
+      <!--  -->
+      <td>{{ employee.salary | currency : "USD" }}</td>
     </tr>
   </tbody>
 </table>
