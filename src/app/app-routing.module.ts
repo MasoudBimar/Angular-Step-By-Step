@@ -18,6 +18,7 @@ import { ComponentDirectivesComponent } from './7-component-directives/component
 import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
 import { DecoratorsComponent } from './11-decorators/decorators.component';
 import { ColorPickerComponent } from './11-decorators/color-picker/color-picker.component';
+import { PipesComponent } from './12-pipes/pipes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'life-cycle', component: CustomElementComponent },
   { path: 'decorators', component: DecoratorsComponent },
   { path: 'color-picker', component: ColorPickerComponent },
+  { path: 'pipes', component: PipesComponent },
   { path: 'template-driven', component: TemplateDrivenComponent },
   { path: 'full-template-driven', component: FullTemplateDrivenComponent },
   { path: 'template', children: Session7Routes },

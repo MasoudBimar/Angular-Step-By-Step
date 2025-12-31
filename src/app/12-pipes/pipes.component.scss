@@ -1,0 +1,27 @@
+.employees-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px auto;
+  max-width: 900px;
+  background: #ffffff;
+}
+
+.employees-table th,
+.employees-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.employees-table thead th {
+  background: #f6f8fa;
+  font-weight: 600;
+}
+
+.employees-table tbody tr:nth-child(even) {
+  background: #fbfcfd;
+}
+
+.employees-table tbody tr:hover {
+  background: #f1f5f9;
+}

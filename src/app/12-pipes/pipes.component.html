@@ -1,1 +1,16 @@
-<p>pipes works!</p>
+<table class="employees-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>State</th>
+      <th>Salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.state }}</td>
+      <td>{{ employee.salary | currency }}</td>
+    </tr>
+  </tbody>
+</table>
