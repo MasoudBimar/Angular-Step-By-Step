@@ -21,6 +21,7 @@ import { SpecialElementsComponent } from './9-special-elements/special-elements.
 import { ComponentLifecyclesComponent } from './10-component-lifecycles/component-lifecycles.component';
 import { DecoratorsComponent } from './11-decorators/decorators.component';
 import { ColorPickerComponent } from './11-decorators/color-picker/color-picker.component';
+import { PipesComponent } from './12-pipes/pipes.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ColorPickerComponent } from './11-decorators/color-picker/color-picker.
     SpecialElementsComponent,
     ComponentLifecyclesComponent,
     DecoratorsComponent,
-    ColorPickerComponent
+    ColorPickerComponent,
+    PipesComponent
   ],
   imports: [
     BrowserModule,
