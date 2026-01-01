@@ -1,17 +1,4 @@
-<div class="container">
-  <!-- Session 4 -->
-  <!-- <app-display-data-handling-event></app-display-data-handling-event> -->
-  <!-- Session 5 -->
-  <!-- <app-test-component [persons]="persons" (tell)="sbdTell($event)"></app-test-component> -->
-
-  <!-- <app-lifecycles [inputs]="persons"></app-lifecycles>
-
-<button class="btn btn-primary" (click)="addNewPerson()"> Add New Person</button>
-<hr>
-<button class="btn btn-primary" (click)="changePerson()"> change person</button>
-<hr>
-<button class="btn btn-primary" (click)="incCounter()"> Inc Counter</button> -->
-
+<div class="container-fluid">
   <!-- <h2>Rating Component</h2>
 <p style="text-align: center">
   <app-rate-sample [stars]="5" [starWidth]="50" [(rate)]="rate"></app-rate-sample>
@@ -29,151 +16,148 @@
   <!-- <app-full-template-driven></app-full-template-driven> -->
 
   <!-- <app-product-sample></app-product-sample> -->
+  <div class="row">
+    <div class="col">
+      <button
+        class="btn btn-secondary"
+        routerLink="/counter"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Session 3 - Counter
+      </button>
+      <button
+        class="btn btn-secondary mx-1"
+        routerLink="/to-do"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Session 3 - ToDo App
+      </button>
+      <button
+        class="btn btn-info mx-1"
+        routerLink="data-event"
+        routerLinkActive="active"
+      >
+        Display Data & Handling Event
+      </button>
+      <button
+        class="btn btn-primary mx-1"
+        routerLink="/components"
+        routerLinkActive="active"
+      >
+        Components
+      </button>
+      <button
+        class="btn btn-secondary mx-1"
+        routerLink="/structural-directive"
+        routerLinkActive="active"
+      >
+        Structural Directive
+      </button>
+      <button
+        class="btn btn-secondary mx-1"
+        routerLink="/attribute-directive"
+        routerLinkActive="active"
+      >
+        attribute-directive
+      </button>
+      <button
+        class="btn btn-secondary mx-1"
+        routerLink="/component-directive"
+        routerLinkActive="active"
+      >
+        component-directive
+      </button>
+      <button
+        class="btn btn-secondary mx-1"
+        routerLink="/special-elements"
+        routerLinkActive="active"
+      >
+        special-elements
+      </button>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col">
-        <button
-          class="btn btn-secondary"
-          routerLink="/counter"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          Session 3 - Counter
-        </button>
-        <button
-          class="btn btn-secondary mx-1"
-          routerLink="/to-do"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          Session 3 - ToDo App
-        </button>
-        <button
-          class="btn btn-info mx-1"
-          routerLink="data-event"
-          routerLinkActive="active"
-        >
-          Display Data & Handling Event
-        </button>
-        <button
-          class="btn btn-primary mx-1"
-          routerLink="/components"
-          routerLinkActive="active"
-        >
-          Components
-        </button>
-        <button
-          class="btn btn-secondary mx-1"
-          routerLink="/structural-directive"
-          routerLinkActive="active"
-        >
-          Structural Directive
-        </button>
-        <button
-          class="btn btn-secondary mx-1"
-          routerLink="/attribute-directive"
-          routerLinkActive="active"
-        >
-          attribute-directive
-        </button>
-        <button
-          class="btn btn-secondary mx-1"
-          routerLink="/component-directive"
-          routerLinkActive="active"
-        >
-          component-directive
-        </button>
-        <button
-          class="btn btn-secondary mx-1"
-          routerLink="/special-elements"
-          routerLinkActive="active"
-        >
-          special-elements
-        </button>
+      <button
+        class="btn btn-secondary mx-1"
+        routerLink="/life-cycle"
+        routerLinkActive="active"
+      >
+        Lifecycles
+      </button>
+      <button
+        class="btn btn-secondary mx-1"
+        routerLink="/decorators"
+        routerLinkActive="active"
+      >
+        decorators
+      </button>
+      <button
+        class="btn btn-secondary mx-1"
+        routerLink="/color-picker"
+        routerLinkActive="active"
+      >
+        color picker
+      </button>
+      <button
+        class="btn btn-secondary mx-1"
+        routerLink="/pipes"
+        routerLinkActive="active"
+      >
+        pipes
+      </button>
+      <button
+        class="btn btn-secondary mx-1"
+        routerLink="/paginated-post-collection"
+        routerLinkActive="active"
+      >
+        Paginated Post Collection
+      </button>
 
-        <button
-          class="btn btn-secondary mx-1"
-          routerLink="/life-cycle"
-          routerLinkActive="active"
-        >
-          Lifecycles
-        </button>
-        <button
-          class="btn btn-secondary mx-1"
-          routerLink="/decorators"
-          routerLinkActive="active"
-        >
-          decorators
-        </button>
-        <button
-          class="btn btn-secondary mx-1"
-          routerLink="/color-picker"
-          routerLinkActive="active"
-        >
-          color picker
-        </button>
-        <button
-          class="btn btn-secondary mx-1"
-          routerLink="/pipes"
-          routerLinkActive="active"
-        >
-          pipes
-        </button>
-        <button
-          class="btn btn-secondary mx-1"
-          routerLink="/paginated-post-collection"
-          routerLinkActive="active"
-        >
-          Paginated Post Collection
-        </button>
-
-        <button
-          class="btn btn-info mx-1"
-          routerLink="/template/template-driven"
-          routerLinkActive="active"
-        >
-          Template Driven Form
-        </button>
-        <button
-          class="btn btn-info mx-1"
-          routerLink="/template/full-template-driven"
-          routerLinkActive="active"
-        >
-          Full Template Driven Form
-        </button>
-        <button
-          class="btn btn-info mx-1"
-          routerLink="/template/rate"
-          routerLinkActive="active"
-        >
-          rate component
-        </button>
-        <button
-          class="btn btn-info mx-1"
-          routerLink="/product-sample"
-          routerLinkActive="active"
-        >
-          product-sample
-        </button>
-        <button
-          class="btn btn-info mx-1"
-          routerLink="/reactive-driven"
-          routerLinkActive="active"
-        >
-          Reacive Form
-        </button>
-        <!-- <a class="btn btn-info mx-1" routerLink="/empty-component" routerLinkActive="active">
+      <button
+        class="btn btn-info mx-1"
+        routerLink="/template/template-driven"
+        routerLinkActive="active"
+      >
+        Template Driven Form
+      </button>
+      <button
+        class="btn btn-info mx-1"
+        routerLink="/template/full-template-driven"
+        routerLinkActive="active"
+      >
+        Full Template Driven Form
+      </button>
+      <button
+        class="btn btn-info mx-1"
+        routerLink="/template/rate"
+        routerLinkActive="active"
+      >
+        rate component
+      </button>
+      <button
+        class="btn btn-info mx-1"
+        routerLink="/product-sample"
+        routerLinkActive="active"
+      >
+        product-sample
+      </button>
+      <button
+        class="btn btn-info mx-1"
+        routerLink="/reactive-driven"
+        routerLinkActive="active"
+      >
+        Reacive Form
+      </button>
+      <!-- <a class="btn btn-info mx-1" routerLink="/empty-component" routerLinkActive="active">
           Empty Compponent
         </button> -->
-        <a [routerLink]="['/empty-component']" routerLinkActive="active">
-          Empty Component
-        </a>
-        <div class="my-2">
-          <router-outlet></router-outlet>
-          <!-- <app-angular-fundamentals /> -->
-          <!-- <app-counter-example></app-counter-example> -->
-        </div>
+      <a [routerLink]="['/empty-component']" routerLinkActive="active">
+        Empty Component
+      </a>
+      <div class="my-2">
+        <router-outlet></router-outlet>
+        <!-- <app-angular-fundamentals /> -->
+        <!-- <app-counter-example></app-counter-example> -->
       </div>
     </div>
   </div>

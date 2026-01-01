@@ -133,11 +133,11 @@ export class PostCollectionComponent {
   ];
 
   goPreviousPage() {
-    this.startIndex += this.pageSize;
-    this.endIndex += this.pageSize;
-  }
-  goNextPage() {
     this.startIndex -= this.pageSize;
     this.endIndex -= this.pageSize;
+  }
+  goNextPage() {
+    this.startIndex += this.pageSize;
+    this.endIndex += this.pageSize;
   }
 }
