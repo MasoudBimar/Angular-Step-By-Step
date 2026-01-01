@@ -2,7 +2,12 @@
 
 Pipes are a lightweight way to transform data in Angular templates. They take an input value, run it through a transform function, and return a formatted value for display. Pipes keep templates clean and make display logic reusable.
 
+> [!NOTE]
+> We need Pipes to execute and perform transformation on the template data easily & effectively.
+
 ## Basic example
+
+So Pipes are helpful for tasks like sorting & filtering operation on data or displaying data in a paginated format.
 
 ### Template
 
@@ -18,11 +23,12 @@ Pipes are a lightweight way to transform data in Angular templates. They take an
 export class PipesComponent {
   today = new Date();
   salary = 82000;
-  name = 'ava turner';
+  name = "ava turner";
 }
 ```
 
 ### Explanation
+
 - `date` formats a `Date` instance for display.
 - `currency` formats numbers as money.
 - `titlecase` transforms a string to title case.
@@ -53,23 +59,29 @@ Short answer: yes, for display formatting and clean templates. Even with modern 
 
 ## How to implement a custom pipe
 
+Run this command with desired pipe name
+
+```bash
+ ng  g p SalaryRangePipe # ng generate pipe SalaryRangePipe
+```
+
 ### 1) Create the pipe
 
 ```ts
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: 'salaryRange'
+  name: "salaryRange",
 })
 export class SalaryRangePipe implements PipeTransform {
   transform(value: number): string {
     if (value >= 90000) {
-      return 'High';
+      return "High";
     }
     if (value >= 75000) {
-      return 'Medium';
+      return "Medium";
     }
-    return 'Low';
+    return "Low";
   }
 }
 ```
@@ -79,7 +91,7 @@ export class SalaryRangePipe implements PipeTransform {
 ```ts
 @NgModule({
   declarations: [SalaryRangePipe],
-  exports: [SalaryRangePipe]
+  exports: [SalaryRangePipe],
 })
 export class SharedModule {}
 ```
@@ -90,13 +102,48 @@ export class SharedModule {}
 <td>{{ employee.salary | salaryRange }}</td>
 ```
 
-### Optional: make it impure
+### Optional: Defining pure & impure pipes
+
+> [!NOTE]
+> Pure Pipe transform the data whenever it detects the `pure change` in input value
+> By Default every pipe in angular is pure
+
+> [!TIP]
+> A Pure change is just a simple change in the input value such as strin, boolean, number or change in the reference for object, arrays or functions
 
 ```ts
 @Pipe({
   name: 'filterByState',
-  pure: false
+  pure: true # Default Bevavior
 })
 ```
 
-Use `pure: false` only when the pipe depends on mutable data that changes without a new reference.
+```ts
+@Pipe({
+  name: 'filterByState',
+  pure: false # impure
+})
+```
+
+> [!CAUTION]
+> impure pipe is getting invoked on every change detection cycle
+
+> [!TIP]
+> Use `pure: false` only when the pipe depends on mutable data that changes without a new reference.
+
+Sample usng impure pipe: if the sumeOfNumbers define as pure it wont get updated when pushing a number to array gets called, but when we define it as impure pipe it will check
+
+```ts
+export class AppComponent {
+  numbers: number[] = [1, 2, 3];
+
+  updateArray() {
+    this.numbers.push(4);
+  }
+}
+```
+
+```html
+<p>The sum of array is {{number | sumOfNumbers}}</p>
+<button (click)="updateArray()">update the array</button>
+```

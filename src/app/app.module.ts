@@ -16,12 +16,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Session6Module } from './session6/session6.module';
 import { Session8Module } from './session8/session8.module';
-import { PersianDatePipe } from './shared/persian-date.pipe';
+import { PersianDatePipe } from './12-pipes/pipes/persian-date.pipe';
 import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
 import { ComponentLifecyclesComponent } from './10-component-lifecycles/component-lifecycles.component';
 import { DecoratorsComponent } from './11-decorators/decorators.component';
 import { ColorPickerComponent } from './11-decorators/color-picker/color-picker.component';
 import { PipesComponent } from './12-pipes/pipes.component';
+import { AppendTextPipe } from './12-pipes/pipes/append-text.pipe';
+import { SortNumberPipe } from './12-pipes/pipes/sort-number.pipe';
+import { LetterCountPipe } from './12-pipes/pipes/letter-count.pipe';
+import { SumOfNumbersPipe } from './12-pipes/pipes/sum-of-numbers.pipe';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { PipesComponent } from './12-pipes/pipes.component';
     ComponentLifecyclesComponent,
     DecoratorsComponent,
     ColorPickerComponent,
-    PipesComponent
+    PipesComponent,
+    AppendTextPipe,
+    SortNumberPipe,
+    LetterCountPipe,
+    SumOfNumbersPipe
   ],
   imports: [
     BrowserModule,

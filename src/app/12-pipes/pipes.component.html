@@ -1,19 +1,27 @@
 <table class="employees-table">
   <thead>
     <tr>
+      <th>#</th>
       <th>Name</th>
       <th>State</th>
       <th>Salary</th>
+      <th>Issue Date</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let employee of employees">
+    <tr *ngFor="let employee of employees; index as i">
+      <td>{{ i + 1 }}</td>
       <!-- titlecase pipe change text to PascalCase -->
       <td>{{ employee.name | titlecase }}</td>
       <!-- Using slice to show just 3 words of state and then make it uppercase by upperase pipe -->
-      <td>{{ employee.state | slice : 0 : 3 | uppercase }}</td>
-      <!--  -->
+      <td>
+        {{ employee.state | slice : 0 : 3 | appendText : "State" | uppercase }}
+      </td>
+      <!-- Using built-in currency pipe for money -->
       <td>{{ employee.salary | currency : "USD" }}</td>
+      <td>
+        {{ employee.issueDate | persianDate }}
+      </td>
     </tr>
   </tbody>
 </table>
