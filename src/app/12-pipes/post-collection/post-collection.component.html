@@ -1,0 +1,13 @@
+<section class="posts">
+  <article
+    class="post-card"
+    *ngFor="let post of posts | slice : startIndex : endIndex; index as i"
+  >
+    <img [src]="post.imageUrl" [alt]="post.title" loading="lazy" />
+    <h3>{{ i + 1 }}. {{ post.title }}</h3>
+  </article>
+  <section class="btn-container">
+    <button (click)="goNextPage()">Next</button>
+    <button (click)="goPreviousPage()">Previous</button>
+  </section>
+</section>

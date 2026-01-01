@@ -26,6 +26,7 @@ import { AppendTextPipe } from './12-pipes/pipes/append-text.pipe';
 import { SortNumberPipe } from './12-pipes/pipes/sort-number.pipe';
 import { LetterCountPipe } from './12-pipes/pipes/letter-count.pipe';
 import { SumOfNumbersPipe } from './12-pipes/pipes/sum-of-numbers.pipe';
+import { PostCollectionComponent } from './12-pipes/post-collection/post-collection.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { SumOfNumbersPipe } from './12-pipes/pipes/sum-of-numbers.pipe';
     AppendTextPipe,
     SortNumberPipe,
     LetterCountPipe,
-    SumOfNumbersPipe
+    SumOfNumbersPipe,
+    PostCollectionComponent
   ],
   imports: [
     BrowserModule,

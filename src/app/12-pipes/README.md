@@ -35,6 +35,8 @@ export class PipesComponent {
 
 ## Built-in pipes (common ones)
 
+Below are common built-in pipes with a sample for each one.
+
 - `date` (format dates)
 - `uppercase`, `lowercase`, `titlecase` (string casing)
 - `number` (number formatting)
@@ -45,6 +47,74 @@ export class PipesComponent {
 - `async` (subscribe to Observables/Promises)
 - `keyvalue` (iterate object keys/values)
 - `i18nSelect`, `i18nPlural` (basic i18n helpers)
+
+### Sample data (component)
+
+```ts
+export class PipesComponent {
+  today = new Date(2024, 5, 12, 9, 30);
+  name = "ava turner";
+  amount = 1280.5;
+  taxRate = 0.0825;
+  scores = { math: 92, science: 88 };
+  items = ["apples", "bananas", "cherries", "dates"];
+  statusPromise = Promise.resolve("Ready");
+  profile = { id: 7, role: "Editor" };
+  gender = "female";
+  genderMap = {
+    male: "Invite him",
+    female: "Invite her",
+    other: "Invite them",
+  };
+  messageCount = 3;
+  messageMap = {
+    "=0": "No messages",
+    "=1": "One message",
+    other: "# messages",
+  };
+}
+```
+
+### Template samples
+
+```html
+<!-- date -->
+<p>Today: {{ today | date: "fullDate" }}</p>
+
+<!-- uppercase / lowercase / titlecase -->
+<p>Upper: {{ name | uppercase }}</p>
+<p>Lower: {{ name | lowercase }}</p>
+<p>Title: {{ name | titlecase }}</p>
+
+<!-- number -->
+<p>Number: {{ amount | number: "1.0-2" }}</p>
+
+<!-- percent -->
+<p>Percent: {{ taxRate | percent: "1.0-1" }}</p>
+
+<!-- currency -->
+<p>Currency: {{ amount | currency: "USD" }}</p>
+
+<!-- json -->
+<pre>{{ profile | json }}</pre>
+
+<!-- slice -->
+<p>Slice: {{ items | slice: 1:3 | json }}</p>
+
+<!-- async (Promise or Observable) -->
+<p>Status: {{ statusPromise | async }}</p>
+
+<!-- keyvalue -->
+<ul>
+  <li *ngFor="let item of scores | keyvalue">{{ item.key }}: {{ item.value }}</li>
+</ul>
+
+<!-- i18nSelect -->
+<p>{{ gender | i18nSelect: genderMap }}</p>
+
+<!-- i18nPlural -->
+<p>{{ messageCount | i18nPlural: messageMap }}</p>
+```
 
 ## Different types of Angular pipes
 
