@@ -20,36 +20,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
+      # 1) Install pnpm first (so setup-node caching can call it safely)
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      # 2) Now setup node + pnpm cache
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
-          # If you’re in an Nx monorepo and the lockfile is not at repo root,
-          # set this to the correct path(s):
           cache-dependency-path: pnpm-lock.yaml
-
-      - name: Enable Corepack (ensure pnpm available)
-        run: |
-          corepack enable
-          corepack prepare pnpm@10 --activate
-          pnpm -v
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          # Optional if you have "packageManager": "pnpm@X" in package.json
-          version: 10
-
-      - name: Ensure pnpm available
-        run: |
-          if ! command -v pnpm >/dev/null 2>&1; then
-            npm install -g pnpm@10
-          fi
-          pnpm -v
 
       - name: Install
         run: pnpm install --frozen-lockfile
@@ -62,22 +46,20 @@ jobs:
           else
             BASE="/$REPO/"
           fi
-
           pnpm exec ng build --configuration production --base-href "$BASE"
 
       - name: Locate output + SPA fallback
         id: out
         run: |
-          # Explicit output directory from angular.json
-          OUT_DIR="dist/angular-step-by-step"
-          if [ ! -d "$OUT_DIR" ]; then
-            echo "Error: output directory $OUT_DIR does not exist." >&2
+          OUT_DIR="$(dirname "$(find dist -type f -name index.html | head -n 1)")"
+          if [ -z "$OUT_DIR" ]; then
+            echo "Error: could not find dist/**/index.html" >&2
             exit 1
           fi
           echo "out_dir=$OUT_DIR" >> "$GITHUB_OUTPUT"
           cp "$OUT_DIR/index.html" "$OUT_DIR/404.html"
 
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ steps.out.outputs.out_dir }}
