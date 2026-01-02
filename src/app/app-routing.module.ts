@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
   { path: 'counter', component: CounterExampleComponent },
   { path: 'to-do', component: ToDoComponent },
-  { path: 'data-event', component: AngularFundamentalsComponent },
+  { path: 'data-binding', component: AngularFundamentalsComponent },
   { path: 'structural-directive', component: StructuralDirectivesComponent },
   { path: 'attribute-directive', component: AttributeDirectivesComponent },
   { path: 'component-directive', component: ComponentDirectivesComponent },

@@ -6,3 +6,43 @@
 .sidebar {
   height: 100%;
 }
+
+.sidebar .nav-pills .nav-link.active,
+.sidebar .nav-pills .show>.nav-link {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #f2f2f2;
+}
+
+.sidebar .nav-pills .nav-link.active:hover,
+.sidebar .nav-pills .show>.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.sidebar-parent {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.sidebar-children {
+  display: none;
+}
+
+.sidebar-children.show {
+  display: block;
+}
+
+.sidebar-caret {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid rgba(255, 255, 255, 0.7);
+  transition: transform 0.2s ease;
+}
+
+.sidebar-caret.rotate {
+  transform: rotate(180deg);
+}
