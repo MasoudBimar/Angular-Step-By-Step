@@ -44,6 +44,13 @@ jobs:
           # Optional if you have "packageManager": "pnpm@X" in package.json
           version: 10
 
+      - name: Ensure pnpm available
+        run: |
+          if ! command -v pnpm >/dev/null 2>&1; then
+            npm install -g pnpm@10
+          fi
+          pnpm -v
+
       - name: Install
         run: pnpm install --frozen-lockfile
 
