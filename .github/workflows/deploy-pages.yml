@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -28,7 +30,7 @@ jobs:
           cache: pnpm
           # If you’re in an Nx monorepo and the lockfile is not at repo root,
           # set this to the correct path(s):
-          # cache-dependency-path: pnpm-lock.yaml
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -48,12 +50,17 @@ jobs:
             BASE="/$REPO/"
           fi
 
-          pnpm build -- --configuration production --base-href "$BASE"
+          pnpm exec ng build --configuration production --base-href "$BASE"
 
       - name: Locate output + SPA fallback
         id: out
         run: |
-          OUT_DIR="$(dirname "$(find dist -type f -name index.html | head -n 1)")"
+          # Explicit output directory from angular.json
+          OUT_DIR="dist/angular-step-by-step"
+          if [ ! -d "$OUT_DIR" ]; then
+            echo "Error: output directory $OUT_DIR does not exist." >&2
+            exit 1
+          fi
           echo "out_dir=$OUT_DIR" >> "$GITHUB_OUTPUT"
           cp "$OUT_DIR/index.html" "$OUT_DIR/404.html"
 
