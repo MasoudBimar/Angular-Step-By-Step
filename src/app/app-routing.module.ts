@@ -41,9 +41,6 @@ const routes: Routes = [
   { path: 'template', loadChildren: () => import('./session7/session7.module').then(m => m.Session7Module), canActivate: [AuthGuard] },
   { path: 'product-sample', component: ProductSampleComponent },
   { path: 'reactive-driven', component: ReactiveFormFormArraysComponent },
-  // { path: '**', }
-
-
 ];
 
 @NgModule({
