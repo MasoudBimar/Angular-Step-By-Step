@@ -28,6 +28,7 @@ import { LetterCountPipe } from './12-pipes/pipes/letter-count.pipe';
 import { SumOfNumbersPipe } from './12-pipes/pipes/sum-of-numbers.pipe';
 import { PostCollectionComponent } from './12-pipes/post-collection/post-collection.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { RoutingComponent } from './routing/routing.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     LetterCountPipe,
     SumOfNumbersPipe,
     PostCollectionComponent,
-    SidebarComponent
+    SidebarComponent,
+    RoutingComponent
   ],
   imports: [
     BrowserModule,
