@@ -97,9 +97,17 @@ Use `routerLink` to build navigation. Use `routerLinkActive` to style active lin
 <a [routerLink]="['/users']" [queryParams]="{ page: 2, sort: 'name' }" routerLinkActive="is-active">Users</a>
 ```
 
+## static vs dynamic routing
+
+`Static Routing` uses fixed paths like `home` or `about` to create mapping between URL and components in the route configuration.
+
+In the other hand `Dynamic Routing` uses parameters in the path to create routes that can handle variable data, such as user IDs or product IDs. dynamic routing allows for more flexible and reusable routes.
+
 ## Route params (dynamic routing)
 
 Dynamic routing uses path parameters like `:id`.
+
+In Angular Route parameters are defined in the route configuration using a colon (`:`) followed by the parameter name. These parameters can then be accessed within the component associated with the route.
 
 ```ts
 // route config
@@ -189,6 +197,16 @@ goToHome(): void {
 
 Nested routes render child components inside a child `router-outlet`.
 
+'redirectTo' in parent route can set default child route. the `pathMatch: 'full'` ensures the redirect only happens for the exact parent path. the default is 'prefix'.
+
+the 'prefix' just match the beginning of the URL segment. so with this example
+
+```ts
+   {path: 'admin', component: AdminComponent}
+   {path: 'adminPanel', redirectTo: 'admin', pathMatch: 'prefix' },
+   // it will only  redirect 'adminPanel' to 'admin' because 'admin' is the prefix of 'adminPanel'
+```
+
 ```ts
 // app-routing.module.ts
 const routes: Routes = [
@@ -208,8 +226,8 @@ const routes: Routes = [
 <!-- admin.component.html -->
 <h2>Admin</h2>
 <nav>
-  <a routerLink="dashboard">Dashboard</a>
-  <a routerLink="users">Users</a>
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/users">Users</a>
 </nav>
 <router-outlet></router-outlet>
 ```
@@ -219,7 +237,7 @@ const routes: Routes = [
 Use a wildcard route to catch unknown paths.
 
 ```ts
-{ path: '**', component: NotFoundComponent }
+{ path: '**', component: NotFoundComponent } // wildcard route
 ```
 
 ## Redirecting routes
