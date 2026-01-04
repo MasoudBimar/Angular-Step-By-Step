@@ -97,6 +97,13 @@ Use `routerLink` to build navigation. Use `routerLinkActive` to style active lin
 <a [routerLink]="['/users']" [queryParams]="{ page: 2, sort: 'name' }" routerLinkActive="is-active">Users</a>
 ```
 
+Passing Query params using routerLink in template:
+
+```html
+<a [routerLink]="['/products']" [queryParams]="{ category: 'books', page: 1 }">Books</a>
+<!-- navigates to /products?category=books&page=1 -->
+```
+
 ## static vs dynamic routing
 
 `Static Routing` uses fixed paths like `home` or `about` to create mapping between URL and components in the route configuration.
