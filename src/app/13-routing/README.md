@@ -218,6 +218,14 @@ ngOnInit(): void {
 
 Use the `Router` service to navigate programmatically.
 
+Router is a service that provides methods to navigate between routes in an Angular application. It allows you to programmatically change the URL and load different components based on the defined routes.
+
+- `navigate` : constructs the URL from an array of path segments and optional parameters.
+- `navigateByUrl` : takes a string URL and navigates directly to it.
+- `isActive` : checks if a given URL is currently active.
+- `parseUrl` : converts a string URL into a UrlTree object.
+- `createUrlTree` : creates a UrlTree from an array of path segments and optional parameters.
+
 ```ts
 import { Router } from '@angular/router';
 
@@ -227,6 +235,7 @@ goToUser(id: number): void {
   this.router.navigate(['/users', id], {
     queryParams: { ref: 'list' },
   });
+  // navigates to /users/:id?ref=list
 }
 
 goToHome(): void {
