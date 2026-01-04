@@ -61,6 +61,7 @@ export class SidebarComponent {
         { id: 'paginated-post-collection', label: 'Paginated Post Collection', route: '/paginated-post-collection' }
       ]
     },
+    { id: 'routing', label: 'Angular Routing', route: 'routing' },
     {
       id: 'template-forms',
       label: 'Template Forms',

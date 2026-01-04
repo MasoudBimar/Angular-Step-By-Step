@@ -19,6 +19,8 @@ import { DecoratorsComponent } from './11-decorators/decorators.component';
 import { ColorPickerComponent } from './11-decorators/color-picker/color-picker.component';
 import { PipesComponent } from './12-pipes/pipes.component';
 import { PostCollectionComponent } from './12-pipes/post-collection/post-collection.component';
+import { ROUTING_ROUTES } from './13-routing/routing.routes';
+import { RoutingComponent } from './13-routing/routing.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
@@ -35,6 +37,7 @@ const routes: Routes = [
   { path: 'color-picker', component: ColorPickerComponent },
   { path: 'pipes', component: PipesComponent },
   { path: 'paginated-post-collection', component: PostCollectionComponent },
+  { path: 'routing', component: RoutingComponent, children: ROUTING_ROUTES },
   { path: 'template-driven', component: TemplateDrivenComponent },
   { path: 'full-template-driven', component: FullTemplateDrivenComponent },
   { path: 'template', children: Session7Routes },

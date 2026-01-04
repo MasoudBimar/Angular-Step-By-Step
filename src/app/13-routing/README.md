@@ -1,8 +1,8 @@
 ﻿# Angular Routing
 
-This note explains the core Angular Router concepts with small, practical examples.
+Routing refers to the process of navigating between different components of an application.
 
-## Quick setup command
+## Quick setup command for adding routing file to an angular app
 
 ```bash
 ng generate module app-routing --flat --module=app
@@ -17,19 +17,19 @@ the `router-outlet` and navigation APIs to move between screens.
 
 ```ts
 // app-routing.module.ts
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { UsersComponent } from './users/users.component';
-import { UserDetailComponent } from './users/user-detail.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { HomeComponent } from "./home/home.component";
+import { UsersComponent } from "./users/users.component";
+import { UserDetailComponent } from "./users/user-detail.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirecting routes
-  { path: 'home', component: HomeComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'users/:id', component: UserDetailComponent }, // Required param
-  { path: '**', component: NotFoundComponent }, // Wildcard
+  { path: "", redirectTo: "home", pathMatch: "full" }, // Redirecting routes
+  { path: "home", component: HomeComponent },
+  { path: "users", component: UsersComponent },
+  { path: "users/:id", component: UserDetailComponent }, // Required param
+  { path: "**", component: NotFoundComponent }, // Wildcard
 ];
 
 @NgModule({
@@ -39,9 +39,34 @@ const routes: Routes = [
 export class AppRoutingModule {}
 ```
 
-## Router outlet
+> [!NOTE]
+> The `provideRouter` function was released in `Angular version 14.2`.
+> It was introduced as part of the transition to standalone components and `standalone APIs`, allowing developers to configure the router without using `RouterModule.forRoot()`
+
+## Routes Configuration
+
+Routes type is an array of Route interface.
+
+- `title`: Sets a page title, or resolves one via a resolver or resolve function.
+- `path`: URL segment to match for this route.
+- `pathMatch`: Match strategy for empty paths; use `prefix` or `full` (default is `prefix`).
+- `component`: Component created when the path matches.
+- `loadComponent`: Lazy-loads a standalone component.
+- `redirectTo`: URL to redirect to when this route matches.
+- `outlet`: Named `RouterOutlet` to render into when using multiple outlets.
+- `canActivate`: Guards that must allow activation before entering the route.
+- `canDeactivate`: Guards that must allow leaving the route.
+- `canLoad`: Guards for lazy-loaded routes; deprecated in favor of `canMatch`.
+- `data`: Static, developer-defined data available via `ActivatedRoute`.
+- `children`: Nested child routes for this route.
+- `loadChildren`: Lazy-loaded child routes module or route factory.
+
+## Router outlet (Directive)
 
 The router renders matched components inside `router-outlet`.
+In fact `router-outlet` is a directive that acts as a placeholder for the content, which has to be displayed on the basis of the route given.
+
+> [!NOTE] `router-outlet` tells Angular where to render the routed component.
 
 ```html
 <!-- app.component.html -->
@@ -53,18 +78,23 @@ The router renders matched components inside `router-outlet`.
 <router-outlet></router-outlet>
 ```
 
+> [!TIP]
+> Typically we have one router-outlet in root component and components that has child routes assigned to them.
+
 ## RouterLink
+
+`routerLink` is a attribute directive provided by `RouterModule` that enables navigation to different routes in the application by binding to the anchor tags or every html element with click event (e.g. buttons).
 
 Use `routerLink` to build navigation. Use `routerLinkActive` to style active links.
 
 ```html
+<a routerLink="/home">Home</a>
+```
+
+```html
 <a [routerLink]="['/users', 42]">User 42</a>
-<a
-  [routerLink]="['/users']"
-  [queryParams]="{ page: 2, sort: 'name' }"
-  routerLinkActive="is-active"
-  >Users</a
->
+<hr />
+<a [routerLink]="['/users']" [queryParams]="{ page: 2, sort: 'name' }" routerLinkActive="is-active">Users</a>
 ```
 
 ## Route params (dynamic routing)
@@ -80,34 +110,34 @@ Dynamic routing uses path parameters like `:id`.
 
 ```ts
 // user-detail.component.ts
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'app-user-detail',
+  selector: "app-user-detail",
   template: `
     <p>User ID: {{ userId }}</p>
     <p>Query page: {{ page }}</p>
   `,
 })
 export class UserDetailComponent implements OnInit {
-  userId = '';
-  page = '';
+  userId = "";
+  page = "";
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     // Snapshot (one-time read)
-    this.userId = this.route.snapshot.paramMap.get('id') ?? '';
-    this.page = this.route.snapshot.queryParamMap.get('page') ?? '';
+    this.userId = this.route.snapshot.paramMap.get("id") ?? "";
+    this.page = this.route.snapshot.queryParamMap.get("page") ?? "";
 
     // Subscribe (react to changes while component stays active)
     this.route.paramMap.subscribe((params) => {
-      this.userId = params.get('id') ?? '';
+      this.userId = params.get("id") ?? "";
     });
 
     this.route.queryParamMap.subscribe((params) => {
-      this.page = params.get('page') ?? '';
+      this.page = params.get("page") ?? "";
     });
   }
 }
@@ -163,12 +193,12 @@ Nested routes render child components inside a child `router-outlet`.
 // app-routing.module.ts
 const routes: Routes = [
   {
-    path: 'admin',
+    path: "admin",
     component: AdminComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: AdminDashboardComponent },
-      { path: 'users', component: AdminUsersComponent },
+      { path: "", redirectTo: "dashboard", pathMatch: "full" },
+      { path: "dashboard", component: AdminDashboardComponent },
+      { path: "users", component: AdminUsersComponent },
     ],
   },
 ];

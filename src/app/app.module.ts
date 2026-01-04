@@ -28,7 +28,10 @@ import { LetterCountPipe } from './12-pipes/pipes/letter-count.pipe';
 import { SumOfNumbersPipe } from './12-pipes/pipes/sum-of-numbers.pipe';
 import { PostCollectionComponent } from './12-pipes/post-collection/post-collection.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { RoutingComponent } from './routing/routing.component';
+import { RoutingComponent } from './13-routing/routing.component';
+import { Component1Component } from './13-routing/component1/component1.component';
+import { Component2Component } from './13-routing/component2/component2.component';
+import { Component3Component } from './13-routing/component3/component3.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { RoutingComponent } from './routing/routing.component';
     SumOfNumbersPipe,
     PostCollectionComponent,
     SidebarComponent,
-    RoutingComponent
+    RoutingComponent,
+    Component1Component,
+    Component2Component,
+    Component3Component
   ],
   imports: [
     BrowserModule,
