@@ -116,6 +116,13 @@ In Angular Route parameters are defined in the route configuration using a colon
 
 ### Reading route params and query params
 
+Here is an example ot params and query params in an URL like `/users/42?page=2`. In htis example 42 is a route param and page=2 is a query param.
+
+> [!TIP]
+> Use `paramMap` and `queryParamMap` for reading route parameters and query parameters.
+> They provide a more convenient API than the older `params` and `queryParams` observables.
+> Do not read params in constructor, the ngOnInit lifecycle hook is the right place.
+
 ```ts
 // user-detail.component.ts
 import { Component, OnInit } from "@angular/core";
@@ -131,15 +138,24 @@ import { ActivatedRoute } from "@angular/router";
 export class UserDetailComponent implements OnInit {
   userId = "";
   page = "";
+  paramId: number = 0;
+  queryParamId: number = 0;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // Snapshot (one-time read)
+    // directly read the params & queryParams
+    const params = this.route.snapshot.params;
+    this.paramId = +params["id"]; // '+' converts string to number
+
+    const queryParams = this.route.snapshot.queryParams;
+    this.queryParamId = +queryParams["id"]; // '+' converts string to number
+
+    // Snapshot (one-time read) using paramMap & queryParamMap
     this.userId = this.route.snapshot.paramMap.get("id") ?? "";
     this.page = this.route.snapshot.queryParamMap.get("page") ?? "";
 
-    // Subscribe (react to changes while component stays active)
+    // Subscribe (react to changes while component stays active) using paramMap & queryParamMap
     this.route.paramMap.subscribe((params) => {
       this.userId = params.get("id") ?? "";
     });
@@ -155,6 +171,27 @@ export class UserDetailComponent implements OnInit {
 
 `ActivatedRoute` provides the current route information: params, query params,
 data, and snapshot vs observable APIs.
+
+### Snapshot pitfall (stale params)
+
+If the same component stays active while only the route param changes, `snapshot`
+will not update and you may read the previous value.
+
+> [!CAUTION]
+> The problem occurs because Angular reuses the existing component instance when navigating to a route that maps to the same component. As a result, the `ngOnInit` lifecycle hook is not called again, and the component does not automatically update its state based on the new route parameters.
+
+```ts
+// users/1 -> users/2 keeps the same component instance
+ngOnInit(): void {
+  // Stays "1" when navigating to /users/2
+  this.userId = this.route.snapshot.paramMap.get("id") ?? "";
+
+  // Use subscription to always get the latest param
+  this.route.paramMap.subscribe((params) => {
+    this.userId = params.get("id") ?? "";
+  });
+}
+```
 
 ## Router (navigate method)
 
