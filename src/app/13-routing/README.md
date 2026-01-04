@@ -104,6 +104,20 @@ Passing Query params using routerLink in template:
 <!-- navigates to /products?category=books&page=1 -->
 ```
 
+Relative vs absolute in `routerLink` (value binding):
+
+```html
+<!-- absolute: starts with /, ignores current route -->
+<a [routerLink]="['/admin', 'users']">Admin Users</a>
+
+<!-- relative: no leading /, uses the current route as a base -->
+<a [routerLink]="['settings']">Settings</a>
+```
+
+If the current URL is `/account`, the relative link above navigates to
+`/account/settings`, while the absolute link always navigates to
+`/admin/users`.
+
 ## static vs dynamic routing
 
 `Static Routing` uses fixed paths like `home` or `about` to create mapping between URL and components in the route configuration.
