@@ -32,6 +32,7 @@ import { RoutingComponent } from './13-routing/routing.component';
 import { Component1Component } from './13-routing/component1/component1.component';
 import { Component2Component } from './13-routing/component2/component2.component';
 import { Component3Component } from './13-routing/component3/component3.component';
+import { ServicesComponent } from './14-services/services.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { Component3Component } from './13-routing/component3/component3.componen
     RoutingComponent,
     Component1Component,
     Component2Component,
-    Component3Component
+    Component3Component,
+    ServicesComponent
   ],
   imports: [
     BrowserModule,
