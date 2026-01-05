@@ -1,0 +1,12 @@
+<div (mouseleave)="handleLeave()">
+  <span
+    class="star"
+    *ngFor="let state of states; let i = index"
+    (click)="changeHandler(i + 1)"
+    (mouseover)="handleHover(i)"
+    style.height="{{ starWidth }}px"
+    style.width="{{ starWidth }}px"
+    [class]="{ hover: state.hover, selected: state.select }"
+  >
+  </span>
+</div>

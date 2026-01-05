@@ -68,14 +68,18 @@ export class SidebarComponent {
       children: [
         { id: 'template-driven', label: 'Template Driven Form', route: '/template-driven/template-driven' },
         { id: 'full-template-driven', label: 'Full Template Driven Form', route: '/template-driven/full-template-driven' },
-        { id: 'rate-component1', label: 'Rate Component', route: '/template-driven/rate' },
-        { id: 'rate-component2', label: 'Rate Component', route: '/template-driven/rating' },
-        { id: 'rate-component3', label: 'Rate Component', route: '/template-driven/rate-sample' },
         { id: 'product-sample', label: 'Product Sample', route: '/product-sample' }
       ]
     },
     { id: 'reactive-driven', label: 'Reacive Form', route: '/reactive-driven' },
-    { id: 'empty-component', label: 'Empty Component', route: '/empty-component' }
+    { id: 'empty-component', label: 'Empty Component', route: '/empty-component' },
+    {
+      id: 'code samples', label: 'exercises', children: [
+        { id: 'rate-1', label: 'Rate 1', route: '/exercise/rate-1' },
+        { id: 'rate-2', label: 'Rate 2', route: '/exercise/rate-2' },
+        { id: 'rate-3', label: 'Rate 3', route: '/exercise/rate-3' },
+      ]
+    }
   ];
 
   private expandedItems = new Set<string>();

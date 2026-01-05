@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, NgModule, OnInit, Output } from '@angular/core';
 @Component({
-  selector: 'rating',
-  templateUrl: './rating.component.html',
-  styleUrls: ['./rating.component.scss']
+  selector: 'app-rate-version3',
+  templateUrl: './rate-version3.component.html',
+  styleUrls: ['./rate-version3.component.scss']
 })
 
-export class RatingComponent implements OnInit {
+export class RateVersion3Component implements OnInit {
   constructor() { }
 
   @Input() rateNumber: number = -1;

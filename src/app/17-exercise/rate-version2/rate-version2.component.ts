@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-rate-sample',
-  templateUrl: './rate.component.html',
-  styleUrls: ['./rate.component.scss']
+  selector: 'app-rate-version2',
+  templateUrl: './rate-version2.component.html',
+  styleUrls: ['./rate-version2.component.scss']
 })
-export class RateSampleComponent implements OnInit {
+export class RateVersion2Component implements OnInit {
   @Input() stars: number = 5;
   @Input() rate: number = 0;
   @Input() starWidth: number = 25;

@@ -31,7 +31,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { Session8Module } from './16-reactive-forms/session8.module';
-import { Session7Module } from './15-template-driven-forms/session7.module';
 import { JsonPipe } from '@angular/common';
 import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecycles.component';
 []
@@ -73,7 +72,6 @@ import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecy
     AppRoutingModule,
     FormsModule,
     Session8Module,
-    Session7Module,
     JsonPipe
   ],
   providers: [],

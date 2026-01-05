@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RatingComponent } from './rating.component';
+import { RateVersion3Component } from './rate-version3.component';
 
 describe('RatingComponent', () => {
-  let component: RatingComponent;
-  let fixture: ComponentFixture<RatingComponent>;
+  let component: RateVersion3Component;
+  let fixture: ComponentFixture<RateVersion3Component>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RatingComponent ]
+      declarations: [RateVersion3Component]
     })
-    .compileComponents();
+      .compileComponents();
 
-    fixture = TestBed.createComponent(RatingComponent);
+    fixture = TestBed.createComponent(RateVersion3Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
