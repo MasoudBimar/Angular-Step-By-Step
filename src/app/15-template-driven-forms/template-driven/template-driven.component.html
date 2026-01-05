@@ -1,61 +1,89 @@
-<!-- {{productForm | json}} -->
-<form
-  novalidate
-  class="m-2"
-  (ngSubmit)="onSubmit(productForm, name)"
-  #productForm="ngForm"
->
-  <div class="form-group">
-    <label for="name"> name</label>
-    <input
-      type="text"
-      class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-      required
-      minlength="5"
-      name="name"
-      [(ngModel)]="product.name"
-      #name="ngModel"
-    />
-    <div *ngIf="name.errors">
-      <div *ngIf="name.errors['required']" class="text-red-600">
-        name is required
-      </div>
-      <div *ngIf="name.errors['minlength']" class="text-red-600">
-        name length must be greater than 5 but actual length is
-        {{ name.errors["minlength"].actualLength }}
+<div class="form-container">
+  <h2>Product Form Definition</h2>
+  <form
+    novalidate
+    class="m-3"
+    (ngSubmit)="onSubmit(productForm)"
+    #productForm="ngForm"
+    class="w-25"
+  >
+    <div class="mb-3">
+      <label for="name" class="form-label">Product Name</label>
+      <input
+        id="name"
+        type="text"
+        class="form-control"
+        [class.is-invalid]="
+          name.invalid && (name.dirty || name.touched || productForm.submitted)
+        "
+        required
+        minlength="5"
+        name="name"
+        [(ngModel)]="product.name"
+        #name="ngModel"
+        placeholder="Product Name"
+      />
+      <div
+        *ngIf="
+          name.errors && (name.dirty || name.touched || productForm.submitted)
+        "
+      >
+        <div *ngIf="name.errors['required']" class="invalid-feedback d-block">
+          name is required
+        </div>
+        <div *ngIf="name.errors['minlength']" class="invalid-feedback d-block">
+          Name length must be greater than 5 but actual length is
+          {{ name.errors["minlength"].actualLength }}
+        </div>
       </div>
     </div>
-    <label for="category"> category</label>
-    <!-- <input type="text" class="form-control" name="category" [(ngModel)]="product.category"> -->
-    <select
-      class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-      id="category"
-      required
-      [(ngModel)]="product.category"
-      name="category"
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <select
+        class="form-select"
+        id="category"
+        required
+        [(ngModel)]="product.category"
+        name="category"
+      >
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input
+        id="price"
+        type="text"
+        class="form-control"
+        name="price"
+        [(ngModel)]="product.price"
+      />
+    </div>
+    <ul
+      class="text-danger list-unstyled mt-2"
+      *ngIf="productForm.dirty && productForm.invalid && productForm.submitted"
     >
-      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
-    </select>
-    <label for="price"> price</label>
-    <input
-      type="text"
-      class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-      name="price"
-      [(ngModel)]="product.price"
-    />
-  </div>
-  <ul
-    class="text-red-600 list-none"
-    *ngIf="productForm.dirty && productForm.invalid && productForm.submitted"
-  >
-    <li *ngFor="let error of getValidationMessages(name)">
-      {{ error }}
-    </li>
-  </ul>
-  <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-    save
-  </button>
-</form>
-<hr />
-
-<!-- <app-product-sample></app-product-sample> -->
+      <li *ngFor="let error of getValidationMessages(name)">
+        {{ error }}
+      </li>
+    </ul>
+    <button type="submit" class="btn btn-primary me-2">Submit</button>
+    <button
+      type="button"
+      class="btn btn-outline-secondary me-2"
+      (click)="reset(productForm)"
+    >
+      Reset
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="preset(productForm)"
+    >
+      Default Values
+    </button>
+  </form>
+  <hr />
+</div>
