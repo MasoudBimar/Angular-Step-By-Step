@@ -14,3 +14,16 @@ input.ng-dirty.ng-invalid {
 input.ng-dirty.ng-valid {
   border: 2px solid #6bc502
 }
+
+code.json-output {
+  display: block;
+  white-space: pre;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.875rem;
+  color: #212529;
+  overflow-x: auto;
+}

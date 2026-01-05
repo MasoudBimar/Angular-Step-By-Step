@@ -20,7 +20,7 @@ export class ProductSampleComponent implements OnInit {
   }
 
   getProducts(): Product[] {
-    return this.model.getProducts();
+    return [...this.model.getProducts()];
   }
 
   newProduct: Product = new Product();

@@ -1,40 +1,50 @@
 <h2>Create Stock Form (Reactive Form Arrays)</h2>
 
-<div class="form-group">
+<div class="mb-3">
   <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
-    <div class="stock-name">
-      <label for="stockName">Stock Name</label>
+    <div class="mb-3">
+      <label for="stockName" class="form-label">Stock Name</label>
       <input
+        id="stockName"
         type="text"
         placeholder="Stock Name"
         name="stockName"
         formControlName="name"
-        class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        class="form-control"
+        [class.is-invalid]="
+          stockForm.get('name')?.invalid &&
+          (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
+        "
       />
       <div
         *ngIf="
           stockForm.get('name')?.invalid &&
           (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
         "
-        class="text-red-600 text-sm"
+        class="invalid-feedback d-block"
       >
         Name is required
       </div>
     </div>
-    <div class="stock-code">
-      <label for="stockCode">Stock Code</label>
+    <div class="mb-3">
+      <label for="stockCode" class="form-label">Stock Code</label>
       <input
+        id="stockCode"
         type="text"
         placeholder="Stock Code"
         formControlName="code"
-        class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        class="form-control"
+        [class.is-invalid]="
+          stockForm.get('code')?.invalid &&
+          (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
+        "
       />
       <div
         *ngIf="
           stockForm.get('code')?.invalid &&
           (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
         "
-        class="text-red-600 text-sm"
+        class="invalid-feedback d-block"
       >
         <div *ngIf="stockForm.get('code')?.errors?.['required']">
           Stock Code is required
@@ -44,20 +54,25 @@
         </div>
       </div>
     </div>
-    <div class="stock-price">
-      <label for="stockPrice">Stock Price</label>
+    <div class="mb-3">
+      <label for="stockPrice" class="form-label">Stock Price</label>
       <input
+        id="stockPrice"
         type="number"
         placeholder="Stock Price"
         formControlName="price"
-        class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        class="form-control"
+        [class.is-invalid]="
+          stockForm.get('price')?.invalid &&
+          (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
+        "
       />
       <div
         *ngIf="
           stockForm.get('price')?.invalid &&
           (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
         "
-        class="text-red-600 text-sm"
+        class="invalid-feedback d-block"
       >
         <div *ngIf="stockForm.get('price')?.errors?.['required']">
           Stock Price is required
@@ -67,62 +82,62 @@
         </div>
       </div>
     </div>
-    <br />
     <div formArrayName="notablePeople">
       <div
         *ngFor="let person of notablePeople.controls; let i = index"
         [formGroupName]="i"
-        class="notable-people"
+        class="border rounded p-3 mb-3 bg-light"
       >
-        <div>Person {{ i + 1 }}</div>
-        <br />
+        <div class="fw-semibold mb-2">Person {{ i + 1 }}</div>
 
-        <label for="name">Person Name</label>
+        <label class="form-label" [attr.for]="'person-name-' + i">
+          Person Name
+        </label>
         <input
+          [attr.id]="'person-name-' + i"
           type="text"
           placeholder="Person Name"
           formControlName="name"
-          class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="form-control mb-3"
         />
 
-        <br />
-
-        <label for="title">Person Title</label>
+        <label class="form-label" [attr.for]="'person-title-' + i">
+          Person Title
+        </label>
         <input
+          [attr.id]="'person-title-' + i"
           type="text"
           placeholder="Person Title"
           formControlName="title"
-          class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="form-control mb-3"
         />
 
-        <br />
         <button
           type="button"
-          class="px-2 py-1 bg-sky-500 text-white rounded hover:bg-sky-600"
+          class="btn btn-outline-danger btn-sm"
           (click)="removeNotablePerson(i)"
         >
           Remove Person
         </button>
       </div>
     </div>
-    <br />
     <button
       type="button"
-      class="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 m-1"
+      class="btn btn-outline-primary me-2"
       (click)="addNotablePerson()"
     >
       Add Notable Person
     </button>
     <button
       type="submit"
-      class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 m-1"
+      class="btn btn-primary me-2"
     >
       Submit
     </button>
     <button
       type="button"
       (click)="resetForm()"
-      class="px-2 py-1 bg-yellow-400 text-black rounded hover:bg-yellow-500 m-1"
+      class="btn btn-outline-secondary"
     >
       Reset
     </button>

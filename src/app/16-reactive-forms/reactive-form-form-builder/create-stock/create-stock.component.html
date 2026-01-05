@@ -1,11 +1,17 @@
 <h2>Create Stock Form (Reactive Form)</h2>
 
-<div class="form-group">
+<div class="mb-3">
   <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
-    <label for="stockName">Stock Name</label>
+    <div class="mb-3">
+      <label for="stockName" class="form-label">Stock Name</label>
     <input
+      id="stockName"
       type="text"
-      class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      class="form-control"
+      [class.is-invalid]="
+        stockForm.get('name')?.invalid &&
+        (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
+      "
       placeholder="Stock Name"
       name="stockName"
       formControlName="name"
@@ -15,25 +21,32 @@
         stockForm.get('name')?.invalid &&
         (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
       "
-      class="text-red-600 text-sm"
+      class="invalid-feedback d-block"
     >
       Name is required
     </div>
+    </div>
 
-    <label for="stockCode">Stock Code</label>
+    <div class="mb-3">
+      <label for="stockCode" class="form-label">Stock Code</label>
     <input
+      id="stockCode"
       type="text"
-      class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      class="form-control"
+      [class.is-invalid]="
+        stockForm.get('code')?.invalid &&
+        (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
+      "
       placeholder="Stock Code"
       formControlName="code"
     />
     <div
-      class="text-red-600 text-sm"
       *ngIf="
         stockForm.get('code')?.errors &&
         stockForm.get('code')?.invalid &&
         (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
       "
+      class="invalid-feedback d-block"
     >
       <div *ngIf="stockForm.get('code')?.errors?.['required']">
         Stock Code is required
@@ -43,19 +56,27 @@
       </div>
     </div>
 
-    <label for="stockPrice">Stock Price</label>
+    </div>
+
+    <div class="mb-3">
+      <label for="stockPrice" class="form-label">Stock Price</label>
     <input
+      id="stockPrice"
       type="number"
-      class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      class="form-control"
+      [class.is-invalid]="
+        stockForm.get('price')?.invalid &&
+        (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
+      "
       placeholder="Stock Price"
       formControlName="price"
     />
     <div
-      class="text-red-600 text-sm"
       *ngIf="
         stockForm.get('price')?.invalid &&
         (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
       "
+      class="invalid-feedback d-block"
     >
       <div *ngIf="stockForm.get('price')?.errors?.['required']">
         Stock Price is required
@@ -64,10 +85,10 @@
         Stock price must be positive
       </div>
     </div>
+    </div>
 
-    <br />
     <button
-      class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+      class="btn btn-primary"
       type="submit"
     >
       Submit

@@ -1,73 +1,97 @@
 <h2>Create Stock Form</h2>
 
-<div class="form-group">
+<div class="mb-3">
   <form (ngSubmit)="createStock(stockForm)" #stockForm="ngForm">
-    <label for="stockName">Stock Name</label>
+    <div class="mb-3">
+      <label for="stockName" class="form-label">Stock Name</label>
     <input
+      id="stockName"
       type="text"
       required="true"
-      class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      class="form-control"
+      [class.is-invalid]="stockName.invalid && (stockName.dirty || stockName.touched || stockForm.submitted)"
       placeholder="Stock Name"
       name="stockName"
       #stockName="ngModel"
       [(ngModel)]="stock.name"
     />
-    <div *ngIf="stockName.errors" class="text-red-600">
-      <div *ngIf="stockName.errors['required']">Stock Name is Mandatory</div>
+      <div *ngIf="stockName.errors && (stockName.dirty || stockName.touched || stockForm.submitted)">
+        <div *ngIf="stockName.errors['required']" class="invalid-feedback d-block">
+          Stock Name is Mandatory
+        </div>
+      </div>
     </div>
 
-    <label for="stockCode">Stock Code</label>
+    <div class="mb-3">
+      <label for="stockCode" class="form-label">Stock Code</label>
     <input
+      id="stockCode"
       type="text"
-      class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      class="form-control"
+      [class.is-invalid]="stockCode.invalid && (stockCode.dirty || stockCode.touched || stockForm.submitted)"
       placeholder="Stock Code"
       name="stockCode"
       #stockCode="ngModel"
       [(ngModel)]="stock.code"
     />
-    <div *ngIf="stockCode.errors && stockCode.dirty && stockCode.invalid">
-      <div *ngIf="stockCode.errors['required']">Stock Code is Mandatory</div>
-      <div *ngIf="stockCode.errors['minlength']">
-        Stock Code must be atleast of length 2
+      <div *ngIf="stockCode.errors && (stockCode.dirty || stockCode.touched || stockForm.submitted)">
+        <div *ngIf="stockCode.errors['required']" class="invalid-feedback d-block">
+          Stock Code is Mandatory
+        </div>
+        <div *ngIf="stockCode.errors['minlength']" class="invalid-feedback d-block">
+          Stock Code must be atleast of length 2
+        </div>
       </div>
     </div>
 
-    <label for="stockPrice">Stock Price</label>
+    <div class="mb-3">
+      <label for="stockPrice" class="form-label">Stock Price</label>
     <input
+      id="stockPrice"
       type="number"
-      class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      class="form-control"
       placeholder="Stock Price"
       name="stockPrice"
       [ngModel]="stock.price"
       (ngModelChange)="setStockPrice($event)"
     />
-
-    <label for="stockExchange">Stock Exchange</label>
-    <select
-      name="stockExchange"
-      class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-      [(ngModel)]="stock.exchange"
-    >
-      <option *ngFor="let exchange of exchanges" [ngValue]="exchange">
-        {{ exchange }}
-      </option>
-    </select>
-
-    <label for="stockConfirm">Stock Confirm</label>
-    <div class="stock-confirm">
-      <input type="checkbox" name="stockConfirm" [(ngModel)]="confirmed" />
-      I confirm that the information provided above is accurate!
     </div>
-    <br />
+
+    <div class="mb-3">
+      <label for="stockExchange" class="form-label">Stock Exchange</label>
+      <select
+        id="stockExchange"
+        name="stockExchange"
+        class="form-select"
+        [(ngModel)]="stock.exchange"
+      >
+        <option *ngFor="let exchange of exchanges" [ngValue]="exchange">
+          {{ exchange }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-check mb-3">
+      <input
+        id="stockConfirm"
+        class="form-check-input"
+        type="checkbox"
+        name="stockConfirm"
+        [(ngModel)]="confirmed"
+      />
+      <label class="form-check-label" for="stockConfirm">
+        I confirm that the information provided above is accurate!
+      </label>
+    </div>
     <button
-      class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-1"
+      class="btn btn-primary me-2"
       [disabled]="!confirmed"
       type="submit"
     >
       Create
     </button>
     <button
-      class="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
+      class="btn btn-outline-secondary"
       type="button"
       (click)="resetForm(stockForm)"
     >
@@ -76,7 +100,9 @@
   </form>
 </div>
 
-<h4>Stock Name is {{ stock | json }}</h4>
-<h4>Stock is {{ stockForm.value | json }}</h4>
+<h4>Stock Name is</h4>
+<code class="json-output">{{ stock | json }}</code>
+<h4>Stock is</h4>
+<code class="json-output">{{ stockForm.value | json }}</code>
 <h3>Data has been confirmed: {{ confirmed }}</h3>
-<h3 class="text-red-600" *ngIf="stockForm.invalid">Form is Invalid</h3>
+<h3 class="text-danger" *ngIf="stockForm.invalid">Form is Invalid</h3>
