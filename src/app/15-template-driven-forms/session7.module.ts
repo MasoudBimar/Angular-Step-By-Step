@@ -14,9 +14,12 @@ import { PaModel } from './two-way.directive';
 import { RouterModule, Routes } from '@angular/router';
 
 export const Session7Routes: Routes = [
-  { path: 'full-template-driven', component: FullTemplateDrivenComponent },
-  { path: 'template-driven', component: TemplateDrivenComponent },
-  { path: 'rate', component: RateComponent },
+  { title: 'Template Driven Form', path: 'full-template-driven', component: FullTemplateDrivenComponent },
+  { title: 'Full Template', path: 'template-driven', component: TemplateDrivenComponent },
+  { title: 'Rate Component', path: 'rate', component: RateComponent },
+  { title: 'Rate Component', path: 'rating', component: RatingComponent },
+  { title: 'Rate Component', path: 'rate-sample', component: RateSampleComponent },
+  { title: 'Product Sample', path: 'product-sample', component: RateSampleComponent },
 
 ]
 
@@ -37,7 +40,7 @@ export const Session7Routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    // RouterModule.forChild(Session7Routes)
+    RouterModule.forChild(Session7Routes)
   ],
   exports: [
     RateComponent,

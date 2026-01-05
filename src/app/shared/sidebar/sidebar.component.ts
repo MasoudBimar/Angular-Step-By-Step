@@ -66,9 +66,11 @@ export class SidebarComponent {
       id: 'template-forms',
       label: 'Template Forms',
       children: [
-        { id: 'template-driven', label: 'Template Driven Form', route: '/template/template-driven' },
-        { id: 'full-template-driven', label: 'Full Template Driven Form', route: '/template/full-template-driven' },
-        { id: 'rate-component', label: 'Rate Component', route: '/template/rate' },
+        { id: 'template-driven', label: 'Template Driven Form', route: '/template-driven/template-driven' },
+        { id: 'full-template-driven', label: 'Full Template Driven Form', route: '/template-driven/full-template-driven' },
+        { id: 'rate-component1', label: 'Rate Component', route: '/template-driven/rate' },
+        { id: 'rate-component2', label: 'Rate Component', route: '/template-driven/rating' },
+        { id: 'rate-component3', label: 'Rate Component', route: '/template-driven/rate-sample' },
         { id: 'product-sample', label: 'Product Sample', route: '/product-sample' }
       ]
     },

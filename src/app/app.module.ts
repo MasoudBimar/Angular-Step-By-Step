@@ -3,6 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
 import { GettingStartedComponent } from './1-getting-started/getting-started.component';
+import { ColorPickerComponent } from './11-decorators/color-picker/color-picker.component';
+import { DecoratorsComponent } from './11-decorators/decorators.component';
+import { PipesComponent } from './12-pipes/pipes.component';
+import { AppendTextPipe } from './12-pipes/pipes/append-text.pipe';
+import { LetterCountPipe } from './12-pipes/pipes/letter-count.pipe';
+import { PersianDatePipe } from './12-pipes/pipes/persian-date.pipe';
+import { SortNumberPipe } from './12-pipes/pipes/sort-number.pipe';
+import { SumOfNumbersPipe } from './12-pipes/pipes/sum-of-numbers.pipe';
+import { PostCollectionComponent } from './12-pipes/post-collection/post-collection.component';
+import { Component1Component } from './13-routing/component1/component1.component';
+import { Component2Component } from './13-routing/component2/component2.component';
+import { Component3Component } from './13-routing/component3/component3.component';
+import { RoutingComponent } from './13-routing/routing.component';
+import { ServicesComponent } from './14-services/services.component';
 import { TypescriptPreliminariesComponent } from './2-typescript-preliminaries/typescript-preliminaries.component';
 import { AngularFundamentalsComponent } from './3-angular-fundamentals/angular-fundamentals.component';
 import { CounterExampleComponent } from './3-angular-fundamentals/counter-example/counter-example.component';
@@ -12,27 +26,15 @@ import { StructuralDirectivesComponent } from './5-structural-directives/structu
 import { AttributeDirectivesComponent } from './6-attribute-directives/attribute-directives.component';
 import { ComponentDirectivesComponent } from './7-component-directives/component-directives.component';
 import { CustomDirectivesComponent } from './8-custom-directives/custom-directives.component';
+import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Session6Module } from './session6/session6.module';
-import { Session8Module } from './session8/session8.module';
-import { PersianDatePipe } from './12-pipes/pipes/persian-date.pipe';
-import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
-import { ComponentLifecyclesComponent } from './10-component-lifecycles/component-lifecycles.component';
-import { DecoratorsComponent } from './11-decorators/decorators.component';
-import { ColorPickerComponent } from './11-decorators/color-picker/color-picker.component';
-import { PipesComponent } from './12-pipes/pipes.component';
-import { AppendTextPipe } from './12-pipes/pipes/append-text.pipe';
-import { SortNumberPipe } from './12-pipes/pipes/sort-number.pipe';
-import { LetterCountPipe } from './12-pipes/pipes/letter-count.pipe';
-import { SumOfNumbersPipe } from './12-pipes/pipes/sum-of-numbers.pipe';
-import { PostCollectionComponent } from './12-pipes/post-collection/post-collection.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { RoutingComponent } from './13-routing/routing.component';
-import { Component1Component } from './13-routing/component1/component1.component';
-import { Component2Component } from './13-routing/component2/component2.component';
-import { Component3Component } from './13-routing/component3/component3.component';
-import { ServicesComponent } from './14-services/services.component';
+import { Session8Module } from './16-reactive-forms/session8.module';
+import { Session7Module } from './15-template-driven-forms/session7.module';
+import { JsonPipe } from '@angular/common';
+import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecycles.component';
+[]
 
 @NgModule({
   declarations: [
@@ -49,7 +51,7 @@ import { ServicesComponent } from './14-services/services.component';
     ComponentsAndTemplatesComponent,
     ComponentDirectivesComponent,
     SpecialElementsComponent,
-    ComponentLifecyclesComponent,
+    LifecyclesComponent,
     DecoratorsComponent,
     ColorPickerComponent,
     PipesComponent,
@@ -63,14 +65,16 @@ import { ServicesComponent } from './14-services/services.component';
     Component1Component,
     Component2Component,
     Component3Component,
-    ServicesComponent
+    ServicesComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    Session6Module,
-    Session8Module
+    Session8Module,
+    Session7Module,
+    JsonPipe
   ],
   providers: [],
   bootstrap: [AppComponent]

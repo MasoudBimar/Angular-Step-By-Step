@@ -1,13 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecycles.component';
-import { FullTemplateDrivenComponent } from './session7/full-template-driven/full-template-driven.component';
-import { ReactiveFormFormArraysComponent } from './session8/reactive-form-form-arrays/reactive-form-form-arrays.component';
-import { CustomElementComponent } from './session6/custom-element/custom-element.component';
-import { TemplateDrivenComponent } from './session7/template-driven/template-driven.component';
-import { ProductSampleComponent } from './session7/product-sample/product-sample.component';
-import { Session7Routes } from './session7/session7.module';
-import { AuthGuard } from './session11/guards/auth-guard';
 import { AngularFundamentalsComponent } from './3-angular-fundamentals/angular-fundamentals.component';
 import { CounterExampleComponent } from './3-angular-fundamentals/counter-example/counter-example.component';
 import { ToDoComponent } from './4-components-and-templates/todo-app/to-do/to-do.component';
@@ -21,6 +14,11 @@ import { PipesComponent } from './12-pipes/pipes.component';
 import { PostCollectionComponent } from './12-pipes/post-collection/post-collection.component';
 import { ROUTING_ROUTES } from './13-routing/routing.routes';
 import { RoutingComponent } from './13-routing/routing.component';
+import { TemplateDrivenComponent } from './15-template-driven-forms/template-driven/template-driven.component';
+import { FullTemplateDrivenComponent } from './15-template-driven-forms/full-template-driven/full-template-driven.component';
+import { ProductSampleComponent } from './15-template-driven-forms/product-sample/product-sample.component';
+import { ReactiveFormFormArraysComponent } from './16-reactive-forms/reactive-form-form-arrays/reactive-form-form-arrays.component';
+import { AuthGuard } from './session11/guards/auth-guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
@@ -31,17 +29,13 @@ const routes: Routes = [
   { path: 'attribute-directive', component: AttributeDirectivesComponent },
   { path: 'component-directive', component: ComponentDirectivesComponent },
   { path: 'special-elements', component: SpecialElementsComponent },
-
-  { path: 'life-cycle', component: CustomElementComponent },
+  { path: 'life-cycle', component: LifecyclesComponent },
   { path: 'decorators', component: DecoratorsComponent },
   { path: 'color-picker', component: ColorPickerComponent },
   { path: 'pipes', component: PipesComponent },
   { path: 'paginated-post-collection', component: PostCollectionComponent },
   { path: 'routing', component: RoutingComponent, children: ROUTING_ROUTES },
-  { path: 'template-driven', component: TemplateDrivenComponent },
-  { path: 'full-template-driven', component: FullTemplateDrivenComponent },
-  { path: 'template', children: Session7Routes },
-  { path: 'template', loadChildren: () => import('./session7/session7.module').then(m => m.Session7Module), canActivate: [AuthGuard] },
+  { path: 'template-driven', loadChildren: () => import('./15-template-driven-forms/session7.module').then(m => m.Session7Module), canActivate: [AuthGuard] },
   { path: 'product-sample', component: ProductSampleComponent },
   { path: 'reactive-driven', component: ReactiveFormFormArraysComponent },
 ];

@@ -112,6 +112,30 @@ Tokens tell Angular what dependency to look up. The most common token is a
 class type (like `UsersService`), but you can also use custom tokens for values
 that are not classes (strings, config objects, or interfaces).
 
+## `inject()` method
+
+`inject()` lets you get a dependency without using a constructor. It can only be
+called in an injection context (e.g., class field initializers, factory
+functions, or inside providers).
+
+```ts
+import { Injectable, inject } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+
+@Injectable({ providedIn: "root" })
+export class ProductsService {
+  private readonly http = inject(HttpClient);
+
+  getProducts() {
+    return this.http.get("/api/products");
+  }
+}
+```
+
+> [!TIP]
+> Use `inject()` in small utility services or when you want to avoid a long
+> constructor signature.
+
 ### Injecting tokens
 
 Angular Injecting tokens are created with the `InjectionToken` class.
@@ -285,6 +309,7 @@ export const providers = [
     useFactory: (env: EnvironmentService, user: UserService) => ({
       beta: env.enableBeta && user.isAdmin(),
     }),
+    // these are dependencies required by the factory function
     deps: [EnvironmentService, UserService],
   },
 ];
@@ -301,30 +326,6 @@ export const providers = [
 
 > [!TIP]
 > we use `useExisting` whenever we need to provide an existing service via an alias. this way we share one dependecy among different tokens.
-
-## `inject()` method
-
-`inject()` lets you get a dependency without using a constructor. It can only be
-called in an injection context (e.g., class field initializers, factory
-functions, or inside providers).
-
-```ts
-import { Injectable, inject } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-
-@Injectable({ providedIn: "root" })
-export class ProductsService {
-  private readonly http = inject(HttpClient);
-
-  getProducts() {
-    return this.http.get("/api/products");
-  }
-}
-```
-
-> [!TIP]
-> Use `inject()` in small utility services or when you want to avoid a long
-> constructor signature.
 
 ## Cleaning up observers in services
 
