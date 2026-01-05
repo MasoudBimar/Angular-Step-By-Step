@@ -106,6 +106,151 @@ Angular uses a hierarchical injector tree:
 
 If a provider is not found at one level, Angular searches up the tree.
 
+## Injection tokens
+
+Tokens tell Angular what dependency to look up. The most common token is a
+class type (like `UsersService`), but you can also use custom tokens for values
+that are not classes (strings, config objects, or interfaces).
+
+### Injecting tokens
+
+```ts
+import { Component, Inject } from "@angular/core";
+import { InjectionToken } from "@angular/core";
+
+export const API_URL = new InjectionToken<string>("API_URL");
+
+@Component({
+  selector: "app-users",
+  template: "Users",
+  providers: [{ provide: API_URL, useValue: "/api" }],
+})
+export class UsersComponent {
+  constructor(@Inject(API_URL) private apiUrl: string) {}
+}
+```
+
+### String tokens (legacy)
+
+String tokens are supported but discouraged because they are not type-safe and
+can collide. Prefer `InjectionToken`.
+
+```ts
+import { Component, Inject } from "@angular/core";
+
+@Component({
+  selector: "app-legacy",
+  template: "Legacy",
+  providers: [{ provide: "API_URL", useValue: "/api" }],
+})
+export class LegacyComponent {
+  constructor(@Inject("API_URL") private apiUrl: string) {}
+}
+```
+
+### Object injection token
+
+Use an interface plus `InjectionToken` for structured config.
+
+```ts
+import { InjectionToken } from "@angular/core";
+
+export interface ApiConfig {
+  baseUrl: string;
+  timeoutMs: number;
+}
+
+export const API_CONFIG = new InjectionToken<ApiConfig>("API_CONFIG");
+```
+
+Provide it and inject the config:
+
+```ts
+import { Injectable, Inject } from "@angular/core";
+import { API_CONFIG, ApiConfig } from "./api-config.token";
+
+@Injectable({ providedIn: "root" })
+export class ApiService {
+  constructor(@Inject(API_CONFIG) private config: ApiConfig) {}
+}
+```
+
+### Provider approaches for tokens
+
+Angular supports multiple ways to provide a token:
+
+- `useValue`: supply a constant value.
+- `useClass`: map a token to a class type.
+- `useExisting`: alias one token to another.
+- `useFactory`: compute a value with a factory function.
+
+Examples:
+
+```ts
+import { InjectionToken } from "@angular/core";
+
+export const API_URL = new InjectionToken<string>("API_URL");
+export const LOGGER = new InjectionToken<Logger>("LOGGER");
+
+export interface Logger {
+  log(message: string): void;
+}
+
+export class ConsoleLogger implements Logger {
+  log(message: string): void {
+    console.log(message);
+  }
+}
+
+export class FancyLogger implements Logger {
+  log(message: string): void {
+    console.log("[Fancy]", message);
+  }
+}
+
+export const providers = [
+  { provide: API_URL, useValue: "/api" },
+  { provide: LOGGER, useClass: ConsoleLogger },
+  { provide: "LEGACY_LOGGER", useExisting: LOGGER },
+  {
+    provide: API_URL,
+    useFactory: (env: EnvironmentService) => env.apiUrl,
+    deps: [EnvironmentService],
+  },
+];
+```
+
+### `deps` for provider dependencies
+
+When using `useFactory`, you can explicitly list dependencies with `deps`. This
+is useful when the factory needs services or when you want to avoid a class
+just to compute a value.
+
+```ts
+import { InjectionToken } from "@angular/core";
+
+export const FEATURE_FLAGS = new InjectionToken<Record<string, boolean>>("FEATURE_FLAGS");
+
+export const providers = [
+  {
+    provide: FEATURE_FLAGS,
+    useFactory: (env: EnvironmentService, user: UserService) => ({
+      beta: env.enableBeta && user.isAdmin(),
+    }),
+    deps: [EnvironmentService, UserService],
+  },
+];
+```
+
+### When to use each approach
+
+- `useValue`: environment constants, hard-coded flags, test doubles.
+- `useClass`: swap an implementation behind an interface-like token.
+- `useExisting`: alias for backward compatibility or shared instances.
+- `useFactory`: values derived from other services or runtime state.
+- `InjectionToken` vs string: use `InjectionToken` for type safety and to avoid
+  collisions; strings only for legacy code.
+
 ## `inject()` method
 
 `inject()` lets you get a dependency without using a constructor. It can only be
