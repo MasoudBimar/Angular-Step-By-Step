@@ -4,19 +4,30 @@
   <form (ngSubmit)="createStock(stockForm)" #stockForm="ngForm">
     <div class="mb-3">
       <label for="stockName" class="form-label">Stock Name</label>
-    <input
-      id="stockName"
-      type="text"
-      required="true"
-      class="form-control"
-      [class.is-invalid]="stockName.invalid && (stockName.dirty || stockName.touched || stockForm.submitted)"
-      placeholder="Stock Name"
-      name="stockName"
-      #stockName="ngModel"
-      [(ngModel)]="stock.name"
-    />
-      <div *ngIf="stockName.errors && (stockName.dirty || stockName.touched || stockForm.submitted)">
-        <div *ngIf="stockName.errors['required']" class="invalid-feedback d-block">
+      <input
+        id="stockName"
+        type="text"
+        required="true"
+        class="form-control"
+        [class.is-invalid]="
+          stockName.invalid &&
+          (stockName.dirty || stockName.touched || stockForm.submitted)
+        "
+        placeholder="Stock Name"
+        name="stockName"
+        #stockName="ngModel"
+        [(ngModel)]="stock.name"
+      />
+      <div
+        *ngIf="
+          stockName.errors &&
+          (stockName.dirty || stockName.touched || stockForm.submitted)
+        "
+      >
+        <div
+          *ngIf="stockName.errors['required']"
+          class="invalid-feedback d-block"
+        >
           Stock Name is Mandatory
         </div>
       </div>
@@ -24,21 +35,35 @@
 
     <div class="mb-3">
       <label for="stockCode" class="form-label">Stock Code</label>
-    <input
-      id="stockCode"
-      type="text"
-      class="form-control"
-      [class.is-invalid]="stockCode.invalid && (stockCode.dirty || stockCode.touched || stockForm.submitted)"
-      placeholder="Stock Code"
-      name="stockCode"
-      #stockCode="ngModel"
-      [(ngModel)]="stock.code"
-    />
-      <div *ngIf="stockCode.errors && (stockCode.dirty || stockCode.touched || stockForm.submitted)">
-        <div *ngIf="stockCode.errors['required']" class="invalid-feedback d-block">
+      <input
+        id="stockCode"
+        type="text"
+        class="form-control"
+        [class.is-invalid]="
+          stockCode.invalid &&
+          (stockCode.dirty || stockCode.touched || stockForm.submitted)
+        "
+        placeholder="Stock Code"
+        name="stockCode"
+        #stockCode="ngModel"
+        [(ngModel)]="stock.code"
+      />
+      <div
+        *ngIf="
+          stockCode.errors &&
+          (stockCode.dirty || stockCode.touched || stockForm.submitted)
+        "
+      >
+        <div
+          *ngIf="stockCode.errors['required']"
+          class="invalid-feedback d-block"
+        >
           Stock Code is Mandatory
         </div>
-        <div *ngIf="stockCode.errors['minlength']" class="invalid-feedback d-block">
+        <div
+          *ngIf="stockCode.errors['minlength']"
+          class="invalid-feedback d-block"
+        >
           Stock Code must be atleast of length 2
         </div>
       </div>
@@ -46,15 +71,15 @@
 
     <div class="mb-3">
       <label for="stockPrice" class="form-label">Stock Price</label>
-    <input
-      id="stockPrice"
-      type="number"
-      class="form-control"
-      placeholder="Stock Price"
-      name="stockPrice"
-      [ngModel]="stock.price"
-      (ngModelChange)="setStockPrice($event)"
-    />
+      <input
+        id="stockPrice"
+        type="number"
+        class="form-control"
+        placeholder="Stock Price"
+        name="stockPrice"
+        [ngModel]="stock.price"
+        (ngModelChange)="setStockPrice($event)"
+      />
     </div>
 
     <div class="mb-3">
@@ -83,11 +108,7 @@
         I confirm that the information provided above is accurate!
       </label>
     </div>
-    <button
-      class="btn btn-primary me-2"
-      [disabled]="!confirmed"
-      type="submit"
-    >
+    <button class="btn btn-primary me-2" [disabled]="!confirmed" type="submit">
       Create
     </button>
     <button
@@ -98,11 +119,11 @@
       reset
     </button>
   </form>
-</div>
 
-<h4>Stock Name is</h4>
-<code class="json-output">{{ stock | json }}</code>
-<h4>Stock is</h4>
-<code class="json-output">{{ stockForm.value | json }}</code>
-<h3>Data has been confirmed: {{ confirmed }}</h3>
-<h3 class="text-danger" *ngIf="stockForm.invalid">Form is Invalid</h3>
+  <h4>Stock Name is</h4>
+  <code class="json-output">{{ stock | json }}</code>
+  <h4>Stock is</h4>
+  <code class="json-output">{{ stockForm.value | json }}</code>
+  <h3>Data has been confirmed: {{ confirmed }}</h3>
+  <h3 class="text-danger" *ngIf="stockForm.invalid">Form is Invalid</h3>
+</div>
