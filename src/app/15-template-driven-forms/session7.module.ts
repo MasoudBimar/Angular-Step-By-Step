@@ -7,8 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { FullTemplateDrivenComponent } from './full-template-driven/full-template-driven.component';
 import { TemplateDrivenComponent } from './template-driven/template-driven.component';
 import { ProductSampleComponent } from './product-sample/product-sample.component';
-import { PaAttrDirective } from './attr.directive';
-import { MassModel } from './two-way.directive';
+import { MassAttrDirective } from './directives/attr.directive';
+import { MassModel } from './directives/two-way.directive';
 import { RouterModule, Routes } from '@angular/router';
 import { RateVersion2Component } from '../17-exercise/rate-version2/rate-version2.component';
 import { RateVersion3Component } from '../17-exercise/rate-version3/rate-version3.component';
@@ -32,7 +32,7 @@ export const Session7Routes: Routes = [
     TemplateDrivenComponent,
     ProductSampleComponent,
     MassModel,
-    PaAttrDirective
+    MassAttrDirective
   ],
   imports: [
     CommonModule,

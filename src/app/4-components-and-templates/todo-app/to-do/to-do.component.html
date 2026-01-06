@@ -1,69 +1,71 @@
-<h3 class="bg-primary text-center text-white p-2">
-  App To-Do {{ "open Items Count : " + list.openItems.length }}
-</h3>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <input
-        class="form-control"
-        placeholder="Enter Task Title"
-        [(ngModel)]="currentItem"
-      />
-    </div>
-    <div class="col-auto">
-      <button class="btn btn-primary" (click)="addNewItem()">
-        Add New Task
-      </button>
+<section class="form-container">
+  <h3 class="bg-primary text-center text-white p-2">
+    App To-Do {{ "open Items Count : " + list.openItems.length }}
+  </h3>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <input
+          class="form-control"
+          placeholder="Enter Task Title"
+          [(ngModel)]="currentItem"
+        />
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary" (click)="addNewItem()">
+          Add New Task
+        </button>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="m-2">
-  <table class="table table-striped table-bordered table-sm">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>title</th>
-        <th>isComplete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let task of list.openItems; let i = index">
-        <td>{{ i + 1 }}</td>
-        <td>{{ task.title }}</td>
-        <td>
-          <input type="checkbox" [(ngModel)]="task.isComplete" />
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<h3 class="bg-secondary text-center text-white p-2">Done Items</h3>
-<div class="m-2">
-  <table class="table table-bordered table-sm">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>title</th>
-        <th>isComplete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="
-          let task of list.doneItems;
-          let i = index;
-          let isEven = even;
-          let isOdd = odd
-        "
-        [style.background-color]="isOdd ? 'gray' : ''"
-      >
-        <td>{{ i + 1 }}</td>
-        <td>{{ task.title }}</td>
-        <td>
-          <input type="checkbox" [(ngModel)]="task.isComplete" />
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="m-2">
+    <table class="table table-striped table-bordered table-sm">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>title</th>
+          <th>isComplete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of list.openItems; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ task.title }}</td>
+          <td>
+            <input type="checkbox" [(ngModel)]="task.isComplete" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h3 class="bg-secondary text-center text-white p-2">Done Items</h3>
+  <div class="m-2">
+    <table class="table table-bordered table-sm">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>title</th>
+          <th>isComplete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let task of list.doneItems;
+            let i = index;
+            let isEven = even;
+            let isOdd = odd
+          "
+          [style.background-color]="isOdd ? 'gray' : ''"
+        >
+          <td>{{ i + 1 }}</td>
+          <td>{{ task.title }}</td>
+          <td>
+            <input type="checkbox" [(ngModel)]="task.isComplete" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
