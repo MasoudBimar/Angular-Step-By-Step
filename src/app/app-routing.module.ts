@@ -37,8 +37,7 @@ const routes: Routes = [
   { path: 'paginated-post-collection', component: PostCollectionComponent },
   { path: 'routing', component: RoutingComponent, children: ROUTING_ROUTES },
   { path: 'template-driven', loadChildren: () => import('./15-template-driven-forms/session7.module').then(m => m.TemplateDrivenFormModule), canActivate: [AuthGuard] },
-  { path: 'product-sample', component: ProductSampleComponent },
-  { path: 'reactive-driven', component: ReactiveFormFormArraysComponent },
+  { path: 'reactive-form', loadChildren: () => import('./16-reactive-forms/session8.module').then(m => m.ReactiveFormModule), canActivate: [AuthGuard] },
   {
     path: 'exercise', children: [
       { title: 'Rate Component 1', path: 'rate-1', component: RateComponent },

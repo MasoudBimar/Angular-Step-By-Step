@@ -142,8 +142,12 @@
       Reset
     </button>
   </form>
-</div>
 
-<p>Form Control value: {{ stockForm.value | json }}</p>
-<p>Form Control status: {{ stockForm.status | json }}</p>
-<p>Stock Value: {{ stock | json }}</p>
+  <h4>Stock is</h4>
+  <code class="json-output">{{ stockForm.value | json }}</code>
+  <h4>Form Status is</h4>
+  <code class="json-output">{{ stockForm.status | json }}</code>
+  <h4>Stock Value</h4>
+  <code class="json-output">{{ stock | json }}</code>
+  <h3 class="text-danger" *ngIf="stockForm.invalid">Form is Invalid</h3>
+</div>

@@ -14,11 +14,38 @@
 <p> Form Control Value: {{price.value |json }}</p>
 <p> Form Control Value: {{price.status |json }}</p> -->
 
-<div class="form-group m-2">
+<div class="m-3">
   <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
-    <input type="text" class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" name="name" formControlName="name">
-    <input type="text" class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" name="category" formControlName="code">
-    <input type="number" class="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" name="price" formControlName="price">
-    <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"> save</button>
+    <div class="mb-3">
+      <label class="form-label" for="stockName">Name</label>
+      <input
+        id="stockName"
+        type="text"
+        class="form-control"
+        name="name"
+        formControlName="name"
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="stockCode">Code</label>
+      <input
+        id="stockCode"
+        type="text"
+        class="form-control"
+        name="category"
+        formControlName="code"
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="stockPrice">Price</label>
+      <input
+        id="stockPrice"
+        type="number"
+        class="form-control"
+        name="price"
+        formControlName="price"
+      />
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
   </form>
 </div>

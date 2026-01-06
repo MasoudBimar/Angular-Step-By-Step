@@ -71,6 +71,15 @@ export class SidebarComponent {
         { id: 'product-sample', label: 'Product Sample', route: '/product-sample' }
       ]
     },
+    {
+      id: 'reactive-forms',
+      label: 'reactive Forms',
+      children: [
+        { id: 'reactive-forms', label: 'Reactive Forms', route: '/reactive-form/basic-reactive-form' },
+        { id: 'full-reactive-forms', label: 'Full Reactive Form', route: '/reactive-form/full-reactive-form' },
+        { id: 'reactive-forms-array', label: 'Reactive Form Array', route: '/reactive-form/reactive-form-array' }
+      ]
+    },
     { id: 'reactive-driven', label: 'Reacive Form', route: '/reactive-driven' },
     { id: 'empty-component', label: 'Empty Component', route: '/empty-component' },
     {

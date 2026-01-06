@@ -13,7 +13,7 @@ export class ReactiveFormComponent implements OnInit {
 
 
   public stockForm: FormGroup = new FormGroup({
-    name: new FormControl(null, Validators.required),
+    name: new FormControl(null, { nonNullable: true, validators: [Validators.required] }),
     code: new FormControl(null, [Validators.required, Validators.minLength(5)]),
     price: new FormControl(0, [Validators.required, Validators.min(0)]),
   })

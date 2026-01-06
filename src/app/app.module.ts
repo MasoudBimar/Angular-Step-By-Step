@@ -30,7 +30,7 @@ import { SpecialElementsComponent } from './9-special-elements/special-elements.
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { Session8Module } from './16-reactive-forms/session8.module';
+import { ReactiveFormModule } from './16-reactive-forms/session8.module';
 import { JsonPipe } from '@angular/common';
 import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecycles.component';
 []
@@ -71,7 +71,7 @@ import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecy
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    Session8Module,
+    ReactiveFormModule,
     JsonPipe
   ],
   providers: [],
