@@ -80,8 +80,6 @@ export class SidebarComponent {
         { id: 'reactive-forms-array', label: 'Reactive Form Array', route: '/reactive-form/reactive-form-array' }
       ]
     },
-    { id: 'reactive-driven', label: 'Reacive Form', route: '/reactive-driven' },
-    { id: 'empty-component', label: 'Empty Component', route: '/empty-component' },
     {
       id: 'code samples', label: 'exercises', children: [
         { id: 'rate-1', label: 'Rate 1', route: '/exercise/rate-1' },

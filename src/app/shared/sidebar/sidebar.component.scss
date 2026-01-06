@@ -9,48 +9,52 @@
   overflow: hidden;
 }
 
+.sidebar .nav-link,
+.sidebar .accordion-button {
+  font-size: 0.9rem;
+  line-height: 1.25;
+}
+
 .sidebar-nav {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
 }
 
-.sidebar .nav-pills .nav-link.active,
-.sidebar .nav-pills .show>.nav-link {
+.sidebar .nav-link.active,
+.sidebar .show > .nav-link {
   background-color: rgba(255, 255, 255, 0.12);
   color: #f2f2f2;
 }
 
-.sidebar .nav-pills .nav-link.active:hover,
-.sidebar .nav-pills .show>.nav-link:hover {
+.sidebar .nav-link.active:hover,
+.sidebar .show > .nav-link:hover {
   background-color: rgba(255, 255, 255, 0.18);
   color: #ffffff;
 }
 
-.sidebar-parent {
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  text-align: left;
+.sidebar .accordion-button {
+  color: #ffffff;
+  background-color: transparent;
+  box-shadow: none;
 }
 
-.sidebar-children {
-  display: none;
+.sidebar .accordion-button:not(.collapsed) {
+  color: #ffffff;
+  background-color: transparent;
+  box-shadow: none;
 }
 
-.sidebar-children.show {
-  display: block;
+.sidebar .accordion-button::after {
+  filter: invert(1);
 }
 
-.sidebar-caret {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 6px solid rgba(255, 255, 255, 0.7);
-  transition: transform 0.2s ease;
+.sidebar .accordion-body {
+  padding-right: 0;
 }
 
-.sidebar-caret.rotate {
-  transform: rotate(180deg);
+.sidebar .accordion-collapse {
+  overflow: hidden;
 }

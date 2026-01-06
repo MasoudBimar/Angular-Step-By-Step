@@ -7,55 +7,58 @@
   </a>
   <hr />
   <nav class="sidebar-nav flex-grow-1">
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item" *ngFor="let item of menuItems">
+    <div class="accordion accordion-flush" id="sidebarAccordion">
+      <div class="accordion-item bg-transparent border-0" *ngFor="let item of menuItems">
         <ng-container *ngIf="item.route; else nestedMenu">
-          <a
-            class="nav-link text-white"
-            [routerLink]="item.route"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            {{ item.label }}
-          </a>
+          <h2 class="accordion-header">
+            <a
+              class="nav-link text-white px-0 py-2"
+              [routerLink]="item.route"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              {{ item.label }}
+            </a>
+          </h2>
         </ng-container>
         <ng-template #nestedMenu>
           <ng-container *ngIf="item.children?.length">
-            <button
-              type="button"
-              class="nav-link text-white sidebar-parent d-flex align-items-center justify-content-between w-100"
-              (click)="toggle(item)"
-              [class.active]="isChildActive(item)"
-              [attr.aria-expanded]="isExpanded(item)"
-              [attr.aria-controls]="'sidebar-group-' + item.id"
-            >
-              <span>{{ item.label }}</span>
-              <span
-                class="sidebar-caret"
-                [class.rotate]="isExpanded(item)"
-                aria-hidden="true"
-              ></span>
-            </button>
-            <ul
-              class="nav flex-column sidebar-children"
+            <h2 class="accordion-header">
+              <button
+                type="button"
+                class="accordion-button bg-transparent text-white px-0 py-2"
+                [class.collapsed]="!isExpanded(item)"
+                (click)="toggle(item)"
+                [attr.aria-expanded]="isExpanded(item)"
+                [attr.aria-controls]="'sidebar-group-' + item.id"
+              >
+                {{ item.label }}
+              </button>
+            </h2>
+            <div
+              class="accordion-collapse collapse"
               [class.show]="isExpanded(item)"
               [attr.id]="'sidebar-group-' + item.id"
             >
-              <li class="nav-item" *ngFor="let child of item.children">
-                <a
-                  class="nav-link text-white ms-3"
-                  [routerLink]="child.route"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                >
-                  {{ child.label }}
-                </a>
-              </li>
-            </ul>
+              <div class="accordion-body py-0 ps-3">
+                <ul class="nav nav-pills flex-column mb-2">
+                  <li class="nav-item" *ngFor="let child of item.children">
+                    <a
+                      class="nav-link text-white"
+                      [routerLink]="child.route"
+                      routerLinkActive="active"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                      {{ child.label }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </ng-container>
         </ng-template>
-      </li>
-    </ul>
+      </div>
+    </div>
   </nav>
   <hr />
   <div>
