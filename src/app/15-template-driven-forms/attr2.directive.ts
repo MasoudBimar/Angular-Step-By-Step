@@ -5,7 +5,7 @@ import {
 import { Product } from "../shared/model/product.model";
 
 @Directive({
-  selector: "[pa-attr-2]"
+  selector: "[mass-attr-2]"
 })
 export class PaAttrDirective {
 
@@ -17,14 +17,14 @@ export class PaAttrDirective {
     });
   }
 
-  @Input("pa-attr")
+  @Input("mass-attr")
   @HostBinding("class")
   bgClass: string | null = "";
 
-  @Input("pa-product")
+  @Input("mass-product")
   product: Product = new Product();
 
-  @Output("pa-category")
+  @Output("mass-category")
   click = new EventEmitter<string>();
 
   ngOnChanges(changes: SimpleChanges) {

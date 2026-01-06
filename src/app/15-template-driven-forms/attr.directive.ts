@@ -5,18 +5,18 @@ import {
 import { Product } from "../shared/model/product.model";
 
 @Directive({
-  selector: "[pa-attr]"
+  selector: "[mass-attr]"
 })
 export class PaAttrDirective {
 
-  @Input("pa-attr")
+  @Input("mass-attr")
   @HostBinding("class")
   bgClass: string | null = "";
 
-  @Input("pa-product")
+  @Input("mass-product")
   product: Product = new Product();
 
-  @Output("pa-category")
+  @Output("mass-category")
   click = new EventEmitter<string>();
 
   @HostListener("click")
