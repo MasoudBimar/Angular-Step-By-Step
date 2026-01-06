@@ -1,28 +1,22 @@
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from "@angular/forms";
-import { Observable, Subject } from "rxjs";
+import { Observable, of } from "rxjs";
+import { delay, map } from "rxjs/operators";
 
-export class ProhibitedValidator {
+export function prohibitedValidator(terms: string[]): AsyncValidatorFn {
+  const normalized = terms.map((term) => term.toLowerCase());
 
-    static prohibitedTerms: string[] = ["ski", "swim"]
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    const value = String(control.value ?? "").toLowerCase();
 
-    static prohibited(): AsyncValidatorFn {
-        return (control: AbstractControl): Promise<ValidationErrors | null> 
-                | Observable<ValidationErrors | null> => {
-            let subject = new Subject<ValidationErrors | null>();
-            setTimeout(() => {
-                let match = false;
-                this.prohibitedTerms.forEach(word => {
-                    if ((control.value as string).toLowerCase().indexOf(word) > -1) {
-                        subject.next({"prohibited": { prohibited: word}})
-                        match = true;
-                    }
-                });
-                if (!match) {
-                    subject.next(null);
-                }
-                subject.complete();
-            }, 1000);
-            return subject;
+    return of(value).pipe(
+      delay(300),
+      map((current) => {
+        const matchIndex = normalized.findIndex((term) => current.includes(term));
+        if (matchIndex === -1) {
+          return null;
         }
-    }
+        return { prohibited: { prohibited: terms[matchIndex] } };
+      })
+    );
+  };
 }
