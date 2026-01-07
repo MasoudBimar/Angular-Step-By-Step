@@ -19,8 +19,13 @@
 .star {
   margin: 4px;
 
-  i {
-    // font-size: 8rem;
+  .star-icon {
+    display: inline-block;
+    cursor: pointer;
+    color: #cfcfcf;
+    font-style: normal;
+    line-height: 1;
+    transition: color 120ms ease-in-out, transform 100ms ease;
 
     &:hover {
       color: yellowgreen;
@@ -32,4 +37,12 @@
   color: yellowgreen;
   // font-size: 11rem;
 
+}
+
+.star-icon.large {
+  transform: scale(1.1);
+}
+
+.star-icon.regular {
+  transform: none;
 }
