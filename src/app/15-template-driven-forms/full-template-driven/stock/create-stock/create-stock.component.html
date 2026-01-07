@@ -16,7 +16,7 @@
         placeholder="Stock Name"
         name="stockName"
         #stockName="ngModel"
-        [(ngModel)]="stock.name"
+        ngModel
       />
       <div
         *ngIf="
@@ -46,7 +46,7 @@
         placeholder="Stock Code"
         name="stockCode"
         #stockCode="ngModel"
-        [(ngModel)]="stock.code"
+        ngModel
       />
       <div
         *ngIf="
@@ -77,19 +77,14 @@
         class="form-control"
         placeholder="Stock Price"
         name="stockPrice"
-        [ngModel]="stock.price"
-        (ngModelChange)="setStockPrice($event)"
+        ngModel
+        (ngModelChange)="setStockPriceChange($event)"
       />
     </div>
 
     <div class="mb-3">
       <label for="stockExchange" class="form-label">Stock Exchange</label>
-      <select
-        id="stockExchange"
-        name="stockExchange"
-        class="form-select"
-        [(ngModel)]="stock.exchange"
-      >
+      <select id="stockExchange" name="stockExchange" class="form-select">
         <option *ngFor="let exchange of exchanges" [ngValue]="exchange">
           {{ exchange }}
         </option>
@@ -119,9 +114,6 @@
       reset
     </button>
   </form>
-
-  <h4>Stock Name is</h4>
-  <code class="json-output">{{ stock | json }}</code>
   <h4>Stock is</h4>
   <code class="json-output">{{ stockForm.value | json }}</code>
   <h3>Data has been confirmed: {{ confirmed }}</h3>

@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
-import { Stock } from '../../model/stock';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-create-stock',
@@ -9,24 +8,22 @@ import { Stock } from '../../model/stock';
 })
 export class CreateStockComponent {
 
-  public stock: Stock;
   public confirmed = false;
   public exchanges = ['NYSE', 'NASDAQ', 'OTHER'];
-  constructor() {
-    this.stock = new Stock('test', '', 0, 0, 'NASDAQ');
-  }
+  public stockPrice = 0;
+  public previousStockPrice = 0;
 
-  setStockPrice(price: number) {
-    this.stock.price = price;
-    this.stock.previousPrice = price;
+  setStockPriceChange(price: number) {
+    this.previousStockPrice = this.stockPrice;
+    this.stockPrice = price;
   }
 
   createStock(stockForm: NgForm) {
     if (stockForm.valid) {
-      console.log('Creating stock ', this.stock, stockForm.resetForm());
-      this.stock = new Stock('', '', 0, 0, '');
+      console.log('Creating stock ', stockForm.value);
+      this.resetForm(stockForm);
     } else {
-      console.log('Invalid Form Creating stock ', this.stock);
+      console.log('Invalid Form Creating stock ', stockForm.value, stockForm.valid);
     }
   }
 
