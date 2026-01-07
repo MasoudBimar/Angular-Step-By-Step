@@ -6,6 +6,20 @@ export function uniqueChildValidator(
   return control.parent?.hasError("unique") ? { "unique-child": {} } : null;
 }
 
+/**
+ * Validator function that ensures all values in a FormArray are unique.
+ *
+ * @returns A validator function that checks for duplicate values within a FormArray.
+ * When duplicates are found, applies the `uniqueChildValidator` to affected controls
+ * and returns a validation error object with the key `unique`. Empty or whitespace-only
+ * values are treated as non-duplicates.
+ * @remarks
+ * - Only validates FormArray controls; returns null for other control types
+ * - Uses Promise.resolve() to defer validator updates to avoid ExpressionChangedAfterCheckError
+ * - Marks controls with duplicates as dirty
+ * - Removes `uniqueChildValidator` from controls without duplicates
+ * - Compares trimmed string values for equality
+ */
 export function uniqueArrayValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     if (!(control instanceof FormArray)) {
