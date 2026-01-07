@@ -387,7 +387,7 @@ Use it to protect all child routes under a parent route.
 ```ts
 import { CanActivateChildFn } from "@angular/router";
 
-export const adminChildGuard: CanActivateChildFn = (route, state) => {
+export const adminChildGuard: CanActivateChildFn = (childRoute, state) => {
   const isAdmin = !!localStorage.getItem("isAdmin");
   return isAdmin;
 };
@@ -409,7 +409,7 @@ const routes: Routes = [
 
 ### `canDeactivate`
 
-Use it to prevent leaving a route (e.g., dirty forms).
+Use it to prevent leaving a route (e.g., dirty forms). this route guard is used for preventing from navigation away from a specific route like closing (accidentaly) a component before saving the form.
 
 ```ts
 import { CanDeactivateFn } from "@angular/router";
@@ -438,9 +438,11 @@ export class ProfileComponent implements CanLeave {
 const routes: Routes = [{ path: "profile", component: ProfileComponent, canDeactivate: [leaveGuard] }];
 ```
 
-### `canMatch`
+### `canMatch` (inroduced in Angular 14.2)
 
 Use it to decide if a route should match at all (especially useful for lazy loading).
+
+this guard is used to handling multiple routes having the same path that can be deactivated based on conditions.
 
 ```ts
 import { CanMatchFn } from "@angular/router";
@@ -460,3 +462,28 @@ const routes: Routes = [
   },
 ];
 ```
+
+Another Case:
+
+```ts
+import { CanMatchFn } from "@angular/router";
+
+export const isAdminMatchGuard: CanMatchFn = (route, segments) => {
+  // for a this url /home/main/page1 segments array return three values for every path segment
+  const isAdmin = false; /* fethcing configuration somewhere*/
+  return isAdmin;
+};
+```
+
+> [!NOTE]
+> for the similar path canMatch can decide which one should be rendered
+> in this example if it returens false first one get skipped to render second one.
+
+```ts
+const routes: Routes = [
+  { path: "dashboard", component: AdminDashboardComponent, canMatch: [isAdminMatchGuard] },
+  { path: "dashboard", component: CustomerDashboardComponent },
+];
+```
+
+> [!CAUTION] Make sure after skiping the first route there is another match to get rendered
