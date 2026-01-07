@@ -77,7 +77,8 @@ export class SidebarComponent {
       children: [
         { id: 'reactive-forms', label: 'Reactive Forms', route: '/reactive-form/basic-reactive-form' },
         { id: 'full-reactive-forms', label: 'Full Reactive Form', route: '/reactive-form/full-reactive-form' },
-        { id: 'reactive-forms-array', label: 'Reactive Form Array', route: '/reactive-form/reactive-form-array' }
+        { id: 'reactive-forms-array', label: 'Reactive Form Array', route: '/reactive-form/reactive-form-array' },
+        { id: 'multi-step-reactive-form', label: 'Multi Step Reactive Form', route: '/reactive-form/multi-step-reactive-form' }
       ]
     },
     {
