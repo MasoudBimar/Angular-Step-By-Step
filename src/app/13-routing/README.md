@@ -317,3 +317,113 @@ Use a wildcard route to catch unknown paths.
 
 - Snapshot is a one-time read of route values.
 - Subscriptions update when route params or query params change while the component stays active.
+
+## Route guards (access control)
+
+Guards decide **if** navigation can proceed. They return `boolean`, `UrlTree`,
+`Observable<boolean | UrlTree>`, or `Promise<boolean | UrlTree>`.
+
+Common use cases:
+
+- Protect routes that need authentication/authorization.
+- Prevent navigation away from dirty forms.
+- Block access to child routes unless a parent condition passes.
+- Skip loading certain route matches until a condition is met.
+
+### `canActivate`
+
+Use it to protect a route before activation.
+
+```ts
+import { CanActivateFn } from "@angular/router";
+
+export const authGuard: CanActivateFn = (route, state) => {
+  const isLoggedIn = !!localStorage.getItem("token");
+  return isLoggedIn;
+};
+```
+
+```ts
+const routes: Routes = [{ path: "admin", component: AdminComponent, canActivate: [authGuard] }];
+```
+
+### `canActivateChild`
+
+Use it to protect all child routes under a parent route.
+
+```ts
+import { CanActivateChildFn } from "@angular/router";
+
+export const adminChildGuard: CanActivateChildFn = (route, state) => {
+  const isAdmin = !!localStorage.getItem("isAdmin");
+  return isAdmin;
+};
+```
+
+```ts
+const routes: Routes = [
+  {
+    path: "admin",
+    component: AdminComponent,
+    canActivateChild: [adminChildGuard],
+    children: [
+      { path: "users", component: AdminUsersComponent },
+      { path: "reports", component: ReportsComponent },
+    ],
+  },
+];
+```
+
+### `canDeactivate`
+
+Use it to prevent leaving a route (e.g., dirty forms).
+
+```ts
+import { CanDeactivateFn } from "@angular/router";
+
+export interface CanLeave {
+  canLeave: () => boolean;
+}
+
+export const leaveGuard: CanDeactivateFn<CanLeave> = (component) => {
+  return component.canLeave();
+};
+```
+
+```ts
+@Component({
+  /* ... */
+})
+export class ProfileComponent implements CanLeave {
+  formDirty = true;
+
+  canLeave(): boolean {
+    return !this.formDirty || confirm("Discard changes?");
+  }
+}
+
+const routes: Routes = [{ path: "profile", component: ProfileComponent, canDeactivate: [leaveGuard] }];
+```
+
+### `canMatch`
+
+Use it to decide if a route should match at all (especially useful for lazy loading).
+
+```ts
+import { CanMatchFn } from "@angular/router";
+
+export const featureGuard: CanMatchFn = (route, segments) => {
+  const enabled = localStorage.getItem("featureX") === "true";
+  return enabled;
+};
+```
+
+```ts
+const routes: Routes = [
+  {
+    path: "labs",
+    canMatch: [featureGuard],
+    loadChildren: () => import("./labs/labs.module").then((m) => m.LabsModule),
+  },
+];
+```
