@@ -16,7 +16,7 @@ import { StructuralDirectivesComponent } from './5-structural-directives/structu
 import { AttributeDirectivesComponent } from './6-attribute-directives/attribute-directives.component';
 import { ComponentDirectivesComponent } from './7-component-directives/component-directives.component';
 import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
-import { AuthGuard } from './session11/guards/auth-guard';
+import { AuthGuard } from './13-routing/guards/auth-guard';
 import { RateComponent } from './17-exercise/rate/rate.component';
 import { RateVersion2Component } from './17-exercise/rate-version2/rate-version2.component';
 import { RateVersion3Component } from './17-exercise/rate-version3/rate-version3.component';

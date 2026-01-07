@@ -320,8 +320,23 @@ Use a wildcard route to catch unknown paths.
 
 ## Route guards (access control)
 
-Guards decide **if** navigation can proceed. They return `boolean`, `UrlTree`,
+Route Guards decide **if** navigation can proceed. They return `boolean`, `UrlTree`,
 `Observable<boolean | UrlTree>`, or `Promise<boolean | UrlTree>`.
+
+Guards are the way to protect routes from unauthorized access(unautheticated accss or unauthorized access). it can act as a security mechanism.
+
+### How to generate the route guard:
+
+```bash
+ng g  guard auth
+
+? which type of guard would you want to create?
+
+CanActivate
+CanActivateChild
+CanDeactivate
+CanMatch
+```
 
 Common use cases:
 
@@ -330,14 +345,32 @@ Common use cases:
 - Block access to child routes unless a parent condition passes.
 - Skip loading certain route matches until a condition is met.
 
+### Traditional(class based) Route Guard
+
+> [!CAUTION]
+> the traditional class-based notation requires more code
+
+```ts
+@Injectable({ providedIn: "root" })
+export class TraditionalNotationGuard implements CanActivate {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    // throw new Error("Method not implemented.");
+    // ...
+    return true;
+  }
+}
+```
+
 ### `canActivate`
 
-Use it to protect a route before activation.
+Use it to protect a route before activation. canActivate is used to to control whether a specific route can be activated
 
 ```ts
 import { CanActivateFn } from "@angular/router";
 
-export const authGuard: CanActivateFn = (route, state) => {
+// route param provides info about the route is being navigated to (ActivatedRouteSnapshot)
+// state param provides the current state of the router
+export const authGuard: CanActivateFn = (route, state): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree => {
   const isLoggedIn = !!localStorage.getItem("token");
   return isLoggedIn;
 };
