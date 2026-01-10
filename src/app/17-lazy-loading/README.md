@@ -12,7 +12,7 @@ Lazy loading splits your app into smaller bundles and loads them on demand. This
     - [Preload all lazy modules](#preload-all-lazy-modules)
   - [Selective preloading](#selective-preloading)
   - [Custom Preloading](#custom-preloading)
-  - [Defer Loading](#defer-loading)
+  - [Defer Loading (Angular 17)](#defer-loading-angular-17)
 
 ## Lazy-load a feature module
 
@@ -142,4 +142,49 @@ export class CustomPreloadingStrategy implements PreloadingStratergy {
 }
 ```
 
-## Defer Loading
+## Defer Loading (Angular 17)
+
+An angular tremplate syntax that allows to load parts of a template or component when needed.
+
+`@defer` lets you split a template into a deferrable view that is compiled into a separate bundle and loaded only when a trigger happens. It is component-level lazy loading, which complements route-based lazy loading.
+
+Related concepts:
+
+- Deferrable views: `@defer { ... }`
+- Triggers: `on idle`, `on viewport`, `on interaction`, `on hover`, `on timer(2000)`, `when condition`
+- Prefetching: `prefetch on idle|hover|interaction|viewport`
+- Placeholders and fallbacks: `@placeholder`, `@loading`, `@error`
+
+> [!NOTE]
+> The defer syntax allows two level of control: `Prefetching` and `Rendering`
+
+**Prefetching**: Time of fetching data and code from the server & loading them in memory can be controlled
+
+**Rendering**: The Time of appling the code seperately on the page can be controlled when needed
+
+> [!TIP]
+> With `@defer` we can define triggers to both level seperately.
+> it acccept optional parapmeters inside the `@defer()` block which are used as trigger points
+
+```html
+<!-- product.component.html -->
+@defer (on viewport; prefetch on idle) {
+<app-reviews></app-reviews>
+} @placeholder {
+<app-reviews-skeleton></app-reviews-skeleton>
+} @loading (minimum 300ms) {
+<app-spinner></app-spinner>
+} @error {
+<p>Could not load reviews.</p>
+}
+```
+
+> [!NOTE]
+> behine the scene angular create an separate bundle and extract the template from the main application bundle
+
+Common use cases:
+
+- Below-the-fold content (reviews, comments, related products)
+- Heavy widgets (charts, maps, editors)
+- Expensive data fetches triggered by user intent
+- Optional experiences (marketing banners, A/B test variants)
