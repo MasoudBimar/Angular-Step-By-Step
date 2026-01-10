@@ -20,9 +20,9 @@ export class UsingServiceComponent {
 
   constructor(public movieService: MovieService, public fb: FormBuilder) {
     // this.movies = this.movieService.getMovieList();
-    this.movieService.getMovieList().subscribe((result: any) => {
-      console.log(result.data);
-      this.movies2 = result.data;
+    this.movieService.getMovieList('matrix').subscribe((result: any) => {
+      console.log(result);
+      this.movies2 = Array.isArray(result) ? result : [result];
     });
     console.log('heeeeyyyyyyyy');
     this.movieForm = this.fb.group({
@@ -48,16 +48,16 @@ export class UsingServiceComponent {
   }
 
   prepareForEdit(movie: Movie) {
-    this.movieForm.patchValue({title: movie.title, genres: movie.genres, id: movie.id  });
+    this.movieForm.patchValue({ title: movie.Title, genres: movie.Genre, id: movie.id });
   }
 
-  update(){
+  update() {
     this.movieService.updateMovie(this.movieForm.value).subscribe((result: any) => {
       console.log(result);
     });
   }
 
-  getOneMovie(id: number){
+  getOneMovie(id: number) {
     this.movieService.getMovie(id).subscribe((result: any) => {
       console.log(result);
     });

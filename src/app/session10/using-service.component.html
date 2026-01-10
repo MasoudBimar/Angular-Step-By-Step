@@ -3,22 +3,43 @@
 <div class="form-group">
   <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
     <label for="title">Movie Title</label>
-    <input type="text" class="form-control" placeholder="title" name="title" formControlName="title">
-    <div *ngIf="movieForm.get('title')?.invalid && ( movieForm.get('title')?.dirty || movieForm.get('title')?.touched )" class="text-danger">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="title"
+      name="title"
+      formControlName="title"
+    />
+    <div
+      *ngIf="
+        movieForm.get('title')?.invalid &&
+        (movieForm.get('title')?.dirty || movieForm.get('title')?.touched)
+      "
+      class="text-danger"
+    >
       title is required
     </div>
 
-
     <label for="genres">Genre</label>
-    <input type="text" class="form-control" placeholder="genres" name="genres" formControlName="genres">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="genres"
+      name="genres"
+      formControlName="genres"
+    />
     <!-- <select name="genres" class="form-control" formControlName="genres">
       <option *ngFor="let genre of genres" >{{genre}}</option>
     </select> -->
 
-    <br>
+    <br />
     <button class="btn btn-primary" type="submit">Submit</button>
-    <button class="btn btn-warning" type="button" (click)="update()">update</button>
-    <button class="btn btn-secondary" type="button" (click)="reset()">reset</button>
+    <button class="btn btn-warning" type="button" (click)="update()">
+      update
+    </button>
+    <button class="btn btn-secondary" type="button" (click)="reset()">
+      reset
+    </button>
   </form>
 </div>
 <table class="table">
@@ -28,22 +49,27 @@
       <th scope="col">Id</th>
       <th scope="col">Title</th>
       <th scope="col">Genres</th>
-      <th scope="col"> Tools</th>
+      <th scope="col">Tools</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let movie of movies2; let i = index">
-      <th scope="row">{{i+1}}</th>
-      <td>{{movie.id}}</td>
-      <td>{{movie.title}}</td>
-      <td>{{movie.genres?.toString()}}</td>
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ movie.Id }}</td>
+      <td>{{ movie.Title }}</td>
+      <td>{{ movie.Genre }}</td>
       <td>
-        <button class="btn btn-danger" (click)="delete(movie.id)">Delete</button> &nbsp;
-        <button class="btn btn-primary" (click)="prepareForEdit(movie)">Edit</button>
-        <button class="btn btn-info" (click)="getOneMovie(movie.id)">info</button>
-
+        <button class="btn btn-danger" (click)="delete(movie.id)">
+          Delete
+        </button>
+        &nbsp;
+        <button class="btn btn-primary" (click)="prepareForEdit(movie)">
+          Edit
+        </button>
+        <button class="btn btn-info" (click)="getOneMovie(movie.id)">
+          info
+        </button>
       </td>
     </tr>
-
   </tbody>
 </table>

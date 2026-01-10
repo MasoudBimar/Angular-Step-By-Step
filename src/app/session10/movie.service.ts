@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export class Movie {
   id?: number;
-  title?: string;
-  genres?: string[];
+  Title?: string;
+  Year?: string;
+  Genre?: string;
 
 }
 
@@ -15,31 +16,35 @@ export class Movie {
   providedIn: 'root'
 })
 export class MovieService {
-
-  apiUrl: string = 'https://moviesapi.ir/api/v1/movies';
-
   constructor(public http: HttpClient) {
   }
 
-  getMovieList(): Observable<Movie> {
+  getMovieList(title: string, year?: number, plot: 'short' | 'full' = 'short', response: 'json' | 'xml' = 'json'): Observable<Movie> {
     // return this.http.get(this.apiUrl).pipe(map((result: any) => result.data));
-    return this.http.get(environment.baseUrl);
+    const httpParam = new HttpParams()
+      .append('t', title)
+      // .append('y', year)
+      .append('p', plot)
+      .append('r', response)
+      .append('apikey', environment.apiKey);
+    console.log(httpParam);
+    return this.http.get(environment.movieAPI, { params: httpParam });
   }
 
   getMovie(id: number) {
-    return this.http.get(this.apiUrl + '/' + id);
-   }
+    return this.http.get(environment.movieAPI + '/' + id);
+  }
 
   createMovie(movie: Movie) {
-    return this.http.post(this.apiUrl,movie);
-   }
+    return this.http.post(environment.movieAPI, movie);
+  }
 
   updateMovie(movie: Movie) {
-    return this.http.post(this.apiUrl + '/' + movie.id,movie);
-   }
+    return this.http.post(environment.movieAPI + '/' + movie.id, movie);
+  }
 
   deleteMovie(id: number) {
-    this.http.delete(this.apiUrl + '/' + id).subscribe(result => {
+    this.http.delete(environment.movieAPI + '/' + id).subscribe(result => {
       console.log(result);
     })
   }

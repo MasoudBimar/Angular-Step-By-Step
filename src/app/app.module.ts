@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GettingStartedComponent } from './1-getting-started/getting-started.component';
 import { ColorPickerComponent } from './11-decorators/color-picker/color-picker.component';
 import { DecoratorsComponent } from './11-decorators/decorators.component';
@@ -30,9 +30,12 @@ import { SpecialElementsComponent } from './9-special-elements/special-elements.
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { ReactiveFormModule } from './16-reactive-forms/session8.module';
+import { ReactiveFormModule } from './16-reactive-forms/reactive-form.module';
 import { JsonPipe } from '@angular/common';
 import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecycles.component';
+import { LazyLoadingComponent } from './17-lazy-loading/lazy-loading.component';
+import { UsingServiceComponent } from './session10/using-service.component';
+import { HttpClientModule } from '@angular/common/http';
 []
 
 @NgModule({
@@ -65,13 +68,17 @@ import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecy
     Component2Component,
     Component3Component,
     ServicesComponent,
+    LazyLoadingComponent,
+    UsingServiceComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     ReactiveFormModule,
+    HttpClientModule,
     JsonPipe
   ],
   providers: [],

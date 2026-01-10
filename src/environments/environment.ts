@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'blah'
+  baseUrl: 'blah',
+  movieAPI: 'http://www.omdbapi.com',
+  apiKey: '9b81bd26'
 
 };
 

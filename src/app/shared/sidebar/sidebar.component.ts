@@ -86,6 +86,7 @@ export class SidebarComponent {
         { id: 'rate-1', label: 'Rate 1', route: '/exercise/rate-1' },
         { id: 'rate-2', label: 'Rate 2', route: '/exercise/rate-2' },
         { id: 'rate-3', label: 'Rate 3', route: '/exercise/rate-3' },
+        { id: 'movies', label: 'Movies', route: '/exercise/movies' },
       ]
     }
   ];
