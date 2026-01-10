@@ -4,23 +4,32 @@ Routing refers to the process of navigating between different components of an a
 
 ## Table of contents
 
-- [Quick setup command for adding routing file to an angular app](#quick-setup-command-for-adding-routing-file-to-an-angular-app)
-- [Routing introduction](#routing-introduction)
-- [Routes Configuration](#routes-configuration)
-- [Router outlet (Directive)](#router-outlet-directive)
-- [RouterLink](#routerlink)
-- [static vs dynamic routing](#static-vs-dynamic-routing)
-- [Route params (dynamic routing)](#route-params-dynamic-routing)
-- [ActivatedRoute](#activatedroute)
-- [Router (navigate method)](#router-navigate-method)
-- [Optional and required params](#optional-and-required-params)
-- [Nested routes](#nested-routes)
-- [Wildcards](#wildcards)
-- [Redirecting routes](#redirecting-routes)
-- [Snapshot vs subscribe](#snapshot-vs-subscribe)
-- [Route guards (access control)](#route-guards-access-control)
-- [Lazy loading (modules and components)](#lazy-loading-modules-and-components)
-- [Preloading strategies](#preloading-strategies)
+- [Angular Routing](#angular-routing)
+  - [Table of contents](#table-of-contents)
+  - [Quick setup command for adding routing file to an angular app](#quick-setup-command-for-adding-routing-file-to-an-angular-app)
+  - [Routing introduction](#routing-introduction)
+    - [Basic route configuration](#basic-route-configuration)
+  - [Routes Configuration](#routes-configuration)
+  - [Router outlet (Directive)](#router-outlet-directive)
+  - [RouterLink](#routerlink)
+  - [static vs dynamic routing](#static-vs-dynamic-routing)
+  - [Route params (dynamic routing)](#route-params-dynamic-routing)
+    - [Reading route params and query params](#reading-route-params-and-query-params)
+  - [ActivatedRoute](#activatedroute)
+    - [Snapshot pitfall (stale params)](#snapshot-pitfall-stale-params)
+  - [Router (navigate method)](#router-navigate-method)
+  - [Optional and required params](#optional-and-required-params)
+  - [Nested routes](#nested-routes)
+  - [Wildcards](#wildcards)
+  - [Redirecting routes](#redirecting-routes)
+  - [Snapshot vs subscribe](#snapshot-vs-subscribe)
+  - [Route guards (access control)](#route-guards-access-control)
+    - [How to generate the route guard:](#how-to-generate-the-route-guard)
+    - [Traditional(class based) Route Guard](#traditionalclass-based-route-guard)
+    - [`canActivate`](#canactivate)
+    - [`canActivateChild`](#canactivatechild)
+    - [`canDeactivate`](#candeactivate)
+    - [`canMatch` (inroduced in Angular 14.2)](#canmatch-inroduced-in-angular-142)
 
 ## Quick setup command for adding routing file to an angular app
 
@@ -507,105 +516,3 @@ const routes: Routes = [
 ```
 
 > [!CAUTION] Make sure after skiping the first route there is another match to get rendered
-
-## Lazy loading (modules and components)
-
-Lazy loading splits your app into smaller bundles and loads them on demand. This keeps the initial bundle smaller and speeds up first load.
-
-### Lazy-load a feature module
-
-```ts
-// app-routing.module.ts
-const routes: Routes = [
-  {
-    path: "admin",
-    loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
-  },
-];
-```
-
-```ts
-// admin-routing.module.ts
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { AdminComponent } from "./admin.component";
-import { AdminUsersComponent } from "./admin-users.component";
-
-const routes: Routes = [
-  { path: "", component: AdminComponent },
-  { path: "users", component: AdminUsersComponent },
-];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class AdminRoutingModule {}
-```
-
-### Lazy-load a standalone component
-
-The component must be marked as `standalone: true`.
-
-```ts
-// app-routing.module.ts
-const routes: Routes = [
-  {
-    path: "about",
-    loadComponent: () => import("./about/about.component").then((m) => m.AboutComponent),
-  },
-];
-```
-
-## Preloading strategies
-
-Preloading loads lazy routes in the background after the initial navigation. The default is no preloading.
-
-### Preload all lazy modules
-
-```ts
-// app-routing.module.ts
-import { PreloadAllModules, RouterModule } from "@angular/router";
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}
-```
-
-### Selective preloading
-
-```ts
-// selective-preloading.strategy.ts
-import { PreloadingStrategy, Route } from "@angular/router";
-import { Observable, of } from "rxjs";
-
-export class SelectivePreloadingStrategy implements PreloadingStrategy {
-  preload(route: Route, load: () => Observable<unknown>): Observable<unknown> {
-    return route.data?.["preload"] ? load() : of(null);
-  }
-}
-```
-
-```ts
-// app-routing.module.ts
-@NgModule({
-  providers: [SelectivePreloadingStrategy],
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: SelectivePreloadingStrategy })],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}
-```
-
-```ts
-// routes with preload flag
-const routes: Routes = [
-  {
-    path: "reports",
-    loadChildren: () => import("./reports/reports.module").then((m) => m.ReportsModule),
-    data: { preload: true },
-  },
-];
-```
-
