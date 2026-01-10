@@ -1,5 +1,22 @@
 # Angular Decorators (Core)
 
+## Table of contents
+
+- [Angular Decorators (Core)](#angular-decorators-core)
+  - [Table of contents](#table-of-contents)
+  - [Angular Decorator Categories](#angular-decorator-categories)
+  - [Class decorators (high level)](#class-decorators-high-level)
+  - [Parameter decorators (dependency injection)](#parameter-decorators-dependency-injection)
+  - [Property Decorator](#property-decorator)
+  - [`@Input()` (property decorator, parent -\> child data)](#input-property-decorator-parent---child-data)
+  - [`@Output()` (property decorator, child -\> parent events)](#output-property-decorator-child---parent-events)
+  - [`@HostBinding()` (property decorator, bind to host element)](#hostbinding-property-decorator-bind-to-host-element)
+  - [`@ViewChild()` and `@ViewChildren()` (property decorator, query the component view)](#viewchild-and-viewchildren-property-decorator-query-the-component-view)
+    - [Accessing different DOM elements using `ViewChild`:](#accessing-different-dom-elements-using-viewchild)
+  - [`@ContentChild()` and `@ContentChildren()` (property decorator, query projected content)](#contentchild-and-contentchildren-property-decorator-query-projected-content)
+  - [`@HostListener()` (method decorator, listen on the host element)](#hostlistener-method-decorator-listen-on-the-host-element)
+  - [Quick tips](#quick-tips)
+
 Angular decorators add metadata to classes and class members so Angular can wire up inputs, outputs, DOM access, and content projection.
 
 ## Angular Decorator Categories

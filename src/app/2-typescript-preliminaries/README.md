@@ -1,6 +1,14 @@
 # TypeScript preliminaries
 
-This section turns the five indexed `.ts` samples into teaching notes. Each file illustrates a focused TypeScript concept with a small example.
+## Table of contents
+
+- [Typescript Language Basics](#typescript-language-basics)
+- [Functions as values (callbacks)](#functions-as-values-callbacks)
+- [fibunacci function — loops and recursion](#fibunacci-function-loops-and-recursion)
+- [Inheritance — interfaces and polymorphism](#inheritance-interfaces-and-polymorphism)
+- [4.class.ts — classes, access modifiers, inheritance](#4classts-classes-access-modifiers-inheritance)
+- [Takeaways](#takeaways)
+- [For more information and resources check this repository main README.md Angular-Step-BY-Step](#for-more-information-and-resources-check-this-repository-main-readmemd-angular-step-by-step)
 
 ## Typescript Language Basics
 
@@ -255,3 +263,5 @@ c.area();
 [[Typescript-Step-BY-Step](src/app/1.getting-started//README.md)](https://github.com/MasoudBimar/Typescript-Step-by-Step)
 
 Next Section : [Angular Fundamentals](/src/app/3-angular-fundamentals/README.md)
+
+

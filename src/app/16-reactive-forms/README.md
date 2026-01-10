@@ -1,5 +1,21 @@
 # Angular Reactive Forms
 
+## Table of contents
+
+- [Angular Reactive Forms](#angular-reactive-forms)
+  - [Table of contents](#table-of-contents)
+  - [Setup](#setup)
+  - [`FormControl` (standalone control)](#formcontrol-standalone-control)
+  - [`FormGroup` (grouped controls)](#formgroup-grouped-controls)
+  - [`FormBuilder` (less boilerplate)](#formbuilder-less-boilerplate)
+  - [`FormArray` (dynamic lists)](#formarray-dynamic-lists)
+  - [Form state (dirty, touched, valid, value)](#form-state-dirty-touched-valid-value)
+  - [Updating form values](#updating-form-values)
+  - [Built-in validation](#built-in-validation)
+  - [Custom validation (sync)](#custom-validation-sync)
+  - [Async validation](#async-validation)
+  - [Notes](#notes)
+
 Reactive forms are built in TypeScript using `FormControl`, `FormGroup`,
 `FormArray`, and `FormBuilder`. They are best for complex forms, dynamic
 fields, and advanced validation because the form model is explicit and

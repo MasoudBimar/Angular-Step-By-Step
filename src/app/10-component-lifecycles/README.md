@@ -1,5 +1,26 @@
 # Angular Component Lifecycle
 
+## Table of contents
+
+- [Angular Component Lifecycle](#angular-component-lifecycle)
+  - [Table of contents](#table-of-contents)
+  - [Lifecycle order (high level)](#lifecycle-order-high-level)
+  - [General order of lifecycle hooks](#general-order-of-lifecycle-hooks)
+  - [What is `constructor` good for?](#what-is-constructor-good-for)
+  - [Common hooks, when to use them](#common-hooks-when-to-use-them)
+    - [`ngOnInit`](#ngoninit)
+    - [`ngOnChanges`](#ngonchanges)
+    - [`ngDoCheck`](#ngdocheck)
+    - [`ngAfterContentInit` / `ngAfterContentChecked`](#ngaftercontentinit--ngaftercontentchecked)
+    - [`ngAfterViewInit` / `ngAfterViewChecked`](#ngafterviewinit--ngafterviewchecked)
+    - [How to make sure changes in the 'ngAfterViewInit' won't cause **Expression has changed after it was checked**?](#how-to-make-sure-changes-in-the-ngafterviewinit-wont-cause-expression-has-changed-after-it-was-checked)
+    - [`ngOnDestroy`](#ngondestroy)
+  - [Render hooks (signals-friendly)](#render-hooks-signals-friendly)
+    - [`afterRender()`](#afterrender)
+    - [`afterNextRender()`](#afternextrender)
+  - [Tips \& Tricks](#tips--tricks)
+  - [Key points](#key-points)
+
 Angular components and directives have lifecycle hooks that let you run code at specific moments (creation, input changes, view rendering, and destruction). Use these hooks to keep templates fast, manage subscriptions, and safely access the DOM.
 
 ## Lifecycle order (high level)

@@ -1,5 +1,24 @@
 # Angular Pipes
 
+## Table of contents
+
+- [Angular Pipes](#angular-pipes)
+  - [Table of contents](#table-of-contents)
+  - [Basic example](#basic-example)
+    - [Template](#template)
+    - [Component](#component)
+    - [Explanation](#explanation)
+  - [Built-in pipes (common ones)](#built-in-pipes-common-ones)
+    - [Sample data (component)](#sample-data-component)
+    - [Template samples](#template-samples)
+  - [Different types of Angular pipes](#different-types-of-angular-pipes)
+  - [Do we still need pipes?](#do-we-still-need-pipes)
+  - [How to implement a custom pipe](#how-to-implement-a-custom-pipe)
+    - [1) Create the pipe](#1-create-the-pipe)
+    - [2) Declare it in a module](#2-declare-it-in-a-module)
+    - [3) Use it in a template](#3-use-it-in-a-template)
+    - [Optional: Defining pure \& impure pipes](#optional-defining-pure--impure-pipes)
+
 Pipes are a lightweight way to transform data in Angular templates. They take an input value, run it through a transform function, and return a formatted value for display. Pipes keep templates clean and make display logic reusable.
 
 > [!NOTE]

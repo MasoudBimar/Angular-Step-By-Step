@@ -1,5 +1,15 @@
 # Property Binding
 
+## Table of contents
+
+- [Property Binding](#property-binding)
+  - [Table of contents](#table-of-contents)
+  - [Basic property binding](#basic-property-binding)
+  - [Property binding with expressions](#property-binding-with-expressions)
+  - [Binding to styles and classes](#binding-to-styles-and-classes)
+  - [Using pipes in property binding](#using-pipes-in-property-binding)
+  - [Property binding vs interpolation](#property-binding-vs-interpolation)
+
 Property binding lets you set DOM properties from component data using `[property]="expression"`. Use it when you want to bind to an element property (like `disabled`, `src`, `value`) or a directive input. Interpolation `{{ }}` writes text, while property binding writes to a property.
 
 ## Basic property binding

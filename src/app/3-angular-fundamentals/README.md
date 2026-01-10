@@ -1,6 +1,9 @@
 # Interpolation, Property Binding and Event Binding
 
-**Interpolation** is an Angular template feature that renders component data inside the HTML using `{{ }}`. You can display properties, call methods, use simple expressions, and apply pipes for formatting.
+## Table of contents
+
+- [Comparison of Property Binding vs Interpolation](#comparison-of-property-binding-vs-interpolation)
+  **Interpolation** is an Angular template feature that renders component data inside the HTML using `{{ }}`. You can display properties, call methods, use simple expressions, and apply pipes for formatting.
 
 **Event binding** lets you listen to DOM events and run component methods using `(event)="handler()"`. It is the primary way to react to user actions like clicks, input changes, and keyboard events.
 

@@ -1,5 +1,21 @@
 # Attribute Directives
 
+## Table of contents
+
+- [Attribute Directives](#attribute-directives)
+  - [Table of contents](#table-of-contents)
+  - [Built-in attribute directives](#built-in-attribute-directives)
+  - [ngClass](#ngclass)
+    - [Apply multiplecss class using ngClass](#apply-multiplecss-class-using-ngclass)
+    - [Apply list of css class using ngClass](#apply-list-of-css-class-using-ngclass)
+    - [Apply css classes using object conditionally](#apply-css-classes-using-object-conditionally)
+  - [ngStyle](#ngstyle)
+  - [ngModel](#ngmodel)
+  - [Custom attribute directive](#custom-attribute-directive)
+    - [Renderer2 version (platform-safe)](#renderer2-version-platform-safe)
+  - [Key points](#key-points)
+  - [Attribute vs structural directives](#attribute-vs-structural-directives)
+
 Attribute directives change the appearance or behavior of an existing element without adding or removing it. They are applied as attributes (no `*`) and typically respond to inputs or events.
 
 ## Built-in attribute directives

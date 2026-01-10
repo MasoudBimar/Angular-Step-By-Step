@@ -1,5 +1,18 @@
 # Angular Template-driven Forms
 
+## Table of contents
+
+- [Angular Template-driven Forms](#angular-template-driven-forms)
+  - [Table of contents](#table-of-contents)
+  - [Setup](#setup)
+  - [Basic form example](#basic-form-example)
+  - [`ngSubmit` (simple submit example)](#ngsubmit-simple-submit-example)
+  - [`ngForm` directive vs. `NgForm` class](#ngform-directive-vs-ngform-class)
+  - [Validation and control state](#validation-and-control-state)
+  - [Grouping with `ngModelGroup` (FormGroup)](#grouping-with-ngmodelgroup-formgroup)
+  - [Accessing `FormControl` in a template-driven form](#accessing-formcontrol-in-a-template-driven-form)
+  - [FormArray (dynamic lists)](#formarray-dynamic-lists)
+
 Template-driven forms are built mostly in the template using directives like
 `ngForm` and `ngModel`. They are a good fit for small to medium forms where the
 logic is simple and the structure is known ahead of time.
@@ -89,8 +102,7 @@ ngSubmit is a Directive is generally used for HTMLFormElement to bind method for
 </form>
 ```
 
-> [!NOTE]
-> `NgForm` includes `Form Validation`, `Sunmission`, `Reset`, `Error Handling` and basically everything we need to handle a template driven form state.
+> [!NOTE] > `NgForm` includes `Form Validation`, `Sunmission`, `Reset`, `Error Handling` and basically everything we need to handle a template driven form state.
 > To Access its functionalities we need to assign it to HTMLFOrmElement using `#form="ngForm"`
 
 ```ts

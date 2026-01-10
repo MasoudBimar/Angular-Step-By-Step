@@ -1,5 +1,28 @@
 # Angular Services
 
+## Table of contents
+
+- [Angular Services](#angular-services)
+  - [Table of contents](#table-of-contents)
+  - [Generate a service](#generate-a-service)
+  - [When to define a service](#when-to-define-a-service)
+  - [Service example](#service-example)
+  - [Dependency injection](#dependency-injection)
+  - [Providers Level](#providers-level)
+  - [Levels of injection (hierarchy)](#levels-of-injection-hierarchy)
+  - [Injection tokens](#injection-tokens)
+  - [`inject()` method](#inject-method)
+    - [Injecting tokens](#injecting-tokens)
+    - [String tokens (legacy)](#string-tokens-legacy)
+    - [Object injection token](#object-injection-token)
+    - [Provider approaches for tokens](#provider-approaches-for-tokens)
+    - [`useValue` vs `useClass`](#usevalue-vs-useclass)
+    - [`useFactory` and `deps` for provider dependencies](#usefactory-and-deps-for-provider-dependencies)
+    - [When to use each approach](#when-to-use-each-approach)
+  - [Cleaning up observers in services](#cleaning-up-observers-in-services)
+    - [`DestroyRef` + `takeUntilDestroyed` (Angular 16+)](#destroyref--takeuntildestroyed-angular-16)
+    - [`OnDestroy` + `Subject`](#ondestroy--subject)
+
 Angular services are classes that hold reusable logic (data access, state, utilities)
 and are shared across components through dependency injection (DI).
 

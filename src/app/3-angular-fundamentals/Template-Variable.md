@@ -1,5 +1,16 @@
 # Angular Template Variable
 
+## Table of contents
+
+- [Angular Template Variable](#angular-template-variable)
+  - [Table of contents](#table-of-contents)
+  - [Case 1 — Native DOM element (most basic)](#case-1--native-dom-element-most-basic)
+  - [Case 2 — Component instance](#case-2--component-instance)
+  - [Case 3 — Directive instance via exportAs](#case-3--directive-instance-via-exportas)
+  - [Case 4 — Structural directive context (\*ngFor, \*ngIf)](#case-4--structural-directive-context-ngfor-ngif)
+  - [Case 5 — ng-template explicit variables](#case-5--ng-template-explicit-variables)
+  - [@let in Angular 17+](#let-in-angular-17)
+
 Template variables give you a way to reference elements, components, or directive instances directly in the template using `#varName`.
 
 Sample command:
@@ -16,7 +27,7 @@ import { Component } from "@angular/core";
 @Component({
   selector: "app-template-var-demo",
   template: `
-    <input #nameInput placeholder="Name">
+    <input #nameInput placeholder="Name" />
     <button (click)="logValue(nameInput.value)">Log</button>
   `,
 })
@@ -81,9 +92,7 @@ import { Component } from "@angular/core";
   selector: "app-template-var-demo",
   template: `
     <ul>
-      <li *ngFor="let item of items; let i = index; let isFirst = first">
-        {{ i }} - {{ item }} <span *ngIf="isFirst">(first)</span>
-      </li>
+      <li *ngFor="let item of items; let i = index; let isFirst = first">{{ i }} - {{ item }} <span *ngIf="isFirst">(first)</span></li>
     </ul>
   `,
 })
@@ -107,9 +116,7 @@ import { Component } from "@angular/core";
     </ng-template>
 
     <ng-container *ngFor="let user of users; let i = index">
-      <ng-container
-        *ngTemplateOutlet="row; context: { $implicit: user, idx: i }"
-      ></ng-container>
+      <ng-container *ngTemplateOutlet="row; context: { $implicit: user, idx: i }"></ng-container>
     </ng-container>
   `,
 })

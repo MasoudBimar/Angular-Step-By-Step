@@ -1,5 +1,16 @@
 # Angular Special Elements
 
+## Table of contents
+
+- [Angular Special Elements](#angular-special-elements)
+  - [Table of contents](#table-of-contents)
+  - [1) `ng-container`](#1-ng-container)
+  - [2) `ng-content`](#2-ng-content)
+  - [3) `ng-template`](#3-ng-template)
+  - [Comparing ng-template and ng-container](#comparing-ng-template-and-ng-container)
+  - [4) `ngTemplateOutlet`](#4-ngtemplateoutlet)
+  - [Key points](#key-points)
+
 Angular ships a few "special elements" that help you shape templates without adding extra DOM, reuse markup, and project content into components.
 
 ## 1) `ng-container`

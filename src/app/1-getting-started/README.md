@@ -1,5 +1,22 @@
 # Angular component structure
 
+## Table of contents
+
+- [Angular component structure](#angular-component-structure)
+  - [Table of contents](#table-of-contents)
+  - [Files and responsibilities](#files-and-responsibilities)
+  - [The TypeScript decorator](#the-typescript-decorator)
+  - [How the four parts relate](#how-the-four-parts-relate)
+  - [Setup environments](#setup-environments)
+  - [Create our first project](#create-our-first-project)
+  - [Angular Project Structure](#angular-project-structure)
+  - [Angular Architecture](#angular-architecture)
+  - [Angular Modules](#angular-modules)
+  - [Angular Templates](#angular-templates)
+  - [Angular Metadata](#angular-metadata)
+  - [Angular CLI](#angular-cli)
+  - [Essential Extensions](#essential-extensions)
+
 An Angular component is built from four main files that work together to render UI, style it, and test it. These files usually share the same base name.
 
 ## Files and responsibilities

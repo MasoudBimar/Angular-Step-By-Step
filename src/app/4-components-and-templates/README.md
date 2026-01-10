@@ -1,5 +1,18 @@
 # Components & Templates
 
+## Table of contents
+
+- [Components \& Templates](#components--templates)
+  - [Table of contents](#table-of-contents)
+  - [Component encapsulation](#component-encapsulation)
+  - [Templates: inline or separate file](#templates-inline-or-separate-file)
+  - [Styles: inline, separate, or global](#styles-inline-separate-or-global)
+  - [Component selector](#component-selector)
+  - [Change detection strategy](#change-detection-strategy)
+  - [Component constructor](#component-constructor)
+  - [Access modifiers and best practice](#access-modifiers-and-best-practice)
+  - [Directives overview](#directives-overview)
+
 This section covers how Angular components render templates, how styles are applied, and how directives extend the DOM.
 
 Sample command:

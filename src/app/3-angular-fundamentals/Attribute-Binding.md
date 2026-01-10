@@ -1,5 +1,14 @@
 # Attribute Binding
 
+## Table of contents
+
+- [Attribute Binding](#attribute-binding)
+  - [Table of contents](#table-of-contents)
+  - [Basic attribute binding](#basic-attribute-binding)
+  - [Conditional attributes](#conditional-attributes)
+  - [Data and ARIA attributes](#data-and-aria-attributes)
+  - [Attribute binding vs property binding](#attribute-binding-vs-property-binding)
+
 Attribute binding lets you set HTML attributes explicitly using `[attr.name]="expression"`. It is useful for attributes that do not have matching DOM properties or when you need to control presence of an attribute like `aria-*`, `colspan`, or `data-*`.
 
 ## Basic attribute binding

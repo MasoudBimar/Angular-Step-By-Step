@@ -1,5 +1,17 @@
 # Event Binding
 
+## Table of contents
+
+- [Event Binding](#event-binding)
+  - [Table of contents](#table-of-contents)
+  - [Handle common events](#handle-common-events)
+  - [Pass event data to the method](#pass-event-data-to-the-method)
+  - [Filter events](#filter-events)
+  - [Check combo keys](#check-combo-keys)
+  - [Notes](#notes)
+  - [Event Types](#event-types)
+  - [Usefull HTMLInputElement Events \& KeyboardEvent](#usefull-htmlinputelement-events--keyboardevent)
+
 Event binding lets you listen to DOM events and run component methods using `(event)="handler()"`. It is the primary way to react to user actions like clicks, input changes, and keyboard events.
 
 ## Handle common events

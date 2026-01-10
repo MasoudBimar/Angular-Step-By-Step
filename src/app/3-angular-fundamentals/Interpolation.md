@@ -1,5 +1,15 @@
 # Interpolation
 
+## Table of contents
+
+- [Interpolation](#interpolation)
+  - [Table of contents](#table-of-contents)
+  - [Show data](#show-data)
+  - [Call methods](#call-methods)
+  - [Use expressions](#use-expressions)
+  - [Use pipes](#use-pipes)
+  - [Angular Expression Syntax](#angular-expression-syntax)
+
 Interpolation is an Angular template feature that renders component data inside the HTML using `{{ }}`. You can display properties, call methods, use simple expressions, and apply pipes for formatting.
 
 ## Show data

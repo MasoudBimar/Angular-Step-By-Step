@@ -2,6 +2,26 @@
 
 Routing refers to the process of navigating between different components of an application.
 
+## Table of contents
+
+- [Quick setup command for adding routing file to an angular app](#quick-setup-command-for-adding-routing-file-to-an-angular-app)
+- [Routing introduction](#routing-introduction)
+- [Routes Configuration](#routes-configuration)
+- [Router outlet (Directive)](#router-outlet-directive)
+- [RouterLink](#routerlink)
+- [static vs dynamic routing](#static-vs-dynamic-routing)
+- [Route params (dynamic routing)](#route-params-dynamic-routing)
+- [ActivatedRoute](#activatedroute)
+- [Router (navigate method)](#router-navigate-method)
+- [Optional and required params](#optional-and-required-params)
+- [Nested routes](#nested-routes)
+- [Wildcards](#wildcards)
+- [Redirecting routes](#redirecting-routes)
+- [Snapshot vs subscribe](#snapshot-vs-subscribe)
+- [Route guards (access control)](#route-guards-access-control)
+- [Lazy loading (modules and components)](#lazy-loading-modules-and-components)
+- [Preloading strategies](#preloading-strategies)
+
 ## Quick setup command for adding routing file to an angular app
 
 ```bash
@@ -487,3 +507,105 @@ const routes: Routes = [
 ```
 
 > [!CAUTION] Make sure after skiping the first route there is another match to get rendered
+
+## Lazy loading (modules and components)
+
+Lazy loading splits your app into smaller bundles and loads them on demand. This keeps the initial bundle smaller and speeds up first load.
+
+### Lazy-load a feature module
+
+```ts
+// app-routing.module.ts
+const routes: Routes = [
+  {
+    path: "admin",
+    loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
+  },
+];
+```
+
+```ts
+// admin-routing.module.ts
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { AdminComponent } from "./admin.component";
+import { AdminUsersComponent } from "./admin-users.component";
+
+const routes: Routes = [
+  { path: "", component: AdminComponent },
+  { path: "users", component: AdminUsersComponent },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class AdminRoutingModule {}
+```
+
+### Lazy-load a standalone component
+
+The component must be marked as `standalone: true`.
+
+```ts
+// app-routing.module.ts
+const routes: Routes = [
+  {
+    path: "about",
+    loadComponent: () => import("./about/about.component").then((m) => m.AboutComponent),
+  },
+];
+```
+
+## Preloading strategies
+
+Preloading loads lazy routes in the background after the initial navigation. The default is no preloading.
+
+### Preload all lazy modules
+
+```ts
+// app-routing.module.ts
+import { PreloadAllModules, RouterModule } from "@angular/router";
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+```
+
+### Selective preloading
+
+```ts
+// selective-preloading.strategy.ts
+import { PreloadingStrategy, Route } from "@angular/router";
+import { Observable, of } from "rxjs";
+
+export class SelectivePreloadingStrategy implements PreloadingStrategy {
+  preload(route: Route, load: () => Observable<unknown>): Observable<unknown> {
+    return route.data?.["preload"] ? load() : of(null);
+  }
+}
+```
+
+```ts
+// app-routing.module.ts
+@NgModule({
+  providers: [SelectivePreloadingStrategy],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: SelectivePreloadingStrategy })],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+```
+
+```ts
+// routes with preload flag
+const routes: Routes = [
+  {
+    path: "reports",
+    loadChildren: () => import("./reports/reports.module").then((m) => m.ReportsModule),
+    data: { preload: true },
+  },
+];
+```
+

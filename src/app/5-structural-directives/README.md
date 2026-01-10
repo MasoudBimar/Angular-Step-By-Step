@@ -1,5 +1,19 @@
 # Structural Directives
 
+## Table of contents
+
+- [Structural Directives](#structural-directives)
+  - [Table of contents](#table-of-contents)
+  - [\*ngIf](#ngif)
+    - [comparing ngIf with display: none](#comparing-ngif-with-display-none)
+    - [How to store the result of an ngIf condition in a template local variable](#how-to-store-the-result-of-an-ngif-condition-in-a-template-local-variable)
+  - [\*ngFor](#ngfor)
+    - [How to optimize the rendering process](#how-to-optimize-the-rendering-process)
+  - [\*ngSwitch](#ngswitch)
+  - [Custom structural directive (idea)](#custom-structural-directive-idea)
+  - [When use which `ngIf` vs `ngSwitch`](#when-use-which-ngif-vs-ngswitch)
+  - [Key points](#key-points)
+
 Structural directives change the DOM layout by adding, removing, or reusing elements. They use the `*` syntax, which Angular expands into an `ng-template` behind the scenes.
 
 Sample command:
