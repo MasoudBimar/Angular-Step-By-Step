@@ -19,15 +19,20 @@ export class MovieService {
   constructor(public http: HttpClient) {
   }
 
-  getMovieList(title: string, year?: number, plot: 'short' | 'full' = 'short', response: 'json' | 'xml' = 'json'): Observable<Movie> {
+  getMovieList(title?: string, year?: number, plot: 'short' | 'full' = 'short', response: 'json' | 'xml' = 'json'): Observable<Movie> {
     // return this.http.get(this.apiUrl).pipe(map((result: any) => result.data));
-    const httpParam = new HttpParams()
-      .append('t', title)
-      // .append('y', year)
-      .append('p', plot)
-      .append('r', response)
-      .append('apikey', environment.apiKey);
-    console.log(httpParam);
+    let httpParam = new HttpParams();
+    if (title) {
+      httpParam = httpParam.set('t', title);
+    }
+    if (year) {
+      httpParam = httpParam.set('y', year);
+    }
+    httpParam = httpParam.set('p', plot);
+    httpParam = httpParam.set('r', response);
+    if (environment.apiKey) {
+      httpParam = httpParam.set('apikey', environment.apiKey);
+    }
     return this.http.get(environment.movieAPI, { params: httpParam });
   }
 

@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   baseUrl: 'blah-blah',
-  movieAPI: 'http://www.omdbapi.com',
+  movieAPI: 'https://www.omdbapi.com',
   apiKey: '9b81bd26'
 };
