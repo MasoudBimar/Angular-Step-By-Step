@@ -4,10 +4,11 @@ import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export class Movie {
-  id?: number;
+  imdbID?: number;
   Title?: string;
   Year?: string;
   Genre?: string;
+  imdbRating?: string;
 
 }
 
@@ -45,7 +46,7 @@ export class MovieService {
   }
 
   updateMovie(movie: Movie) {
-    return this.http.post(environment.movieAPI + '/' + movie.id, movie);
+    return this.http.post(environment.movieAPI + '/' + movie.imdbID, movie);
   }
 
   deleteMovie(id: number) {

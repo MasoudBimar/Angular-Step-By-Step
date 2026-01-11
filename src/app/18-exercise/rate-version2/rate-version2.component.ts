@@ -6,27 +6,34 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./rate-version2.component.scss']
 })
 export class RateVersion2Component implements OnInit {
-  @Input() stars: number = 5;
+  @Input() stars: number = 10;
   @Input() rate: number = 0;
   @Input() starWidth: number = 25;
   @Output() rateChange = new EventEmitter<number>();
   public states: any[] = new Array(this.stars).fill({});
   constructor() {
+    this.states = new Array(this.stars).fill({});
   }
 
   ngOnInit(): void {
-    this.states = new Array(this.stars).fill({});
+    if (this.rate) {
+      this.setRate(this.rate);
+    }
   }
+
   setRate(rate: number) {
-    this.rate = rate;
+
     for (let i = 0; i < this.stars; i++) {
       this.states[i] = { hover: false, select: i < this.rate };
     }
   }
+
   changeHandler(rate: number) {
+    this.rate = rate;
     this.setRate(rate);
     this.rateChange.emit(rate);
   }
+
   handleHover(rate: number) {
     for (let i = 0; i < this.stars; i++) {
       let state = i <= rate;
@@ -34,6 +41,7 @@ export class RateVersion2Component implements OnInit {
     }
 
   }
+
   handleLeave() {
     this.setRate(this.rate);
   }

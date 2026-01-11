@@ -9,7 +9,7 @@
   </div>
 
   <div class="row g-4">
-    <div class="col-12 col-lg-4">
+    <div class="col-12 col-lg-3">
       <div class="card shadow-sm">
         <div class="card-body">
           <h5 class="card-title mb-3">Create / Edit Movie</h5>
@@ -69,7 +69,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-lg-8">
+    <div class="col-12 col-lg-9">
       <div class="card shadow-sm">
         <div class="card-body">
           <div
@@ -88,6 +88,7 @@
                   <th scope="col">Id</th>
                   <th scope="col">Title</th>
                   <th scope="col">Genres</th>
+                  <th scope="col">IMDB Rate</th>
                   <th scope="col" class="text-end">Tools</th>
                 </tr>
               </thead>
@@ -97,6 +98,11 @@
                   <td>{{ movie.Id }}</td>
                   <td>{{ movie.Title }}</td>
                   <td>{{ movie.Genre }}</td>
+                  <td>
+                    <app-rate-version2
+                      [rate]="movie.imdbRating"
+                    ></app-rate-version2>
+                  </td>
                   <td class="text-end">
                     <div class="btn-group btn-group-sm" role="group">
                       <button

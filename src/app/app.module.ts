@@ -36,6 +36,9 @@ import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecy
 import { LazyLoadingComponent } from './17-lazy-loading/lazy-loading.component';
 import { UsingServiceComponent } from './session10/using-service.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RateComponent } from './18-exercise/rate/rate.component';
+import { RateVersion2Component } from './18-exercise/rate-version2/rate-version2.component';
+import { RateVersion3Component } from './18-exercise/rate-version3/rate-version3.component';
 []
 
 @NgModule({
@@ -69,7 +72,10 @@ import { HttpClientModule } from '@angular/common/http';
     Component3Component,
     ServicesComponent,
     LazyLoadingComponent,
-    UsingServiceComponent
+    UsingServiceComponent,
+    RateComponent,
+    RateVersion2Component,
+    RateVersion3Component,
 
   ],
   imports: [

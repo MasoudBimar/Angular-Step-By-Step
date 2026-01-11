@@ -22,7 +22,8 @@ export class UsingServiceComponent {
     // this.movies = this.movieService.getMovieList();
     this.movieService.getMovieList('matrix').subscribe((result: any) => {
       console.log(result);
-      this.movies2 = Array.isArray(result) ? result : [result];
+      let movieArray = Array.isArray(result) ? result : [result];
+      this.movies2 = movieArray.map(x => ({ Id: x.imdbID, Title: x.Title, imdbRating: Math.round(+x.imdbRating), Genre: x.Genre }))
     });
     console.log('heeeeyyyyyyyy');
     this.movieForm = this.fb.group({
@@ -48,7 +49,7 @@ export class UsingServiceComponent {
   }
 
   prepareForEdit(movie: Movie) {
-    this.movieForm.patchValue({ title: movie.Title, genres: movie.Genre, id: movie.id });
+    this.movieForm.patchValue({ title: movie.Title, genres: movie.Genre, id: movie.imdbID });
   }
 
   update() {
