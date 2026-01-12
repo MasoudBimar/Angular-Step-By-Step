@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -17,8 +17,8 @@ export class Movie {
   providedIn: 'root'
 })
 export class MovieService {
-  constructor(public http: HttpClient) {
-  }
+  private http = inject(HttpClient);
+
 
   getMovieList(title?: string, year?: number, plot: 'short' | 'full' = 'short', response: 'json' | 'xml' = 'json'): Observable<Movie> {
     // return this.http.get(this.apiUrl).pipe(map((result: any) => result.data));
