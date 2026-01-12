@@ -3,14 +3,12 @@ import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Movie, MovieService } from './movie.service';
 
-
-
 @Component({
-  selector: 'app-using-service',
-  templateUrl: './using-service.component.html',
-  styleUrls: ['./using-service.component.css']
+  selector: 'app-movie-manager',
+  templateUrl: './movie-manager.component.html',
+  styleUrls: ['./movie-manager.component.scss']
 })
-export class UsingServiceComponent {
+export class MovieManagerComponent {
   title = 'AngularApp2';
   priceError = '';
   movies?: Observable<any>;
@@ -63,5 +61,4 @@ export class UsingServiceComponent {
       console.log(result);
     });
   }
-
 }

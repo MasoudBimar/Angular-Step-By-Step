@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { JsonPipe } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GettingStartedComponent } from './1-getting-started/getting-started.component';
+import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecycles.component';
 import { ColorPickerComponent } from './11-decorators/color-picker/color-picker.component';
 import { DecoratorsComponent } from './11-decorators/decorators.component';
 import { PipesComponent } from './12-pipes/pipes.component';
@@ -17,6 +20,12 @@ import { Component2Component } from './13-routing/component2/component2.componen
 import { Component3Component } from './13-routing/component3/component3.component';
 import { RoutingComponent } from './13-routing/routing.component';
 import { ServicesComponent } from './14-services/services.component';
+import { ReactiveFormModule } from './16-reactive-forms/reactive-form.module';
+import { LazyLoadingComponent } from './17-lazy-loading/lazy-loading.component';
+import { MovieManagerComponent } from './18-exercise/movie-manager/movie-manager.component';
+import { RateVersion2Component } from './18-exercise/rate-version2/rate-version2.component';
+import { RateVersion3Component } from './18-exercise/rate-version3/rate-version3.component';
+import { RateComponent } from './18-exercise/rate/rate.component';
 import { TypescriptPreliminariesComponent } from './2-typescript-preliminaries/typescript-preliminaries.component';
 import { AngularFundamentalsComponent } from './3-angular-fundamentals/angular-fundamentals.component';
 import { CounterExampleComponent } from './3-angular-fundamentals/counter-example/counter-example.component';
@@ -30,15 +39,6 @@ import { SpecialElementsComponent } from './9-special-elements/special-elements.
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { ReactiveFormModule } from './16-reactive-forms/reactive-form.module';
-import { JsonPipe } from '@angular/common';
-import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecycles.component';
-import { LazyLoadingComponent } from './17-lazy-loading/lazy-loading.component';
-import { UsingServiceComponent } from './session10/using-service.component';
-import { HttpClientModule } from '@angular/common/http';
-import { RateComponent } from './18-exercise/rate/rate.component';
-import { RateVersion2Component } from './18-exercise/rate-version2/rate-version2.component';
-import { RateVersion3Component } from './18-exercise/rate-version3/rate-version3.component';
 []
 
 @NgModule({
@@ -72,10 +72,10 @@ import { RateVersion3Component } from './18-exercise/rate-version3/rate-version3
     Component3Component,
     ServicesComponent,
     LazyLoadingComponent,
-    UsingServiceComponent,
     RateComponent,
     RateVersion2Component,
     RateVersion3Component,
+    MovieManagerComponent,
 
   ],
   imports: [
