@@ -1,18 +1,19 @@
-# Lazy loading (modules and components)
+# Defer loading (Angular 17)
 
 Lazy loading splits your app into smaller bundles and loads them on demand. This keeps the initial bundle smaller and speeds up first load.
 
 ## Table of contents
 
-- [Lazy loading (modules and components)](#lazy-loading-modules-and-components)
+- [Defer loading (Angular 17)](#defer-loading-angular-17)
   - [Table of contents](#table-of-contents)
-  - [Defer Loading (Angular 17)](#defer-loading-angular-17)
+  - [Defer Loading](#defer-loading)
     - [Using `@defer` with `@placeholder`](#using-defer-with-placeholder)
     - [Using `@defer` with `@loading`](#using-defer-with-loading)
     - [Using `@defer` with `@error`](#using-defer-with-error)
     - [Using triggers to load specific content within `@defer` block](#using-triggers-to-load-specific-content-within-defer-block)
+  - [Prefetch](#prefetch)
 
-## Defer Loading (Angular 17)
+## Defer Loading
 
 An angular tremplate syntax that allows to load parts of a template or component when needed.
 
@@ -178,6 +179,49 @@ There are two ways to use `on viewport` trigger
 **on hover** : the `on hover` will render the `@defer` block when the user hovers over an element of the page.
 
 > [!NOTE]
-> The `on interaction` trigger is used when we want to load content based on an interaction that is made by user (made by two event `mouseenter` and `focusin`)
+> The `on hover` trigger is used when we want to load content based on an interaction that is made by user (made by two event `mouseenter` and `focusin`)
+
+**on immediate** : the `on immediate` will render the `@defer` block immediately without waiting for any event to be triggered.
+
+> [!NOTE]
+> The `on immediate` render the defer block (the defer chunk will be fetched right away) once the application is rendered, no parameter needed.
+
+**on timer** : the `on timer` loads the `@defer` block after a given duration (s or ms) of time.
+
+```html
+@defer (on timer(1s)) {
+<app-reviews></app-reviews>
+}
+```
+
+## Prefetch
+
+For prefetching the data in the memory before the @defer is executed we can use `prefetch`
+
+> [!NOTE]
+> We can use prefetch with all 6 triggers `on odle`, `on viewport`, `on interaction`, `on hover`, `on immediate`, `on timer`
+
+> [!TIP]
+> Generally `on idle` is the best option to prefetch the data
+
+In this example reviews component will be prefetched when the application is completely rednered but it won't be displayed until `on interaction` trigger is fired
+
+```html
+@defer (on interaction(showReviews); prefetch on idle) {
+<app-reviews></app-reviews>
+} @loading(minimum 1s){
+<h3>Loading reviews</h3>
+}
+```
+
+In this example application starts prefetching the data when the user starts scrolling
+
+```html
+@defer (on interaction(showReviews); prefetch on viewport(showReviews)) {
+<app-reviews></app-reviews>
+} @loading(minimum 1s){
+<h3>Loading reviews</h3>
+}
+```
 
 Common use cases: - Below-the-fold content (reviews, comments, related products) - Heavy widgets (charts, maps, editors) - Expensive data fetches triggered by user intent - Optional experiences (marketing banners, A/B test variants)
