@@ -12,6 +12,7 @@ Lazy loading splits your app into smaller bundles and loads them on demand. This
     - [Using `@defer` with `@error`](#using-defer-with-error)
     - [Using triggers to load specific content within `@defer` block](#using-triggers-to-load-specific-content-within-defer-block)
   - [Prefetch](#prefetch)
+  - [Custom triggers](#custom-triggers)
 
 ## Defer Loading
 
@@ -121,6 +122,7 @@ List of declarative triggers:
 - `on hover`
 - `on immediate`
 - `on timer`
+- Custom triggers
 
 **on idle** : will trigger the deferred loading once the browser has reached an idle state handled by `requestIdleCallback` API.
 
@@ -224,4 +226,49 @@ In this example application starts prefetching the data when the user starts scr
 }
 ```
 
-Common use cases: - Below-the-fold content (reviews, comments, related products) - Heavy widgets (charts, maps, editors) - Expensive data fetches triggered by user intent - Optional experiences (marketing banners, A/B test variants)
+Common use cases:
+
+- Below-the-fold content (reviews, comments, related products)
+- Heavy widgets (charts, maps, editors)
+- Expensive data fetches triggered by user intent
+- Optional experiences (marketing banners, A/B test variants)
+
+## Custom triggers
+
+expected usage:
+
+```html
+@defer (when condition) {
+<app-reviews> </app-reviews>
+}
+```
+
+> [!NOTE]
+> condition stated as an expression that returns a boolean value
+
+```ts
+// component.ts
+
+loadData: boolean = false;
+showReviews: boolean = false;
+
+onPrefetch(){
+  this.loadData = true;
+}
+
+onShowData(){
+  this.showReviews = true;
+}
+```
+
+```html
+<button (click)="onPrefetch()">prefetch data</button>
+
+<button (click)="onShowData()">show Reviews</button>
+
+@defer (when showReviews; prefetch when loadData) {
+<app-reviews> </app-reviews>
+} @loading (minimum 1s) {
+<h2>loading data</h2>
+}
+```
