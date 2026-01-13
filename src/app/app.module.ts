@@ -22,10 +22,10 @@ import { RoutingComponent } from './13-routing/routing.component';
 import { ServicesComponent } from './14-services/services.component';
 import { ReactiveFormModule } from './16-reactive-forms/reactive-form.module';
 import { LazyLoadingComponent } from './17-lazy-loading/lazy-loading.component';
-import { MovieManagerComponent } from './18-exercise/movie-manager/movie-manager.component';
-import { RateVersion2Component } from './18-exercise/rate-version2/rate-version2.component';
-import { RateVersion3Component } from './18-exercise/rate-version3/rate-version3.component';
-import { RateComponent } from './18-exercise/rate/rate.component';
+import { MovieManagerComponent } from './0-exercise/movie-manager/movie-manager.component';
+import { RateVersion2Component } from './0-exercise/rate-version2/rate-version2.component';
+import { RateVersion3Component } from './0-exercise/rate-version3/rate-version3.component';
+import { RateComponent } from './0-exercise/rate/rate.component';
 import { TypescriptPreliminariesComponent } from './2-typescript-preliminaries/typescript-preliminaries.component';
 import { AngularFundamentalsComponent } from './3-angular-fundamentals/angular-fundamentals.component';
 import { CounterExampleComponent } from './3-angular-fundamentals/counter-example/counter-example.component';
@@ -39,6 +39,7 @@ import { SpecialElementsComponent } from './9-special-elements/special-elements.
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { DeferLoadingComponent } from './18-defer-loading/defer-loading.component';
 []
 
 @NgModule({
@@ -76,6 +77,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     RateVersion2Component,
     RateVersion3Component,
     MovieManagerComponent,
+    DeferLoadingComponent,
 
   ],
   imports: [
