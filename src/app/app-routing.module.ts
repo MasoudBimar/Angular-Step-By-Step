@@ -19,6 +19,7 @@ import { StructuralDirectivesComponent } from './5-structural-directives/structu
 import { AttributeDirectivesComponent } from './6-attribute-directives/attribute-directives.component';
 import { ComponentDirectivesComponent } from './7-component-directives/component-directives.component';
 import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
+import { DeferLoadingComponent } from './18-defer-loading/defer-loading.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'routing', component: RoutingComponent, children: ROUTING_ROUTES },
   { path: 'template-driven', loadChildren: () => import('./15-template-driven-forms/template-driven.module').then(m => m.TemplateDrivenFormModule), canActivate: [authGuard] },
   { path: 'reactive-form', loadChildren: () => import('./16-reactive-forms/reactive-form.module').then(m => m.ReactiveFormModule), canActivate: [authGuard] },
+  { path: 'defer-loading', component: DeferLoadingComponent },
   {
     path: 'exercise', children: [
       { title: 'Rate Component 1', path: 'rate-1', component: RateComponent },

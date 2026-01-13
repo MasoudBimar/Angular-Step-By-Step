@@ -81,6 +81,7 @@ export class SidebarComponent {
         { id: 'multi-step-reactive-form', label: 'Multi Step Reactive Form', route: '/reactive-form/multi-step-reactive-form' }
       ]
     },
+    { id: 'defer-loading', label: 'Defer Loading', route: 'defer-loading' },
     {
       id: 'code samples', label: 'exercises', children: [
         { id: 'rate-1', label: 'Rate 1', route: '/exercise/rate-1' },
