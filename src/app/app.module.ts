@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { JsonPipe } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GettingStartedComponent } from './1-getting-started/getting-started.component';
 import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecycles.component';
@@ -42,54 +42,46 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { DeferLoadingComponent } from './18-defer-loading/defer-loading.component';
 []
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    GettingStartedComponent,
-    TypescriptPreliminariesComponent,
-    AngularFundamentalsComponent,
-    CounterExampleComponent,
-    PersianDatePipe,
-    ToDoComponent,
-    StructuralDirectivesComponent,
-    AttributeDirectivesComponent,
-    CustomDirectivesComponent,
-    ComponentsAndTemplatesComponent,
-    ComponentDirectivesComponent,
-    SpecialElementsComponent,
-    LifecyclesComponent,
-    DecoratorsComponent,
-    ColorPickerComponent,
-    PipesComponent,
-    AppendTextPipe,
-    SortNumberPipe,
-    LetterCountPipe,
-    SumOfNumbersPipe,
-    PostCollectionComponent,
-    SidebarComponent,
-    RoutingComponent,
-    Component1Component,
-    Component2Component,
-    Component3Component,
-    ServicesComponent,
-    LazyLoadingComponent,
-    RateComponent,
-    RateVersion2Component,
-    RateVersion3Component,
-    MovieManagerComponent,
-    DeferLoadingComponent,
-
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ReactiveFormModule,
-    HttpClientModule,
-    JsonPipe
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        GettingStartedComponent,
+        TypescriptPreliminariesComponent,
+        AngularFundamentalsComponent,
+        CounterExampleComponent,
+        PersianDatePipe,
+        ToDoComponent,
+        StructuralDirectivesComponent,
+        AttributeDirectivesComponent,
+        CustomDirectivesComponent,
+        ComponentsAndTemplatesComponent,
+        ComponentDirectivesComponent,
+        SpecialElementsComponent,
+        LifecyclesComponent,
+        DecoratorsComponent,
+        ColorPickerComponent,
+        PipesComponent,
+        AppendTextPipe,
+        SortNumberPipe,
+        LetterCountPipe,
+        SumOfNumbersPipe,
+        PostCollectionComponent,
+        SidebarComponent,
+        RoutingComponent,
+        Component1Component,
+        Component2Component,
+        Component3Component,
+        ServicesComponent,
+        LazyLoadingComponent,
+        RateComponent,
+        RateVersion2Component,
+        RateVersion3Component,
+        MovieManagerComponent,
+        DeferLoadingComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ReactiveFormModule,
+        JsonPipe], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
