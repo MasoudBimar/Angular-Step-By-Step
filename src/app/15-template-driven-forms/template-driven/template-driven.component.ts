@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Product } from 'src/app/shared/model/product.model';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   selector: 'app-template-driven-form',
   templateUrl: './template-driven.component.html',
   styleUrls: ['./template-driven.component.scss']

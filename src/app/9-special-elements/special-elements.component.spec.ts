@@ -8,7 +8,8 @@ describe('SpecialElementsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SpecialElementsComponent]
+      imports: [SpecialElementsComponent],
+      
     });
     fixture = TestBed.createComponent(SpecialElementsComponent);
     component = fixture.componentInstance;

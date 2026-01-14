@@ -1,7 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   selector: 'app-multi-step-form',
   templateUrl: './multi-step-form.component.html',
   styleUrls: ['./multi-step-form.component.scss']

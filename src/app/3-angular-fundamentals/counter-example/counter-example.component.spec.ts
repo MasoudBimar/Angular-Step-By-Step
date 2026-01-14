@@ -8,7 +8,8 @@ describe('CounterExampleComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CounterExampleComponent]
+      imports: [CounterExampleComponent],
+      
     });
     fixture = TestBed.createComponent(CounterExampleComponent);
     component = fixture.componentInstance;

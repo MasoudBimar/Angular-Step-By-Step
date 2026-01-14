@@ -8,7 +8,8 @@ describe('TemplatedriveComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TemplatedriveComponent ]
+      imports: [TemplatedriveComponent],
+      
     })
     .compileComponents();
 

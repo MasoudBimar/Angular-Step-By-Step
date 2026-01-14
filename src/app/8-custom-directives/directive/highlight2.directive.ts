@@ -2,6 +2,7 @@ import {Directive, ElementRef, HostListener, Input} from '@angular/core';
 
 @Directive({
   selector: '[appHighlight2]',
+  standalone: true
 })
 export class Highlight2Directive {
   @Input() appHighlight2!:string;

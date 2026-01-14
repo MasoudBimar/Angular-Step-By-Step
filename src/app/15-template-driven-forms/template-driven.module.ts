@@ -1,9 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { MassAttrDirective } from './directives/attr.directive';
-import { MassModel } from './directives/two-way.directive';
 import { FullTemplateDrivenComponent } from './full-template-driven/full-template-driven.component';
 import { CreateStockComponent } from './full-template-driven/stock/create-stock/create-stock.component';
 import { StockItemComponent } from './full-template-driven/stock/stock-item/stock-item.component';
@@ -19,27 +15,6 @@ export const TEMPLATE_DRIVEN_ROUTES: Routes = [
 
 
 @NgModule({
-  declarations: [
-    StockItemComponent,
-    CreateStockComponent,
-    FullTemplateDrivenComponent,
-    TemplateDrivenComponent,
-    ProductSampleComponent,
-    MassModel,
-    MassAttrDirective
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule.forChild(TEMPLATE_DRIVEN_ROUTES)
-  ],
-  exports: [
-
-    StockItemComponent,
-    CreateStockComponent,
-    FullTemplateDrivenComponent,
-    TemplateDrivenComponent,
-    ProductSampleComponent
-  ]
+  imports: [RouterModule.forChild(TEMPLATE_DRIVEN_ROUTES)]
 })
 export class TemplateDrivenFormModule { }

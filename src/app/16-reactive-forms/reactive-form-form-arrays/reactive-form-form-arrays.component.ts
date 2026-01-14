@@ -1,8 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Stock } from './model/stock';
+import { CreateFormArrayStockComponent } from './stock/create-stock/create-stock.component';
+import { StockFormArrayItemComponent } from './stock/stock-item/stock-item.component';
 
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, StockFormArrayItemComponent, CreateFormArrayStockComponent],
   selector: 'app-reactive-form-form-arrays',
   templateUrl: './reactive-form-form-arrays.component.html',
   styleUrls: ['./reactive-form-form-arrays.component.scss']

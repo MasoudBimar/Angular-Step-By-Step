@@ -8,7 +8,8 @@ describe('RatingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RateVersion3Component]
+      imports: [RateVersion3Component],
+      
     })
       .compileComponents();
 

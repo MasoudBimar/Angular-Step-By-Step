@@ -1,6 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormFormArraysComponent } from './reactive-form-form-arrays/reactive-form-form-arrays.component';
 import { CreateFormArrayStockComponent } from './reactive-form-form-arrays/stock/create-stock/create-stock.component';
@@ -20,30 +18,6 @@ export const REACTIVE_FORM_ROUTES: Routes = [
 
 
 @NgModule({
-  declarations: [
-    ReactiveFormComponent,
-    CreateReactiveStockComponent,
-    StockReactiveItemComponent,
-    ReactiveFormFormBuilderComponent,
-    ReactiveFormFormArraysComponent,
-    StockFormArrayItemComponent,
-    CreateFormArrayStockComponent,
-    MultiStepFormComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(REACTIVE_FORM_ROUTES)
-  ],
-  exports: [
-    ReactiveFormComponent,
-    CreateReactiveStockComponent,
-    StockReactiveItemComponent,
-    ReactiveFormFormBuilderComponent,
-    ReactiveFormFormArraysComponent,
-    StockFormArrayItemComponent,
-    CreateFormArrayStockComponent
-  ]
+  imports: [RouterModule.forChild(REACTIVE_FORM_ROUTES)]
 })
 export class ReactiveFormModule { }

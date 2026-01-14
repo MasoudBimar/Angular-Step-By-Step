@@ -8,7 +8,8 @@ describe('LifecyclesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LifecyclesComponent ]
+      imports: [LifecyclesComponent],
+      
     })
     .compileComponents();
 

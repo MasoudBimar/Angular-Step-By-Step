@@ -8,7 +8,8 @@ describe('LazyLoadingComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LazyLoadingComponent]
+      imports: [LazyLoadingComponent],
+      
     });
     fixture = TestBed.createComponent(LazyLoadingComponent);
     component = fixture.componentInstance;

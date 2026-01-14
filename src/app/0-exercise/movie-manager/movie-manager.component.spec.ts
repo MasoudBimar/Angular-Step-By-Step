@@ -8,7 +8,8 @@ describe('MovieManagerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MovieManagerComponent]
+      imports: [MovieManagerComponent],
+      
     });
     fixture = TestBed.createComponent(MovieManagerComponent);
     component = fixture.componentInstance;

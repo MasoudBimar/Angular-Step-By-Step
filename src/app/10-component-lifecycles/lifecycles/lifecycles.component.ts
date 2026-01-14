@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule],
   selector: 'app-lifecycles',
   templateUrl: './lifecycles.component.html',
   styleUrls: ['./lifecycles.component.scss']

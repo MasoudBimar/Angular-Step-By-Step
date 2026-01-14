@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 export class Person {
   public fn!: string;
   public ln!: string;
@@ -8,6 +9,8 @@ export class Person {
 
 
 @Component({
+  standalone: true,
+  imports: [CommonModule],
   selector: 'app-structural-directives',
   templateUrl: './structural-directives.component.html',
   styleUrls: ['./structural-directives.component.scss']

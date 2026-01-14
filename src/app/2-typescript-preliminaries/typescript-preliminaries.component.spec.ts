@@ -8,7 +8,8 @@ describe('TypescriptPreliminariesComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TypescriptPreliminariesComponent]
+      imports: [TypescriptPreliminariesComponent],
+      
     });
     fixture = TestBed.createComponent(TypescriptPreliminariesComponent);
     component = fixture.componentInstance;

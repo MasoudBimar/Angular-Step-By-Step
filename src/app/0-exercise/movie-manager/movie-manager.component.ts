@@ -1,9 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Movie, MovieService } from './movie.service';
+import { RateVersion2Component } from '../rate-version2/rate-version2.component';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RateVersion2Component],
   selector: 'app-movie-manager',
   templateUrl: './movie-manager.component.html',
   styleUrls: ['./movie-manager.component.scss']

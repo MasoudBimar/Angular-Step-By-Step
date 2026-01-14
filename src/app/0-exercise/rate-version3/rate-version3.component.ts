@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, NgModule, OnInit, Output } from '@angular/core';
 @Component({
+  standalone: true,
+  imports: [CommonModule],
   selector: 'app-rate-version3',
   templateUrl: './rate-version3.component.html',
   styleUrls: ['./rate-version3.component.scss']

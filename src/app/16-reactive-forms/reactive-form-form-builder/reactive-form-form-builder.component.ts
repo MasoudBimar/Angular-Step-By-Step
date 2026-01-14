@@ -1,7 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Stock } from './model/stock';
+import { CreateReactiveStockComponent } from './create-stock/create-stock.component';
+import { StockReactiveItemComponent } from './stock-item/stock-item.component';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, StockReactiveItemComponent, CreateReactiveStockComponent],
   selector: 'app-reactive-form-form-builder',
   templateUrl: './reactive-form-form-builder.component.html',
   styleUrls: ['./reactive-form-form-builder.component.scss']

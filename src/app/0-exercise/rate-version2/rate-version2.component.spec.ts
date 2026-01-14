@@ -8,7 +8,8 @@ describe('RateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RateVersion2Component]
+      imports: [RateVersion2Component],
+      
     })
       .compileComponents();
 

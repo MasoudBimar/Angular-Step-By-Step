@@ -1,8 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { Stock } from '../../model/stock';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule],
   selector: 'app-stock-item',
   templateUrl: './stock-item.component.html',
   styleUrls: ['./stock-item.component.scss']

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Validators, FormBuilder } from '@angular/forms';
-import { FormArray } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Stock } from '../../model/stock';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   selector: 'app-form-array-create-stock',
   templateUrl: './create-stock.component.html',
   styleUrls: ['./create-stock.component.css']

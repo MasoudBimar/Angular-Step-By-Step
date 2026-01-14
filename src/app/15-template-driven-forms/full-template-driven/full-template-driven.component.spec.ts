@@ -8,7 +8,8 @@ describe('FullTemplateDrivenComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FullTemplateDrivenComponent ]
+      imports: [FullTemplateDrivenComponent],
+      
     })
     .compileComponents();
 

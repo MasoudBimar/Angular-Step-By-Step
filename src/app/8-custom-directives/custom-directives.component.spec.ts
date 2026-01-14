@@ -8,7 +8,8 @@ describe('CustomDirectivesComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CustomDirectivesComponent]
+      imports: [CustomDirectivesComponent],
+      
     });
     fixture = TestBed.createComponent(CustomDirectivesComponent);
     component = fixture.componentInstance;

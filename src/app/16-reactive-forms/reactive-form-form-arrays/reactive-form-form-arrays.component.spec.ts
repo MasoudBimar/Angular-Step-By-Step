@@ -8,7 +8,8 @@ describe('ReactiveFormFormArraysComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReactiveFormFormArraysComponent ]
+      imports: [ReactiveFormFormArraysComponent],
+      
     })
     .compileComponents();
 

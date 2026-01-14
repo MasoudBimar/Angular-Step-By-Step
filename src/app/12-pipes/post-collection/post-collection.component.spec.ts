@@ -8,7 +8,8 @@ describe('PostCollectionComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PostCollectionComponent]
+      imports: [PostCollectionComponent],
+      
     });
     fixture = TestBed.createComponent(PostCollectionComponent);
     component = fixture.componentInstance;

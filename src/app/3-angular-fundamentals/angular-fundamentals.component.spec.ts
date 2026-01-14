@@ -8,7 +8,8 @@ describe('AngularFundamentalsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AngularFundamentalsComponent]
+      imports: [AngularFundamentalsComponent],
+      
     });
     fixture = TestBed.createComponent(AngularFundamentalsComponent);
     component = fixture.componentInstance;

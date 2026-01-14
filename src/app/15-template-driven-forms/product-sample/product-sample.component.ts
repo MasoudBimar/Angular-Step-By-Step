@@ -1,9 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MassAttrDirective } from '../directives/attr.directive';
+import { MassModel } from '../directives/two-way.directive';
 import { ProductFormGroup } from './model/form.model';
 import { Product } from './model/product.model';
 import { Model } from './model/repository.model';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, FormsModule, MassModel, MassAttrDirective],
   selector: 'app-product-sample',
   templateUrl: './product-sample.component.html',
   styleUrls: ['./product-sample.component.scss']

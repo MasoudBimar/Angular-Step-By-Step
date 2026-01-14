@@ -8,7 +8,8 @@ describe('Component2Component', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [Component2Component]
+      imports: [Component2Component],
+      
     });
     fixture = TestBed.createComponent(Component2Component);
     component = fixture.componentInstance;

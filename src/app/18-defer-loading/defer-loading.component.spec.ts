@@ -8,7 +8,8 @@ describe('DeferLoadingComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DeferLoadingComponent]
+      imports: [DeferLoadingComponent],
+      
     });
     fixture = TestBed.createComponent(DeferLoadingComponent);
     component = fixture.componentInstance;

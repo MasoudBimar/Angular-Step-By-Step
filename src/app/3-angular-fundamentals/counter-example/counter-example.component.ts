@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule],
   selector: 'app-counter-example',
   templateUrl: './counter-example.component.html',
   styleUrls: ['./counter-example.component.scss']
