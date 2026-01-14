@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecycles.component';
 import { ColorPickerComponent } from './11-decorators/color-picker/color-picker.component';
 import { DecoratorsComponent } from './11-decorators/decorators.component';
@@ -21,7 +20,7 @@ import { ComponentDirectivesComponent } from './7-component-directives/component
 import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
 import { DeferLoadingComponent } from './18-defer-loading/defer-loading.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
   { path: 'counter', component: CounterExampleComponent },
   { path: 'to-do', component: ToDoComponent },
@@ -36,21 +35,30 @@ const routes: Routes = [
   { path: 'pipes', component: PipesComponent },
   { path: 'paginated-post-collection', component: PostCollectionComponent },
   { path: 'routing', component: RoutingComponent, children: ROUTING_ROUTES },
-  { path: 'template-driven', loadChildren: () => import('./15-template-driven-forms/template-driven.module').then(m => m.TemplateDrivenFormModule), canActivate: [authGuard] },
-  { path: 'reactive-form', loadChildren: () => import('./16-reactive-forms/reactive-form.module').then(m => m.ReactiveFormModule), canActivate: [authGuard] },
+  {
+    path: 'template-driven',
+    loadChildren: () =>
+      import('./15-template-driven-forms/template-driven.routes').then(
+        m => m.TEMPLATE_DRIVEN_ROUTES
+      ),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'reactive-form',
+    loadChildren: () =>
+      import('./16-reactive-forms/reactive-form.routes').then(
+        m => m.REACTIVE_FORM_ROUTES
+      ),
+    canActivate: [authGuard]
+  },
   { path: 'defer-loading', component: DeferLoadingComponent },
   {
-    path: 'exercise', children: [
+    path: 'exercise',
+    children: [
       { title: 'Rate Component 1', path: 'rate-1', component: RateComponent },
       { title: 'Rate Component 2', path: 'rate-2', component: RateVersion2Component },
       { title: 'Rate Component 3', path: 'rate-3', component: RateVersion3Component },
-      { title: 'Movies', path: 'movies', component: MovieManagerComponent },
+      { title: 'Movies', path: 'movies', component: MovieManagerComponent }
     ]
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: false, useHash: true, preloadingStrategy: PreloadAllModules })],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
