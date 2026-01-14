@@ -67,6 +67,8 @@ Angular-Nodejs-TypeScript-RxJS Compatibility versions:
 
 | Angular            | Node.js                              | TypeScript     | RxJS               |
 | ------------------ | ------------------------------------ | -------------- | ------------------ |
+| 18.1.x \|\| 18.2.x | ^18.19.1 \|\| ^20.11.1 \|\| ^22.0.0  | >=5.4.0 <5.6.0 | ^6.5.3 \|\| ^7.4.0 |
+| 18.0.x             | ^18.19.1 \|\| ^20.11.1 \|\| ^22.0.0  | >=5.4.0 <5.5.0 | ^6.5.3 \|\| ^7.4.0 |
 | 17.3.x             | ^18.13.0 \|\| ^20.9.0                | >=5.2.0 <5.5.0 | ^6.5.3 \|\| ^7.4.0 |
 | 17.1.x \|\| 17.2.x | ^18.13.0 \|\| ^20.9.0                | >=5.2.0 <5.4.0 | ^6.5.3 \|\| ^7.4.0 |
 | 17.0.x             | ^18.13.0 \|\| ^20.9.0                | >=5.2.0 <5.3.0 | ^6.5.3 \|\| ^7.4.0 |
@@ -122,6 +124,7 @@ ng serve -o
 Key folders and files you will see:
 
 - `node_modules` Containing all the third party libs which angular application depends upon
+- `public` Contains official icon for angular
 - `src/` application source code.
 - `src/main.ts` entry point for client-side application responsible for bootstrapping the application.
 - `src/main.server.ts` bootstraps the root module for server-side rendering.
