@@ -61,7 +61,37 @@ In short, the decorator links the `.ts` class to the `.html` view and `.scss` st
 
 ## Setup environments
 
-Install Node.js (LTS) and npm, then install the Angular CLI globally.
+Install [Node.js](https://nodejs.org/en) (LTS) and npm, then install the Angular CLI globally.
+
+Angular-Nodejs-TypeScript-RxJS Compatibility versions:
+
+| Angular            | Node.js                              | TypeScript     | RxJS               |
+| ------------------ | ------------------------------------ | -------------- | ------------------ |
+| 17.3.x             | ^18.13.0 \|\| ^20.9.0                | >=5.2.0 <5.5.0 | ^6.5.3 \|\| ^7.4.0 |
+| 17.1.x \|\| 17.2.x | ^18.13.0 \|\| ^20.9.0                | >=5.2.0 <5.4.0 | ^6.5.3 \|\| ^7.4.0 |
+| 17.0.x             | ^18.13.0 \|\| ^20.9.0                | >=5.2.0 <5.3.0 | ^6.5.3 \|\| ^7.4.0 |
+| 16.1.x \|\| 16.2.x | ^16.14.0 \|\| ^18.10.0               | >=4.9.3 <5.2.0 | ^6.5.3 \|\| ^7.4.0 |
+| 16.0.x             | ^16.14.0 \|\| ^18.10.0               | >=4.9.3 <5.1.0 | ^6.5.3 \|\| ^7.4.0 |
+| 15.1.x \|\| 15.2.x | ^14.20.0 \|\| ^16.13.0 \|\| ^18.10.0 | >=4.8.2 <5.0.0 | ^6.5.3 \|\| ^7.4.0 |
+| 15.0.x             | ^14.20.0 \|\| ^16.13.0 \|\| ^18.10.0 | ~4.8.2         | ^6.5.3 \|\| ^7.4.0 |
+| 14.2.x \|\| 14.3.x | ^14.15.0 \|\| ^16.10.0               | >=4.6.2 <4.9.0 | ^6.5.3 \|\| ^7.4.0 |
+| 14.0.x \|\| 14.1.x | ^14.15.0 \|\| ^16.10.0               | >=4.6.2 <4.8.0 | ^6.5.3 \|\| ^7.4.0 |
+| 13.3.x \|\| 13.4.x | ^12.20.0 \|\| ^14.15.0 \|\| ^16.10.0 | >=4.4.3 <4.7.0 | ^6.5.3 \|\| ^7.4.0 |
+| 13.1.x \|\| 13.2.x | ^12.20.0 \|\| ^14.15.0 \|\| ^16.10.0 | >=4.4.3 <4.6.0 | ^6.5.3 \|\| ^7.4.0 |
+| 13.0.x             | ^12.20.0 \|\| ^14.15.0 \|\| ^16.10.0 | ~4.4.3         | ^6.5.3 \|\| ^7.4.0 |
+| 12.2.x             | ^12.14.0 \|\| ^14.15.0               | >=4.2.3 <4.4.0 | ^6.5.3 \|\| ^7.0.0 |
+| 12.1.x             | ^12.14.0 \|\| ^14.15.0               | >=4.2.3 <4.4.0 | ^6.5.3             |
+| 12.0.x             | ^12.14.0 \|\| ^14.15.0               | ~4.2.3         | ^6.5.3             |
+| 11.2.x             | ^10.13.0 \|\| ^12.11.0               | >=4.0.0 <4.2.0 | ^6.5.3             |
+| 11.1.x             | ^10.13.0 \|\| ^12.11.0               | >=4.0.0 <4.2.0 | ^6.5.3             |
+| 11.0.x             | ^10.13.0 \|\| ^12.11.0               | ~4.0.0         | ^6.5.3             |
+| 10.2.x             | ^10.13.0 \|\| ^12.11.0               | >=3.9.0 <4.1.0 | ^6.5.3             |
+| 10.1.x             | ^10.13.0 \|\| ^12.11.0               | >=3.9.0 <4.1.0 | ^6.5.3             |
+| 10.0.x             | ^10.13.0 \|\| ^12.11.0               | ~3.9.0         | ^6.5.3             |
+| 9.1.x              | ^10.13.0 \|\| ^12.11.0               | >=3.6.0 <3.9.0 | ^6.5.3             |
+| 9.0.x              | ^10.13.0 \|\| ^12.11.0               | >=3.6.0 <3.8.0 | ^6.5.3             |
+
+Verify installations & install Angular CLI globally:
 
 ```bash
 node --version
@@ -70,14 +100,16 @@ npm install -g @angular/cli
 ng version
 ```
 
+Node Package Manager (npm) is needed to install Angular CLI ( `@angular/cli`) also npm has a lightweight web server to host the Angular applications locally.
+
 Optional tools:
 
-- Git for source control.
-- A modern editor like VS Code.
+- [Git](https://git-scm.com/) for source control.
+- A modern editor like [VS Code](https://code.visualstudio.com/).
 
 ## Create our first project
 
-Generate a new project with routing and SCSS, then run it.
+Generate a new project with routing and CSS/SCSS, CSR/SSR then run it.
 
 ```bash
 ng new my-app --routing --style=scss
@@ -89,12 +121,19 @@ ng serve -o
 
 Key folders and files you will see:
 
+- `node_modules` Containing all the third party libs which angular application depends upon
 - `src/` application source code.
-- `src/main.ts` bootstraps the root module.
+- `src/main.ts` entry point for client-side application responsible for bootstrapping the application.
+- `src/main.server.ts` bootstraps the root module for server-side rendering.
 - `src/app/` root module, components, and features.
 - `src/assets/` static files like images.
-- `angular.json` workspace configuration.
+- `index.html` main HTML page plus all external scripts and styles.
+- `styles.scss` application global styles.
+- `tsconfig.json` TypeScript configuration.
+- `angular.json` workspace/project configuration.
 - `package.json` dependencies and scripts.
+- `.gitignore` files and folders to ignore in Git.
+- `server.ts` Node.js Express server (setup & configuration) for SSR.
 
 ## Angular Architecture
 
