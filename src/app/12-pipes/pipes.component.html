@@ -1,27 +1,54 @@
-<table class="employees-table">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>State</th>
-      <th>Salary</th>
-      <th>Issue Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let employee of employees; index as i">
-      <td>{{ i + 1 }}</td>
-      <!-- titlecase pipe change text to PascalCase -->
-      <td>{{ employee.name | titlecase }}</td>
-      <!-- Using slice to show just 3 words of state and then make it uppercase by upperase pipe -->
-      <td>
-        {{ employee.state | slice : 0 : 3 | appendText : "State" | uppercase }}
-      </td>
-      <!-- Using built-in currency pipe for money -->
-      <td>{{ employee.salary | currency : "USD" }}</td>
-      <td>
-        {{ employee.issueDate | persianDate }}
-      </td>
-    </tr>
-  </tbody>
-</table>
+<section class="pipes-shell">
+  <header class="pipes-header">
+    <p class="eyebrow">Data formatting</p>
+    <h2>Employee issuance log</h2>
+    <p class="subtext">
+      This table demonstrates Angular pipes for text, numbers, currency, and
+      dates.
+    </p>
+    <div class="meta-row">
+      <div class="meta-card">
+        <span>Total employees</span>
+        <!-- Built-in number pipe for counts -->
+        <strong>{{ employees.length | number }}</strong>
+      </div>
+      <div class="meta-card">
+        <span>Latest issue</span>
+        <!-- Built-in date pipe for a quick summary -->
+        <strong>{{ employees[0]?.issueDate | date : "mediumDate" }}</strong>
+      </div>
+    </div>
+  </header>
+
+  <div class="table-wrap">
+    <table class="employees-table">
+      <caption>
+        Employee list with pipe transformations applied to each column.
+      </caption>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>State</th>
+          <th>Salary</th>
+          <th>Issue Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees; index as i">
+          <td>{{ i + 1 }}</td>
+          <!-- titlecase pipe changes text to PascalCase -->
+          <td>{{ employee.name | titlecase }}</td>
+          <!-- slice limits the state string, appendText adds a label, then uppercase finishes it -->
+          <td>
+            {{ employee.state | slice : 0 : 3 | appendText : "State" | uppercase }}
+          </td>
+          <!-- built-in currency pipe for money -->
+          <td>{{ employee.salary | currency : "USD" }}</td>
+          <!-- custom persianDate pipe for localized date display -->
+          <td>{{ employee.issueDate | persianDate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
