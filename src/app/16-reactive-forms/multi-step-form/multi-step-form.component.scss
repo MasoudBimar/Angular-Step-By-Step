@@ -1,0 +1,146 @@
+:host {
+  display: block;
+  padding: 28px 18px 40px;
+  color: #0f172a;
+  font-family: "Space Grotesk", "Trebuchet MS", "Gill Sans", "Calibri", sans-serif;
+}
+
+.wizard-shell {
+  background: linear-gradient(135deg, #fff1df 0%, #eef9ff 56%, #f1ffe6 100%);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
+}
+
+.wizard-header {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #0f4c5c;
+}
+
+.wizard-header h2 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.subtext {
+  margin: 0;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.stepper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.step {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #64748b;
+  font-size: 0.9rem;
+  box-shadow: 0 10px 18px rgba(15, 23, 42, 0.08);
+}
+
+.step span {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: #475569;
+}
+
+.step.active {
+  border-color: #0f4c5c;
+  color: #0f172a;
+}
+
+.step.active span {
+  background: #0f4c5c;
+  color: #ffffff;
+}
+
+.step.complete {
+  border-color: #86efac;
+  color: #166534;
+}
+
+.step.complete span {
+  background: #86efac;
+  color: #14532d;
+}
+
+.wizard-form {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.1);
+}
+
+.step-card {
+  display: grid;
+  gap: 12px;
+}
+
+.step-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.field-error {
+  display: block;
+  color: #b91c1c;
+  font-size: 0.85rem;
+}
+
+.wizard-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.wizard-actions .btn {
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.wizard-form .form-control:focus {
+  border-color: #f26a4a;
+  box-shadow: 0 0 0 3px rgba(242, 106, 74, 0.2);
+}
+
+@media (max-width: 720px) {
+  :host {
+    padding: 20px 12px 32px;
+  }
+
+  .wizard-shell {
+    padding: 20px;
+  }
+
+  .stepper {
+    grid-template-columns: 1fr;
+  }
+}
