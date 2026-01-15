@@ -1,0 +1,143 @@
+:host {
+  display: block;
+  padding: 28px 18px 40px;
+  color: #0f172a;
+  font-family: "Space Grotesk", "Trebuchet MS", "Gill Sans", "Calibri", sans-serif;
+}
+
+.sample-shell {
+  background: linear-gradient(135deg, #fff1df 0%, #eef9ff 56%, #f1ffe6 100%);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
+}
+
+.sample-header {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #0f4c5c;
+}
+
+.sample-header h2 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.subtext {
+  margin: 0;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.sample-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.panel {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.1);
+  display: grid;
+  gap: 14px;
+}
+
+.form-panel h3,
+.data-panel h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.panel-form {
+  display: grid;
+  gap: 12px;
+}
+
+.panel-form .form-control {
+  border-radius: 12px;
+  border-color: #d4dde5;
+}
+
+.panel-form .form-control:focus {
+  border-color: #f26a4a;
+  box-shadow: 0 0 0 3px rgba(242, 106, 74, 0.2);
+}
+
+.panel-form .btn {
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.signal-card {
+  background: #0f4c5c;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+  box-shadow: 0 14px 24px rgba(15, 76, 92, 0.2);
+}
+
+.signal-card .label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.signal-input {
+  width: 100%;
+  border-radius: 12px;
+  border: none;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.signal-input:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.signal-meta {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.table-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.table {
+  margin: 0;
+}
+
+.table thead th {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.78rem;
+}
+
+@media (max-width: 720px) {
+  :host {
+    padding: 20px 12px 32px;
+  }
+
+  .sample-shell {
+    padding: 20px;
+  }
+}

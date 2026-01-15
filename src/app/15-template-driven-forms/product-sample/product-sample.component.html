@@ -1,7 +1,16 @@
-<div class="form-container m-5">
-  <div class="row g-3">
-    <div class="col-12 col-md-5">
-      <form class="p-3 border rounded bg-light" (ngSubmit)="submitForm()">
+<section class="sample-shell">
+  <header class="sample-header">
+    <p class="eyebrow">Template driven sample</p>
+    <h2>Product collection</h2>
+    <p class="subtext">
+      Create a product, then watch the custom directives update the table.
+    </p>
+  </header>
+
+  <div class="sample-grid">
+    <section class="panel form-panel">
+      <h3>Create a product</h3>
+      <form class="panel-form" (ngSubmit)="submitForm()">
         <div class="mb-3">
           <label class="form-label">Name</label>
           <input
@@ -28,50 +37,53 @@
         </div>
         <button class="btn btn-primary mt-2" type="submit">Create</button>
       </form>
-    </div>
+    </section>
 
-    <div class="col-12 col-md-7">
-      <div class="card mb-3 border-0 bg-primary text-white">
-        <div class="card-body">
-          <label class="form-label">Name:</label>
-          <input
-            class="form-control bg-primary text-white border-0"
-            [(massModel)]="newProduct.name"
-            #massModel="massModel"
-          />
-          <div class="small text-white-50 mt-2">
-            Direction: {{ massModel.direction }}
-          </div>
+    <section class="panel data-panel">
+      <div class="signal-card">
+        <div>
+          <span class="label">Name signal</span>
+          <h3>Two way directive</h3>
+        </div>
+        <input
+          class="signal-input"
+          [(massModel)]="newProduct.name"
+          #massModel="massModel"
+        />
+        <div class="signal-meta">
+          Direction: {{ massModel.direction }}
         </div>
       </div>
 
-      <table class="table table-striped table-hover align-middle">
-        <thead class="table-light">
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="let item of getProducts(); let i = index"
-            [mass-attr]="
-              getProducts().length < 6 ? 'table-success' : 'table-warning'
-            "
-            [mass-product]="item"
-            (mass-category)="newProduct.category = $event"
-          >
-            <td>{{ i + 1 }}</td>
-            <td>{{ item.name }}</td>
-            <td [mass-attr]="item.category == 'Soccer' ? 'table-info' : null">
-              {{ item.category }}
-            </td>
-            <td [mass-attr]="'table-info'">{{ item.price }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <div class="table-card">
+        <table class="table table-striped table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let item of getProducts(); let i = index"
+              [mass-attr]="
+                getProducts().length < 6 ? 'table-success' : 'table-warning'
+              "
+              [mass-product]="item"
+              (mass-category)="newProduct.category = $event"
+            >
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.name }}</td>
+              <td [mass-attr]="item.category == 'Soccer' ? 'table-info' : null">
+                {{ item.category }}
+              </td>
+              <td [mass-attr]="'table-info'">{{ item.price }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </div>
-</div>
+</section>
