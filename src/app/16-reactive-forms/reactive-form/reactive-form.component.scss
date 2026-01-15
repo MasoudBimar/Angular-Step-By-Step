@@ -1,0 +1,132 @@
+:host {
+  display: block;
+  padding: 28px 18px 40px;
+  color: #0f172a;
+  font-family: "Space Grotesk", "Trebuchet MS", "Gill Sans", "Calibri", sans-serif;
+}
+
+.reactive-shell {
+  background: linear-gradient(135deg, #fff1df 0%, #eef9ff 56%, #f1ffe6 100%);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
+}
+
+.reactive-header {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #0f4c5c;
+}
+
+.reactive-header h2 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.subtext {
+  margin: 0;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.reactive-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.reactive-form {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.1);
+  display: grid;
+  gap: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.field .form-control {
+  border-radius: 12px;
+  border-color: #d4dde5;
+}
+
+.field .form-control:focus {
+  border-color: #f26a4a;
+  box-shadow: 0 0 0 3px rgba(242, 106, 74, 0.2);
+}
+
+.field-error {
+  font-size: 0.82rem;
+  color: #b91c1c;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-actions .btn {
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.status-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.1);
+  display: grid;
+  gap: 12px;
+}
+
+.status-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.json-output {
+  display: block;
+  white-space: pre-wrap;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.85rem;
+  color: #0f172a;
+}
+
+@media (max-width: 720px) {
+  :host {
+    padding: 20px 12px 32px;
+  }
+
+  .reactive-shell {
+    padding: 20px;
+  }
+}

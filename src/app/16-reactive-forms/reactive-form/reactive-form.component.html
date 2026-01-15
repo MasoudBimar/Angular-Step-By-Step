@@ -1,51 +1,88 @@
-<!-- <div class="form-group m-2">
-  <input type="text" class="form-control" name="name" [formControl]="name">
-  <input type="text" class="form-control" name="category" [formControl]="category">
-  <input type="text" class="form-control" name="price" [formControl]="price">
-  <button class="btn btn-primary" (click)="onSubmit()"> save</button>
-</div>
+<section class="reactive-shell">
+  <header class="reactive-header">
+    <p class="eyebrow">Reactive forms</p>
+    <h2>Stock entry</h2>
+    <p class="subtext">Capture stock details with a single form group.</p>
+  </header>
 
-<p> Form Control Value: {{name.value |json }}</p>
-<p> Form Control Value: {{name.status |json }}</p>
+  <div class="reactive-grid">
+    <form class="reactive-form" [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+      <label class="field" for="stockName">
+        <span>Name</span>
+        <input
+          id="stockName"
+          type="text"
+          class="form-control"
+          name="name"
+          formControlName="name"
+        />
+        <span
+          class="field-error"
+          *ngIf="
+            stockForm.get('name')?.invalid &&
+            (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
+          "
+        >
+          Name is required.
+        </span>
+      </label>
 
-<p> Form Control Value: {{category.value |json }}</p>
-<p> Form Control Value: {{category.status |json }}</p>
+      <label class="field" for="stockCode">
+        <span>Code</span>
+        <input
+          id="stockCode"
+          type="text"
+          class="form-control"
+          name="category"
+          formControlName="code"
+        />
+        <span
+          class="field-error"
+          *ngIf="
+            stockForm.get('code')?.invalid &&
+            (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
+          "
+        >
+          Code must be at least 5 characters.
+        </span>
+      </label>
 
-<p> Form Control Value: {{price.value |json }}</p>
-<p> Form Control Value: {{price.status |json }}</p> -->
+      <label class="field" for="stockPrice">
+        <span>Price</span>
+        <input
+          id="stockPrice"
+          type="number"
+          class="form-control"
+          name="price"
+          formControlName="price"
+        />
+        <span
+          class="field-error"
+          *ngIf="
+            stockForm.get('price')?.invalid &&
+            (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
+          "
+        >
+          Price must be 0 or higher.
+        </span>
+      </label>
 
-<div class="m-3">
-  <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <label class="form-label" for="stockName">Name</label>
-      <input
-        id="stockName"
-        type="text"
-        class="form-control"
-        name="name"
-        formControlName="name"
-      />
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="stockCode">Code</label>
-      <input
-        id="stockCode"
-        type="text"
-        class="form-control"
-        name="category"
-        formControlName="code"
-      />
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="stockPrice">Price</label>
-      <input
-        id="stockPrice"
-        type="number"
-        class="form-control"
-        name="price"
-        formControlName="price"
-      />
-    </div>
-    <button class="btn btn-primary" type="submit">Save</button>
-  </form>
-</div>
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Save</button>
+      </div>
+    </form>
+
+    <aside class="status-card">
+      <h3>Live form state</h3>
+      <div class="status-row">
+        <span>Status</span>
+        <strong>{{ stockForm.status }}</strong>
+      </div>
+      <div class="status-row">
+        <span>Valid</span>
+        <strong>{{ stockForm.valid ? "Yes" : "No" }}</strong>
+      </div>
+      <code class="json-output">{{ stockForm.value | json }}</code>
+    </aside>
+  </div>
+</section>
