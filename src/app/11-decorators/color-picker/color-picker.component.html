@@ -1,9 +1,36 @@
-<input type="color" id="colorPicker" #colorInput />
-<div class="color-box" [style.backgroundColor]="selectedColor">
-  <h1>Box Heading</h1>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere repudiandae
-    dolor enim? Minus enim at mollitia delectus officiis dolor, neque
-    cupiditate, sapiente sed ullam velit? A eos quo quis blanditiis!
-  </p>
-</div>
+<section class="picker-shell">
+  <header class="picker-header">
+    <p class="eyebrow">Live palette</p>
+    <h2>Color Picker</h2>
+    <p class="subtext">Pick a color to theme the preview card instantly.</p>
+  </header>
+
+  <div class="picker-grid">
+    <section class="control-card">
+      <label class="control-label" for="colorPicker">Choose a color</label>
+      <div class="control-row">
+        <input type="color" id="colorPicker" #colorInput />
+        <span class="hex-chip">{{ selectedColor }}</span>
+      </div>
+      <div class="swatch-stack">
+        <div class="swatch" [style.backgroundColor]="selectedColor"></div>
+        <div class="swatch muted"></div>
+        <div class="swatch subtle"></div>
+      </div>
+      <p class="control-note">
+        This value is captured using Angular decorators: ViewChild, HostBinding,
+        and HostListener.
+      </p>
+    </section>
+
+    <section class="preview-card" [style.borderColor]="selectedColor">
+      <div class="preview-swatch" [style.backgroundColor]="selectedColor"></div>
+      <h3>Box Heading</h3>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere
+        repudiandae dolor enim? Minus enim at mollitia delectus officiis dolor,
+        neque cupiditate, sapiente sed ullam velit? A eos quo quis blanditiis!
+      </p>
+    </section>
+  </div>
+</section>
