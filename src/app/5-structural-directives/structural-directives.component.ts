@@ -16,7 +16,7 @@ export class Person {
   styleUrls: ['./structural-directives.component.scss']
 })
 export class StructuralDirectivesComponent {
-  @Input('persons') personList: Person[] = [{ fn: 'Ali', ln: 'Hasani', dsc: 'Engeenire Man', img: 'https://angular.io/assets/images/logos/angular/shield-large.svg' },
+  @Input('persons') personList: Person[] = [{ fn: 'Ali', ln: 'Hasani', dsc: 'Engineer Man', img: 'https://angular.io/assets/images/logos/angular/shield-large.svg' },
   { fn: 'Mohsen', ln: 'karami', dsc: 'Arch Man', img: 'https://angular.io/assets/images/logos/angular/shield-large.svg' }];
 
   tellWhoIAm(event: any) {
