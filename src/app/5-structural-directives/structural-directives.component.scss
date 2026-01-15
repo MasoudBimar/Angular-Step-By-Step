@@ -1,0 +1,116 @@
+:host {
+  display: block;
+  padding: 24px 18px;
+  color: #111827;
+  font-family: "Space Grotesk", "Trebuchet MS", "Gill Sans", "Calibri", sans-serif;
+}
+
+.people-shell {
+  background: linear-gradient(135deg, #fff7ed 0%, #eef9ff 55%, #f1fbe6 100%);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: inset 0 0 0 1px rgba(241, 221, 196, 0.8);
+}
+
+.people-header {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #0f4c5c;
+}
+
+.people-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #0f172a;
+}
+
+.subtext {
+  margin: 0;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+}
+
+.person-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px;
+  display: grid;
+  gap: 14px;
+  border: 1px solid #f2e4d5;
+  box-shadow: 0 14px 26px rgba(15, 76, 92, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.person-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 30px rgba(15, 76, 92, 0.16);
+}
+
+.avatar {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fef3c7, #e0f2fe);
+  display: grid;
+  place-items: center;
+}
+
+.avatar img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.person-body h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.person-body p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.person-action {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 600;
+  background: #0f4c5c;
+  color: #ffffff;
+  cursor: pointer;
+  justify-self: start;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.person-action:hover {
+  background: #123c47;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+  :host {
+    padding: 18px 12px;
+  }
+
+  .people-shell {
+    padding: 22px;
+  }
+}

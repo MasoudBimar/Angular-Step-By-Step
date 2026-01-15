@@ -1,19 +1,26 @@
-<div class="row">
-  <div *ngFor="let item of personList">
-    <div class="col">
-      <div class="card" style="width: 18rem; margin: 10px">
-        <img class="card-img-top" [src]="item.img" alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="card-title">{{ item.fn + " " + item.ln }}</h5>
-          <p class="card-text">{{ item.dsc }}</p>
-          <input
-            type="button"
-            (click)="tellWhoIAm(item)"
-            class="btn btn-primary"
-            value="tell"
-          />
-        </div>
+<section class="people-shell">
+  <header class="people-header">
+    <p class="eyebrow">Team cards</p>
+    <h2>People directory</h2>
+    <p class="subtext">Browse profiles and send a quick hello.</p>
+  </header>
+
+  <div class="people-grid">
+    <article class="person-card" *ngFor="let item of personList">
+      <div class="avatar">
+        <img
+          [src]="item.img"
+          [alt]="item.fn + ' ' + item.ln"
+          loading="lazy"
+        />
       </div>
-    </div>
+      <div class="person-body">
+        <h3>{{ item.fn + " " + item.ln }}</h3>
+        <p>{{ item.dsc }}</p>
+      </div>
+      <button type="button" class="person-action" (click)="tellWhoIAm(item)">
+        Tell
+      </button>
+    </article>
   </div>
-</div>
+</section>

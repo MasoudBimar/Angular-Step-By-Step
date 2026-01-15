@@ -19,12 +19,14 @@ import { AttributeDirectivesComponent } from './6-attribute-directives/attribute
 import { ComponentDirectivesComponent } from './7-component-directives/component-directives.component';
 import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
 import { DeferLoadingComponent } from './18-defer-loading/defer-loading.component';
+import { ComponentsAndTemplatesComponent } from './4-components-and-templates/components-and-templates.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
   { path: 'counter', component: CounterExampleComponent },
-  { path: 'to-do', component: ToDoComponent },
   { path: 'data-binding', component: AngularFundamentalsComponent },
+  { path: 'to-do', component: ToDoComponent },
+  { path: 'component-template', component: ComponentsAndTemplatesComponent },
   { path: 'structural-directive', component: StructuralDirectivesComponent },
   { path: 'attribute-directive', component: AttributeDirectivesComponent },
   { path: 'component-directive', component: ComponentDirectivesComponent },

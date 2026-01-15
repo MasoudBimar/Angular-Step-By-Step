@@ -32,8 +32,8 @@ export class SidebarComponent {
       id: 'ComponentAndTemplate', label: 'Component and Template',
       children: [
         { id: 'todo', label: 'Todo App', route: '/to-do' },
-        { id: 'data-event', label: 'Display Data - Handling Event', route: 'data-event' },
-        { id: 'components', label: 'Components', route: '/components' },
+        // { id: 'data-event', label: 'Display Data - Handling Event', route: 'data-event' },
+        { id: 'components', label: 'Components', route: '/component-template' },
       ]
     },
     {
