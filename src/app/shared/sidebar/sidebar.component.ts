@@ -71,7 +71,7 @@ export class SidebarComponent {
       children: [
         { id: 'template-driven', label: 'Template Driven Form', route: '/template-driven/template-driven' },
         { id: 'full-template-driven', label: 'Full Template Driven Form', route: '/template-driven/full-template-driven' },
-        { id: 'product-sample', label: 'Product Sample', route: '/product-sample' }
+        { id: 'product-sample', label: 'Product Sample', route: '/template-driven/product-sample' }
       ]
     },
     {
