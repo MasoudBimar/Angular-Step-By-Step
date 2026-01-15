@@ -51,6 +51,32 @@ export class StructuralDemoComponent {
 > [!TIP]
 > ngIf is usefull for conditional renderting of elements of DOM.
 
+### Using else with `*ngIf`
+
+Use the `else` syntax when you want a clear fallback template. Angular renders the `ngIf` block when the condition is true; otherwise it renders the `ng-template` referenced after `else`.
+
+```html
+<button (click)="toggle()">Toggle</button>
+
+<div *ngIf="isVisible; else hiddenBlock">
+  <p>Now you see me</p>
+</div>
+
+<ng-template #hiddenBlock>
+  <p>Now you don't</p>
+</ng-template>
+```
+
+```ts
+export class StructuralDemoComponent {
+  isVisible = true;
+
+  toggle(): void {
+    this.isVisible = !this.isVisible;
+  }
+}
+```
+
 ### comparing ngIf with display: none
 
 `*ngIf` adds or removes the element from the DOM. When the condition is false, the component and its template are destroyed, subscriptions are cleaned up, and state is lost. When it becomes true again, Angular recreates everything and lifecycle hooks run again.
