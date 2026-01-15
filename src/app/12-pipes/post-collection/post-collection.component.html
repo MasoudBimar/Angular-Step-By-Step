@@ -1,16 +1,42 @@
-<section class="form-container m5 posts">
-  <article
-    class="post-card"
-    *ngFor="let post of posts | slice : startIndex : endIndex; index as i"
-  >
-    <h3>{{ post.title }}</h3>
-    <img [src]="post.imageUrl" [alt]="post.title" loading="lazy" />
-  </article>
+<section class="post-shell">
+  <header class="post-header">
+    <p class="eyebrow">Slice pipe gallery</p>
+    <h2>Featured posts</h2>
+    <p class="subtext">
+      Showing {{ startIndex + 1 }} - {{ endIndex }} of {{ posts.length }} posts.
+    </p>
+  </header>
+
+  <div class="posts-grid">
+    <article
+      class="post-card"
+      *ngFor="let post of posts | slice : startIndex : endIndex; index as i"
+    >
+      <div class="post-media">
+        <img [src]="post.imageUrl" [alt]="post.title" loading="lazy" />
+      </div>
+      <div class="post-body">
+        <span class="post-index">Post {{ i + 1 + startIndex }}</span>
+        <h3>{{ post.title | slice : 0 : 48 }}</h3>
+      </div>
+    </article>
+  </div>
+
   <section class="btn-container">
-    <button (click)="goPreviousPage()" [disabled]="startIndex === 0">
+    <button
+      type="button"
+      class="nav-btn"
+      (click)="goPreviousPage()"
+      [disabled]="startIndex === 0"
+    >
       Previous
     </button>
-    <button (click)="goNextPage()" [disabled]="endIndex >= posts.length">
+    <button
+      type="button"
+      class="nav-btn primary"
+      (click)="goNextPage()"
+      [disabled]="endIndex >= posts.length"
+    >
       Next
     </button>
   </section>
