@@ -1,88 +1,123 @@
-<div class="form-container m-5">
-  <h2>Product Form Definition</h2>
+<section class="product-shell">
+  <header class="product-header">
+    <p class="eyebrow">Template driven forms</p>
+    <h2>Product form definition</h2>
+    <p class="subtext">
+      Bind inputs with ngModel and validate using template driven rules.
+    </p>
+  </header>
+
   <form
     novalidate
-    class="m-3"
+    class="product-form"
     (ngSubmit)="onSubmit(productForm)"
     #productForm="ngForm"
   >
-    <div class="mb-3">
-      <label for="name" class="form-label">Product Name</label>
-      <input
-        id="name"
-        type="text"
-        class="form-control"
-        [class.is-invalid]="
-          name.invalid && (name.dirty || name.touched || productForm.submitted)
-        "
-        required
-        minlength="5"
-        name="name"
-        [(ngModel)]="product.name"
-        #name="ngModel"
-        placeholder="Product Name"
-      />
-      <div
-        *ngIf="
-          name.errors && (name.dirty || name.touched || productForm.submitted)
-        "
-      >
-        <div *ngIf="name.errors['required']" class="invalid-feedback d-block">
-          name is required
+    <div class="form-grid">
+      <section class="form-panel">
+        <h3>Product details</h3>
+        <div class="mb-3">
+          <label for="name" class="form-label">Product Name</label>
+          <input
+            id="name"
+            type="text"
+            class="form-control"
+            [class.is-invalid]="
+              name.invalid &&
+              (name.dirty || name.touched || productForm.submitted)
+            "
+            required
+            minlength="5"
+            name="name"
+            [(ngModel)]="product.name"
+            #name="ngModel"
+            placeholder="Product Name"
+          />
+          <div
+            *ngIf="
+              name.errors &&
+              (name.dirty || name.touched || productForm.submitted)
+            "
+          >
+            <div *ngIf="name.errors['required']" class="invalid-feedback d-block">
+              name is required
+            </div>
+            <div *ngIf="name.errors['minlength']" class="invalid-feedback d-block">
+              Name length must be greater than 5 but actual length is
+              {{ name.errors["minlength"].actualLength }}
+            </div>
+          </div>
         </div>
-        <div *ngIf="name.errors['minlength']" class="invalid-feedback d-block">
-          Name length must be greater than 5 but actual length is
-          {{ name.errors["minlength"].actualLength }}
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select
+            class="form-select"
+            id="category"
+            required
+            [(ngModel)]="product.category"
+            name="category"
+          >
+            <option *ngFor="let category of categories" [value]="category.id">
+              {{ category.name }}
+            </option>
+          </select>
         </div>
-      </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Price</label>
+          <input
+            id="price"
+            type="text"
+            class="form-control"
+            name="price"
+            [(ngModel)]="product.price"
+          />
+        </div>
+        <ul
+          class="error-list"
+          *ngIf="productForm.dirty && productForm.invalid && productForm.submitted"
+        >
+          <li *ngFor="let error of getValidationMessages(name)">
+            {{ error }}
+          </li>
+        </ul>
+      </section>
+
+      <aside class="form-aside">
+        <h3>Live preview</h3>
+        <div class="summary-row">
+          <span>Name</span>
+          <strong>{{ product.name || "Not set" }}</strong>
+        </div>
+        <div class="summary-row">
+          <span>Category</span>
+          <strong>{{ product.category || "Not set" }}</strong>
+        </div>
+        <div class="summary-row">
+          <span>Price</span>
+          <strong>{{ product.price || "0" }}</strong>
+        </div>
+        <div class="status-chip" [class.invalid]="productForm.invalid">
+          {{ productForm.valid ? "Form ready" : "Form incomplete" }}
+        </div>
+      </aside>
     </div>
-    <div class="mb-3">
-      <label for="category" class="form-label">Category</label>
-      <select
-        class="form-select"
-        id="category"
-        required
-        [(ngModel)]="product.category"
-        name="category"
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary me-2">Submit</button>
+      <button
+        type="button"
+        class="btn btn-outline-secondary me-2"
+        (click)="reset(productForm)"
       >
-        <option *ngFor="let category of categories" [value]="category.id">
-          {{ category.name }}
-        </option>
-      </select>
+        Reset
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="preset(productForm)"
+      >
+        Default Values
+      </button>
     </div>
-    <div class="mb-3">
-      <label for="price" class="form-label">Price</label>
-      <input
-        id="price"
-        type="text"
-        class="form-control"
-        name="price"
-        [(ngModel)]="product.price"
-      />
-    </div>
-    <ul
-      class="text-danger list-unstyled mt-2"
-      *ngIf="productForm.dirty && productForm.invalid && productForm.submitted"
-    >
-      <li *ngFor="let error of getValidationMessages(name)">
-        {{ error }}
-      </li>
-    </ul>
-    <button type="submit" class="btn btn-primary me-2">Submit</button>
-    <button
-      type="button"
-      class="btn btn-outline-secondary me-2"
-      (click)="reset(productForm)"
-    >
-      Reset
-    </button>
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="preset(productForm)"
-    >
-      Default Values
-    </button>
   </form>
-  <hr />
-</div>
+</section>
