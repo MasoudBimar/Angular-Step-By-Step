@@ -1,8 +1,30 @@
-<div class="m-5">
-  <h1>
-    {{title}}
-  </h1>
-  <app-stock-item [stock]="stock" (toggleFavorite)="onToggleFavorite($event)"></app-stock-item>
+<section class="stock-shell">
+  <header class="stock-header">
+    <p class="eyebrow">Template driven forms</p>
+    <h1>{{ title }}</h1>
+    <p class="subtext">
+      Manage a live stock card and create new entries using template driven
+      bindings.
+    </p>
+  </header>
 
-  <app-create-stock></app-create-stock>
-</div>
+  <div class="stock-grid">
+    <section class="stock-panel">
+      <div class="panel-header">
+        <h2>Live quote</h2>
+        <span class="panel-pill">Real time</span>
+      </div>
+      <app-stock-item
+        [stock]="stock"
+        (toggleFavorite)="onToggleFavorite($event)"
+      ></app-stock-item>
+      <p class="panel-note">
+        Click the button to toggle favorites and see the binding update.
+      </p>
+    </section>
+
+    <section class="stock-panel form-panel">
+      <app-create-stock></app-create-stock>
+    </section>
+  </div>
+</section>
