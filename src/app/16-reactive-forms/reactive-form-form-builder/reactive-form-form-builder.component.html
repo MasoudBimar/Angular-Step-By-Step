@@ -1,6 +1,29 @@
-<h1>
-  {{title}}
-</h1>
-<app-reactive-stock-item [stock]="stock" (toggleFavorite)="onToggleFavorite($event)"></app-reactive-stock-item>
+<section class="builder-shell">
+  <header class="builder-header">
+    <p class="eyebrow">Reactive form builder</p>
+    <h1>{{ title }}</h1>
+    <p class="subtext">
+      Build the stock form with FormBuilder and reactive bindings.
+    </p>
+  </header>
 
-<app-reactive-create-stock></app-reactive-create-stock>
+  <div class="builder-grid">
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Live quote</h2>
+        <span class="panel-pill">FormBuilder</span>
+      </div>
+      <app-reactive-stock-item
+        [stock]="stock"
+        (toggleFavorite)="onToggleFavorite($event)"
+      ></app-reactive-stock-item>
+      <p class="panel-note">
+        Use the favorite toggle to test parent-child communication.
+      </p>
+    </section>
+
+    <section class="panel form-panel">
+      <app-reactive-create-stock></app-reactive-create-stock>
+    </section>
+  </div>
+</section>

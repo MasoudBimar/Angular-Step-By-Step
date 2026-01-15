@@ -1,100 +1,107 @@
-<h2>Create Stock Form (Reactive Form)</h2>
+<section class="form-shell">
+  <header class="form-header">
+    <h2>Create Stock Form</h2>
+    <p>Powered by FormBuilder with live validation feedback.</p>
+  </header>
 
-<div class="mb-3">
-  <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <label for="stockName" class="form-label">Stock Name</label>
-    <input
-      id="stockName"
-      type="text"
-      class="form-control"
-      [class.is-invalid]="
-        stockForm.get('name')?.invalid &&
-        (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
-      "
-      placeholder="Stock Name"
-      name="stockName"
-      formControlName="name"
-    />
-    <div
-      *ngIf="
-        stockForm.get('name')?.invalid &&
-        (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
-      "
-      class="invalid-feedback d-block"
-    >
-      Name is required
-    </div>
-    </div>
+  <form class="stock-form" [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+    <label class="field" for="stockName">
+      <span>Stock Name</span>
+      <input
+        id="stockName"
+        type="text"
+        class="form-control"
+        [class.is-invalid]="
+          stockForm.get('name')?.invalid &&
+          (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
+        "
+        placeholder="Stock Name"
+        name="stockName"
+        formControlName="name"
+      />
+      <span
+        *ngIf="
+          stockForm.get('name')?.invalid &&
+          (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
+        "
+        class="invalid-feedback d-block"
+      >
+        Name is required
+      </span>
+    </label>
 
-    <div class="mb-3">
-      <label for="stockCode" class="form-label">Stock Code</label>
-    <input
-      id="stockCode"
-      type="text"
-      class="form-control"
-      [class.is-invalid]="
-        stockForm.get('code')?.invalid &&
-        (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
-      "
-      placeholder="Stock Code"
-      formControlName="code"
-    />
-    <div
-      *ngIf="
-        stockForm.get('code')?.errors &&
-        stockForm.get('code')?.invalid &&
-        (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
-      "
-      class="invalid-feedback d-block"
-    >
-      <div *ngIf="stockForm.get('code')?.errors?.['required']">
-        Stock Code is required
-      </div>
-      <div *ngIf="stockForm.get('code')?.errors?.['minlength']">
-        Stock Code must be atleast 2 characters
-      </div>
-    </div>
+    <label class="field" for="stockCode">
+      <span>Stock Code</span>
+      <input
+        id="stockCode"
+        type="text"
+        class="form-control"
+        [class.is-invalid]="
+          stockForm.get('code')?.invalid &&
+          (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
+        "
+        placeholder="Stock Code"
+        formControlName="code"
+      />
+      <span
+        *ngIf="
+          stockForm.get('code')?.errors &&
+          stockForm.get('code')?.invalid &&
+          (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
+        "
+        class="invalid-feedback d-block"
+      >
+        <span *ngIf="stockForm.get('code')?.errors?.['required']">
+          Stock Code is required
+        </span>
+        <span *ngIf="stockForm.get('code')?.errors?.['minlength']">
+          Stock Code must be at least 2 characters
+        </span>
+      </span>
+    </label>
 
-    </div>
+    <label class="field" for="stockPrice">
+      <span>Stock Price</span>
+      <input
+        id="stockPrice"
+        type="number"
+        class="form-control"
+        [class.is-invalid]="
+          stockForm.get('price')?.invalid &&
+          (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
+        "
+        placeholder="Stock Price"
+        formControlName="price"
+      />
+      <span
+        *ngIf="
+          stockForm.get('price')?.invalid &&
+          (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
+        "
+        class="invalid-feedback d-block"
+      >
+        <span *ngIf="stockForm.get('price')?.errors?.['required']">
+          Stock Price is required
+        </span>
+        <span *ngIf="stockForm.get('price')?.errors?.['min']">
+          Stock price must be positive
+        </span>
+      </span>
+    </label>
 
-    <div class="mb-3">
-      <label for="stockPrice" class="form-label">Stock Price</label>
-    <input
-      id="stockPrice"
-      type="number"
-      class="form-control"
-      [class.is-invalid]="
-        stockForm.get('price')?.invalid &&
-        (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
-      "
-      placeholder="Stock Price"
-      formControlName="price"
-    />
-    <div
-      *ngIf="
-        stockForm.get('price')?.invalid &&
-        (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
-      "
-      class="invalid-feedback d-block"
-    >
-      <div *ngIf="stockForm.get('price')?.errors?.['required']">
-        Stock Price is required
-      </div>
-      <div *ngIf="stockForm.get('price')?.errors?.['min']">
-        Stock price must be positive
-      </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Submit</button>
     </div>
-    </div>
-
-    <button
-      class="btn btn-primary"
-      type="submit"
-    >
-      Submit
-    </button>
   </form>
-</div>
 
-<p>Form Control value: {{ stockForm.value | json }}</p>
-<p>Form Control status: {{ stockForm.status | json }}</p>
+  <div class="form-meta">
+    <div class="meta-card">
+      <h4>Form Control value</h4>
+      <code class="json-output">{{ stockForm.value | json }}</code>
+    </div>
+    <div class="meta-card">
+      <h4>Form Control status</h4>
+      <code class="json-output">{{ stockForm.status | json }}</code>
+    </div>
+  </div>
+</section>
