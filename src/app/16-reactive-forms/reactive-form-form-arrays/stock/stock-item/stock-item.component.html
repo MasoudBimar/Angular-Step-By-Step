@@ -1,17 +1,23 @@
-<div class="d-flex align-items-center justify-content-between gap-3 border rounded p-2">
-  <div class="fw-semibold">{{ stock.name + " (" + stock.code + ")" }}</div>
+<article class="stock-card">
+  <div class="stock-info">
+    <div class="stock-title">{{ stock.name }}</div>
+    <div class="stock-code">({{ stock.code }})</div>
+  </div>
   <div
-    class="fw-bold"
-    [class.text-success]="stock.isPositiveChange()"
-    [class.text-danger]="!stock.isPositiveChange()"
+    class="stock-price"
+    [class.positive]="stock.isPositiveChange()"
+    [class.negative]="!stock.isPositiveChange()"
   >
     $ {{ stock.price }}
   </div>
-  <button
-    (click)="onToggleFavorite($event)"
-    class="btn btn-success btn-sm"
-    *ngIf="!stock.favorite"
-  >
-    Add to Favorite
-  </button>
-</div>
+  <div class="stock-actions">
+    <button
+      (click)="onToggleFavorite($event)"
+      class="btn btn-success btn-sm"
+      *ngIf="!stock.favorite"
+    >
+      Add to Favorite
+    </button>
+    <span class="favorite-pill" *ngIf="stock.favorite">Favorite</span>
+  </div>
+</article>

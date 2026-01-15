@@ -1,6 +1,29 @@
-<h1>
-  {{title}}
-</h1>
-<app-form-array-stock-item [stock]="stock" (toggleFavorite)="onToggleFavorite($event)"></app-form-array-stock-item>
+<section class="arrays-shell">
+  <header class="arrays-header">
+    <p class="eyebrow">Reactive form arrays</p>
+    <h1>{{ title }}</h1>
+    <p class="subtext">
+      Build a stock form with a dynamic list of notable people.
+    </p>
+  </header>
 
-<app-form-array-create-stock></app-form-array-create-stock>
+  <div class="arrays-grid">
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Live quote</h2>
+        <span class="panel-pill">FormArray</span>
+      </div>
+      <app-form-array-stock-item
+        [stock]="stock"
+        (toggleFavorite)="onToggleFavorite($event)"
+      ></app-form-array-stock-item>
+      <p class="panel-note">
+        Toggle the favorite state to see the card update instantly.
+      </p>
+    </section>
+
+    <section class="panel form-panel">
+      <app-form-array-create-stock></app-form-array-create-stock>
+    </section>
+  </div>
+</section>

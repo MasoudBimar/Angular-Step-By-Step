@@ -1,160 +1,171 @@
-<h2>Create Stock Form (Reactive Form Arrays)</h2>
+<section class="form-shell">
+  <header class="form-header">
+    <h2>Create Stock Form</h2>
+    <p>Manage a reactive form with dynamic arrays.</p>
+  </header>
 
-<div class="mb-3">
-  <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <label for="stockName" class="form-label">Stock Name</label>
-      <input
-        id="stockName"
-        type="text"
-        placeholder="Stock Name"
-        name="stockName"
-        formControlName="name"
-        class="form-control"
-        [class.is-invalid]="
-          stockForm.get('name')?.invalid &&
-          (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
-        "
-      />
-      <div
-        *ngIf="
-          stockForm.get('name')?.invalid &&
-          (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
-        "
-        class="invalid-feedback d-block"
-      >
-        Name is required
-      </div>
+  <form class="stock-form" [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+    <div class="form-grid">
+      <label class="field" for="stockName">
+        <span>Stock Name</span>
+        <input
+          id="stockName"
+          type="text"
+          placeholder="Stock Name"
+          name="stockName"
+          formControlName="name"
+          class="form-control"
+          [class.is-invalid]="
+            stockForm.get('name')?.invalid &&
+            (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
+          "
+        />
+        <span
+          *ngIf="
+            stockForm.get('name')?.invalid &&
+            (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
+          "
+          class="invalid-feedback d-block"
+        >
+          Name is required
+        </span>
+      </label>
+      <label class="field" for="stockCode">
+        <span>Stock Code</span>
+        <input
+          id="stockCode"
+          type="text"
+          placeholder="Stock Code"
+          formControlName="code"
+          class="form-control"
+          [class.is-invalid]="
+            stockForm.get('code')?.invalid &&
+            (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
+          "
+        />
+        <span
+          *ngIf="
+            stockForm.get('code')?.invalid &&
+            (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
+          "
+          class="invalid-feedback d-block"
+        >
+          <span *ngIf="stockForm.get('code')?.errors?.['required']">
+            Stock Code is required
+          </span>
+          <span *ngIf="stockForm.get('code')?.errors?.['minlength']">
+            Stock Code must be at least 2 characters
+          </span>
+        </span>
+      </label>
+      <label class="field" for="stockPrice">
+        <span>Stock Price</span>
+        <input
+          id="stockPrice"
+          type="number"
+          placeholder="Stock Price"
+          formControlName="price"
+          class="form-control"
+          [class.is-invalid]="
+            stockForm.get('price')?.invalid &&
+            (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
+          "
+        />
+        <span
+          *ngIf="
+            stockForm.get('price')?.invalid &&
+            (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
+          "
+          class="invalid-feedback d-block"
+        >
+          <span *ngIf="stockForm.get('price')?.errors?.['required']">
+            Stock Price is required
+          </span>
+          <span *ngIf="stockForm.get('price')?.errors?.['min']">
+            Stock price must be positive
+          </span>
+        </span>
+      </label>
     </div>
-    <div class="mb-3">
-      <label for="stockCode" class="form-label">Stock Code</label>
-      <input
-        id="stockCode"
-        type="text"
-        placeholder="Stock Code"
-        formControlName="code"
-        class="form-control"
-        [class.is-invalid]="
-          stockForm.get('code')?.invalid &&
-          (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
-        "
-      />
-      <div
-        *ngIf="
-          stockForm.get('code')?.invalid &&
-          (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
-        "
-        class="invalid-feedback d-block"
-      >
-        <div *ngIf="stockForm.get('code')?.errors?.['required']">
-          Stock Code is required
-        </div>
-        <div *ngIf="stockForm.get('code')?.errors?.['minlength']">
-          Stock Code must be atleast 2 characters
-        </div>
+
+    <div class="people-section">
+      <div class="section-header">
+        <h3>Notable People</h3>
+        <button
+          type="button"
+          class="btn btn-outline-primary btn-sm"
+          (click)="addNotablePerson()"
+        >
+          Add Person
+        </button>
       </div>
-    </div>
-    <div class="mb-3">
-      <label for="stockPrice" class="form-label">Stock Price</label>
-      <input
-        id="stockPrice"
-        type="number"
-        placeholder="Stock Price"
-        formControlName="price"
-        class="form-control"
-        [class.is-invalid]="
-          stockForm.get('price')?.invalid &&
-          (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
-        "
-      />
-      <div
-        *ngIf="
-          stockForm.get('price')?.invalid &&
-          (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
-        "
-        class="invalid-feedback d-block"
-      >
-        <div *ngIf="stockForm.get('price')?.errors?.['required']">
-          Stock Price is required
-        </div>
-        <div *ngIf="stockForm.get('price')?.errors?.['min']">
-          Stock price must be positive
-        </div>
-      </div>
-    </div>
-    <div formArrayName="notablePeople">
-      <div
-        *ngFor="let person of notablePeople.controls; let i = index"
-        [formGroupName]="i"
-        class="border rounded p-3 mb-3 bg-light"
-      >
-        <div class="row g-2 align-items-end">
-          <div class="col-12 col-md-2">
-            <div class="fw-semibold">Person {{ i + 1 }}</div>
-          </div>
-          <div class="col-12 col-md-4">
-            <label class="form-label" [attr.for]="'person-name-' + i">
-              Person Name
-            </label>
-            <input
-              [attr.id]="'person-name-' + i"
-              type="text"
-              placeholder="Person Name"
-              formControlName="name"
-              class="form-control"
-            />
-          </div>
-          <div class="col-12 col-md-4">
-            <label class="form-label" [attr.for]="'person-title-' + i">
-              Person Title
-            </label>
-            <input
-              [attr.id]="'person-title-' + i"
-              type="text"
-              placeholder="Person Title"
-              formControlName="title"
-              class="form-control"
-            />
-          </div>
-          <div class="col-12 col-md-2 d-grid">
+      <div formArrayName="notablePeople" class="people-list">
+        <div
+          *ngFor="let person of notablePeople.controls; let i = index"
+          [formGroupName]="i"
+          class="person-card"
+        >
+          <div class="person-header">
+            <div class="person-title">Person {{ i + 1 }}</div>
             <button
               type="button"
               class="btn btn-outline-danger btn-sm"
               (click)="removeNotablePerson(i)"
             >
-              Remove Person
+              Remove
             </button>
+          </div>
+          <div class="person-grid">
+            <label class="field" [attr.for]="'person-name-' + i">
+              <span>Person Name</span>
+              <input
+                [attr.id]="'person-name-' + i"
+                type="text"
+                placeholder="Person Name"
+                formControlName="name"
+                class="form-control"
+              />
+            </label>
+            <label class="field" [attr.for]="'person-title-' + i">
+              <span>Person Title</span>
+              <input
+                [attr.id]="'person-title-' + i"
+                type="text"
+                placeholder="Person Title"
+                formControlName="title"
+                class="form-control"
+              />
+            </label>
           </div>
         </div>
       </div>
     </div>
-    <button
-      type="button"
-      class="btn btn-outline-primary me-2"
-      (click)="addNotablePerson()"
-    >
-      Add Notable Person
-    </button>
-    <button
-      type="submit"
-      class="btn btn-primary me-2"
-    >
-      Submit
-    </button>
-    <button
-      type="button"
-      (click)="resetForm()"
-      class="btn btn-outline-secondary"
-    >
-      Reset
-    </button>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button
+        type="button"
+        (click)="resetForm()"
+        class="btn btn-outline-secondary"
+      >
+        Reset
+      </button>
+    </div>
   </form>
 
-  <h4>Stock is</h4>
-  <code class="json-output">{{ stockForm.value | json }}</code>
-  <h4>Form Status is</h4>
-  <code class="json-output">{{ stockForm.status | json }}</code>
-  <h4>Stock Value</h4>
-  <code class="json-output">{{ stock | json }}</code>
+  <div class="form-meta">
+    <div class="meta-card">
+      <h4>Stock is</h4>
+      <code class="json-output">{{ stockForm.value | json }}</code>
+    </div>
+    <div class="meta-card">
+      <h4>Form Status</h4>
+      <code class="json-output">{{ stockForm.status | json }}</code>
+    </div>
+    <div class="meta-card">
+      <h4>Stock Value</h4>
+      <code class="json-output">{{ stock | json }}</code>
+    </div>
+  </div>
   <h3 class="text-danger" *ngIf="stockForm.invalid">Form is Invalid</h3>
-</div>
+</section>
