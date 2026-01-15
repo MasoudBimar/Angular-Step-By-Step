@@ -23,8 +23,9 @@ export class ToDoComponent {
   }
 
   addNewItem() {
-    if (this.currentItem.length > 0) {
-      this.list.addNewItem(new TodoItem(this.currentItem));
+    const trimmedItem = this.currentItem?.trim();
+    if (trimmedItem) {
+      this.list.addNewItem(new TodoItem(trimmedItem));
       this.currentItem = '';
     }
   }
