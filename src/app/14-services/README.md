@@ -114,9 +114,9 @@ Common ways to provide:
 
 ## Providers Level
 
-- Module level
-- Root Level: singleton
-- Component level: new instance per component
+- Module Level
+- Root Level/ Service Level: singleton
+- Component Level: new instance per new instance of component
 
 ## Levels of injection (hierarchy)
 
