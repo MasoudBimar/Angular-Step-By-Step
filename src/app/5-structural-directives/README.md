@@ -4,12 +4,17 @@
 
 - [Structural Directives](#structural-directives)
   - [Table of contents](#table-of-contents)
+  - [Migrating from older angular control flow syntax to the new one](#migrating-from-older-angular-control-flow-syntax-to-the-new-one)
   - [\*ngIf](#ngif)
+    - [Using else with `*ngIf`](#using-else-with-ngif)
+    - [New control flow syntax for `*ngIf`](#new-control-flow-syntax-for-ngif)
     - [comparing ngIf with display: none](#comparing-ngif-with-display-none)
     - [How to store the result of an ngIf condition in a template local variable](#how-to-store-the-result-of-an-ngif-condition-in-a-template-local-variable)
   - [\*ngFor](#ngfor)
+    - [New control flow syntax for `*ngFor`](#new-control-flow-syntax-for-ngfor)
     - [How to optimize the rendering process](#how-to-optimize-the-rendering-process)
   - [\*ngSwitch](#ngswitch)
+    - [New control flow syntax for `*ngSwitch`](#new-control-flow-syntax-for-ngswitch)
   - [Custom structural directive (idea)](#custom-structural-directive-idea)
   - [When use which `ngIf` vs `ngSwitch`](#when-use-which-ngif-vs-ngswitch)
   - [Key points](#key-points)
@@ -20,6 +25,14 @@ Sample command:
 
 ```bash
 ng generate component structural-demo
+```
+
+## Migrating from older angular control flow syntax to the new one
+
+Angular v17+ introduces new control flow syntax using `@if`, `@for`, and `@switch` to replace the older `*ngIf`, `*ngFor`, and `*ngSwitch` directives. This new syntax aims to provide a more intuitive and readable way to handle conditional rendering, iteration, and switch-case logic in Angular templates.
+
+```bash
+ng generate @angular/core:control-flow
 ```
 
 ## \*ngIf
@@ -77,6 +90,22 @@ export class StructuralDemoComponent {
 }
 ```
 
+### New control flow syntax for `*ngIf`
+
+Angular v17+ introduces built-in control flow blocks. Use `@if` and `@else` to replace `*ngIf` when using the new syntax.
+
+```html
+<button (click)="toggle()">Toggle</button>
+
+@if (isVisible) {
+<p>Now you see me</p>
+} @else {
+<p>Now you don't</p>
+}
+```
+
+> [!NOTE] > `@if` blocks are compiled by Angular and do not need `CommonModule`.
+
 ### comparing ngIf with display: none
 
 `*ngIf` adds or removes the element from the DOM. When the condition is false, the component and its template are destroyed, subscriptions are cleaned up, and state is lost. When it becomes true again, Angular recreates everything and lifecycle hooks run again.
@@ -132,6 +161,24 @@ export class StructuralDemoComponent {
 }
 ```
 
+### New control flow syntax for `*ngFor`
+
+Use `@for` to iterate over a list with built-in context variables like `$index`, `$first`, `$odd`, and `$even`.
+
+```html
+@for (item of items; track item; let i = $index; let isFirst = $first) {
+<p>
+  {{ i + 1 }}. {{ item }} @if (isFirst) {
+  <span>(first)</span>
+  }
+</p>
+} @empty {
+<p>No items found.</p>
+}
+```
+
+> [!TIP] > `track` in `@for` plays the same role as `trackBy` in `*ngFor`.
+
 ### How to optimize the rendering process
 
 trackBy function helps Angular to identify each item uniquly, so the affected items ar re-rendered in an optimized way.
@@ -154,7 +201,7 @@ export class StructuralDemoComponent {
     { id: 3, name: "Three" },
   ];
 
-  trackBy(item: any) {
+  trackByFn(item: any) {
     return item.id;
   }
 }
@@ -180,6 +227,20 @@ import { Component } from "@angular/core";
 export class StructuralDemoComponent {
   status: "loading" | "ready" | "unknown" = "ready";
 }
+```
+
+### New control flow syntax for `*ngSwitch`
+
+Use `@switch` with `@case` and `@default` for a cleaner multi-branch template.
+
+```html
+@switch (status) { @case ("loading") {
+<p>Loading...</p>
+} @case ("ready") {
+<p>Ready</p>
+} @default {
+<p>Unknown</p>
+} }
 ```
 
 > [!NOTE]
