@@ -119,22 +119,51 @@ Operators let you transform, filter, and combine streams.
 
 Creation operators produce Observables from values, collections, timers, or DOM events.
 
+> [!CAUTION]
+> the `empty` operator is deprecated and `EMPTY` is available, `EMPTY` Just emits 'complete', and nothing else.
+
 ```ts
-import { from, fromEvent, interval, of } from "rxjs";
+import { EMPTY, from, fromEvent, interval, of } from "rxjs";
 import { map, take } from "rxjs/operators";
 
+const empty$ = EMPTY;
 const status$ = of("draft", "review", "published");
 const ids$ = from([101, 102, 103]);
 const ticks$ = interval(1000).pipe(take(3));
-const clicks$ = fromEvent<MouseEvent>(document, "click").pipe(
-  map((event) => ({ x: event.clientX, y: event.clientY })),
-);
+const clicks$ = fromEvent<MouseEvent>(document, "click").pipe(map((event) => ({ x: event.clientX, y: event.clientY })));
 ```
 
 - `of` emits the provided values in order.
 - `from` turns an array, iterable, or Promise into a stream.
 - `interval` emits on a timer.
 - `fromEvent` wraps DOM events into a stream.
+- `EMPTY` completes immediately without emitting.
+
+### Transformation Operators
+
+Transformation operators change the shape or values within a stream.
+
+> [!NOTE]
+> RxJS Operators is Pipable funcions means that they can be used inside the pipe method of an Observable.
+
+```ts
+import { from } from "rxjs";
+import { filter, map, scan } from "rxjs/operators";
+
+const numbers$ = from([1, 2, 3, 4, 5]);
+
+const totals$ = numbers$.pipe(
+  filter((value) => value % 2 === 1),
+  map((value) => value * value),
+  scan((total, value) => total + value, 0),
+);
+
+totals$.subscribe((total) => console.log("running total", total));
+```
+
+- `map` transforms each value.
+- `filter` keeps only values that match a condition.
+- `scan` accumulates state and emits the running result.
 
 ### Combination Operators
 
@@ -148,9 +177,7 @@ const saveClicks$ = fromEvent(document, "click");
 const formState$ = of({ valid: true, value: { name: "Ada" } });
 
 const save$ = saveClicks$.pipe(withLatestFrom(formState$));
-const name$ = combineLatest([of("Ada"), of("Lovelace")]).pipe(
-  map(([first, last]) => `${first} ${last}`),
-);
+const name$ = combineLatest([of("Ada"), of("Lovelace")]).pipe(map(([first, last]) => `${first} ${last}`));
 const sequential$ = concat(of("init"), of("ready"));
 const parallel$ = merge(of("ui"), of("data"));
 ```
@@ -170,21 +197,13 @@ import { concatMap, exhaustMap, mergeMap, switchMap } from "rxjs/operators";
 
 const termControl = new FormControl("");
 
-const latestOnly$ = termControl.valueChanges.pipe(
-  switchMap((term) => this.http.get(`/api/search?q=${term}`)),
-);
+const latestOnly$ = termControl.valueChanges.pipe(switchMap((term) => this.http.get(`/api/search?q=${term}`)));
 
-const queued$ = termControl.valueChanges.pipe(
-  concatMap((term) => this.http.get(`/api/search?q=${term}`)),
-);
+const queued$ = termControl.valueChanges.pipe(concatMap((term) => this.http.get(`/api/search?q=${term}`)));
 
-const parallel$ = termControl.valueChanges.pipe(
-  mergeMap((term) => this.http.get(`/api/search?q=${term}`), 2),
-);
+const parallel$ = termControl.valueChanges.pipe(mergeMap((term) => this.http.get(`/api/search?q=${term}`), 2));
 
-const ignoreWhileBusy$ = termControl.valueChanges.pipe(
-  exhaustMap((term) => this.http.get(`/api/search?q=${term}`)),
-);
+const ignoreWhileBusy$ = termControl.valueChanges.pipe(exhaustMap((term) => this.http.get(`/api/search?q=${term}`)));
 ```
 
 - `switchMap` cancels the previous inner stream and keeps only the latest.
@@ -215,10 +234,24 @@ const termControl = new FormControl("");
 const results$ = termControl.valueChanges.pipe(switchMap((term) => this.http.get(`/api/search?q=${term}`)));
 ```
 
-- `switchMap` cancels the previous request and keeps only the latest.
-- `concatMap` queues requests in order.
-- `mergeMap` runs requests in parallel.
-- `exhaustMap` ignores new values until the current request finishes.
+- `switchMap` cancels the previous request and keeps only the latest. `latest wins, cancel previous`
+- `concatMap` queues requests in order. `queue (one at a time, in order)`
+- `mergeMap` runs requests in parallel. `do them all (concurrent)`
+- `exhaustMap` ignores new values until the current request finishes. `ignore while busy (drop new until complete)`
+
+> [!TIP]
+> The `mergeMap` is used for flattening the Nested Observables & that is why it is also known as `flatMap`. practically it maps each emitted value from base obs to a new obs and then it flattens both the observables into a single observable.
+
+### Common Transformational Operators Usecaces
+
+- **Search field**: switchMap (cancel stale)
+- **Save button**: concatMap (queue saves) or exhaustMap (ignore double clicks)
+- **Analytics logging**: mergeMap (parallel), set concurrency if needed
+- **Route param changes**: switchMap (only current route matters)
+- Latest only → switchMap
+- All, concurrent → mergeMap (optionally with concurrency)
+- All, sequential, ordered → concatMap
+- First only while running → exhaustMap
 
 ## Cold Observable
 
