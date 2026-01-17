@@ -21,7 +21,7 @@ import { map, take } from "rxjs/operators";
 
 const ticks$ = interval(1000).pipe(
   map((count) => `Tick ${count + 1}`),
-  take(3)
+  take(3),
 );
 
 const subscription = ticks$.subscribe((value) => {
@@ -108,12 +108,89 @@ Operators let you transform, filter, and combine streams.
 
 - Creation Operators: `of`, `from`, `interval`, `fromEvent`, `empty`
 - Transformation Operators: `map`, `filter`, `scan`
-- Combination Operators: `merge`, `concat`, `combineLatest`, `withLatestFrom`
+- Combination Operators: : `merge`, `concat`, `combineLatest`, `withLatestFrom`
 - Higher-Order Mapping Operators: `switchMap`, `mergeMap`, `concatMap`, `exhaustMap`
 - Utility Operators: `tap`, `delay`, `debounceTime`, `distinctUntilChanged`
 - Error Handling Operators: `catchError`, `retry`
 - Multicasting Operators: `share`, `shareReplay`
 - Conditional and Boolean Operators: `every`, `find`, `defaultIfEmpty`
+
+### Creation Operators
+
+Creation operators produce Observables from values, collections, timers, or DOM events.
+
+```ts
+import { from, fromEvent, interval, of } from "rxjs";
+import { map, take } from "rxjs/operators";
+
+const status$ = of("draft", "review", "published");
+const ids$ = from([101, 102, 103]);
+const ticks$ = interval(1000).pipe(take(3));
+const clicks$ = fromEvent<MouseEvent>(document, "click").pipe(
+  map((event) => ({ x: event.clientX, y: event.clientY })),
+);
+```
+
+- `of` emits the provided values in order.
+- `from` turns an array, iterable, or Promise into a stream.
+- `interval` emits on a timer.
+- `fromEvent` wraps DOM events into a stream.
+
+### Combination Operators
+
+Combination operators merge or synchronize multiple streams.
+
+```ts
+import { combineLatest, concat, fromEvent, merge, of } from "rxjs";
+import { map, withLatestFrom } from "rxjs/operators";
+
+const saveClicks$ = fromEvent(document, "click");
+const formState$ = of({ valid: true, value: { name: "Ada" } });
+
+const save$ = saveClicks$.pipe(withLatestFrom(formState$));
+const name$ = combineLatest([of("Ada"), of("Lovelace")]).pipe(
+  map(([first, last]) => `${first} ${last}`),
+);
+const sequential$ = concat(of("init"), of("ready"));
+const parallel$ = merge(of("ui"), of("data"));
+```
+
+- `combineLatest` emits when any input emits, using the latest value of all.
+- `merge` interleaves values as they arrive.
+- `concat` runs streams in order, waiting for each to complete.
+- `withLatestFrom` samples the latest value from another stream when the source emits.
+
+### Higher-order Operators
+
+Higher-order operators map values to inner Observables and control concurrency.
+
+```ts
+import { FormControl } from "@angular/forms";
+import { concatMap, exhaustMap, mergeMap, switchMap } from "rxjs/operators";
+
+const termControl = new FormControl("");
+
+const latestOnly$ = termControl.valueChanges.pipe(
+  switchMap((term) => this.http.get(`/api/search?q=${term}`)),
+);
+
+const queued$ = termControl.valueChanges.pipe(
+  concatMap((term) => this.http.get(`/api/search?q=${term}`)),
+);
+
+const parallel$ = termControl.valueChanges.pipe(
+  mergeMap((term) => this.http.get(`/api/search?q=${term}`), 2),
+);
+
+const ignoreWhileBusy$ = termControl.valueChanges.pipe(
+  exhaustMap((term) => this.http.get(`/api/search?q=${term}`)),
+);
+```
+
+- `switchMap` cancels the previous inner stream and keeps only the latest.
+- `concatMap` queues inner streams and runs them one at a time.
+- `mergeMap` runs inner streams in parallel (optional concurrency limit).
+- `exhaustMap` ignores new values until the current inner stream completes.
 
 ```ts
 import { fromEvent } from "rxjs";
@@ -122,7 +199,7 @@ import { debounceTime, filter, map } from "rxjs/operators";
 const search$ = fromEvent<KeyboardEvent>(document, "keyup").pipe(
   debounceTime(300),
   map((event) => (event.target as HTMLInputElement).value.trim()),
-  filter((term) => term.length >= 2)
+  filter((term) => term.length >= 2),
 );
 
 search$.subscribe((term) => console.log("Search term", term));
@@ -142,6 +219,28 @@ const results$ = termControl.valueChanges.pipe(switchMap((term) => this.http.get
 - `concatMap` queues requests in order.
 - `mergeMap` runs requests in parallel.
 - `exhaustMap` ignores new values until the current request finishes.
+
+## Cold Observable
+
+We call an Observable “cold” when the data is produced inside the Observable.
+
+- Observables are lazy. Observables are lazy in the sense that they only execute values when something subscribes to it.
+- For each subscriber the Observable starts a new execution, resulting in the fact that the data is not shared.
+- If your Observable produces a lot of different values it can happen that two Observables that subscribe at more or less the same receive two different values.
+- We call this behavior “unicasting”.
+
+## Hot Observable
+
+- An Observable is cold when data is produced inside the Observable and the Observable is hot when the data is produced outside the Observable.
+- As we just saw the hot Observable is able to share data between multiple subscribers.
+- We call this behavior “multicasting”.
+
+### Cold vs Hot Observable
+
+- In Cold Observable Value producer created inside the observable **while** In Hot Value producer created inside the observable
+- In Cold Observable We have One observer per execution **While** Shared producer allows for multiple observers
+- Cold Observable is Unicast **while** Hot observable is Multicast
+- Example include interval, ajax **while** Examples include Observables that wrap DOM events, WebSockets
 
 ## Subjects and Multicasting
 
@@ -180,7 +279,7 @@ this.http.get("/api/orders").pipe(
   catchError((error) => {
     this.logger.error("Load orders failed", error);
     return of([]);
-  })
+  }),
 );
 ```
 
