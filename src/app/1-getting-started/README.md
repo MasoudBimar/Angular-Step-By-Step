@@ -203,7 +203,13 @@ export class CardComponent {
 
 ## Angular CLI
 
-Common CLI commands:
+Common Generate CLI commands:
+
+Generate new Angular App:
+
+```bash
+ng new NewProject
+```
 
 ```bash
 ng generate component users
@@ -212,6 +218,14 @@ ng generate service data/user
 ng test
 ng build
 ```
+
+> [!TIP]
+> Use `--dry-run` flag just to see what files will be generated without actually creating them. `ng g c my-component --dry-run`
+
+What else you can do with Angular CLI:
+
+- skip tests with `--skip-tests`
+- use inline styles and templates with `--inline-style` and `--inline-template`
 
 ## Essential Extensions
 
