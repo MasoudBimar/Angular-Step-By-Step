@@ -199,24 +199,43 @@ Highlights:
 
 ## Angular 19
 
-Released: 2024-11-19.
+Released: November 19, 2024.
 
 Highlights:
 
-- Placeholder: add highlights when official release notes are available.
+- Signals as the default for state management
+- Signal-based router integration
+- Functional dependency injection with improved `inject()` capabilities
+- New `linkedSignal()` for synchronized state
+- Enhanced Resource API for data loading
+- Improved Angular DevTools with signal debugging
+- TypeScript 5.3+ support
 
 ## Angular 20
 
-Released: 2025-05-28.
+Released: May 28, 2025.
 
 Highlights:
 
-- Placeholder: add highlights when official release notes are available.
+- Signal stability and performance enhancements
+- New `linkedSignal()` and `resource()` APIs expanded
+- Improved tree-shaking and bundle optimization
+- Enhanced error messages and diagnostics
+- Material 3 design system improvements
+- Experimental zone-less change detection
+- TypeScript 5.4+ support
 
 ## Angular 21
 
-Released: 2025-11-19.
+Released: November 19, 2025.
 
 Highlights:
 
-- Placeholder: add highlights when official release notes are available.
+- Zone.js optional for better performance and smaller bundles
+- Signal-driven Angular Material components
+- Enhanced hydration for SSR applications
+- New directives for improved accessibility
+- Streamlined dependency injection patterns
+- Unified signal and observable composition
+- TypeScript 5.6+ support
+- Improved developer experience with better compiler diagnostics
