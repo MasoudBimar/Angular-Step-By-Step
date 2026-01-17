@@ -106,6 +106,15 @@ Showing fetched data as Observable using async pipe in template:
 
 Operators let you transform, filter, and combine streams.
 
+- Creation Operators: `of`, `from`, `interval`, `fromEvent`, `empty`
+- Transformation Operators: `map`, `filter`, `scan`
+- Combination Operators: `merge`, `concat`, `combineLatest`, `withLatestFrom`
+- Higher-Order Mapping Operators: `switchMap`, `mergeMap`, `concatMap`, `exhaustMap`
+- Utility Operators: `tap`, `delay`, `debounceTime`, `distinctUntilChanged`
+- Error Handling Operators: `catchError`, `retry`
+- Multicasting Operators: `share`, `shareReplay`
+- Conditional and Boolean Operators: `every`, `find`, `defaultIfEmpty`
+
 ```ts
 import { fromEvent } from "rxjs";
 import { debounceTime, filter, map } from "rxjs/operators";
