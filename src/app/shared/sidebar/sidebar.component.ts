@@ -65,6 +65,7 @@ export class SidebarComponent {
       ]
     },
     { id: 'routing', label: 'Angular Routing', route: 'routing' },
+    { id: 'services', label: 'Angular Services', route: 'services' },
     {
       id: 'template-forms',
       label: 'Template Forms',

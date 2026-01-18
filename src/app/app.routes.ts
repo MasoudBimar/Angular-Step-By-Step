@@ -20,6 +20,7 @@ import { ComponentDirectivesComponent } from './7-component-directives/component
 import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
 import { DeferLoadingComponent } from './18-defer-loading/defer-loading.component';
 import { ComponentsAndTemplatesComponent } from './4-components-and-templates/components-and-templates.component';
+import { ServicesComponent } from './14-services/services.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
@@ -37,6 +38,7 @@ export const routes: Routes = [
   { path: 'pipes', component: PipesComponent },
   { path: 'paginated-post-collection', component: PostCollectionComponent },
   { path: 'routing', component: RoutingComponent, children: ROUTING_ROUTES },
+  { path: 'services', component: ServicesComponent },
   {
     path: 'template-driven',
     loadChildren: () =>
