@@ -78,6 +78,47 @@ count = signal<string>("");
 countArray = signal<string[]>([]);
 ```
 
+Update the signal value with changing the value of object:
+
+```ts
+user = signal({
+  name: "Masoud",
+  email: "masoudbimar@gmail.com",
+});
+
+ngOninit(): void{
+  this.user.update((userDetail) => {
+    ...userDetail,
+    issueDate: "01-01-2020", // add new property
+    name: 'MasoudBimmer' // update existing property
+
+  })
+}
+```
+
+Mutating the signal value: (available in angular 16)
+
+```ts
+  items = signal([
+    {
+      name: 'user1',
+      email: 'a@b.com'
+    }
+  ]);
+  ngOninit(): void{
+  this.user.mutate((userdetails) => {
+    userdetails.push({name: 'user2', email: 'x@y.com'})
+  } );
+  }
+```
+
+> [!Caution]
+> The `.mutate` method is no longer available in ANgular Signals. It was officially removed from the public API during the developer preview phase, starting with Angular 17. In the current version of Angular (including Angular 18 and 19), signals strictly enforce an immutable approach to state updates
+
+Why `.mutate` method was it removed?
+
+The Angular team removed .mutate() to ensure consistency in the reactivity system. Signals rely on referential equality to detect changes. Mutating an object's internal properties without changing its reference would often fail to trigger downstream effects or UI updates because the signal "saw" the same object
+
 Showing the value in template:
 
 ```html
