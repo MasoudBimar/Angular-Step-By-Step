@@ -94,6 +94,7 @@ export class SidebarComponent {
         { id: 'rate-3', label: 'Rate 3', route: '/exercise/rate-3' },
         { id: 'movies', label: 'Movies', route: '/exercise/movies' },
         { id: 'signal-counter', label: 'Signal Counter', route: '/exercise/signal-counter' },
+        { id: 'signal-todo', label: 'Signal Todo', route: '/exercise/signal-todo' },
       ]
     }
   ];

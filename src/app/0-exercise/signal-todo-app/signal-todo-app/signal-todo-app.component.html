@@ -1,0 +1,87 @@
+<section class="todo-shell">
+  <div class="todo-card">
+    <header class="todo-header">
+      <div>
+        <p class="eyebrow">Focus list</p>
+        <h2 class="title">App To-Do</h2>
+        <p class="meta">
+          {{ openItems().length }} open item(s) | {{ doneItems().length }} done
+        </p>
+      </div>
+      <div class="badge">Today</div>
+    </header>
+
+    <div class="todo-entry">
+      <label class="field">
+        <span class="field-label">New task</span>
+        <input
+          #newTodo
+          class="field-input"
+          placeholder="Enter task title"
+          (keydown.enter)="addNewItem(newTodo.value)"
+        />
+      </label>
+      <button class="action" type="button" (click)="addNewItem(newTodo.value)">
+        Add Task
+      </button>
+    </div>
+
+    <div class="todo-columns">
+      <section class="todo-panel">
+        <header class="panel-header">
+          <div>
+            <h3>Open items</h3>
+            <p class="panel-meta">Keep the momentum going.</p>
+          </div>
+          <span class="count">{{ openItems().length }}</span>
+        </header>
+        <div class="todo-list">
+          <p class="todo-empty" *ngIf="openItems().length === 0">
+            No open tasks yet.
+          </p>
+          <div
+            class="todo-item"
+            *ngFor="let task of openItems(); let i = index"
+          >
+            <span class="index">{{ i + 1 }}</span>
+            <span class="item-title">{{ task.title }}</span>
+            <input
+              class="item-toggle"
+              type="checkbox"
+              [ngModel]="task.isComplete"
+              (ngModelChange)="toggleItemStatus(task)"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="todo-panel done">
+        <header class="panel-header">
+          <div>
+            <h3>Done items</h3>
+            <p class="panel-meta">Closed loops and small wins.</p>
+          </div>
+          <span class="count">{{ doneItems().length }}</span>
+        </header>
+        <div class="todo-list">
+          <p class="todo-empty" *ngIf="doneItems().length === 0">
+            No completed tasks yet.
+          </p>
+          <div
+            class="todo-item"
+            *ngFor="let task of doneItems(); let i = index"
+          >
+            <span class="index">{{ i + 1 }}</span>
+            <span class="item-title">{{ task.title }}</span>
+            <input
+              class="item-toggle"
+              type="checkbox"
+              [ngModel]="task.isComplete"
+              (ngModelChange)="toggleItemStatus(task)"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
