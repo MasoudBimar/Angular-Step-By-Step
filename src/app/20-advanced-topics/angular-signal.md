@@ -128,6 +128,65 @@ Showing the value in template:
 </div>
 ```
 
+### Update non-primitive data(objects, arrays, array of object) without mutating it
+
+Signals rely on referential changes, so always return a new object/array/map/set from `set` or `update`. Avoid in-place edits like `push`, `splice`, or changing nested properties directly.
+
+Best practices:
+
+- Use `update` to derive the next value from the previous one.
+- Copy only the levels you change (shallow copies are usually enough).
+- For arrays, prefer `map`, `filter`, and spread (`[...]`) instead of mutation.
+- For maps/sets, create a new instance and then apply changes to it.
+- Keep derived data in `computed` rather than storing duplicates.
+
+Object update (shallow + nested):
+
+```ts
+user.update((current) => ({
+  ...current,
+  name: "Masoud Bimmer",
+  profile: {
+    ...current.profile,
+    city: "Tehran",
+  },
+}));
+```
+
+Array add/remove:
+
+```ts
+items.update((list) => [...list, { id: 4, title: "New" }]);
+items.update((list) => list.filter((item) => item.id !== 2));
+```
+
+Array of objects (replace one item):
+
+```ts
+items.update((list) => list.map((item) => (item.id === 3 ? { ...item, done: true } : item)));
+```
+
+Map update:
+
+```ts
+selectedUsers.update((current) => {
+  const next = new Map(current);
+  next.set(5, { id: 5, name: "Sara" });
+  return next;
+});
+```
+
+Set update:
+
+```ts
+selectedIds.update((current) => {
+  const next = new Set(current);
+  next.add(5);
+  next.delete(2);
+  return next;
+});
+```
+
 ### 2) computed()
 
 Creates a derived value that recalculates when dependencies change.
