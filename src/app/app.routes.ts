@@ -21,6 +21,7 @@ import { SpecialElementsComponent } from './9-special-elements/special-elements.
 import { DeferLoadingComponent } from './18-defer-loading/defer-loading.component';
 import { ComponentsAndTemplatesComponent } from './4-components-and-templates/components-and-templates.component';
 import { ServicesComponent } from './14-services/services.component';
+import { SignalCounterComponent } from './0-exercise/signal-counter/signal-counter.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
@@ -62,7 +63,8 @@ export const routes: Routes = [
       { title: 'Rate Component 1', path: 'rate-1', component: RateComponent },
       { title: 'Rate Component 2', path: 'rate-2', component: RateVersion2Component },
       { title: 'Rate Component 3', path: 'rate-3', component: RateVersion3Component },
-      { title: 'Movies', path: 'movies', component: MovieManagerComponent }
+      { title: 'Movies', path: 'movies', component: MovieManagerComponent },
+      { title: 'Signal Counter', path: 'signal-counter', component: SignalCounterComponent }
     ]
   }
 ];

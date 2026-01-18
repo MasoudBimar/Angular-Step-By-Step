@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ArrayType } from '@angular/compiler';
+import { Component, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 interface SidebarItem {
@@ -92,6 +93,7 @@ export class SidebarComponent {
         { id: 'rate-2', label: 'Rate 2', route: '/exercise/rate-2' },
         { id: 'rate-3', label: 'Rate 3', route: '/exercise/rate-3' },
         { id: 'movies', label: 'Movies', route: '/exercise/movies' },
+        { id: 'signal-counter', label: 'Signal Counter', route: '/exercise/signal-counter' },
       ]
     }
   ];

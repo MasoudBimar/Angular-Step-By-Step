@@ -43,6 +43,9 @@ This makes updates predictable and reduces the need for manual subscriptions.
 
 ---
 
+> [!NOTE]
+> Signals are a primitive reactive system in Angular. they are available eveywhere from component to services.
+
 ## Basic building blocks
 
 ### 1) signal()
@@ -53,8 +56,35 @@ Creates a writable reactive value.
 import { signal } from "@angular/core";
 
 const count = signal(0);
-count.set(1);
+count.set(1); // changing the signal value
 count.update((v) => v + 1);
+
+changeValue(){
+  this.count.set(5);
+}
+
+```
+
+> [!TIP]
+> For changing signals value we can use set method and the signals are by default writable so we can directly chnage the value of it.
+
+Or using the generic type of signal:
+
+```ts
+import { signal } from "@angular/core";
+
+countObj = signal<object>({});
+count = signal<string>("");
+countArray = signal<string[]>([]);
+```
+
+Showing the value in template:
+
+```html
+<div>
+  <button (click)="changeValue()">change the signal value</button>
+  <p>{{count()}}</p>
+</div>
 ```
 
 ### 2) computed()
@@ -137,11 +167,7 @@ export class ServicesComponent {
   readonly filter = signal("");
   readonly filteredUsers = computed(() => {
     const term = this.filter().trim().toLowerCase();
-    return term
-      ? this.users().filter((user) =>
-          user.name.toLowerCase().includes(term)
-        )
-      : this.users();
+    return term ? this.users().filter((user) => user.name.toLowerCase().includes(term)) : this.users();
   });
 
   trackByUserId(index: number, user: User) {
@@ -153,12 +179,7 @@ export class ServicesComponent {
 Template excerpt:
 
 ```html
-<input
-  type="search"
-  class="form-control form-control-sm"
-  placeholder="Filter by name"
-  (input)="filter.set($any($event.target).value)"
-/>
+<input type="search" class="form-control form-control-sm" placeholder="Filter by name" (input)="filter.set($any($event.target).value)" />
 
 <tr *ngFor="let user of filteredUsers(); trackBy: trackByUserId">
   ...
