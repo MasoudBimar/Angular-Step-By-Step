@@ -195,7 +195,7 @@
 
 .todo-item {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
   gap: 12px;
   background: #ffffff;
@@ -236,6 +236,34 @@
   width: 18px;
   height: 18px;
   accent-color: #f26a4a;
+}
+
+.item-delete {
+  border: 1px solid #f26a4a;
+  background: #fff5f2;
+  color: #b3472a;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.item-delete:hover {
+  background: #f26a4a;
+  color: #1c2328;
+  box-shadow: 0 8px 16px rgba(242, 106, 74, 0.25);
+  transform: translateY(-1px);
+}
+
+.item-delete:focus-visible {
+  outline: 2px solid rgba(242, 106, 74, 0.4);
+  outline-offset: 2px;
 }
 
 @media (max-width: 720px) {
