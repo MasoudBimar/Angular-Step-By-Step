@@ -1,0 +1,213 @@
+# Angular Signals: History, Mechanism, and Version Review (16-21)
+
+## A short history: how Angular got here
+
+Angular's reactivity evolved in phases:
+
+1. **AngularJS era (1.x):** Two-way binding and digest cycles were powerful but expensive at scale.
+2. **Angular 2+ era:** Zone.js and change detection improved performance and structure, but change detection still often checked large parts of the tree.
+3. **RxJS era:** Observables became a standard for async data, but state handling often required a lot of boilerplate and subscriptions.
+4. **Signals era (Angular 16+):** Signals were introduced to bring fine-grained reactivity without requiring everyone to use RxJS for local state. They are a complement, not a replacement, for Observables.
+
+Signals are Angular's answer to the same trend seen in other frameworks: push-based, fine-grained reactivity with explicit dependencies.
+
+---
+
+## What are Angular signals?
+
+Signals are a fine-grained reactive primitive introduced to make state updates predictable, fast, and easy to reason about. A signal stores a value and tracks which parts of the app read it. When the value changes, only the dependent computations or templates update.
+
+Signals are designed to:
+
+- Reduce change-detection overhead by updating only what depends on the data.
+- Make state flow explicit and deterministic.
+- Improve debugging and performance by removing implicit dependencies.
+
+---
+
+## Core mechanism and mental model
+
+Signals work through dependency tracking:
+
+- **Read tracking:** When code reads a signal (directly or via a computed), Angular records that dependency.
+- **Write updates:** When a signal is updated, Angular marks dependents as dirty and re-runs only those that depend on it.
+- **Lazy recomputation:** Computed values recompute only when read and when their dependencies changed.
+
+Think of signals as:
+
+- **State containers** with automatic dependency tracking.
+- **Computed values** that recalculate only when required.
+- **Reactive effects** that run side effects when dependencies change.
+
+This makes updates predictable and reduces the need for manual subscriptions.
+
+---
+
+## Basic building blocks
+
+### 1) signal()
+
+Creates a writable reactive value.
+
+```ts
+import { signal } from "@angular/core";
+
+const count = signal(0);
+count.set(1);
+count.update((v) => v + 1);
+```
+
+### 2) computed()
+
+Creates a derived value that recalculates when dependencies change.
+
+```ts
+import { computed, signal } from "@angular/core";
+
+const first = signal("Ada");
+const last = signal("Lovelace");
+
+const fullName = computed(() => `${first()} ${last()}`);
+```
+
+### 3) effect()
+
+Runs side effects whenever its dependencies change.
+
+```ts
+import { effect, signal } from "@angular/core";
+
+const count = signal(0);
+
+effect(() => {
+  console.log("Count changed:", count());
+});
+```
+
+---
+
+## Signals and templates
+
+In templates, signals can be read directly without `.value` or async pipes:
+
+```html
+<button (click)="count.update(v => v + 1)">Count: {{ count() }}</button>
+```
+
+Signals are reactive in templates because Angular tracks reads during rendering.
+
+---
+
+## Interop with RxJS
+
+Signals do not replace Observables. Common patterns:
+
+- Use Observables for async streams (HTTP, WebSocket, user input).
+- Convert streams to signals when you need local synchronous state.
+- Use signals for component state, computed values, and lightweight derivations.
+
+---
+
+## App-specific example: ServicesComponent user filter
+
+This app already has a `ServicesComponent` that loads users via `users$`. Signals can add a small, local filter state without changing the data source.
+
+Component excerpt:
+
+```ts
+import { CommonModule } from "@angular/common";
+import { HttpClient } from "@angular/common/http";
+import { Component, computed, inject, signal } from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
+
+@Component({
+  standalone: true,
+  imports: [CommonModule],
+  selector: "app-services",
+  templateUrl: "./services.component.html",
+  styleUrls: ["./services.component.scss"],
+})
+export class ServicesComponent {
+  private jsonPlaceHolderUrl = "https://jsonplaceholder.typicode.com/users/";
+  private readonly http = inject(HttpClient);
+
+  readonly users$ = this.http.get<User[]>(this.jsonPlaceHolderUrl);
+  readonly users = toSignal(this.users$, { initialValue: [] as User[] });
+
+  readonly filter = signal("");
+  readonly filteredUsers = computed(() => {
+    const term = this.filter().trim().toLowerCase();
+    return term
+      ? this.users().filter((user) =>
+          user.name.toLowerCase().includes(term)
+        )
+      : this.users();
+  });
+
+  trackByUserId(index: number, user: User) {
+    return user.id;
+  }
+}
+```
+
+Template excerpt:
+
+```html
+<input
+  type="search"
+  class="form-control form-control-sm"
+  placeholder="Filter by name"
+  (input)="filter.set($any($event.target).value)"
+/>
+
+<tr *ngFor="let user of filteredUsers(); trackBy: trackByUserId">
+  ...
+</tr>
+```
+
+This keeps the HTTP call as an Observable, but adds a signal-backed filter and computed list for fast, local updates.
+
+---
+
+## Version review: Angular 16 to 21
+
+### Angular 16
+
+- Signals introduced as a new reactive primitive.
+- Core APIs: `signal`, `computed`, `effect`.
+- Template usage allowed with direct signal reads.
+
+### Angular 17
+
+- Better integration in standalone + signal-first examples.
+- Improved ergonomics for signals in component state.
+- Continued optimizations for fine-grained updates.
+
+### Angular 18
+
+- Maturing APIs and stability improvements.
+- Better developer guidance and ecosystem adoption.
+
+### Angular 19
+
+- Signals used more widely in official patterns and docs.
+- Continued performance enhancements for reactive rendering.
+
+### Angular 20
+
+- Stronger integration with new rendering and hydration paths.
+- Expanded usage patterns for state and derivations.
+
+### Angular 21
+
+- Signals considered a core part of Angular's state and reactivity story.
+- More tooling and ecosystem alignment around signal-first patterns.
+
+---
+
+## Key takeaways
+
+- Signals are for local, synchronous reactive state.
+- They provide fine-grained updates and explicit dependencies.
+- They complement RxJS rather than replace it.
+- The API started in Angular 16 and stabilized/matured through 21.
