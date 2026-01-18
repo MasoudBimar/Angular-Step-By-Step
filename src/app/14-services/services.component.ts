@@ -10,13 +10,24 @@ import { Component, inject } from '@angular/core';
   styleUrls: ['./services.component.scss']
 })
 export class ServicesComponent {
+  private jsonPlaceHolderUrl = 'https://jsonplaceholder.typicode.com/users/';
   private readonly http = inject(HttpClient);
-  readonly users$ = this.http.get<User[]>('https://jsonplaceholder.typicode.com/users/');
+  readonly users$ = this.http.get<User[]>(this.jsonPlaceHolderUrl);
 
   constructor() { }
 
   trackByUserId(index: number, user: User) {
     return user.id;
+  }
+
+  edit(user: User) {
+    this.http.patch(this.jsonPlaceHolderUrl + user.id, user).subscribe(result => console.log(result));
+  }
+
+  info(id: number) { }
+
+  delete(id: number) {
+    this.http.delete(this.jsonPlaceHolderUrl + id).subscribe(result => console.log(result));
   }
 }
 
