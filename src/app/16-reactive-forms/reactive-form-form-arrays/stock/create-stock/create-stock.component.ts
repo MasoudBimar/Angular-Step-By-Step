@@ -8,7 +8,7 @@ import { JsonPipe } from '@angular/common';
   imports: [ReactiveFormsModule, JsonPipe],
   selector: 'app-form-array-create-stock',
   templateUrl: './create-stock.component.html',
-  styleUrls: ['./create-stock.component.css']
+  styleUrls: ['./create-stock.component.scss']
 })
 export class CreateFormArrayStockComponent {
 

@@ -25,6 +25,34 @@
   font-size: 0.95rem;
 }
 
+.layout-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+}
+
+.panel {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.1);
+  display: grid;
+  gap: 14px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
 .eyebrow {
   margin: 0;
   text-transform: uppercase;

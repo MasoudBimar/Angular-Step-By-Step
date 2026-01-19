@@ -1,11 +1,11 @@
-<section class="form-shell">
-  <header class="form-header">
+<section class="layout-shell">
+  <header class="layout-header">
     <h2>Create Stock Form</h2>
-    <p>Manage a reactive form with dynamic arrays.</p>
+    <p class="layout-subtext">Manage a reactive form with dynamic arrays.</p>
   </header>
 
   <form class="stock-form" [formGroup]="stockForm" (ngSubmit)="onSubmit()">
-    <div class="form-grid">
+    <div class="layout-grid">
       <label class="field" for="stockName">
         <span>Stock Name</span>
         <input
@@ -19,16 +19,12 @@
             stockForm.get('name')?.invalid &&
             (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
           "
-          />
+        />
         @if (
-          stockForm.get('name')?.invalid &&
-          (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
-          ) {
-          <span
-            class="invalid-feedback d-block"
-            >
-            Name is required
-          </span>
+          stockForm.get("name")?.invalid &&
+          (stockForm.get("name")?.dirty || stockForm.get("name")?.touched)
+        ) {
+          <span class="invalid-feedback d-block"> Name is required </span>
         }
       </label>
       <label class="field" for="stockCode">
@@ -43,23 +39,17 @@
             stockForm.get('code')?.invalid &&
             (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
           "
-          />
+        />
         @if (
-          stockForm.get('code')?.invalid &&
-          (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
-          ) {
-          <span
-            class="invalid-feedback d-block"
-            >
-            @if (stockForm.get('code')?.errors?.['required']) {
-              <span>
-                Stock Code is required
-              </span>
+          stockForm.get("code")?.invalid &&
+          (stockForm.get("code")?.dirty || stockForm.get("code")?.touched)
+        ) {
+          <span class="invalid-feedback d-block">
+            @if (stockForm.get("code")?.errors?.["required"]) {
+              <span> Stock Code is required </span>
             }
-            @if (stockForm.get('code')?.errors?.['minlength']) {
-              <span>
-                Stock Code must be at least 2 characters
-              </span>
+            @if (stockForm.get("code")?.errors?.["minlength"]) {
+              <span> Stock Code must be at least 2 characters </span>
             }
           </span>
         }
@@ -76,23 +66,17 @@
             stockForm.get('price')?.invalid &&
             (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
           "
-          />
+        />
         @if (
-          stockForm.get('price')?.invalid &&
-          (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
-          ) {
-          <span
-            class="invalid-feedback d-block"
-            >
-            @if (stockForm.get('price')?.errors?.['required']) {
-              <span>
-                Stock Price is required
-              </span>
+          stockForm.get("price")?.invalid &&
+          (stockForm.get("price")?.dirty || stockForm.get("price")?.touched)
+        ) {
+          <span class="invalid-feedback d-block">
+            @if (stockForm.get("price")?.errors?.["required"]) {
+              <span> Stock Price is required </span>
             }
-            @if (stockForm.get('price')?.errors?.['min']) {
-              <span>
-                Stock price must be positive
-              </span>
+            @if (stockForm.get("price")?.errors?.["min"]) {
+              <span> Stock price must be positive </span>
             }
           </span>
         }
@@ -106,23 +90,20 @@
           type="button"
           class="btn btn-outline-primary btn-sm"
           (click)="addNotablePerson()"
-          >
+        >
           Add Person
         </button>
       </div>
       <div formArrayName="notablePeople" class="people-list">
         @for (person of notablePeople.controls; track person; let i = $index) {
-          <div
-            [formGroupName]="i"
-            class="person-card"
-            >
+          <div [formGroupName]="i" class="person-card">
             <div class="person-header">
               <div class="person-title">Person {{ i + 1 }}</div>
               <button
                 type="button"
                 class="btn btn-outline-danger btn-sm"
                 (click)="removeNotablePerson(i)"
-                >
+              >
                 Remove
               </button>
             </div>
@@ -135,7 +116,7 @@
                   placeholder="Person Name"
                   formControlName="name"
                   class="form-control"
-                  />
+                />
               </label>
               <label class="field" [attr.for]="'person-title-' + i">
                 <span>Person Title</span>
@@ -145,7 +126,7 @@
                   placeholder="Person Title"
                   formControlName="title"
                   class="form-control"
-                  />
+                />
               </label>
             </div>
           </div>
@@ -159,7 +140,7 @@
         type="button"
         (click)="resetForm()"
         class="btn btn-outline-secondary"
-        >
+      >
         Reset
       </button>
     </div>

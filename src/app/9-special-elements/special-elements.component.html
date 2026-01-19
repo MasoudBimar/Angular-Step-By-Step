@@ -1,14 +1,16 @@
-<section class="portfolio-shell">
-  <header class="portfolio-hero">
+<section class="layout-shell">
+  <header class="layout-header">
     <p class="eyebrow">Profile builder</p>
     @if (showHeading) {
       <h1>Portfolio</h1>
     }
-    <p class="hero-sub">Craft a clean, shareable snapshot of your story.</p>
+    <p class="layout-subtext">
+      Craft a clean, shareable snapshot of your story.
+    </p>
   </header>
 
   @if (!submitted) {
-    <div class="portfolio-grid">
+    <div class="layout-grid">
       <ng-container
         [ngTemplateOutlet]="sectionCard"
         [ngTemplateOutletContext]="{
@@ -57,7 +59,7 @@
   </ng-template>
 
   <ng-template #personalForm>
-    <form class="form-grid">
+    <form class="layout-grid">
       <label class="field">
         <span>Name</span>
         <input type="text" name="name" [(ngModel)]="nm" autocomplete="off" />
@@ -131,7 +133,7 @@
         Edit
       </button>
     </header>
-    <div class="preview-grid">
+    <div class="layout-grid">
       <div class="preview-card">
         <p [class]="{ name: true }">{{ nm || "Unnamed profile" }}</p>
         <p>Email : {{ em || "Not provided" }}</p>

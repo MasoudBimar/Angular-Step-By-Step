@@ -1,33 +1,5 @@
-.builder-grid {
-  display: grid;
-  gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-.panel {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 18px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.1);
-  display: grid;
-  gap: 12px;
-}
-
 .form-panel {
   background: #fffdf9;
-}
-
-.panel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-}
-
-.panel-header h2 {
-  margin: 0;
-  font-size: 1.1rem;
 }
 
 .panel-pill {

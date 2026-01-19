@@ -8,7 +8,7 @@ import { Stock } from '../../model/stock';
   imports: [],
   selector: 'app-form-array-stock-item',
   templateUrl: './stock-item.component.html',
-  styleUrls: ['./stock-item.component.css']
+  styleUrls: ['./stock-item.component.scss']
 })
 export class StockFormArrayItemComponent {
 

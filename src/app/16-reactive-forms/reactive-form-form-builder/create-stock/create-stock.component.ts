@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   imports: [ReactiveFormsModule, JsonPipe],
   selector: 'app-reactive-create-stock',
   templateUrl: './create-stock.component.html',
-  styleUrls: ['./create-stock.component.css']
+  styleUrls: ['./create-stock.component.scss']
 })
 export class CreateReactiveStockComponent {
 
