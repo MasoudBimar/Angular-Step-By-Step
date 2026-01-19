@@ -1,34 +1,37 @@
-<div class="container py-4">
-  <div
-    class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4"
-    >
+<section class="layout-shell">
+  <header class="layout-header">
     <div>
-      <h2 class="mb-1">Movie Manager</h2>
-      <p class="text-muted mb-0">Create, update, and review your movie list.</p>
+      <p class="eyebrow">Movie Manager</p>
+      <h2>Movie CRUD List</h2>
+      <p class="layout-subtext">Create, update, and review your movie list.</p>
     </div>
-  </div>
-
-  <div class="row g-4">
-    <div class="col-12 col-lg-3">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title mb-3">Create / Edit Movie</h5>
-          <form [formGroup]="movieForm" (ngSubmit)="onSubmit()" class="row g-3">
-            <div class="col-12">
-              <label for="title" class="form-label">Movie Title</label>
-              <input
-                id="title"
-                type="text"
-                class="form-control"
-                placeholder="Enter title"
-                name="title"
-                formControlName="title"
+  </header>
+  <div class="layout-grid">
+    <div class="row g-4">
+      <div class="col-12 col-lg-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Create / Edit Movie</h5>
+            <form
+              [formGroup]="movieForm"
+              (ngSubmit)="onSubmit()"
+              class="row g-3"
+            >
+              <div class="col-12">
+                <label for="title" class="form-label">Movie Title</label>
+                <input
+                  id="title"
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter title"
+                  name="title"
+                  formControlName="title"
                 />
                 @if (
                   movieForm.get("title")?.invalid &&
                   (movieForm.get("title")?.dirty ||
-                  movieForm.get("title")?.touched)
-                  ) {
+                    movieForm.get("title")?.touched)
+                ) {
                   <div class="text-danger small mt-1">Title is required.</div>
                 }
               </div>
@@ -42,22 +45,26 @@
                   placeholder="e.g. Action, Drama"
                   name="genres"
                   formControlName="genres"
-                  />
-                  <!-- <select name="genres" class="form-control" formControlName="genres">
+                />
+                <!-- <select name="genres" class="form-control" formControlName="genres">
                   <option *ngFor="let genre of genres" >{{genre}}</option>
                 </select> -->
               </div>
 
               <div class="col-12 d-flex flex-wrap gap-2">
                 <button class="btn btn-primary" type="submit">Submit</button>
-                <button class="btn btn-warning" type="button" (click)="update()">
+                <button
+                  class="btn btn-warning"
+                  type="button"
+                  (click)="update()"
+                >
                   Update
                 </button>
                 <button
                   class="btn btn-outline-secondary"
                   type="button"
                   (click)="reset()"
-                  >
+                >
                   Reset
                 </button>
               </div>
@@ -71,65 +78,68 @@
           <div class="card-body">
             <div
               class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3"
-              >
+            >
               <h5 class="card-title mb-0">Movies</h5>
               <span class="badge bg-secondary"
                 >Total: {{ movies2?.length || 0 }}</span
-                >
-              </div>
-              <div class="table-responsive">
-                <table class="table table-striped table-hover align-middle mb-0">
-                  <thead class="table-light">
+              >
+            </div>
+            <div class="table-responsive">
+              <table class="table table-striped table-hover align-middle mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Genres</th>
+                    <th scope="col">IMDB Rate</th>
+                    <th scope="col" class="text-end">Tools</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (movie of movies2; track movie; let i = $index) {
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Id</th>
-                      <th scope="col">Title</th>
-                      <th scope="col">Genres</th>
-                      <th scope="col">IMDB Rate</th>
-                      <th scope="col" class="text-end">Tools</th>
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td>{{ movie.Id }}</td>
+                      <td>{{ movie.Title }}</td>
+                      <td>{{ movie.Genre }}</td>
+                      <td>
+                        <app-rate-version2
+                          [rate]="movie.imdbRating"
+                        ></app-rate-version2>
+                      </td>
+                      <td class="text-end">
+                        <div class="btn-group btn-group-sm" role="group">
+                          <button
+                            class="btn btn-outline-primary"
+                            (click)="prepareForEdit(movie)"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            class="btn btn-outline-info"
+                            (click)="getOneMovie(movie.id)"
+                          >
+                            Info
+                          </button>
+                          <button
+                            class="btn btn-outline-danger"
+                            (click)="delete(movie.id)"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    @for (movie of movies2; track movie; let i = $index) {
-                      <tr>
-                        <th scope="row">{{ i + 1 }}</th>
-                        <td>{{ movie.Id }}</td>
-                        <td>{{ movie.Title }}</td>
-                        <td>{{ movie.Genre }}</td>
-                        <td>
-                          <app-rate-version2
-                            [rate]="movie.imdbRating"
-                          ></app-rate-version2>
-                        </td>
-                        <td class="text-end">
-                          <div class="btn-group btn-group-sm" role="group">
-                            <button
-                              class="btn btn-outline-primary"
-                              (click)="prepareForEdit(movie)"
-                              >
-                              Edit
-                            </button>
-                            <button
-                              class="btn btn-outline-info"
-                              (click)="getOneMovie(movie.id)"
-                              >
-                              Info
-                            </button>
-                            <button
-                              class="btn btn-outline-danger"
-                              (click)="delete(movie.id)"
-                              >
-                              Delete
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    }
-                  </tbody>
-                </table>
-              </div>
+                  } @empty {
+                    <p>no movies to be shown!</p>
+                  }
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</section>

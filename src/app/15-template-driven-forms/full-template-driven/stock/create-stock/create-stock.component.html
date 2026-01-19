@@ -17,19 +17,14 @@
         name="stockName"
         #stockName="ngModel"
         ngModel
-        />
+      />
       @if (
         stockName.errors &&
         (stockName.dirty || stockName.touched || stockForm.submitted)
-        ) {
-        <div
-          >
-          @if (stockName.errors['required']) {
-            <div
-              class="invalid-feedback d-block"
-              >
-              Stock Name is Mandatory
-            </div>
+      ) {
+        <div>
+          @if (stockName.errors["required"]) {
+            <div class="invalid-feedback d-block">Stock Name is Mandatory</div>
           }
         </div>
       }
@@ -49,24 +44,17 @@
         name="stockCode"
         #stockCode="ngModel"
         ngModel
-        />
+      />
       @if (
         stockCode.errors &&
         (stockCode.dirty || stockCode.touched || stockForm.submitted)
-        ) {
-        <div
-          >
-          @if (stockCode.errors['required']) {
-            <div
-              class="invalid-feedback d-block"
-              >
-              Stock Code is Mandatory
-            </div>
+      ) {
+        <div>
+          @if (stockCode.errors["required"]) {
+            <div class="invalid-feedback d-block">Stock Code is Mandatory</div>
           }
-          @if (stockCode.errors['minlength']) {
-            <div
-              class="invalid-feedback d-block"
-              >
+          @if (stockCode.errors["minlength"]) {
+            <div class="invalid-feedback d-block">
               Stock Code must be atleast of length 2
             </div>
           }
@@ -84,7 +72,7 @@
         name="stockPrice"
         ngModel
         (ngModelChange)="setStockPriceChange($event)"
-        />
+      />
     </div>
 
     <div class="mb-3">
@@ -105,7 +93,7 @@
         type="checkbox"
         name="stockConfirm"
         [(ngModel)]="confirmed"
-        />
+      />
       <label class="form-check-label" for="stockConfirm">
         I confirm that the information provided above is accurate!
       </label>
@@ -117,10 +105,11 @@
       class="btn btn-outline-secondary"
       type="button"
       (click)="resetForm(stockForm)"
-      >
+    >
       reset
     </button>
   </form>
+  <br />
   <h4>Stock is</h4>
   <code class="json-output">{{ stockForm.value | json }}</code>
   <h3>Data has been confirmed: {{ confirmed }}</h3>

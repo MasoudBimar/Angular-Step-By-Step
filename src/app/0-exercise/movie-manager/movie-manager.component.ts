@@ -21,13 +21,10 @@ export class MovieManagerComponent {
   genres: string[] = ['drama', 'comedy', 'horror', 'Crime'];
 
   constructor(public movieService: MovieService, public fb: FormBuilder) {
-    // this.movies = this.movieService.getMovieList();
     this.movieService.getMovieList('matrix').subscribe((result: any) => {
-      console.log(result);
       let movieArray = Array.isArray(result) ? result : [result];
       this.movies2 = movieArray.map(x => ({ Id: x.imdbID, Title: x.Title, imdbRating: Math.round(+x.imdbRating), Genre: x.Genre }))
     });
-    console.log('heeeeyyyyyyyy');
     this.movieForm = this.fb.group({
       id: [null, Validators.required],
       title: [null, [Validators.required, Validators.minLength(2)]],
