@@ -1,8 +1,4 @@
 :host {
-  display: block;
-  padding: 28px 18px 40px;
-  color: #0f172a;
-  font-family: "Space Grotesk", "Trebuchet MS", "Gill Sans", "Calibri", sans-serif;
   --accent: #f26a4a;
   --accent-strong: #0f4c5c;
   --muted: #5b6570;
@@ -46,15 +42,6 @@
   margin-bottom: 22px;
 }
 
-.eyebrow {
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--accent-strong);
-}
-
 .portfolio-hero h1 {
   margin: 0;
   font-size: 2.1rem;
@@ -82,7 +69,7 @@
   animation: liftIn 0.45s ease both;
 }
 
-.card + .card {
+.card+.card {
   animation-delay: 0.05s;
 }
 
@@ -291,6 +278,7 @@
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

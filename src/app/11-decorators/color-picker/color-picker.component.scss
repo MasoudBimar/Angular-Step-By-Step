@@ -21,15 +21,6 @@
   margin-bottom: 20px;
 }
 
-.eyebrow {
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #0f4c5c;
-}
-
 .picker-header h2 {
   margin: 0;
   font-size: 1.7rem;
@@ -156,6 +147,7 @@ input[type="color"]::-webkit-color-swatch {
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

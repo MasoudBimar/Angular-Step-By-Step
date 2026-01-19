@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { PersianDatePipe } from '../12-pipes/pipes/persian-date.pipe';
+import { CurrencyPipe, DatePipe, DecimalPipe, JsonPipe, PercentPipe, UpperCasePipe } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [PersianDatePipe],
+  imports: [PersianDatePipe, DecimalPipe, DatePipe, UpperCasePipe, CurrencyPipe, PercentPipe, JsonPipe],
   selector: 'app-angular-fundamentals',
   templateUrl: './angular-fundamentals.component.html',
   styleUrls: ['./angular-fundamentals.component.scss']

@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "pnpm exec ng build --configuration production --base-href /zamkan-sidebar/",
+    "build": "pnpm exec ng build --configuration production --base-href /angular-step-by-step/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

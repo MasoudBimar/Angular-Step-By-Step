@@ -10,7 +10,7 @@ import { TodoList } from '../model/to-do-list.model';
   imports: [FormsModule],
   selector: 'app-to-do',
   templateUrl: './to-do.component.html',
-  styleUrls: ['./to-do.component.css']
+  styleUrls: ['./to-do.component.scss']
 })
 export class ToDoComponent {
 
