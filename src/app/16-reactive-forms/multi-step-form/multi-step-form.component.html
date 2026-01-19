@@ -1,8 +1,8 @@
-<section class="wizard-shell">
-  <header class="wizard-header">
+<section class="layout-shell">
+  <header class="layout-header">
     <p class="eyebrow">Multi-step form</p>
     <h2>Profile onboarding</h2>
-    <p class="subtext">Complete each step to unlock the next section.</p>
+    <p class="layout-subtext">Complete each step to unlock the next section.</p>
   </header>
 
   <div class="stepper">
@@ -10,7 +10,7 @@
       class="step"
       [class.active]="formStep === 0"
       [class.complete]="formStep > 0"
-      >
+    >
       <span>1</span>
       <p>User</p>
     </div>
@@ -18,7 +18,7 @@
       class="step"
       [class.active]="formStep === 1"
       [class.complete]="formStep > 1"
-      >
+    >
       <span>2</span>
       <p>Details</p>
     </div>
@@ -32,7 +32,7 @@
     class="wizard-form"
     (ngSubmit)="submitForm()"
     [formGroup]="multiStepForm"
-    >
+  >
     @if (formStep === 0) {
       <ng-container formGroupName="userDetail">
         <section class="step-card">
@@ -46,16 +46,12 @@
               name="fullName"
               id="fullName"
               autocomplete="off"
-              />
+            />
             @if (
-              userDetailForm.get('fullName')?.invalid &&
-              userDetailForm.get('fullName')?.touched
-              ) {
-              <span
-                class="field-error"
-                >
-                * fullName is required
-              </span>
+              userDetailForm.get("fullName")?.invalid &&
+              userDetailForm.get("fullName")?.touched
+            ) {
+              <span class="field-error"> * fullName is required </span>
             }
           </div>
           <div class="mb-3">
@@ -67,16 +63,12 @@
               name="email"
               id="email"
               autocomplete="off"
-              />
+            />
             @if (
-              userDetailForm.get('email')?.invalid &&
-              userDetailForm.get('email')?.touched
-              ) {
-              <span
-                class="field-error"
-                >
-                * email is required
-              </span>
+              userDetailForm.get("email")?.invalid &&
+              userDetailForm.get("email")?.touched
+            ) {
+              <span class="field-error"> * email is required </span>
             }
           </div>
           <div class="mb-3">
@@ -88,16 +80,12 @@
               name="password"
               id="password"
               autocomplete="off"
-              />
+            />
             @if (
-              userDetailForm.get('password')?.invalid &&
-              userDetailForm.get('password')?.touched
-              ) {
-              <span
-                class="field-error"
-                >
-                * password is required
-              </span>
+              userDetailForm.get("password")?.invalid &&
+              userDetailForm.get("password")?.touched
+            ) {
+              <span class="field-error"> * password is required </span>
             }
           </div>
         </section>
@@ -117,14 +105,12 @@
               name="phoneNumber"
               id="phoneNumber"
               autocomplete="off"
-              />
+            />
             @if (
-              additionalDetailForm.get('phoneNumber')?.invalid &&
-              additionalDetailForm.get('phoneNumber')?.touched
-              ) {
-              <span
-                class="field-error"
-                >
+              additionalDetailForm.get("phoneNumber")?.invalid &&
+              additionalDetailForm.get("phoneNumber")?.touched
+            ) {
+              <span class="field-error">
                 * 10 digit phoneNumber is required
               </span>
             }
@@ -138,16 +124,12 @@
               name="address"
               id="address"
               autocomplete="off"
-              />
+            />
             @if (
-              additionalDetailForm.get('address')?.invalid &&
-              additionalDetailForm.get('address')?.touched
-              ) {
-              <span
-                class="field-error"
-                >
-                * address is required
-              </span>
+              additionalDetailForm.get("address")?.invalid &&
+              additionalDetailForm.get("address")?.touched
+            ) {
+              <span class="field-error"> * address is required </span>
             }
           </div>
           <div class="mb-3">
@@ -159,16 +141,12 @@
               name="country"
               id="country"
               autocomplete="off"
-              />
+            />
             @if (
-              additionalDetailForm.get('country')?.invalid &&
-              additionalDetailForm.get('country')?.touched
-              ) {
-              <span
-                class="field-error"
-                >
-                * country is required
-              </span>
+              additionalDetailForm.get("country")?.invalid &&
+              additionalDetailForm.get("country")?.touched
+            ) {
+              <span class="field-error"> * country is required </span>
             }
           </div>
           <div class="mb-3">
@@ -179,20 +157,16 @@
               name="gender"
               id="gender"
               autocomplete="off"
-              >
+            >
               <option>select gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>
             @if (
-              additionalDetailForm.get('gender')?.invalid &&
-              additionalDetailForm.get('gender')?.touched
-              ) {
-              <span
-                class="field-error"
-                >
-                * gender is required
-              </span>
+              additionalDetailForm.get("gender")?.invalid &&
+              additionalDetailForm.get("gender")?.touched
+            ) {
+              <span class="field-error"> * gender is required </span>
             }
           </div>
         </section>
@@ -220,27 +194,17 @@
 
     <section class="wizard-actions">
       @if (formStep > 0) {
-        <button
-          class="btn btn-success"
-          (click)="goBack()"
-          type="button"
-          >
+        <button class="btn btn-success" (click)="goBack()" type="button">
           Previous
         </button>
       }
       @if (formStep < 2) {
-        <button
-          class="btn btn-secondary"
-          (click)="goForward()"
-          type="button"
-          >
+        <button class="btn btn-secondary" (click)="goForward()" type="button">
           Next
         </button>
       }
       @if (formStep === 2) {
-        <button class="btn btn-primary" type="submit">
-          Submit
-        </button>
+        <button class="btn btn-primary" type="submit">Submit</button>
       }
     </section>
   </form>

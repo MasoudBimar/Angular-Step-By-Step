@@ -1,23 +1,25 @@
-<section class="post-shell">
-  <header class="post-header">
+<section class="layout-shell">
+  <header class="layout-header">
     <p class="eyebrow">Slice pipe gallery</p>
     <h2>Featured posts</h2>
-    <p class="subtext">
+    <p class="layout-subtext">
       Showing {{ startIndex + 1 }} - {{ endIndex }} of {{ posts.length }} posts.
     </p>
   </header>
 
   <div class="posts-grid">
-    @for (post of posts | slice : startIndex : endIndex; track post; let i = $index) {
-      <article
-        class="post-card"
-        >
+    @for (
+      post of posts | slice: startIndex : endIndex;
+      track post;
+      let i = $index
+    ) {
+      <article class="post-card">
         <div class="post-media">
           <img [src]="post.imageUrl" [alt]="post.title" loading="lazy" />
         </div>
         <div class="post-body">
           <span class="post-index">Post {{ i + 1 + startIndex }}</span>
-          <h3>{{ post.title | slice : 0 : 48 }}</h3>
+          <h3>{{ post.title | slice: 0 : 48 }}</h3>
         </div>
       </article>
     }
@@ -29,7 +31,7 @@
       class="nav-btn"
       (click)="goPreviousPage()"
       [disabled]="startIndex === 0"
-      >
+    >
       Previous
     </button>
     <button
@@ -37,7 +39,7 @@
       class="nav-btn primary"
       (click)="goNextPage()"
       [disabled]="endIndex >= posts.length"
-      >
+    >
       Next
     </button>
   </section>

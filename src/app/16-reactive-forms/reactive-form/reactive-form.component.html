@@ -1,8 +1,10 @@
-<section class="reactive-shell">
-  <header class="reactive-header">
+<section class="layout-shell">
+  <header class="layout-header">
     <p class="eyebrow">Reactive forms</p>
     <h2>Stock entry</h2>
-    <p class="subtext">Capture stock details with a single form group.</p>
+    <p class="layout-subtext">
+      Capture stock details with a single form group.
+    </p>
   </header>
 
   <div class="reactive-grid">
@@ -15,16 +17,12 @@
           class="form-control"
           name="name"
           formControlName="name"
-          />
+        />
         @if (
-          stockForm.get('name')?.invalid &&
-          (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
-          ) {
-          <span
-            class="field-error"
-            >
-            Name is required.
-          </span>
+          stockForm.get("name")?.invalid &&
+          (stockForm.get("name")?.dirty || stockForm.get("name")?.touched)
+        ) {
+          <span class="field-error"> Name is required. </span>
         }
       </label>
 
@@ -36,16 +34,12 @@
           class="form-control"
           name="category"
           formControlName="code"
-          />
+        />
         @if (
-          stockForm.get('code')?.invalid &&
-          (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
-          ) {
-          <span
-            class="field-error"
-            >
-            Code must be at least 5 characters.
-          </span>
+          stockForm.get("code")?.invalid &&
+          (stockForm.get("code")?.dirty || stockForm.get("code")?.touched)
+        ) {
+          <span class="field-error"> Code must be at least 5 characters. </span>
         }
       </label>
 
@@ -57,16 +51,12 @@
           class="form-control"
           name="price"
           formControlName="price"
-          />
+        />
         @if (
-          stockForm.get('price')?.invalid &&
-          (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
-          ) {
-          <span
-            class="field-error"
-            >
-            Price must be 0 or higher.
-          </span>
+          stockForm.get("price")?.invalid &&
+          (stockForm.get("price")?.dirty || stockForm.get("price")?.touched)
+        ) {
+          <span class="field-error"> Price must be 0 or higher. </span>
         }
       </label>
 

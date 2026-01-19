@@ -1,8 +1,8 @@
-<section class="product-shell">
-  <header class="product-header">
+<section class="layout-shell">
+  <header class="layout-header">
     <p class="eyebrow">Template driven forms</p>
     <h2>Product form definition</h2>
-    <p class="subtext">
+    <p class="layout-subtext">
       Bind inputs with ngModel and validate using template driven rules.
     </p>
   </header>
@@ -12,7 +12,7 @@
     class="product-form"
     (ngSubmit)="onSubmit(productForm)"
     #productForm="ngForm"
-    >
+  >
     <div class="form-grid">
       <section class="form-panel">
         <h3>Product details</h3>
@@ -32,19 +32,15 @@
             [(ngModel)]="product.name"
             #name="ngModel"
             placeholder="Product Name"
-            />
+          />
           @if (
-            name.errors &&
-            (name.dirty || name.touched || productForm.submitted)
-            ) {
-            <div
-              >
-              @if (name.errors['required']) {
-                <div class="invalid-feedback d-block">
-                  name is required
-                </div>
+            name.errors && (name.dirty || name.touched || productForm.submitted)
+          ) {
+            <div>
+              @if (name.errors["required"]) {
+                <div class="invalid-feedback d-block">name is required</div>
               }
-              @if (name.errors['minlength']) {
+              @if (name.errors["minlength"]) {
                 <div class="invalid-feedback d-block">
                   Name length must be greater than 5 but actual length is
                   {{ name.errors["minlength"].actualLength }}
@@ -61,7 +57,7 @@
             required
             [(ngModel)]="product.category"
             name="category"
-            >
+          >
             @for (category of categories; track category) {
               <option [value]="category.id">
                 {{ category.name }}
@@ -77,12 +73,12 @@
             class="form-control"
             name="price"
             [(ngModel)]="product.price"
-            />
+          />
         </div>
-        @if (productForm.dirty && productForm.invalid && productForm.submitted) {
-          <ul
-            class="error-list"
-            >
+        @if (
+          productForm.dirty && productForm.invalid && productForm.submitted
+        ) {
+          <ul class="error-list">
             @for (error of getValidationMessages(name); track error) {
               <li>
                 {{ error }}
@@ -118,14 +114,14 @@
         type="button"
         class="btn btn-outline-secondary me-2"
         (click)="reset(productForm)"
-        >
+      >
         Reset
       </button>
       <button
         type="button"
         class="btn btn-secondary"
         (click)="preset(productForm)"
-        >
+      >
         Default Values
       </button>
     </div>
