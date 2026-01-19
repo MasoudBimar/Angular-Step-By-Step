@@ -190,6 +190,10 @@ selectedIds.update((current) => {
 ### 2) computed()
 
 Creates a derived value that recalculates when dependencies change.
+in other words the computed signal drives ites value from other signals.
+
+> [!NOTE]
+> The value of `computed` signal depends on other signals and cannot be `set`, `update`directly`.
 
 ```ts
 import { computed, signal } from "@angular/core";
@@ -204,15 +208,73 @@ const fullName = computed(() => `${first()} ${last()}`);
 
 Runs side effects whenever its dependencies change.
 
+> [!NOTE]
+> Effects runs at least once.
+
+Side effect examples:
+
+- Loggging to the console
+- Making an HTTP Request
+- Updating the DOM
+- Timer related Events
+
+> [!TIP]
+> Efffects can be defined as private or protected properties in two places in a component: directly within the class body or inside the constructor. because effects need the injection context available in these locations.
+
 ```ts
 import { effect, signal } from "@angular/core";
 
 const count = signal(0);
 
-effect(() => {
+private protected logEffect = effect(() => {
   console.log("Count changed:", count());
 });
 ```
+
+---
+
+### 4) untracked()
+
+Use `untracked()` to read signals inside `computed()` or `effect()` without creating a dependency. This is useful when you want a value only for logging, analytics, or a one-off read that should not trigger re-runs.
+
+When to use it:
+
+- Avoid accidental dependencies in an `effect`.
+- Read a signal for logging or debugging without re-running the effect.
+- Prevent a computed from depending on a value that you know should not drive it.
+
+How to use it:
+
+```ts
+import { effect, signal, untracked } from "@angular/core";
+
+const count = signal(0);
+const debugMode = signal(false);
+
+effect(() => {
+  const value = count();
+  if (untracked(() => debugMode())) {
+    console.log("Debug count:", value);
+  }
+});
+```
+
+Another example with a computed:
+
+```ts
+import { computed, signal, untracked } from "@angular/core";
+
+const selectedId = signal(1);
+const cache = signal(new Map([[1, "Alpha"], [2, "Beta"]]));
+
+const selectedLabel = computed(() => {
+  const id = selectedId();
+  const cached = untracked(() => cache());
+  return cached.get(id) ?? "Unknown";
+});
+```
+
+Be careful: when you use `untracked()`, changes to that signal will not trigger updates. Only use it when you are sure you do not want reactive updates.
 
 ---
 
