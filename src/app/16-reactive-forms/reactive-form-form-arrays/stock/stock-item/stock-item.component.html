@@ -7,17 +7,20 @@
     class="stock-price"
     [class.positive]="stock.isPositiveChange()"
     [class.negative]="!stock.isPositiveChange()"
-  >
+    >
     $ {{ stock.price }}
   </div>
   <div class="stock-actions">
-    <button
-      (click)="onToggleFavorite($event)"
-      class="btn btn-success btn-sm"
-      *ngIf="!stock.favorite"
-    >
-      Add to Favorite
-    </button>
-    <span class="favorite-pill" *ngIf="stock.favorite">Favorite</span>
+    @if (!stock.favorite) {
+      <button
+        (click)="onToggleFavorite($event)"
+        class="btn btn-success btn-sm"
+        >
+        Add to Favorite
+      </button>
+    }
+    @if (stock.favorite) {
+      <span class="favorite-pill">Favorite</span>
+    }
   </div>
 </article>

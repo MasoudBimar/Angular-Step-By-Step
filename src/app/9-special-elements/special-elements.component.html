@@ -1,31 +1,31 @@
 <section class="portfolio-shell">
   <header class="portfolio-hero">
     <p class="eyebrow">Profile builder</p>
-    <h1 *ngIf="showHeading">Portfolio</h1>
+    @if (showHeading) {
+      <h1>Portfolio</h1>
+    }
     <p class="hero-sub">Craft a clean, shareable snapshot of your story.</p>
   </header>
 
-  <ng-container *ngIf="!submitted; else preview">
+  @if (!submitted) {
     <div class="portfolio-grid">
       <ng-container
         [ngTemplateOutlet]="sectionCard"
         [ngTemplateOutletContext]="{
           title: 'Personal Information',
           subtitle: 'Basics that appear on your profile.',
-          template: personalForm
+          template: personalForm,
         }"
       ></ng-container>
-
       <ng-container
         [ngTemplateOutlet]="sectionCard"
         [ngTemplateOutletContext]="{
           title: 'Qualifications',
           subtitle: 'Add your education or certifications.',
-          template: qualificationForm
+          template: qualificationForm,
         }"
       ></ng-container>
     </div>
-
     <div class="btn-container">
       <button type="button" class="btn ghost" (click)="addQualification()">
         Add Qualification
@@ -34,7 +34,9 @@
         Submit
       </button>
     </div>
-  </ng-container>
+  } @else {
+    <ng-container [ngTemplateOutlet]="preview"></ng-container>
+  }
 
   <ng-template
     #sectionCard
@@ -58,30 +60,15 @@
     <form class="form-grid">
       <label class="field">
         <span>Name</span>
-        <input
-          type="text"
-          name="name"
-          [(ngModel)]="nm"
-          autocomplete="off"
-        />
+        <input type="text" name="name" [(ngModel)]="nm" autocomplete="off" />
       </label>
       <label class="field">
         <span>Email</span>
-        <input
-          type="email"
-          name="email"
-          [(ngModel)]="em"
-          autocomplete="off"
-        />
+        <input type="email" name="email" [(ngModel)]="em" autocomplete="off" />
       </label>
       <label class="field">
         <span>Phone</span>
-        <input
-          type="tel"
-          name="phone"
-          [(ngModel)]="ph"
-          autocomplete="off"
-        />
+        <input type="tel" name="phone" [(ngModel)]="ph" autocomplete="off" />
       </label>
       <label class="field">
         <span>Address</span>
@@ -92,44 +79,43 @@
 
   <ng-template #qualificationForm>
     <div class="qualification-list">
-      <article
-        class="qualification-card"
-        *ngFor="let q of qualification; let i = index"
-      >
-        <div class="qualification-header">
-          <h3>Qualification {{ i + 1 }}</h3>
-          <span>Entry {{ i + 1 }}</span>
-        </div>
-        <form class="form-grid">
-          <label class="field">
-            <span>School/College</span>
-            <input
-              type="text"
-              name="school"
-              [(ngModel)]="q.school"
-              autocomplete="off"
-            />
-          </label>
-          <label class="field">
-            <span>Degree</span>
-            <input
-              type="text"
-              name="degree"
-              [(ngModel)]="q.degree"
-              autocomplete="off"
-            />
-          </label>
-          <label class="field">
-            <span>Year</span>
-            <input
-              type="text"
-              name="year"
-              [(ngModel)]="q.year"
-              autocomplete="off"
-            />
-          </label>
-        </form>
-      </article>
+      @for (q of qualification; track q; let i = $index) {
+        <article class="qualification-card">
+          <div class="qualification-header">
+            <h3>Qualification {{ i + 1 }}</h3>
+            <span>Entry {{ i + 1 }}</span>
+          </div>
+          <form class="form-grid">
+            <label class="field">
+              <span>School/College</span>
+              <input
+                type="text"
+                name="school"
+                [(ngModel)]="q.school"
+                autocomplete="off"
+              />
+            </label>
+            <label class="field">
+              <span>Degree</span>
+              <input
+                type="text"
+                name="degree"
+                [(ngModel)]="q.degree"
+                autocomplete="off"
+              />
+            </label>
+            <label class="field">
+              <span>Year</span>
+              <input
+                type="text"
+                name="year"
+                [(ngModel)]="q.year"
+                autocomplete="off"
+              />
+            </label>
+          </form>
+        </article>
+      }
     </div>
   </ng-template>
 </section>
@@ -141,7 +127,9 @@
         <p class="eyebrow">Preview</p>
         <h2>Portfolio snapshot</h2>
       </div>
-      <button class="btn outline" type="button" (click)="formEdit()">Edit</button>
+      <button class="btn outline" type="button" (click)="formEdit()">
+        Edit
+      </button>
     </header>
     <div class="preview-grid">
       <div class="preview-card">
@@ -153,25 +141,30 @@
       <div class="preview-card">
         <h4>Qualifications</h4>
         <div class="preview-qualifications">
-          <ng-container *ngFor="let q of qualification; let i = index">
+          @for (q of qualification; track q; let i = $index) {
             <ng-container
               [ngTemplateOutlet]="qualificationPreview"
               [ngTemplateOutletContext]="{ qualification: q, index: i }"
             ></ng-container>
-          </ng-container>
+          }
         </div>
       </div>
     </div>
   </section>
 </ng-template>
 
-<ng-template #qualificationPreview let-qualification="qualification" let-index="index">
+<ng-template
+  #qualificationPreview
+  let-qualification="qualification"
+  let-index="index"
+>
   <div class="preview-item">
     <h5>Qualification {{ index + 1 }}</h5>
     <p>School/College : {{ qualification.school || "Not provided" }}</p>
     <p>
-      Degree : {{ qualification.degree || "Not provided" }}
-      ({{ qualification.year || "N/A" }})
+      Degree : {{ qualification.degree || "Not provided" }} ({{
+        qualification.year || "N/A"
+      }})
     </p>
   </div>
 </ng-template>

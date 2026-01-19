@@ -15,16 +15,17 @@
           class="form-control"
           name="name"
           formControlName="name"
-        />
-        <span
-          class="field-error"
-          *ngIf="
-            stockForm.get('name')?.invalid &&
-            (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
-          "
-        >
-          Name is required.
-        </span>
+          />
+        @if (
+          stockForm.get('name')?.invalid &&
+          (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
+          ) {
+          <span
+            class="field-error"
+            >
+            Name is required.
+          </span>
+        }
       </label>
 
       <label class="field" for="stockCode">
@@ -35,16 +36,17 @@
           class="form-control"
           name="category"
           formControlName="code"
-        />
-        <span
-          class="field-error"
-          *ngIf="
-            stockForm.get('code')?.invalid &&
-            (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
-          "
-        >
-          Code must be at least 5 characters.
-        </span>
+          />
+        @if (
+          stockForm.get('code')?.invalid &&
+          (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
+          ) {
+          <span
+            class="field-error"
+            >
+            Code must be at least 5 characters.
+          </span>
+        }
       </label>
 
       <label class="field" for="stockPrice">
@@ -55,16 +57,17 @@
           class="form-control"
           name="price"
           formControlName="price"
-        />
-        <span
-          class="field-error"
-          *ngIf="
-            stockForm.get('price')?.invalid &&
-            (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
-          "
-        >
-          Price must be 0 or higher.
-        </span>
+          />
+        @if (
+          stockForm.get('price')?.invalid &&
+          (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
+          ) {
+          <span
+            class="field-error"
+            >
+            Price must be 0 or higher.
+          </span>
+        }
       </label>
 
       <div class="form-actions">

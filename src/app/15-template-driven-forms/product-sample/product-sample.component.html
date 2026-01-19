@@ -17,7 +17,7 @@
             class="form-control"
             name="name"
             [(ngModel)]="newProduct.name"
-          />
+            />
         </div>
         <div class="mb-3">
           <label class="form-label">Category</label>
@@ -25,7 +25,7 @@
             class="form-control"
             name="category"
             [(ngModel)]="newProduct.category"
-          />
+            />
         </div>
         <div class="mb-3">
           <label class="form-label">Price</label>
@@ -33,7 +33,7 @@
             class="form-control"
             name="price"
             [(ngModel)]="newProduct.price"
-          />
+            />
         </div>
         <button class="btn btn-primary mt-2" type="submit">Create</button>
       </form>
@@ -49,7 +49,7 @@
           class="signal-input"
           [(massModel)]="newProduct.name"
           #massModel="massModel"
-        />
+          />
         <div class="signal-meta">
           Direction: {{ massModel.direction }}
         </div>
@@ -66,21 +66,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr
-              *ngFor="let item of getProducts(); let i = index"
+            @for (item of getProducts(); track item; let i = $index) {
+              <tr
               [mass-attr]="
                 getProducts().length < 6 ? 'table-success' : 'table-warning'
               "
-              [mass-product]="item"
-              (mass-category)="newProduct.category = $event"
-            >
-              <td>{{ i + 1 }}</td>
-              <td>{{ item.name }}</td>
-              <td [mass-attr]="item.category == 'Soccer' ? 'table-info' : null">
-                {{ item.category }}
-              </td>
-              <td [mass-attr]="'table-info'">{{ item.price }}</td>
-            </tr>
+                [mass-product]="item"
+                (mass-category)="newProduct.category = $event"
+                >
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.name }}</td>
+                <td [mass-attr]="item.category == 'Soccer' ? 'table-info' : null">
+                  {{ item.category }}
+                </td>
+                <td [mass-attr]="'table-info'">{{ item.price }}</td>
+              </tr>
+            }
           </tbody>
         </table>
       </div>

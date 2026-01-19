@@ -35,19 +35,21 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let employee of employees; index as i">
-          <td>{{ i + 1 }}</td>
-          <!-- titlecase pipe changes text to PascalCase -->
-          <td>{{ employee.name | titlecase }}</td>
-          <!-- slice limits the state string, appendText adds a label, then uppercase finishes it -->
-          <td>
-            {{ employee.state | slice : 0 : 3 | appendText : "State" | uppercase }}
-          </td>
-          <!-- built-in currency pipe for money -->
-          <td>{{ employee.salary | currency : "USD" }}</td>
-          <!-- custom persianDate pipe for localized date display -->
-          <td>{{ employee.issueDate | persianDate }}</td>
-        </tr>
+        @for (employee of employees; track employee; let i = $index) {
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <!-- titlecase pipe changes text to PascalCase -->
+            <td>{{ employee.name | titlecase }}</td>
+            <!-- slice limits the state string, appendText adds a label, then uppercase finishes it -->
+            <td>
+              {{ employee.state | slice : 0 : 3 | appendText : "State" | uppercase }}
+            </td>
+            <!-- built-in currency pipe for money -->
+            <td>{{ employee.salary | currency : "USD" }}</td>
+            <!-- custom persianDate pipe for localized date display -->
+            <td>{{ employee.issueDate | persianDate }}</td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>

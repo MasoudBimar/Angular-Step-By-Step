@@ -21,85 +21,87 @@
           class="field-input"
           placeholder="Enter task title"
           (keydown.enter)="addNewItem(todoInput)"
-        />
-      </label>
-      <button class="action" type="button" (click)="addNewItem(todoInput)">
-        Add Task
-      </button>
-    </div>
+          />
+        </label>
+        <button class="action" type="button" (click)="addNewItem(todoInput)">
+          Add Task
+        </button>
+      </div>
 
-    <div class="todo-columns">
-      <section class="todo-panel">
-        <header class="panel-header">
-          <div>
-            <h3>Open items</h3>
-            <p class="panel-meta">Keep the momentum going.</p>
-          </div>
-          <span class="count">{{ openItems().length }}</span>
-        </header>
-        <div class="todo-list">
-          @if (openItems().length === 0) {
-            <p class="todo-empty">No open tasks yet.</p>
-          }
-          <div
-            class="todo-item"
-            *ngFor="let task of openItems(); trackBy: trackById; let i = index"
-          >
-            <span class="index">{{ i + 1 }}</span>
-            <span class="item-title">{{ task.title }}</span>
-            <input
-              class="item-toggle"
-              type="checkbox"
-              [ngModel]="task.isComplete"
-              (ngModelChange)="toggleItemStatus(task)"
-            />
-            <button
-              class="item-delete"
-              type="button"
-              aria-label="Delete task"
-              (click)="removeItem(task)"
-            >
-              X
-            </button>
+      <div class="todo-columns">
+        <section class="todo-panel">
+          <header class="panel-header">
+            <div>
+              <h3>Open items</h3>
+              <p class="panel-meta">Keep the momentum going.</p>
+            </div>
+            <span class="count">{{ openItems().length }}</span>
+          </header>
+          <div class="todo-list">
+            @if (openItems().length === 0) {
+              <p class="todo-empty">No open tasks yet.</p>
+            }
+            @for (task of openItems(); track trackById(i, task); let i = $index) {
+              <div
+                class="todo-item"
+                >
+                <span class="index">{{ i + 1 }}</span>
+                <span class="item-title">{{ task.title }}</span>
+                <input
+                  class="item-toggle"
+                  type="checkbox"
+                  [ngModel]="task.isComplete"
+                  (ngModelChange)="toggleItemStatus(task)"
+                  />
+                  <button
+                    class="item-delete"
+                    type="button"
+                    aria-label="Delete task"
+                    (click)="removeItem(task)"
+                    >
+                    X
+                  </button>
+                </div>
+              }
+            </div>
+          </section>
+
+          <section class="todo-panel done">
+            <header class="panel-header">
+              <div>
+                <h3>Done items</h3>
+                <p class="panel-meta">Closed loops and small wins.</p>
+              </div>
+              <span class="count">{{ doneItems().length }}</span>
+            </header>
+            <div class="todo-list">
+              @if (doneItems().length === 0) {
+                <p class="todo-empty">No completed tasks yet.</p>
+              }
+              @for (task of doneItems(); track trackById(i, task); let i = $index) {
+                <div
+                  class="todo-item"
+                  >
+                  <span class="index">{{ i + 1 }}</span>
+                  <span class="item-title">{{ task.title }}</span>
+                  <input
+                    class="item-toggle"
+                    type="checkbox"
+                    [ngModel]="task.isComplete"
+                    (ngModelChange)="toggleItemStatus(task)"
+                    />
+                    <button
+                      class="item-delete"
+                      type="button"
+                      aria-label="Delete task"
+                      (click)="removeItem(task)"
+                      >
+                      X
+                    </button>
+                  </div>
+                }
+              </div>
+            </section>
           </div>
         </div>
       </section>
-
-      <section class="todo-panel done">
-        <header class="panel-header">
-          <div>
-            <h3>Done items</h3>
-            <p class="panel-meta">Closed loops and small wins.</p>
-          </div>
-          <span class="count">{{ doneItems().length }}</span>
-        </header>
-        <div class="todo-list">
-          @if (doneItems().length === 0) {
-            <p class="todo-empty">No completed tasks yet.</p>
-          }
-          <div
-            class="todo-item"
-            *ngFor="let task of doneItems(); trackBy: trackById; let i = index"
-          >
-            <span class="index">{{ i + 1 }}</span>
-            <span class="item-title">{{ task.title }}</span>
-            <input
-              class="item-toggle"
-              type="checkbox"
-              [ngModel]="task.isComplete"
-              (ngModelChange)="toggleItemStatus(task)"
-            />
-            <button
-              class="item-delete"
-              type="button"
-              aria-label="Delete task"
-              (click)="removeItem(task)"
-            >
-              X
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-</section>

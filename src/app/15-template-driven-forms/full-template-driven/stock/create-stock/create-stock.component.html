@@ -17,20 +17,22 @@
         name="stockName"
         #stockName="ngModel"
         ngModel
-      />
-      <div
-        *ngIf="
-          stockName.errors &&
-          (stockName.dirty || stockName.touched || stockForm.submitted)
-        "
-      >
+        />
+      @if (
+        stockName.errors &&
+        (stockName.dirty || stockName.touched || stockForm.submitted)
+        ) {
         <div
-          *ngIf="stockName.errors['required']"
-          class="invalid-feedback d-block"
-        >
-          Stock Name is Mandatory
+          >
+          @if (stockName.errors['required']) {
+            <div
+              class="invalid-feedback d-block"
+              >
+              Stock Name is Mandatory
+            </div>
+          }
         </div>
-      </div>
+      }
     </div>
 
     <div class="mb-3">
@@ -47,26 +49,29 @@
         name="stockCode"
         #stockCode="ngModel"
         ngModel
-      />
-      <div
-        *ngIf="
-          stockCode.errors &&
-          (stockCode.dirty || stockCode.touched || stockForm.submitted)
-        "
-      >
+        />
+      @if (
+        stockCode.errors &&
+        (stockCode.dirty || stockCode.touched || stockForm.submitted)
+        ) {
         <div
-          *ngIf="stockCode.errors['required']"
-          class="invalid-feedback d-block"
-        >
-          Stock Code is Mandatory
+          >
+          @if (stockCode.errors['required']) {
+            <div
+              class="invalid-feedback d-block"
+              >
+              Stock Code is Mandatory
+            </div>
+          }
+          @if (stockCode.errors['minlength']) {
+            <div
+              class="invalid-feedback d-block"
+              >
+              Stock Code must be atleast of length 2
+            </div>
+          }
         </div>
-        <div
-          *ngIf="stockCode.errors['minlength']"
-          class="invalid-feedback d-block"
-        >
-          Stock Code must be atleast of length 2
-        </div>
-      </div>
+      }
     </div>
 
     <div class="mb-3">
@@ -79,15 +84,17 @@
         name="stockPrice"
         ngModel
         (ngModelChange)="setStockPriceChange($event)"
-      />
+        />
     </div>
 
     <div class="mb-3">
       <label for="stockExchange" class="form-label">Stock Exchange</label>
       <select id="stockExchange" name="stockExchange" class="form-select">
-        <option *ngFor="let exchange of exchanges" [ngValue]="exchange">
-          {{ exchange }}
-        </option>
+        @for (exchange of exchanges; track exchange) {
+          <option [ngValue]="exchange">
+            {{ exchange }}
+          </option>
+        }
       </select>
     </div>
 
@@ -98,7 +105,7 @@
         type="checkbox"
         name="stockConfirm"
         [(ngModel)]="confirmed"
-      />
+        />
       <label class="form-check-label" for="stockConfirm">
         I confirm that the information provided above is accurate!
       </label>
@@ -110,12 +117,14 @@
       class="btn btn-outline-secondary"
       type="button"
       (click)="resetForm(stockForm)"
-    >
+      >
       reset
     </button>
   </form>
   <h4>Stock is</h4>
   <code class="json-output">{{ stockForm.value | json }}</code>
   <h3>Data has been confirmed: {{ confirmed }}</h3>
-  <h3 class="text-danger" *ngIf="stockForm.invalid">Form is Invalid</h3>
+  @if (stockForm.invalid) {
+    <h3 class="text-danger">Form is Invalid</h3>
+  }
 </div>

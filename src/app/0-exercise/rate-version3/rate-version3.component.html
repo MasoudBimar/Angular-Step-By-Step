@@ -1,22 +1,23 @@
 <div class="container">
   <span>Rate Me!! </span>
   <div class="stars-container">
-    <div
-      class="star"
-      *ngFor="let star of arr; let i = index"
-      (click)="handleClick(star)"
-      (mouseenter)="handleHover(star)"
-      (mouseleave)="handleLeave()"
-    >
-      <span
-        class="star-icon"
-        [ngClass]="star <= hoverTo ? 'large' : 'regular'"
-        [class.star-hover]="star <= hoverTo || star <= rateNumber"
-        role="img"
-        aria-label="star"
-        >★</span
+    @for (star of arr; track star; let i = $index) {
+      <div
+        class="star"
+        (click)="handleClick(star)"
+        (mouseenter)="handleHover(star)"
+        (mouseleave)="handleLeave()"
       >
-    </div>
+        <span
+          class="star-icon"
+          [class]="star <= hoverTo ? 'large' : 'regular'"
+          [class.star-hover]="star <= hoverTo || star <= rateNumber"
+          role="img"
+          aria-label="star"
+          >★</span
+        >
+      </div>
+    }
     <br />
   </div>
   {{ rateNumber }} / {{ arr[arr.length - 1] }}

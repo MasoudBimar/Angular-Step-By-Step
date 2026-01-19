@@ -2,62 +2,65 @@
   <a
     href="/"
     class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
-  >
+    >
     <span class="fs-4">Angular Step by Step</span>
   </a>
   <hr />
   <nav class="sidebar-nav flex-grow-1">
     <div class="accordion accordion-flush" id="sidebarAccordion">
-      <div class="accordion-item bg-transparent border-0" *ngFor="let item of menuItems">
-        <ng-container *ngIf="item.route; else nestedMenu">
-          <h2 class="accordion-header">
-            <a
-              class="nav-link text-white px-0 py-2"
-              [routerLink]="item.route"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-            >
-              {{ item.label }}
-            </a>
-          </h2>
-        </ng-container>
-        <ng-template #nestedMenu>
-          <ng-container *ngIf="item.children?.length">
+      @for (item of menuItems; track item) {
+        <div class="accordion-item bg-transparent border-0">
+          @if (item.route) {
             <h2 class="accordion-header">
-              <button
-                type="button"
-                class="accordion-button bg-transparent text-white px-0 py-2"
-                [class.collapsed]="!isExpanded(item)"
-                (click)="toggle(item)"
-                [attr.aria-expanded]="isExpanded(item)"
-                [attr.aria-controls]="'sidebar-group-' + item.id"
-              >
+              <a
+                class="nav-link text-white px-0 py-2"
+                [routerLink]="item.route"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >
                 {{ item.label }}
-              </button>
+              </a>
             </h2>
-            <div
-              class="accordion-collapse collapse"
-              [class.show]="isExpanded(item)"
-              [attr.id]="'sidebar-group-' + item.id"
-            >
-              <div class="accordion-body py-0 ps-3">
-                <ul class="nav nav-pills flex-column mb-2">
-                  <li class="nav-item" *ngFor="let child of item.children">
-                    <a
-                      class="nav-link text-white"
-                      [routerLink]="child.route"
-                      routerLinkActive="active"
-                      [routerLinkActiveOptions]="{ exact: true }"
-                    >
-                      {{ child.label }}
-                    </a>
-                  </li>
-                </ul>
+          } @else {
+            @if (item.children?.length) {
+              <h2 class="accordion-header">
+                <button
+                  type="button"
+                  class="accordion-button bg-transparent text-white px-0 py-2"
+                  [class.collapsed]="!isExpanded(item)"
+                  (click)="toggle(item)"
+                  [attr.aria-expanded]="isExpanded(item)"
+                  [attr.aria-controls]="'sidebar-group-' + item.id"
+                  >
+                  {{ item.label }}
+                </button>
+              </h2>
+              <div
+                class="accordion-collapse collapse"
+                [class.show]="isExpanded(item)"
+                [attr.id]="'sidebar-group-' + item.id"
+                >
+                <div class="accordion-body py-0 ps-3">
+                  <ul class="nav nav-pills flex-column mb-2">
+                    @for (child of item.children; track child) {
+                      <li class="nav-item">
+                        <a
+                          class="nav-link text-white"
+                          [routerLink]="child.route"
+                          routerLinkActive="active"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          >
+                          {{ child.label }}
+                        </a>
+                      </li>
+                    }
+                  </ul>
+                </div>
               </div>
-            </div>
-          </ng-container>
-        </ng-template>
-      </div>
+            }
+          }
+        </div>
+      }
     </div>
   </nav>
   <hr />
@@ -67,14 +70,14 @@
       target="_blank"
       class="d-flex align-items-center text-white text-decoration-none"
       aria-expanded="false"
-    >
+      >
       <img
         src="https://avatars.githubusercontent.com/u/13163778?v=4&size=128"
         alt=""
         width="32"
         height="32"
         class="rounded-circle me-2"
-      />
+        />
       <strong>Masoud Bimmer's Github</strong>
     </a>
   </div>

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodoItem } from '../model/to-do-item.model';
@@ -7,7 +7,7 @@ import { TodoList } from '../model/to-do-list.model';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   selector: 'app-to-do',
   templateUrl: './to-do.component.html',
   styleUrls: ['./to-do.component.css']

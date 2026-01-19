@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   selector: 'app-rate-version2',
   templateUrl: './rate-version2.component.html',
   styleUrls: ['./rate-version2.component.scss']

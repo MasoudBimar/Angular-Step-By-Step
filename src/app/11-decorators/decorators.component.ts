@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   selector: 'app-decorators',
   templateUrl: './decorators.component.html',
   styleUrls: ['./decorators.component.scss']

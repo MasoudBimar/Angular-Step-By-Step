@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   selector: 'app-services',
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss']

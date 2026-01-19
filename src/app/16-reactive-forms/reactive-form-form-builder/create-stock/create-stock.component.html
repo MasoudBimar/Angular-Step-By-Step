@@ -18,16 +18,17 @@
         placeholder="Stock Name"
         name="stockName"
         formControlName="name"
-      />
-      <span
-        *ngIf="
-          stockForm.get('name')?.invalid &&
-          (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
-        "
-        class="invalid-feedback d-block"
-      >
-        Name is required
-      </span>
+        />
+      @if (
+        stockForm.get('name')?.invalid &&
+        (stockForm.get('name')?.dirty || stockForm.get('name')?.touched)
+        ) {
+        <span
+          class="invalid-feedback d-block"
+          >
+          Name is required
+        </span>
+      }
     </label>
 
     <label class="field" for="stockCode">
@@ -42,22 +43,27 @@
         "
         placeholder="Stock Code"
         formControlName="code"
-      />
-      <span
-        *ngIf="
-          stockForm.get('code')?.errors &&
-          stockForm.get('code')?.invalid &&
-          (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
-        "
-        class="invalid-feedback d-block"
-      >
-        <span *ngIf="stockForm.get('code')?.errors?.['required']">
-          Stock Code is required
+        />
+      @if (
+        stockForm.get('code')?.errors &&
+        stockForm.get('code')?.invalid &&
+        (stockForm.get('code')?.dirty || stockForm.get('code')?.touched)
+        ) {
+        <span
+          class="invalid-feedback d-block"
+          >
+          @if (stockForm.get('code')?.errors?.['required']) {
+            <span>
+              Stock Code is required
+            </span>
+          }
+          @if (stockForm.get('code')?.errors?.['minlength']) {
+            <span>
+              Stock Code must be at least 2 characters
+            </span>
+          }
         </span>
-        <span *ngIf="stockForm.get('code')?.errors?.['minlength']">
-          Stock Code must be at least 2 characters
-        </span>
-      </span>
+      }
     </label>
 
     <label class="field" for="stockPrice">
@@ -72,21 +78,26 @@
         "
         placeholder="Stock Price"
         formControlName="price"
-      />
-      <span
-        *ngIf="
-          stockForm.get('price')?.invalid &&
-          (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
-        "
-        class="invalid-feedback d-block"
-      >
-        <span *ngIf="stockForm.get('price')?.errors?.['required']">
-          Stock Price is required
+        />
+      @if (
+        stockForm.get('price')?.invalid &&
+        (stockForm.get('price')?.dirty || stockForm.get('price')?.touched)
+        ) {
+        <span
+          class="invalid-feedback d-block"
+          >
+          @if (stockForm.get('price')?.errors?.['required']) {
+            <span>
+              Stock Price is required
+            </span>
+          }
+          @if (stockForm.get('price')?.errors?.['min']) {
+            <span>
+              Stock price must be positive
+            </span>
+          }
         </span>
-        <span *ngIf="stockForm.get('price')?.errors?.['min']">
-          Stock price must be positive
-        </span>
-      </span>
+      }
     </label>
 
     <div class="form-actions">

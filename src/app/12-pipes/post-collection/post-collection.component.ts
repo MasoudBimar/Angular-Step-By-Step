@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   selector: 'app-post-collection',
   templateUrl: './post-collection.component.html',
   styleUrls: ['./post-collection.component.scss']

@@ -8,18 +8,19 @@
   </header>
 
   <div class="posts-grid">
-    <article
-      class="post-card"
-      *ngFor="let post of posts | slice : startIndex : endIndex; index as i"
-    >
-      <div class="post-media">
-        <img [src]="post.imageUrl" [alt]="post.title" loading="lazy" />
-      </div>
-      <div class="post-body">
-        <span class="post-index">Post {{ i + 1 + startIndex }}</span>
-        <h3>{{ post.title | slice : 0 : 48 }}</h3>
-      </div>
-    </article>
+    @for (post of posts | slice : startIndex : endIndex; track post; let i = $index) {
+      <article
+        class="post-card"
+        >
+        <div class="post-media">
+          <img [src]="post.imageUrl" [alt]="post.title" loading="lazy" />
+        </div>
+        <div class="post-body">
+          <span class="post-index">Post {{ i + 1 + startIndex }}</span>
+          <h3>{{ post.title | slice : 0 : 48 }}</h3>
+        </div>
+      </article>
+    }
   </div>
 
   <section class="btn-container">
@@ -28,7 +29,7 @@
       class="nav-btn"
       (click)="goPreviousPage()"
       [disabled]="startIndex === 0"
-    >
+      >
       Previous
     </button>
     <button
@@ -36,7 +37,7 @@
       class="nav-btn primary"
       (click)="goNextPage()"
       [disabled]="endIndex >= posts.length"
-    >
+      >
       Next
     </button>
   </section>

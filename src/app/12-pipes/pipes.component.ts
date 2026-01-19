@@ -1,11 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AppendTextPipe } from './pipes/append-text.pipe';
 import { PersianDatePipe } from './pipes/persian-date.pipe';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, AppendTextPipe, PersianDatePipe],
+  imports: [AppendTextPipe, PersianDatePipe],
   selector: 'app-pipes',
   templateUrl: './pipes.component.html',
   styleUrls: ['./pipes.component.scss']

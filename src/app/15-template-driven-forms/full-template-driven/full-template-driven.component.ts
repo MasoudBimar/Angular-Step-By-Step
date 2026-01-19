@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { Stock } from './model/stock';
 import { CreateStockComponent } from './stock/create-stock/create-stock.component';
@@ -6,7 +6,7 @@ import { StockItemComponent } from './stock/stock-item/stock-item.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, StockItemComponent, CreateStockComponent],
+  imports: [StockItemComponent, CreateStockComponent],
   selector: 'app-full-template-driven',
   templateUrl: './full-template-driven.component.html',
   styleUrls: ['./full-template-driven.component.scss']

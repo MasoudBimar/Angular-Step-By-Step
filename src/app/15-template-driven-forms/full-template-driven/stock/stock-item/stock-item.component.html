@@ -4,14 +4,15 @@
     class="fw-bold"
     [class.text-success]="stock.isPositiveChange()"
     [class.text-danger]="!stock.isPositiveChange()"
-  >
+    >
     $ {{ stock.price }}
   </div>
-  <button
-    (click)="onToggleFavorite($event)"
-    class="btn btn-success btn-sm"
-    *ngIf="!stock.favorite"
-  >
-    Add to Favorite
-  </button>
+  @if (!stock.favorite) {
+    <button
+      (click)="onToggleFavorite($event)"
+      class="btn btn-success btn-sm"
+      >
+      Add to Favorite
+    </button>
+  }
 </div>

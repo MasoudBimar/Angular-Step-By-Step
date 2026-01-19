@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, inject, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodoItem } from '../model/to-do-item.model';
@@ -7,7 +7,7 @@ import { TodoItemService } from '../service/todo-item.service';
 @Component({
   selector: 'app-signal-todo-app',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule],
   templateUrl: './signal-todo-app.component.html',
   styleUrl: './signal-todo-app.component.scss'
 })

@@ -265,7 +265,12 @@ Another example with a computed:
 import { computed, signal, untracked } from "@angular/core";
 
 const selectedId = signal(1);
-const cache = signal(new Map([[1, "Alpha"], [2, "Beta"]]));
+const cache = signal(
+  new Map([
+    [1, "Alpha"],
+    [2, "Beta"],
+  ]),
+);
 
 const selectedLabel = computed(() => {
   const id = selectedId();
@@ -307,14 +312,13 @@ This app already has a `ServicesComponent` that loads users via `users$`. Signal
 Component excerpt:
 
 ```ts
-import { CommonModule } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { Component, computed, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   selector: "app-services",
   templateUrl: "./services.component.html",
   styleUrls: ["./services.component.scss"],

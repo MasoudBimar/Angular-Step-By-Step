@@ -39,7 +39,7 @@ Example:
 ```ts
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterOutlet, SidebarComponent],
+  imports: [RouterOutlet, SidebarComponent],
   selector: "app-root",
   templateUrl: "./app.component.html",
 })

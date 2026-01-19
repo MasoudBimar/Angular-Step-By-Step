@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   selector: 'app-getting-started',
   templateUrl: './getting-started.component.html',
   styleUrls: ['./getting-started.component.scss']

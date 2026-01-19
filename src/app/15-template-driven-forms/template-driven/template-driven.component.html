@@ -12,7 +12,7 @@
     class="product-form"
     (ngSubmit)="onSubmit(productForm)"
     #productForm="ngForm"
-  >
+    >
     <div class="form-grid">
       <section class="form-panel">
         <h3>Product details</h3>
@@ -32,21 +32,26 @@
             [(ngModel)]="product.name"
             #name="ngModel"
             placeholder="Product Name"
-          />
-          <div
-            *ngIf="
-              name.errors &&
-              (name.dirty || name.touched || productForm.submitted)
-            "
-          >
-            <div *ngIf="name.errors['required']" class="invalid-feedback d-block">
-              name is required
+            />
+          @if (
+            name.errors &&
+            (name.dirty || name.touched || productForm.submitted)
+            ) {
+            <div
+              >
+              @if (name.errors['required']) {
+                <div class="invalid-feedback d-block">
+                  name is required
+                </div>
+              }
+              @if (name.errors['minlength']) {
+                <div class="invalid-feedback d-block">
+                  Name length must be greater than 5 but actual length is
+                  {{ name.errors["minlength"].actualLength }}
+                </div>
+              }
             </div>
-            <div *ngIf="name.errors['minlength']" class="invalid-feedback d-block">
-              Name length must be greater than 5 but actual length is
-              {{ name.errors["minlength"].actualLength }}
-            </div>
-          </div>
+          }
         </div>
         <div class="mb-3">
           <label for="category" class="form-label">Category</label>
@@ -56,10 +61,12 @@
             required
             [(ngModel)]="product.category"
             name="category"
-          >
-            <option *ngFor="let category of categories" [value]="category.id">
-              {{ category.name }}
-            </option>
+            >
+            @for (category of categories; track category) {
+              <option [value]="category.id">
+                {{ category.name }}
+              </option>
+            }
           </select>
         </div>
         <div class="mb-3">
@@ -70,16 +77,19 @@
             class="form-control"
             name="price"
             [(ngModel)]="product.price"
-          />
+            />
         </div>
-        <ul
-          class="error-list"
-          *ngIf="productForm.dirty && productForm.invalid && productForm.submitted"
-        >
-          <li *ngFor="let error of getValidationMessages(name)">
-            {{ error }}
-          </li>
-        </ul>
+        @if (productForm.dirty && productForm.invalid && productForm.submitted) {
+          <ul
+            class="error-list"
+            >
+            @for (error of getValidationMessages(name); track error) {
+              <li>
+                {{ error }}
+              </li>
+            }
+          </ul>
+        }
       </section>
 
       <aside class="form-aside">
@@ -108,14 +118,14 @@
         type="button"
         class="btn btn-outline-secondary me-2"
         (click)="reset(productForm)"
-      >
+        >
         Reset
       </button>
       <button
         type="button"
         class="btn btn-secondary"
         (click)="preset(productForm)"
-      >
+        >
         Default Values
       </button>
     </div>

@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   selector: 'app-create-stock',
   templateUrl: './create-stock.component.html',
   styleUrls: ['./create-stock.component.scss']

@@ -6,21 +6,23 @@
   </header>
 
   <div class="people-grid">
-    <article class="person-card" *ngFor="let item of personList">
-      <div class="avatar">
-        <img
-          [src]="item.img"
-          [alt]="item.fn + ' ' + item.ln"
-          loading="lazy"
-        />
-      </div>
-      <div class="person-body">
-        <h3>{{ item.fn + " " + item.ln }}</h3>
-        <p>{{ item.dsc }}</p>
-      </div>
-      <button type="button" class="person-action" (click)="tellWhoIAm(item)">
-        Tell
-      </button>
-    </article>
+    @for (item of personList; track item) {
+      <article class="person-card">
+        <div class="avatar">
+          <img
+            [src]="item.img"
+            [alt]="item.fn + ' ' + item.ln"
+            loading="lazy"
+            />
+        </div>
+        <div class="person-body">
+          <h3>{{ item.fn + " " + item.ln }}</h3>
+          <p>{{ item.dsc }}</p>
+        </div>
+        <button type="button" class="person-action" (click)="tellWhoIAm(item)">
+          Tell
+        </button>
+      </article>
+    }
   </div>
 </section>
