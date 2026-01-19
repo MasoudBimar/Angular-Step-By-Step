@@ -38,9 +38,9 @@
           <span class="count">{{ openItems().length }}</span>
         </header>
         <div class="todo-list">
-          <p class="todo-empty" *ngIf="openItems().length === 0">
-            No open tasks yet.
-          </p>
+          @if (openItems().length === 0) {
+            <p class="todo-empty">No open tasks yet.</p>
+          }
           <div
             class="todo-item"
             *ngFor="let task of openItems(); trackBy: trackById; let i = index"
@@ -74,9 +74,9 @@
           <span class="count">{{ doneItems().length }}</span>
         </header>
         <div class="todo-list">
-          <p class="todo-empty" *ngIf="doneItems().length === 0">
-            No completed tasks yet.
-          </p>
+          @if (doneItems().length === 0) {
+            <p class="todo-empty">No completed tasks yet.</p>
+          }
           <div
             class="todo-item"
             *ngFor="let task of doneItems(); trackBy: trackById; let i = index"

@@ -138,7 +138,9 @@ export class LoginComponent {
   <input name="email" ngModel required email #email="ngModel" />
 </label>
 
-<p *ngIf="email.invalid && email.touched">Please provide a valid email.</p>
+@if(email.invalid && email.touched){
+<p>Please provide a valid email.</p>
+}
 ```
 
 `ngModel` exposes useful flags:

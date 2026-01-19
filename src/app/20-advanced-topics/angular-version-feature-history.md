@@ -175,7 +175,7 @@ Highlights:
 - Improved SSR with hydration (developer preview)
 - TypeScript 5.0 support
 
-## Angular 17
+## Angular 17 -- Angular Renaissance( french word means rebirth)
 
 Released: November 2023.
 

@@ -9,8 +9,7 @@
       </p>
     </div>
   </div>
-
-  <ng-container *ngIf="users$ | async as users; else loading">
+  @if (users$ | async; as users) {
     <div class="card shadow-sm">
       <div class="card-body">
         <div
@@ -77,7 +76,9 @@
         </div>
       </div>
     </div>
-  </ng-container>
+  } @else {
+    <ng-container [ngTemplateOutlet]="loading"></ng-container>
+  }
 
   <ng-template #loading>
     <div class="d-flex align-items-center gap-2 text-muted">

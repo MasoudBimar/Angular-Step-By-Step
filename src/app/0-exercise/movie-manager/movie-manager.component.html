@@ -24,16 +24,13 @@
                 name="title"
                 formControlName="title"
               />
-              <div
-                *ngIf="
-                  movieForm.get('title')?.invalid &&
-                  (movieForm.get('title')?.dirty ||
-                    movieForm.get('title')?.touched)
-                "
-                class="text-danger small mt-1"
-              >
-                Title is required.
-              </div>
+              @if (
+                movieForm.get("title")?.invalid &&
+                (movieForm.get("title")?.dirty ||
+                  movieForm.get("title")?.touched)
+              ) {
+                <div class="text-danger small mt-1">Title is required.</div>
+              }
             </div>
 
             <div class="col-12">
