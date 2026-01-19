@@ -125,7 +125,9 @@ export class PipesComponent {
 
 <!-- keyvalue -->
 <ul>
-  <li *ngFor="let item of scores | keyvalue">{{ item.key }}: {{ item.value }}</li>
+  @for (item of scores | keyvalue) {
+    <li>{{ item.key }}: {{ item.value }}</li>
+  }
 </ul>
 
 <!-- i18nSelect -->

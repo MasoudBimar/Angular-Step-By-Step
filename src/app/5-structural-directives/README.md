@@ -49,7 +49,9 @@ import { Component } from "@angular/core";
   selector: "app-structural-demo",
   template: `
     <button (click)="toggle()">Toggle</button>
-    <p *ngIf="isVisible">Now you see me</p>
+    @if (isVisible) {
+      <p>Now you see me</p>
+    }
   `,
 })
 export class StructuralDemoComponent {
@@ -71,13 +73,13 @@ Use the `else` syntax when you want a clear fallback template. Angular renders t
 ```html
 <button (click)="toggle()">Toggle</button>
 
-<div *ngIf="isVisible; else hiddenBlock">
-  <p>Now you see me</p>
-</div>
-
-<ng-template #hiddenBlock>
+@if (isVisible) {
+  <div>
+    <p>Now you see me</p>
+  </div>
+} @else {
   <p>Now you don't</p>
-</ng-template>
+}
 ```
 
 ```ts
@@ -98,9 +100,9 @@ Angular v17+ introduces built-in control flow blocks. Use `@if` and `@else` to r
 <button (click)="toggle()">Toggle</button>
 
 @if (isVisible) {
-<p>Now you see me</p>
+  <p>Now you see me</p>
 } @else {
-<p>Now you don't</p>
+  <p>Now you don't</p>
 }
 ```
 
@@ -120,9 +122,11 @@ Use `*ngIf` for heavy or optional sections because keeping elements in the DOM m
 > Creating local variable in template using `as` keyword
 
 ```html
-<div *ngIf="user as userName">
-  <h1>hello, {{userName}}</h1>
-</div>
+@if (user; as userName) {
+  <div>
+    <h1>hello, {{ userName }}</h1>
+  </div>
+}
 ```
 
 ## \*ngFor
@@ -136,7 +140,14 @@ import { Component } from "@angular/core";
   selector: "app-structural-demo",
   template: `
     <ul>
-      <li *ngFor="let item of items; let i = index; let isFirst = first; let isOdd = odd; let isEven = even">{{ i + 1 }}. {{ item }} <span *ngIf="isFirst">(first)</span></li>
+      @for (item of items; let i = $index; let isFirst = $first; let isOdd = $odd; let isEven = $even) {
+        <li>
+          {{ i + 1 }}. {{ item }}
+          @if (isFirst) {
+            <span>(first)</span>
+          }
+        </li>
+      }
     </ul>
   `,
 })
@@ -152,7 +163,14 @@ import { Component } from "@angular/core";
   selector: "app-structural-demo",
   template: `
     <ul>
-      <li *ngFor="let item of items; index as i; first as isFirst; odd as isOdd; even as isEven">{{ i + 1 }}. {{ item }} <span *ngIf="isFirst">(first)</span></li>
+      @for (item of items; let i = $index; let isFirst = $first; let isOdd = $odd; let isEven = $even) {
+        <li>
+          {{ i + 1 }}. {{ item }}
+          @if (isFirst) {
+            <span>(first)</span>
+          }
+        </li>
+      }
     </ul>
   `,
 })
@@ -166,15 +184,18 @@ export class StructuralDemoComponent {
 Use `@for` to iterate over a list with built-in context variables like `$index`, `$first`, `$odd`, and `$even`.
 
 ```html
-@for (item of items; track item; let i = $index; let isFirst = $first) {
-<p>
-  {{ i + 1 }}. {{ item }} @if (isFirst) {
-  <span>(first)</span>
+<ul>
+  @for (item of items; track item; let i = $index; let isFirst = $first) {
+    <li>
+      {{ i + 1 }}. {{ item }}
+      @if (isFirst) {
+        <span>(first)</span>
+      }
+    </li>
+  } @empty {
+    <li>No items found.</li>
   }
-</p>
-} @empty {
-<p>No items found.</p>
-}
+</ul>
 ```
 
 > [!TIP] > `track` in `@for` plays the same role as `trackBy` in `*ngFor`.
@@ -190,7 +211,14 @@ import { Component } from "@angular/core";
   selector: "app-structural-demo",
   template: `
     <ul>
-      <li *ngFor="let item of items; trackBy: trackByFn">{{ i + 1 }}. {{ item }} <span *ngIf="isFirst">(first)</span></li>
+      @for (item of items; track trackByFn(item); let i = $index; let isFirst = $first) {
+        <li>
+          {{ i + 1 }}. {{ item.name }}
+          @if (isFirst) {
+            <span>(first)</span>
+          }
+        </li>
+      }
     </ul>
   `,
 })
@@ -217,11 +245,17 @@ import { Component } from "@angular/core";
 @Component({
   selector: "app-structural-demo",
   template: `
-    <div [ngSwitch]="status">
-      <p *ngSwitchCase="'loading'">Loading...</p>
-      <p *ngSwitchCase="'ready'">Ready</p>
-      <p *ngSwitchDefault>Unknown</p>
-    </div>
+    @switch (status) {
+      @case ("loading") {
+        <p>Loading...</p>
+      }
+      @case ("ready") {
+        <p>Ready</p>
+      }
+      @default {
+        <p>Unknown</p>
+      }
+    }
   `,
 })
 export class StructuralDemoComponent {
@@ -234,13 +268,17 @@ export class StructuralDemoComponent {
 Use `@switch` with `@case` and `@default` for a cleaner multi-branch template.
 
 ```html
-@switch (status) { @case ("loading") {
-<p>Loading...</p>
-} @case ("ready") {
-<p>Ready</p>
-} @default {
-<p>Unknown</p>
-} }
+@switch (status) {
+  @case ("loading") {
+    <p>Loading...</p>
+  }
+  @case ("ready") {
+    <p>Ready</p>
+  }
+  @default {
+    <p>Unknown</p>
+  }
+}
 ```
 
 > [!NOTE]

@@ -267,7 +267,11 @@ import { Component, QueryList, ViewChildren } from "@angular/core";
 
 @Component({
   selector: "app-tabs",
-  template: ` <app-tab *ngFor="let tab of tabs"></app-tab> `,
+  template: `
+    @for (tab of tabs) {
+      <app-tab></app-tab>
+    }
+  `,
 })
 export class TabsComponent {
   @ViewChildren("app-tab") tabComponents?: QueryList<unknown>;

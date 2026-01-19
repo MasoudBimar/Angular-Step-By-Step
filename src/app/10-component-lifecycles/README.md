@@ -384,7 +384,9 @@ import { Component, ElementRef, afterNextRender, inject, signal } from "@angular
   template: `
     <button (click)="add()">Add</button>
     <ul>
-      <li *ngFor="let m of messages()">{{ m }}</li>
+      @for (m of messages()) {
+        <li>{{ m }}</li>
+      }
     </ul>
   `,
 })

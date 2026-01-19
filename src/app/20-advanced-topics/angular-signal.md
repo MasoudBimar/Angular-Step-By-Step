@@ -347,9 +347,11 @@ Template excerpt:
 ```html
 <input type="search" class="form-control form-control-sm" placeholder="Filter by name" (input)="filter.set($any($event.target).value)" />
 
-<tr *ngFor="let user of filteredUsers(); trackBy: trackByUserId">
-  ...
-</tr>
+@for (user of filteredUsers(); track trackByUserId($index, user)) {
+  <tr>
+    ...
+  </tr>
+}
 ```
 
 This keeps the HTTP call as an Observable, but adds a signal-backed filter and computed list for fast, local updates.

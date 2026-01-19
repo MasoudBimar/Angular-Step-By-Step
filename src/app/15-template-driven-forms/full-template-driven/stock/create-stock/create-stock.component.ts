@@ -1,9 +1,10 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, JsonPipe],
   selector: 'app-create-stock',
   templateUrl: './create-stock.component.html',
   styleUrls: ['./create-stock.component.scss']

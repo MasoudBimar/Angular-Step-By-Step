@@ -98,7 +98,9 @@ export class ProfileComponent {
     Name
     <input formControlName="name" />
   </label>
-  <div *ngIf="profileForm.get('name')?.invalid && profileForm.get('name')?.touched">Name is required</div>
+  @if (profileForm.get('name')?.invalid && profileForm.get('name')?.touched) {
+    <div>Name is required</div>
+  }
 
   <label>
     Email
@@ -163,10 +165,12 @@ export class SkillsComponent {
 ```html
 <form [formGroup]="form">
   <div formArrayName="skills">
-    <div *ngFor="let ctrl of skills.controls; let i = index">
-      <input [formControlName]="i" />
-      <button type="button" (click)="removeSkill(i)">Remove</button>
-    </div>
+    @for (ctrl of skills.controls; let i = $index) {
+      <div>
+        <input [formControlName]="i" />
+        <button type="button" (click)="removeSkill(i)">Remove</button>
+      </div>
+    }
   </div>
   <button type="button" (click)="addSkill()">Add skill</button>
 </form>
@@ -217,7 +221,9 @@ this.form = this.fb.group({
 Template display:
 
 ```html
-<div *ngIf="form.get('name')?.errors?.['minlength']">Name must be at least 2 characters</div>
+@if (form.get('name')?.errors?.['minlength']) {
+  <div>Name must be at least 2 characters</div>
+}
 ```
 
 ## Custom validation (sync)
@@ -244,7 +250,9 @@ this.form = this.fb.group({
 Template display:
 
 ```html
-<div *ngIf="form.get('username')?.errors?.['noSpaces']">No spaces allowed.</div>
+@if (form.get('username')?.errors?.['noSpaces']) {
+  <div>No spaces allowed.</div>
+}
 ```
 
 ## Async validation
@@ -275,8 +283,12 @@ this.form = this.fb.group({
 Template display:
 
 ```html
-<div *ngIf="form.get('username')?.pending">Checking availability...</div>
-<div *ngIf="form.get('username')?.errors?.['usernameTaken']">Username is already taken.</div>
+@if (form.get('username')?.pending) {
+  <div>Checking availability...</div>
+}
+@if (form.get('username')?.errors?.['usernameTaken']) {
+  <div>Username is already taken.</div>
+}
 ```
 
 ## Notes

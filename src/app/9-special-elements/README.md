@@ -24,13 +24,15 @@ When to use:
 - You want cleaner HTML output while keeping template logic.
 
 ```html
-<ng-container *ngIf="items.length; else empty">
-  <li *ngFor="let item of items">{{ item }}</li>
+<ng-container>
+  @if (items.length) {
+    @for (item of items) {
+      <li>{{ item }}</li>
+    }
+  } @else {
+    <p>No items yet.</p>
+  }
 </ng-container>
-
-<ng-template #empty>
-  <p>No items yet.</p>
-</ng-template>
 ```
 
 > [!TIP] > `ng-container` keeps your DOM clean and avoids breaking layouts with extra wrapper elements.
@@ -89,9 +91,11 @@ When to use:
   <p>Loading...</p>
 </ng-template>
 
-<div *ngIf="dataLoaded; else loading">
+@if (dataLoaded) {
   <p>Data ready.</p>
-</div>
+} @else {
+  <ng-container [ngTemplateOutlet]="loading"></ng-container>
+}
 ```
 
 > [!TIP] > `ng-template` is lightweight; it only appears in the DOM when instantiated (wont rendered independently).

@@ -92,7 +92,14 @@ import { Component } from "@angular/core";
   selector: "app-template-var-demo",
   template: `
     <ul>
-      <li *ngFor="let item of items; let i = index; let isFirst = first">{{ i }} - {{ item }} <span *ngIf="isFirst">(first)</span></li>
+      @for (item of items; let i = $index; let isFirst = $first) {
+        <li>
+          {{ i }} - {{ item }}
+          @if (isFirst) {
+            <span>(first)</span>
+          }
+        </li>
+      }
     </ul>
   `,
 })
@@ -115,9 +122,9 @@ import { Component } from "@angular/core";
       <div>{{ index + 1 }}. {{ name }}</div>
     </ng-template>
 
-    <ng-container *ngFor="let user of users; let i = index">
+    @for (user of users; let i = $index) {
       <ng-container *ngTemplateOutlet="row; context: { $implicit: user, idx: i }"></ng-container>
-    </ng-container>
+    }
   `,
 })
 export class TemplateVarDemoComponent {

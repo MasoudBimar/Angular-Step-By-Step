@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Stock } from '../../model/stock';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, JsonPipe],
   selector: 'app-form-array-create-stock',
   templateUrl: './create-stock.component.html',
   styleUrls: ['./create-stock.component.css']

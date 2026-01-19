@@ -79,7 +79,9 @@ import { UsersService, User } from "./users.service";
   selector: "app-users",
   template: `
     <ul>
-      <li *ngFor="let user of users">{{ user.name }}</li>
+      @for (user of users) {
+        <li>{{ user.name }}</li>
+      }
     </ul>
   `,
 })

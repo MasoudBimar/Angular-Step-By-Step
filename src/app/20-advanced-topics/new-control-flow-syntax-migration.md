@@ -18,7 +18,11 @@ If your project is not current, update first.
 
 ## 2) Learn the syntax mapping at a glance
 
-Here is the one-to-one mapping you will use most often:
+Legacy quick map:
+
+- `*ngIf="isReady"` -> `@if (isReady) { ... }`
+- `*ngFor="let item of items; index as i; trackBy: trackById"` -> `@for (item of items; track trackById(item); let i = $index) { ... }`
+- `[ngSwitch]="status"` + `*ngSwitchCase`/`*ngSwitchDefault` -> `@switch (status) { @case (...) { ... } @default { ... } }`
 
 ```html
 <!-- Before -->
@@ -28,13 +32,11 @@ Here is the one-to-one mapping you will use most often:
   <p *ngSwitchCase="'ready'">Ready</p>
   <p *ngSwitchDefault>Unknown</p>
 </div>
-
-<!-- After -->
 @if (isReady) {
 <div>Ready</div>
 } @for (item of items; track item.id; let i = $index) {
 <li>{{ item }}</li>
-} @switch (status) { @case ('ready') {
+} @switch (status) { @case ("ready") {
 <p>Ready</p>
 } @default {
 <p>Unknown</p>
@@ -51,6 +53,8 @@ Notes:
 
 ### Simple `*ngIf`
 
+Legacy: `<section *ngIf="isLoggedIn">Welcome!</section>`
+
 ```html
 <!-- Before -->
 <section *ngIf="isLoggedIn">Welcome!</section>
@@ -62,6 +66,8 @@ Notes:
 ```
 
 ### `*ngIf` with `else`
+
+Legacy: `<section *ngIf="isLoggedIn; else guest">Welcome!</section>` with `<ng-template #guest>Sign in</ng-template>`
 
 ```html
 <!-- Before -->
@@ -88,12 +94,15 @@ Or this way you can keep the ng-template:
 @if (isLoggedIn) {
 <section>Welcome!</section>
 } @else {
-<ng-container [ngTemplateOutlet]="guest"> </ng-container> }
+<ng-container [ngTemplateOutlet]="guest"></ng-container>
+}
 
 <ng-template #guest>Sign in</ng-template>
 ```
 
 ### `*ngIf` with `then` and `else`
+
+Legacy: `<ng-container *ngIf="isLoggedIn; then signedIn; else signedOut"></ng-container>`
 
 ```html
 <!-- Before -->
@@ -111,6 +120,8 @@ If the `then` and `else` templates are large, inline them into the blocks.
 
 ### Basic list
 
+Legacy: `<li *ngFor="let hero of heroes">{{ hero.name }}</li>`
+
 ```html
 <!-- Before -->
 <li *ngFor="let hero of heroes">{{ hero.name }}</li>
@@ -122,6 +133,8 @@ If the `then` and `else` templates are large, inline them into the blocks.
 ```
 
 ### Index and odd/even
+
+Legacy: `<li *ngFor="let hero of heroes; index as i; odd as isOdd">...</li>`
 
 ```html
 <!-- Before -->
@@ -138,6 +151,8 @@ built-in `@for` context variables.
 
 ### `trackBy` to `track`
 
+Legacy: `<li *ngFor="let hero of heroes; trackBy: trackById">{{ hero.name }}</li>`
+
 ```html
 <!-- Before -->
 <li *ngFor="let hero of heroes; trackBy: trackById">{{ hero.name }}</li>
@@ -149,6 +164,8 @@ built-in `@for` context variables.
 ```
 
 If you used `trackBy` with index:
+
+Legacy: `<li *ngFor="let hero of heroes; trackBy: trackByIndex">{{ hero.name }}</li>`
 
 ```html
 <!-- Before -->
@@ -162,6 +179,8 @@ If you used `trackBy` with index:
 
 ## 5) Migrate `*ngSwitch` to `@switch`
 
+Legacy: `[ngSwitch]="status"` with `*ngSwitchCase` and `*ngSwitchDefault`
+
 ```html
 <!-- Before -->
 <div [ngSwitch]="status">
@@ -171,9 +190,9 @@ If you used `trackBy` with index:
 </div>
 
 <!-- After -->
-@switch (status) { @case ('ready') {
+@switch (status) { @case ("ready") {
 <p>Ready</p>
-} @case ('loading') {
+} @case ("loading") {
 <p>Loading...</p>
 } @default {
 <p>Unknown</p>
@@ -184,7 +203,7 @@ Small detail: `@case` and `@default` are blocks; wrap all the markup inside them
 
 ## 6) Combine blocks and containers cleanly
 
-You no longer need `ng-container` or `ng-template` just to host directives.
+Legacy: `<ng-container *ngIf="isReady">...</ng-container>`
 
 ```html
 <!-- Before -->
@@ -214,6 +233,8 @@ The new syntax adds a built-in empty state.
 
 ### Nested `*ngIf` + `*ngFor`
 
+Legacy: `<div *ngIf="isReady"><li *ngFor="let hero of heroes">...</li></div>`
+
 ```html
 <!-- Before -->
 <div *ngIf="isReady">
@@ -227,6 +248,8 @@ The new syntax adds a built-in empty state.
 ```
 
 ### `*ngIf` with `*ngFor` inside a component
+
+Legacy: `<app-hero *ngIf="selectedHero">...</app-hero>` and `<ul *ngIf="heroes?.length">...</ul>`
 
 ```html
 <!-- Before -->

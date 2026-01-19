@@ -183,9 +183,10 @@ Highlights:
 
 - Built-in control flow (`@if`, `@for`, `@switch`)
 - Deferrable views (`@defer`) for lazy loading
-- New application builder using Vite and esbuild
+- New application builder using `Vite` and `esbuild`
 - New projects default to standalone APIs
 - SSR and hydration improvements
+- Standalone by default from this version (no modules in root)
 
 ## Angular 18
 

@@ -1,9 +1,10 @@
+import { AsyncPipe, JsonPipe, NgTemplateOutlet } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 
 @Component({
   standalone: true,
-  imports: [],
+  imports: [AsyncPipe, NgTemplateOutlet],
   selector: 'app-services',
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss']

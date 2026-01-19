@@ -15,7 +15,9 @@
       <div class="meta-card">
         <span>Latest issue</span>
         <!-- Built-in date pipe for a quick summary -->
-        <strong>{{ employees[0]?.issueDate | date : "mediumDate" }}</strong>
+        @if (employees[0]) {
+          <strong>{{ employees[0].issueDate | date: "mediumDate" }}</strong>
+        }
       </div>
     </div>
   </header>
@@ -42,10 +44,12 @@
             <td>{{ employee.name | titlecase }}</td>
             <!-- slice limits the state string, appendText adds a label, then uppercase finishes it -->
             <td>
-              {{ employee.state | slice : 0 : 3 | appendText : "State" | uppercase }}
+              {{
+                employee.state | slice: 0 : 3 | appendText: "State" | uppercase
+              }}
             </td>
             <!-- built-in currency pipe for money -->
-            <td>{{ employee.salary | currency : "USD" }}</td>
+            <td>{{ employee.salary | currency: "USD" }}</td>
             <!-- custom persianDate pipe for localized date display -->
             <td>{{ employee.issueDate | persianDate }}</td>
           </tr>

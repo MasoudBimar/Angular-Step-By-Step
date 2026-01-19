@@ -94,12 +94,11 @@ Showing fetched data as Observable using async pipe in template:
 
 ```html
   <!-- for iterating over observable data we need the aliasing with 'as' keyword -->
-  ng-container *ngIf="data$ | async as data; else loading">
+  @if (data$ | async; as data) {
     <p>Data: {{ data }}</p>
-  </ng-container>
-  <ng-template #loading>
+  } @else {
     <p>Loading...</p>
-  </ng-template>
+  }
 ```
 
 ## Operators and Transformations
