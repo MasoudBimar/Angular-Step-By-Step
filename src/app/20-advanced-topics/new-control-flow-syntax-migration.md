@@ -32,6 +32,7 @@ Legacy quick map:
   <p *ngSwitchCase="'ready'">Ready</p>
   <p *ngSwitchDefault>Unknown</p>
 </div>
+<!-- After -->
 @if (isReady) {
 <div>Ready</div>
 } @for (item of items; track item.id; let i = $index) {

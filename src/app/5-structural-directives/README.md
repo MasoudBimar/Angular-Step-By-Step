@@ -40,7 +40,7 @@ ng generate @angular/core:control-flow
 Conditionally include or remove a block.
 
 > [!NOTE]
-> when ngIf remove a n element it is not hidden, it is removed from the DOM completetly.
+> when ngIf remove an element it is not hidden, it is removed from the DOM completetly.
 
 ```ts
 import { Component } from "@angular/core";
@@ -73,13 +73,13 @@ Use the `else` syntax when you want a clear fallback template. Angular renders t
 ```html
 <button (click)="toggle()">Toggle</button>
 
-@if (isVisible) {
-  <div>
-    <p>Now you see me</p>
-  </div>
-} @else {
+<div *ngIf="isVisible; else hiddenBlock">
+  <p>Now you see me</p>
+</div>
+
+<ng-template #hiddenBlock>
   <p>Now you don't</p>
-}
+</ng-template>
 ```
 
 ```ts
@@ -100,9 +100,9 @@ Angular v17+ introduces built-in control flow blocks. Use `@if` and `@else` to r
 <button (click)="toggle()">Toggle</button>
 
 @if (isVisible) {
-  <p>Now you see me</p>
+<p>Now you see me</p>
 } @else {
-  <p>Now you don't</p>
+<p>Now you don't</p>
 }
 ```
 
@@ -123,9 +123,9 @@ Use `*ngIf` for heavy or optional sections because keeping elements in the DOM m
 
 ```html
 @if (user; as userName) {
-  <div>
-    <h1>hello, {{ userName }}</h1>
-  </div>
+<div>
+  <h1>hello, {{ userName }}</h1>
+</div>
 }
 ```
 
@@ -140,14 +140,7 @@ import { Component } from "@angular/core";
   selector: "app-structural-demo",
   template: `
     <ul>
-      @for (item of items; let i = $index; let isFirst = $first; let isOdd = $odd; let isEven = $even) {
-        <li>
-          {{ i + 1 }}. {{ item }}
-          @if (isFirst) {
-            <span>(first)</span>
-          }
-        </li>
-      }
+      <li *ngFor="let item of items; let i = index; let isFirst = first; let isOdd = odd; let isEven = even">{{ i + 1 }}. {{ item }} <span *ngIf="isFirst">(first)</span></li>
     </ul>
   `,
 })
@@ -163,14 +156,7 @@ import { Component } from "@angular/core";
   selector: "app-structural-demo",
   template: `
     <ul>
-      @for (item of items; let i = $index; let isFirst = $first; let isOdd = $odd; let isEven = $even) {
-        <li>
-          {{ i + 1 }}. {{ item }}
-          @if (isFirst) {
-            <span>(first)</span>
-          }
-        </li>
-      }
+      <li *ngFor="let item of items; index as i; first as isFirst; odd as isOdd; even as isEven">{{ i + 1 }}. {{ item }} <span *ngIf="isFirst">(first)</span></li>
     </ul>
   `,
 })
@@ -186,14 +172,13 @@ Use `@for` to iterate over a list with built-in context variables like `$index`,
 ```html
 <ul>
   @for (item of items; track item; let i = $index; let isFirst = $first) {
-    <li>
-      {{ i + 1 }}. {{ item }}
-      @if (isFirst) {
-        <span>(first)</span>
-      }
-    </li>
+  <li>
+    {{ i + 1 }}. {{ item }} @if (isFirst) {
+    <span>(first)</span>
+    }
+  </li>
   } @empty {
-    <li>No items found.</li>
+  <li>No items found.</li>
   }
 </ul>
 ```
@@ -245,17 +230,11 @@ import { Component } from "@angular/core";
 @Component({
   selector: "app-structural-demo",
   template: `
-    @switch (status) {
-      @case ("loading") {
-        <p>Loading...</p>
-      }
-      @case ("ready") {
-        <p>Ready</p>
-      }
-      @default {
-        <p>Unknown</p>
-      }
-    }
+    <div [ngSwitch]="status">
+      <p *ngSwitchCase="'loading'">Loading...</p>
+      <p *ngSwitchCase="'ready'">Ready</p>
+      <p *ngSwitchDefault>Unknown</p>
+    </div>
   `,
 })
 export class StructuralDemoComponent {
@@ -268,17 +247,13 @@ export class StructuralDemoComponent {
 Use `@switch` with `@case` and `@default` for a cleaner multi-branch template.
 
 ```html
-@switch (status) {
-  @case ("loading") {
-    <p>Loading...</p>
-  }
-  @case ("ready") {
-    <p>Ready</p>
-  }
-  @default {
-    <p>Unknown</p>
-  }
-}
+@switch (status) { @case ("loading") {
+<p>Loading...</p>
+} @case ("ready") {
+<p>Ready</p>
+} @default {
+<p>Unknown</p>
+} }
 ```
 
 > [!NOTE]
@@ -298,7 +273,10 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from "@angular/core";
   selector: "[appUnless]",
 })
 export class UnlessDirective {
-  constructor(private templateRef: TemplateRef<unknown>, private viewContainer: ViewContainerRef) {}
+  constructor(
+    private templateRef: TemplateRef<unknown>,
+    private viewContainer: ViewContainerRef,
+  ) {}
 
   @Input() set appUnless(condition: boolean) {
     this.viewContainer.clear();
