@@ -5,6 +5,12 @@ This guide walks through migrating from the legacy structural directives
 (`@if`, `@for`, `@switch`). It includes practical, step-by-step changes
 and small but important details.
 
+> [!NOTE]
+> The `Control Flow Syntax` is available from Angular v17. The new syntax is baked into the template, so you don't need to import CommonModule anymore.
+
+> [!TIP]
+> This schematic migrates all existing code in your application to use new Control Flow Syntax. `ng generate @angular/core:control-flow`
+
 ## 1) Confirm your Angular version
 
 The new control flow syntax is available in recent Angular versions.
