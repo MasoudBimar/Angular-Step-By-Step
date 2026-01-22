@@ -1,8 +1,19 @@
-<div class="container" tabIndex="0" (keydown)="onKeyDown($event)">
-  <h1>Counter</h1>
-  <div class="btn-container">
-    <button (click)="updateCounter('down')">Dec</button>
-    <h2>{{ counter() }}</h2>
-    <button (click)="updateCounter('up')">Inc</button>
+<section class="layout-shell">
+  <header class="layout-header">
+    <div>
+      <p class="eyebrow">Counter Sample</p>
+      <h2>Numeric Counter</h2>
+      <p class="layout-subtext">Counter can be change with keyboard & mouse.</p>
+    </div>
+  </header>
+  <div class="layout-grid">
+    <div class="container" tabIndex="0" (keydown)="onKeyDown($event)">
+      <h1>Counter</h1>
+      <div class="btn-container">
+        <button (click)="updateCounter('down')">Dec</button>
+        <h2>{{ counter() }}</h2>
+        <button (click)="updateCounter('up')">Inc</button>
+      </div>
+    </div>
   </div>
-</div>
+</section>

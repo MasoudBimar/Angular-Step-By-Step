@@ -1,7 +1,7 @@
-<div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-bg-dark">
+<div class="sidebar d-flex flex-column flex-shrink-0 p-3">
   <a
     href="/"
-    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+    class="sidebar-brand d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none"
     >
     <span class="fs-4">Angular Step by Step</span>
   </a>
@@ -13,7 +13,7 @@
           @if (item.route) {
             <h2 class="accordion-header">
               <a
-                class="nav-link text-white px-0 py-2"
+                class="nav-link"
                 [routerLink]="item.route"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
@@ -26,7 +26,7 @@
               <h2 class="accordion-header">
                 <button
                   type="button"
-                  class="accordion-button bg-transparent text-white px-0 py-2"
+                  class="accordion-button"
                   [class.collapsed]="!isExpanded(item)"
                   (click)="toggle(item)"
                   [attr.aria-expanded]="isExpanded(item)"
@@ -40,12 +40,12 @@
                 [class.show]="isExpanded(item)"
                 [attr.id]="'sidebar-group-' + item.id"
                 >
-                <div class="accordion-body py-0 ps-3">
+                <div class="accordion-body">
                   <ul class="nav nav-pills flex-column mb-2">
                     @for (child of item.children; track child) {
                       <li class="nav-item">
                         <a
-                          class="nav-link text-white"
+                          class="nav-link"
                           [routerLink]="child.route"
                           routerLinkActive="active"
                           [routerLinkActiveOptions]="{ exact: true }"
@@ -68,7 +68,7 @@
     <a
       href="https://github.com/MasoudBimar"
       target="_blank"
-      class="d-flex align-items-center text-white text-decoration-none"
+      class="sidebar-footer d-flex align-items-center text-decoration-none"
       aria-expanded="false"
       >
       <img
