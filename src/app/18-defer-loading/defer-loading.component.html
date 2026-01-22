@@ -1,106 +1,166 @@
-<div class="row m-0">
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
+<section class="defer-layout">
+  <header class="defer-header">
+    <h2>Defer Loading Playground</h2>
+    <p>Explore triggers, placeholders, and loading states across multiple scenarios.</p>
+  </header>
+
+  <div class="demo-grid">
+    <article class="demo-card">
+      <h3>Idle trigger</h3>
+      <p class="hint">Loads when the browser is idle for low-priority work.</p>
+      @defer (on idle) {
+        <div class="lazy-card">
+          <h4>Warm-up tips</h4>
+          <ul>
+            @for (tip of idleTips; track tip) {
+              <li>{{ tip }}</li>
+            }
+          </ul>
+        </div>
+      } @placeholder (minimum 200ms) {
+        <div class="placeholder">Waiting for idle time...</div>
+      } @loading (after 150ms; minimum 400ms) {
+        <div class="loading">Loading idle bundle...</div>
+      } @error {
+        <div class="error">Idle content failed to load.</div>
+      }
+    </article>
+
+    <article class="demo-card">
+      <h3>Timer trigger</h3>
+      <p class="hint">Delays loading to avoid competing with initial render.</p>
+      @defer (on timer(1500ms)) {
+        <div class="lazy-card">
+          <h4>Timed updates</h4>
+          <ul>
+            @for (step of timedUpdates; track step) {
+              <li>{{ step }}</li>
+            }
+          </ul>
+        </div>
+      } @placeholder {
+        <div class="placeholder">Timer running...</div>
+      } @loading (minimum 300ms) {
+        <div class="loading">Preparing timed content...</div>
+      } @error {
+        <div class="error">Timed content failed to load.</div>
+      }
+    </article>
+
+    <article class="demo-card">
+      <h3>Immediate trigger</h3>
+      <p class="hint">Loads right away but still demonstrates loading hooks.</p>
+      @defer (on immediate) {
+        <div class="lazy-card">
+          <h4>Critical summary</h4>
+          <ul>
+            @for (item of immediateHighlights; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+      } @placeholder {
+        <div class="placeholder">Preparing summary...</div>
+      } @loading (minimum 200ms) {
+        <div class="loading">Loading critical summary...</div>
+      } @error {
+        <div class="error">Summary failed to load.</div>
+      }
+    </article>
   </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
+
+  <div class="demo-grid">
+    <article class="demo-card">
+      <h3>Interaction + prefetch</h3>
+      <p class="hint">Prefetch on hover, load on click.</p>
+      <div class="action-row">
+        <button #detailsTrigger type="button" class="action-btn">Open details</button>
+      </div>
+      @defer (on interaction(detailsTrigger); prefetch on hover(detailsTrigger)) {
+        <div class="lazy-card">
+          <h4>Interaction details</h4>
+          <ul>
+            @for (detail of interactionDetails; track detail) {
+              <li>{{ detail }}</li>
+            }
+          </ul>
+        </div>
+      } @placeholder {
+        <div class="placeholder">Hover to prefetch, click to load.</div>
+      } @loading (after 100ms; minimum 400ms) {
+        <div class="loading">Loading interaction content...</div>
+      } @error {
+        <div class="error">Interaction content failed to load.</div>
+      }
+    </article>
+
+    <article class="demo-card">
+      <h3>Hover trigger</h3>
+      <p class="hint">Loads when the user hovers the target.</p>
+      <span #hoverTarget class="hover-target">Hover here to reveal</span>
+      @defer (on hover(hoverTarget)) {
+        <div class="lazy-card">
+          <h4>Hover preview</h4>
+          <ul>
+            @for (item of hoverPreview; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+      } @placeholder {
+        <div class="placeholder">Hover the pill to load preview.</div>
+      } @loading (minimum 300ms) {
+        <div class="loading">Loading hover preview...</div>
+      } @error {
+        <div class="error">Hover preview failed to load.</div>
+      }
+    </article>
+
+    <article class="demo-card">
+      <h3>When condition</h3>
+      <p class="hint">Load only after a specific flag is true.</p>
+      <div class="action-row">
+        <button type="button" class="toggle-btn" (click)="showOnDemand = !showOnDemand">
+          {{ showOnDemand ? 'Reset content' : 'Load on demand' }}
+        </button>
+      </div>
+      @defer (when showOnDemand) {
+        <div class="lazy-card">
+          <h4>On-demand modules</h4>
+          <ul>
+            @for (module of onDemandModules; track module) {
+              <li>{{ module }}</li>
+            }
+          </ul>
+        </div>
+      } @placeholder {
+        <div class="placeholder">Click the button to trigger.</div>
+      } @loading (minimum 350ms) {
+        <div class="loading">Loading on-demand modules...</div>
+      } @error {
+        <div class="error">On-demand content failed to load.</div>
+      }
+    </article>
   </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
+
+  <div class="viewport-stack">
+    <h3>Viewport trigger</h3>
+    <p class="hint">Scroll until this block hits the viewport.</p>
+    @defer (on viewport; prefetch on idle) {
+      <div class="lazy-card">
+        <h4>Viewport content</h4>
+        <ul>
+          @for (story of viewportStories; track story) {
+            <li>{{ story }}</li>
+          }
+        </ul>
+      </div>
+    } @placeholder {
+      <div class="placeholder">More content loads on scroll.</div>
+    } @loading (minimum 300ms) {
+      <div class="loading">Loading viewport content...</div>
+    } @error {
+      <div class="error">Viewport content failed to load.</div>
+    }
   </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
-  </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
-  </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
-  </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
-  </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
-  </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
-  </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
-  </div>
-  @defer (on viewport) {
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
-  </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
-  </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
-  </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
-  </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
-  </div>
-  <div class="col-auto box">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, deleniti
-    consequatur. Eligendi natus esse pariatur necessitatibus repudiandae ab
-    minima voluptate non, provident nam rerum possimus temporibus ad error harum
-    reprehenderit.
-  </div>
-  } @placeholder {
-  <h4>Content should be replcaed with more card on scroll</h4>
-  } @loading (minimum 300ms) {
-  <h2>Application is loading the template</h2>
-  } @error {
-  <p>Could not load reviews.</p>
-  }
-</div>
+</section>
