@@ -4,15 +4,13 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 
-xdescribe('RestApiService', () => {
+describe('RestApiService', () => {
   let service: RestApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RestApiService
-      ],
       providers: [
+        RestApiService,
         provideHttpClient(),        // Provides the real HttpClient
         provideHttpClientTesting(), // Overrides it with a mock backend
       ]
