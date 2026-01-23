@@ -1,18 +1,15 @@
-import { JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   standalone: true,
-  imports: [JsonPipe],
+  imports: [CommonModule],
   selector: 'app-lifecycles',
   templateUrl: './lifecycles.component.html',
   styleUrls: ['./lifecycles.component.scss']
 })
 export class LifecyclesComponent implements OnInit, OnDestroy, DoCheck, OnChanges {
-
-
   @Input() inputs!: any;
-
 
   ngOnInit(): void {
     console.log('onInit called');
@@ -23,10 +20,8 @@ export class LifecyclesComponent implements OnInit, OnDestroy, DoCheck, OnChange
   }
   ngDoCheck(): void {
     console.log('docheck called');
-
   }
   ngOnChanges(changes: SimpleChanges): void {
     console.log(this.inputs, changes);
   }
-
 }

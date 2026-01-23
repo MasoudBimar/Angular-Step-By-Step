@@ -1,3 +1,181 @@
-<p>lifecycles works!</p>
-input is {{ inputs | json }}
-<hr />
+<section class="layout-shell">
+  <header class="layout-header">
+    <p class="eyebrow">Component lifecycle</p>
+    <h2>Angular lifecycle hooks</h2>
+    <p class="layout-subtext">
+      Know when Angular creates, checks, and tears down your components.
+    </p>
+  </header>
+
+  <div class="layout-grid">
+    <article class="fundamentals-card">
+      <div class="card-head">
+        <h3>ngOnChanges</h3>
+        <p class="card-sub">Runs when Input values change.</p>
+      </div>
+      <div class="card-demo">
+        <p class="card-label">Common use cases</p>
+        <ul class="card-list">
+          <li>React to input updates</li>
+          <li>Recompute derived state</li>
+          <li>Reload data when a key changes</li>
+        </ul>
+      </div>
+      <pre class="code-sample" ngNonBindable>
+
+        <code>ngOnChanges(changes: SimpleChanges) {{ '{' }}
+                    if (changes['userId']) {{ '{' }}
+                      this.loadUser(changes['userId'].currentValue);
+                    {{ '}' }}
+                  {{ '}' }}
+</code>
+</pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="card-head">
+        <h3>ngOnInit</h3>
+        <p class="card-sub">Runs once after the first ngOnChanges.</p>
+      </div>
+      <div class="card-demo">
+        <p class="card-label">Common use cases</p>
+        <ul class="card-list">
+          <li>Fetch initial data</li>
+          <li>Initialize local state</li>
+          <li>Start subscriptions</li>
+        </ul>
+      </div>
+      <pre class="code-sample" ngNonBindable><code>ngOnInit() {{ '{' }}
+  this.status = 'ready';
+  this.loadDashboard();
+  this.sub = this.userService.user$.subscribe();
+{{ '}' }}</code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="card-head">
+        <h3>ngDoCheck</h3>
+        <p class="card-sub">Runs during every change detection cycle.</p>
+      </div>
+      <div class="card-demo">
+        <p class="card-label">Common use cases</p>
+        <ul class="card-list">
+          <li>Custom change detection</li>
+          <li>Deep-check objects or arrays</li>
+          <li>Track manual dirty flags</li>
+        </ul>
+      </div>
+      <pre class="code-sample" ngNonBindable><code>ngDoCheck() {{ '{' }}
+  if (this.items.length !== this.prevCount) {{ '{' }}
+    this.prevCount = this.items.length;
+    this.recalculateTotals();
+  {{ '}' }}
+{{ '}' }}</code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="card-head">
+        <h3>ngAfterContentInit</h3>
+        <p class="card-sub">Runs once after projected content init.</p>
+      </div>
+      <div class="card-demo">
+        <p class="card-label">Common use cases</p>
+        <ul class="card-list">
+          <li>Read projected content with ContentChild</li>
+          <li>Initialize based on projected templates</li>
+          <li>Wire content-driven defaults</li>
+        </ul>
+      </div>
+      <pre
+        class="code-sample"
+        ngNonBindable
+      ><code>ngAfterContentInit() {{ '{' }}
+  this.projectedTitle = this.contentTitle?.text;
+{{ '}' }}</code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="card-head">
+        <h3>ngAfterContentChecked</h3>
+        <p class="card-sub">Runs after every projected content check.</p>
+      </div>
+      <div class="card-demo">
+        <p class="card-label">Common use cases</p>
+        <ul class="card-list">
+          <li>React to projected content changes</li>
+          <li>Sync derived values</li>
+          <li>Validate content-driven state</li>
+        </ul>
+      </div>
+      <pre
+        class="code-sample"
+        ngNonBindable
+      ><code>ngAfterContentChecked() {{ '{' }}
+  this.syncProjectedState();
+{{ '}' }}</code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="card-head">
+        <h3>ngAfterViewInit</h3>
+        <p class="card-sub">Runs once after the component view init.</p>
+      </div>
+      <div class="card-demo">
+        <p class="card-label">Common use cases</p>
+        <ul class="card-list">
+          <li>Access ViewChild elements</li>
+          <li>Kick off DOM measurements</li>
+          <li>Integrate third-party widgets</li>
+        </ul>
+      </div>
+      <pre class="code-sample" ngNonBindable><code>ngAfterViewInit() {{ '{' }}
+  this.searchInput?.nativeElement.focus();
+{{ '}' }}</code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="card-head">
+        <h3>ngAfterViewChecked</h3>
+        <p class="card-sub">Runs after every view check.</p>
+      </div>
+      <div class="card-demo">
+        <p class="card-label">Common use cases</p>
+        <ul class="card-list">
+          <li>Update layout-dependent values</li>
+          <li>Sync scroll positions</li>
+          <li>Schedule DOM-dependent updates</li>
+        </ul>
+      </div>
+      <pre class="code-sample" ngNonBindable>
+        <code>
+          ngAfterViewChecked() {{ '{' }}
+                                    this.alignTooltip();
+                                {{ '}' }}
+
+</code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="card-head">
+        <h3>ngOnDestroy</h3>
+        <p class="card-sub">Runs right before the component is destroyed.</p>
+      </div>
+      <div class="card-demo">
+        <p class="card-label">Common use cases</p>
+        <ul class="card-list">
+          <li>Unsubscribe from streams</li>
+          <li>Clear timers and intervals</li>
+          <li>Detach observers and listeners</li>
+        </ul>
+      </div>
+      <pre class="code-sample" ngNonBindable>
+        <code>
+          ngOnDestroy(){{ '{' }}
+                        this.sub?.unsubscribe();
+                        clearInterval(this.timerId);
+                        {{ '}' }}
+
+</code></pre>
+    </article>
+  </div>
+</section>
