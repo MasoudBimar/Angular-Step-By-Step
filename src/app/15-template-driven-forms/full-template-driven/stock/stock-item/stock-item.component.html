@@ -1,17 +1,18 @@
-<div class="d-flex align-items-center justify-content-between gap-3 border rounded p-2">
-  <div class="fw-semibold">{{ stock.name + " (" + stock.code + ")" }}</div>
+<div
+  class="d-flex align-items-center justify-content-between gap-3 border rounded p-2"
+>
+  <div class="fw-semibold" data-testid="stock-name">
+    {{ stock.name + " (" + stock.code + ")" }}
+  </div>
   <div
-    class="fw-bold"
-    [class.text-success]="stock.isPositiveChange()"
-    [class.text-danger]="!stock.isPositiveChange()"
-    >
+    class="stock-price"
+    [class.positive]="stock.isPositiveChange()"
+    [class.negative]="!stock.isPositiveChange()"
+  >
     $ {{ stock.price }}
   </div>
   @if (!stock.favorite) {
-    <button
-      (click)="onToggleFavorite($event)"
-      class="btn btn-success btn-sm"
-      >
+    <button (click)="onToggleFavorite($event)" class="btn btn-success btn-sm">
       Add to Favorite
     </button>
   }
