@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn } from '@angular/router';
+import { CanActivateFn, CanDeactivateFn } from '@angular/router';
 
 import { formGuard } from './form.guard';
+import { ReactiveFormComponent } from './../../16-reactive-forms/reactive-form/reactive-form.component';
 
 describe('formGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => formGuard(...guardParameters));
+  const executeGuard: CanDeactivateFn<ReactiveFormComponent> = (...guardParameters) =>
+    TestBed.runInInjectionContext(() => formGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

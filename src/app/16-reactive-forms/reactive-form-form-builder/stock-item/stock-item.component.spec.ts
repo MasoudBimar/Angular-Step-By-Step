@@ -1,15 +1,15 @@
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { StockReactiveItemComponent } from './stock-item.component';
 import { By } from '@angular/platform-browser';
 import { Stock } from '../model/stock';
+import { StockReactiveItemComponent } from './stock-item.component';
 
 describe('Reactive Form Stock Item Component', () => {
 
   let fixture: ComponentFixture<StockReactiveItemComponent>
   let component: StockReactiveItemComponent;
 
-  beforeEach(fakeAsync(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [StockReactiveItemComponent],
 

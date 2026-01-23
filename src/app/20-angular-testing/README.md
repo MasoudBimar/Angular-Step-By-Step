@@ -64,6 +64,7 @@ Angular-specific building blocks you will see often:
 - **ComponentFixture**: Controls a component instance + DOM rendering.
 - **fakeAsync / tick**: Manage async timing in a deterministic way.
 - **HttpTestingController**: Intercepts HTTP calls in tests.
+- In Angular 18, the testing utility previously known as async has been replaced by `waitForAsync`, not strictly by `fakeAsync`.
 
 ## Test runners vs test engines (frameworks)
 

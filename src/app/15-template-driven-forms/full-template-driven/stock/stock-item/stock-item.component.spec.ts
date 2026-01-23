@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
 import { Stock } from '../../model/stock';
@@ -8,7 +8,7 @@ describe('Full Template Driven Stock Item Component', () => {
 
   let fixture: ComponentFixture<StockItemComponent>, component: StockItemComponent;
 
-  beforeEach(fakeAsync(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [StockItemComponent],
     }).compileComponents();
