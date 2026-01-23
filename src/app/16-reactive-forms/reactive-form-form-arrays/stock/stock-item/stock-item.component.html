@@ -1,21 +1,19 @@
 <article class="stock-card">
   <div class="stock-info">
-    <div class="stock-title">{{ stock.name }}</div>
-    <div class="stock-code">({{ stock.code }})</div>
+    <div class="stock-title" data-testid="stock-name">
+      {{ stock.name + " (" + stock.code + ")" }}
+    </div>
   </div>
   <div
     class="stock-price"
     [class.positive]="stock.isPositiveChange()"
     [class.negative]="!stock.isPositiveChange()"
-    >
+  >
     $ {{ stock.price }}
   </div>
   <div class="stock-actions">
     @if (!stock.favorite) {
-      <button
-        (click)="onToggleFavorite($event)"
-        class="btn btn-success btn-sm"
-        >
+      <button (click)="onToggleFavorite($event)" class="btn btn-success btn-sm">
         Add to Favorite
       </button>
     }
