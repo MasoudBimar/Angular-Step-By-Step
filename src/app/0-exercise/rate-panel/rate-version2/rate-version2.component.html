@@ -1,15 +1,17 @@
-<div (mouseleave)="handleMouseLeave()" class="container">
-  @for (state of states; track i; let i = $index) {
-    <span
-      class="star"
-      (click)="changeHandler(i + 1)"
-      (mouseover)="handleHover(i + 1)"
-      style.height="{{ starWidth }}px"
-      style.width="{{ starWidth }}px"
-      [class]="{ hover: i < starHovered, selected: i < rate }"
-    >
-    </span>
-  }
+<div (mouseleave)="handleMouseLeave()" class="rate-shell">
+  <div class="rate-stars">
+    @for (state of states; track i; let i = $index) {
+      <span
+        class="star"
+        (click)="changeHandler(i + 1)"
+        (mouseover)="handleHover(i + 1)"
+        [style.height.px]="starWidth"
+        [style.width.px]="starWidth"
+        [class.hover]="i < starHovered"
+        [class.selected]="i < rate"
+      >
+      </span>
+    }
+  </div>
+  <div class="rate-score">{{ rate }}/{{ states.length }}</div>
 </div>
-<br />
-{{ rate }}/{{ states.length }}

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
 @Component({
   standalone: true,
   imports: [],
@@ -7,8 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./rate-version3.component.scss']
 })
 
-export class RateVersion3Component implements OnInit {
-  constructor() { }
+export class RateVersion3Component {
 
   @Input() rateNumber: number = 0;
   @Input() arr: number[] = [1, 2, 3, 4, 5];
@@ -17,11 +16,8 @@ export class RateVersion3Component implements OnInit {
 
   handleClick = (number: number) => { this.rateNumber = number; this.rateSelected.emit(this.rateNumber) }
 
-  handleHover = (number: number) => { console.log("In"); this.hoverTo = number }
+  handleHover = (number: number) => { this.hoverTo = number; }
 
   handleLeave = () => { this.hoverTo = -1 }
-
-  ngOnInit(): void {
-  }
 
 }

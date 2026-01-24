@@ -12,18 +12,16 @@ import { RateComponent } from './rate/rate.component';
 })
 export class RatePanelComponent {
   rateValue: number = 0;
-  rangeValue: number = 10;
+  rangeValue: number = 5;
   rateValues: number[] = [1, 2, 3, 4, 5];
 
   setRateValue(event: Event) {
-    console.log(event);
     this.rateValue = (event.target as HTMLInputElement).valueAsNumber;
   }
 
   setRangeValue(event: Event) {
-    console.log(event);
     this.rangeValue = (event.target as HTMLInputElement).valueAsNumber;
-    this.rateValues = new Array(this.rangeValue).fill({});
+    this.rateValues = Array.from({ length: this.rangeValue }, (_, i) => i + 1)
   }
 
 }

@@ -1,16 +1,15 @@
-<div class="container">
-  <span>Rate Me!! </span>
-  <div class="stars-container">
+<div class="rate-shell">
+  <span class="rate-title">Rate me</span>
+  <div class="rate-stars" (mouseleave)="handleLeave()">
     @for (star of arr; track i; let i = $index) {
       <div
         class="star"
         (click)="handleClick(star)"
         (mouseenter)="handleHover(star)"
-        (mouseleave)="handleLeave()"
       >
         <span
-          class="star-icon"
-          [class]="star <= hoverTo ? 'large' : 'regular'"
+          class="star-icon star-hover"
+          [class]="star < hoverTo ? 'large' : 'regular'"
           [class.star-hover]="star <= hoverTo || star <= rateNumber"
           role="img"
           aria-label="star"
@@ -18,7 +17,6 @@
         >
       </div>
     }
-    <br />
   </div>
-  {{ rateNumber }} / {{ arr.length }}
+  <div class="rate-score">{{ rateNumber }} / {{ arr.length }}</div>
 </div>

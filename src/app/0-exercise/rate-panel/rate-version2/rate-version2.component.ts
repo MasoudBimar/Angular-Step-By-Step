@@ -11,14 +11,14 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 export class RateVersion2Component implements OnInit, OnChanges {
   @Input() stars: number = 10;
   @Input() rate: number = 0;
-  @Input() starWidth: number = 25;
+  @Input() starWidth: number = 32;
   @Output() rateChange = new EventEmitter<number>();
   protected states: number[] = [];
   protected starHovered = 0;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['stars'] || this.states.length === 0) {
-      this.states = new Array(this.stars).fill({});
+      this.states = Array.from({ length: this.stars }, (_, i) => i + 1)
     }
 
   }
@@ -26,7 +26,7 @@ export class RateVersion2Component implements OnInit, OnChanges {
   ngOnInit(): void {
 
     if (this.states.length === 0) {
-      this.states = new Array(this.stars).fill({});
+      this.states = Array.from({ length: this.stars }, (_, i) => i + 1)
     }
 
   }

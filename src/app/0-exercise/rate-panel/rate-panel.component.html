@@ -10,28 +10,43 @@
         <span>Set Rate Value</span>
         <!-- Built-in number pipe for counts -->
         <!-- <strong>{{ employees.length | number }}</strong> -->
-        <input type="number" (change)="setRateValue($event)" />
+        <input
+          class="meta-input"
+          type="number"
+          min="0"
+          [max]="rangeValue"
+          step="1"
+          [value]="rateValue"
+          (change)="setRateValue($event)"
+        />
       </div>
       <div class="meta-card">
         <span>Set Rate Range</span>
-        <input type="number" (change)="setRangeValue($event)" />
+        <input
+          class="meta-input"
+          type="number"
+          min="1"
+          step="1"
+          [value]="rangeValue"
+          (change)="setRangeValue($event)"
+        />
       </div>
     </div>
   </header>
   <div class="layout-grid">
     <div class="meta-row g-4">
-      <div class="meta-card">
+      <div class="meta-card rate-card">
         <app-rate [selectedValue]="rateValue" [stars]="rateValues"></app-rate>
       </div>
 
-      <div class="meta-card">
+      <div class="meta-card rate-card">
         <app-rate-version2
           [rate]="rateValue"
           [stars]="rangeValue"
         ></app-rate-version2>
       </div>
 
-      <div class="meta-card">
+      <div class="meta-card rate-card">
         <app-rate-version3
           [rateNumber]="rateValue"
           [arr]="rateValues"

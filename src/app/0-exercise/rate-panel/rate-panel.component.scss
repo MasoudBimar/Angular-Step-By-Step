@@ -24,3 +24,32 @@
   font-size: 1.2rem;
   color: #0f4c5c;
 }
+
+.meta-input {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  background: #f8fafc;
+  color: #111827;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.meta-input:focus {
+  outline: none;
+  border-color: #0f4c5c;
+  box-shadow: 0 0 0 3px rgba(15, 76, 92, 0.18);
+}
+
+.meta-card.rate-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 18px;
+}
+
+.meta-card.rate-card > * {
+  width: 100%;
+}
