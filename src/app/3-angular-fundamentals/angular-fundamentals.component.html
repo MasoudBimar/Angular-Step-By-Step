@@ -7,7 +7,7 @@
     </p>
   </header>
 
-  <div class="layout-grid">
+  <div class="layout-grid" [style.--min-col-px.px]="'420'">
     <article class="fundamentals-card">
       <div class="code-card-head">
         <h3>Interpolation &amp; expressions</h3>
@@ -23,12 +23,9 @@
         <p>User: {{ firstName + " " + lastName }}</p>
         <p>Enabled: {{ isActive ? "yes" : "no" }}</p>
       </div>
-      <pre class="code-card-sample" ngNonBindable><code>{{ title }}
-{{ title | uppercase }}
-{{ getGreeting() }}
-{{ price * quantity }}
-{{ firstName + " " + lastName }}
-{{ isActive ? "yes" : "no" }}</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="interpolationCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -37,7 +34,7 @@
         <p class="code-card-sub">Bind DOM properties and attributes.</p>
       </div>
       <div class="code-card-demo">
-        <h4 [textContent]="title"></h4>
+        <h4 class="language-ts" [textContent]="title"></h4>
         <div class="media-row">
           <img [src]="imgUrl2" alt="Angular logo" />
           <img src="{{ imgUrl1 }}" alt="Angular sample" />
@@ -48,12 +45,9 @@
           </tr>
         </table>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>&lt;h4 [textContent]="title"&gt;&lt;/h4&gt;
-&lt;img [src]="imgUrl2" /&gt;
-&lt;td [attr.colspan]="colSpan"&gt;...&lt;/td&gt;</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="propertyBindingCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -72,11 +66,9 @@
           Style binding
         </button>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>&lt;button [class.active]="isActive"&gt;...&lt;/button&gt;
-&lt;button [style.backgroundColor]="isActive ? '#0f4c5c' : '#ef4444'"&gt;...&lt;/button&gt;</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="classStyleBindingCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -95,12 +87,9 @@
         </div>
         <a href="#" (click)="anchorClicked($event)">Click link</a>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>&lt;button (click)="sayHello($event)"&gt;...&lt;/button&gt;
-&lt;div (click)="sayHello2($event)"&gt;...&lt;/div&gt;
-&lt;a (click)="anchorClicked($event)"&gt;...&lt;/a&gt;</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="eventBindingCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -131,12 +120,9 @@
           (keyup.enter)="enterHandler3($event)"
         />
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>&lt;input (keyup)="keyUpHandler($event)" /&gt;
-&lt;input (keyup.enter)="enterHandler($event)" /&gt;
-&lt;input #inputValue (keyup.enter)="enterHandler2(inputValue.value)" /&gt;</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="keyboardRefsCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -154,14 +140,9 @@
         <p>Number: {{ numberValue | number: "3.1-5" }}</p>
         <p>Persian: {{ dateObj | persianDate: "fa-IR" }}</p>
       </div>
-      <pre class="code-card-sample" ngNonBindable><code>{{ person | json }}
-{{ name | uppercase }}
-{{ createdAt | date: "yyyy-MM-dd" }}
-{{ amount | currency: "USD" }}
-{{ ratio | percent: "1.0-2" }}
-{{ dateObj | date: "shortTime" }}
-{{ numberValue | number: "3.1-5" }}
-{{ dateObj | persianDate: "fa-IR" }}</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="pipesCode"></code>
+      </pre>
     </article>
   </div>
 </section>

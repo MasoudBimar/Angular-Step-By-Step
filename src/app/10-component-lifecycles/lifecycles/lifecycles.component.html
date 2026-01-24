@@ -7,7 +7,7 @@
     </p>
   </header>
 
-  <div class="layout-grid">
+  <div class="layout-grid" [style.--min-col-px.px]="'420'">
     <article class="fundamentals-card">
       <div class="code-card-head">
         <h3>ngOnChanges</h3>
@@ -21,15 +21,9 @@
           <li>Reload data when a key changes</li>
         </ul>
       </div>
-      <pre class="code-card-sample" ngNonBindable>
-
-        <code>ngOnChanges(changes: SimpleChanges) {{ '{' }}
-                    if (changes['userId']) {{ '{' }}
-                      this.loadUser(changes['userId'].currentValue);
-                    {{ '}' }}
-                  {{ '}' }}
-</code>
-</pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="onChangesCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -45,11 +39,9 @@
           <li>Start subscriptions</li>
         </ul>
       </div>
-      <pre class="code-card-sample" ngNonBindable><code>ngOnInit() {{ '{' }}
-  this.status = 'ready';
-  this.loadDashboard();
-  this.sub = this.userService.user$.subscribe();
-{{ '}' }}</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="onInitCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -65,12 +57,9 @@
           <li>Track manual dirty flags</li>
         </ul>
       </div>
-      <pre class="code-card-sample" ngNonBindable><code>ngDoCheck() {{ '{' }}
-  if (this.items.length !== this.prevCount) {{ '{' }}
-    this.prevCount = this.items.length;
-    this.recalculateTotals();
-  {{ '}' }}
-{{ '}' }}</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="doCheckCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -86,12 +75,9 @@
           <li>Wire content-driven defaults</li>
         </ul>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>ngAfterContentInit() {{ '{' }}
-  this.projectedTitle = this.contentTitle?.text;
-{{ '}' }}</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="afterContentInitCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -107,12 +93,9 @@
           <li>Validate content-driven state</li>
         </ul>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>ngAfterContentChecked() {{ '{' }}
-  this.syncProjectedState();
-{{ '}' }}</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="afterContentCheckedCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -128,12 +111,9 @@
           <li>Integrate third-party widgets</li>
         </ul>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>ngAfterViewInit() {{ '{' }}
-  this.searchInput?.nativeElement.focus();
-{{ '}' }}</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="afterViewInitCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -149,13 +129,9 @@
           <li>Schedule DOM-dependent updates</li>
         </ul>
       </div>
-      <pre class="code-card-sample" ngNonBindable>
-        <code>
-          ngAfterViewChecked() {{ '{' }}
-                                    this.alignTooltip();
-                                {{ '}' }}
-
-</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="afterViewCheckedCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -173,14 +149,9 @@
           <li>Detach observers and listeners</li>
         </ul>
       </div>
-      <pre class="code-card-sample" ngNonBindable>
-        <code>
-          ngOnDestroy(){{ '{' }}
-                        this.sub?.unsubscribe();
-                        clearInterval(this.timerId);
-                        {{ '}' }}
-
-</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="onDestroyCode"></code>
+      </pre>
     </article>
   </div>
 </section>

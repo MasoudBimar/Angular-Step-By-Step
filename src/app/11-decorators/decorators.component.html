@@ -7,7 +7,7 @@
     </p>
   </header>
 
-  <div class="layout-grid">
+  <div class="layout-grid" [style.--min-col-px.px]="'420'">
     <article class="fundamentals-card">
       <div class="code-card-head">
         <h3>&#64;Component</h3>
@@ -21,19 +21,9 @@
           <li>Configure change detection</li>
         </ul>
       </div>
-      <pre class="code-card-sample" ngNonBindable>
-        <code>
-        &#64;Component(<span>&#123;</span>
-  selector: 'app-profile-card',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './profile-card.component.html',
-  styleUrl: './profile-card.component.scss',
-<span>&#125;</span>)
-export class ProfileCardComponent<span>&#123;</span><span>&#125;</span>
-
-</code>
-</pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="componentCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -49,20 +39,9 @@ export class ProfileCardComponent<span>&#123;</span><span>&#125;</span>
           <li>Lightweight UI enhancements</li>
         </ul>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>&#64;Directive(<span>&#123;</span>
-  selector: '[appAutoFocus]',
-  standalone: true,
-<span>&#125;</span>)
-export class AutoFocusDirective <span>&#123;</span>
-  constructor(private el: ElementRef) <span>&#123;</span><span>&#125;</span>
-
-  ngAfterViewInit() <span>&#123;</span>
-    this.el.nativeElement.focus();
-  <span>&#125;</span>
-<span>&#125;</span></code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="directiveCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -78,18 +57,9 @@ export class AutoFocusDirective <span>&#123;</span>
           <li>Keep templates readable</li>
         </ul>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>&#64;Pipe(<span>&#123;</span> name: 'initials', standalone: true <span>&#125;</span>)
-export class InitialsPipe implements PipeTransform <span>&#123;</span>
-  transform(value: string) <span>&#123;</span>
-    return value
-      .split(' ')
-      .map((part) =&gt; part[0])
-      .join('');
-  <span>&#125;</span>
-<span>&#125;</span></code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="pipeCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -105,17 +75,9 @@ export class InitialsPipe implements PipeTransform <span>&#123;</span>
           <li>Coordinate app state</li>
         </ul>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>&#64;Injectable(<span>&#123;</span> providedIn: 'root' <span>&#125;</span>)
-export class MovieService <span>&#123;</span>
-  getAll() <span>&#123;</span>
-    return this.http.get('/api/movies');
-  <span>&#125;</span>
-
-  constructor(private http: HttpClient) <span>&#123;</span><span>&#125;</span>
-<span>&#125;</span></code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="injectableCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -131,15 +93,9 @@ export class MovieService <span>&#123;</span>
           <li>Export reusable declarations</li>
         </ul>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>&#64;NgModule(<span>&#123;</span>
-  declarations: [LegacyCardComponent],
-  imports: [CommonModule],
-  exports: [LegacyCardComponent],
-<span>&#125;</span>)
-export class SharedModule <span>&#123;</span><span>&#125;</span></code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="ngModuleCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -155,18 +111,9 @@ export class SharedModule <span>&#123;</span><span>&#125;</span></code></pre>
           <li>Declarative public APIs</li>
         </ul>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>export class RatingBadgeComponent <span>&#123;</span>
-  &#64;Input(<span>&#123;</span> required: true <span>&#125;</span>) value = 0;
-  &#64;Output() valueChange = new EventEmitter();
-
-  update(next: number) <span>&#123;</span>
-    this.value = next;
-    this.valueChange.emit(next);
-  <span>&#125;</span>
-<span>&#125;</span></code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="inputOutputCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -182,15 +129,9 @@ export class SharedModule <span>&#123;</span><span>&#125;</span></code></pre>
           <li>Coordinate multiple items</li>
         </ul>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>&#64;ViewChild('search') searchInput!: ElementRef;
-&#64;ViewChildren(ItemCardComponent) cards!: QueryList;
-
-ngAfterViewInit() <span>&#123;</span>
-  this.searchInput.nativeElement.focus();
-<span>&#125;</span></code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="viewChildCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -206,15 +147,9 @@ ngAfterViewInit() <span>&#123;</span>
           <li>Coordinate tab content</li>
         </ul>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>&#64;ContentChild('title') titleTpl?: TemplateRef;
-&#64;ContentChildren(TabComponent) tabs!: QueryList;
-
-ngAfterContentInit() <span>&#123;</span>
-  this.activeTab = this.tabs.first;
-<span>&#125;</span></code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="contentChildCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -230,20 +165,9 @@ ngAfterContentInit() <span>&#123;</span>
           <li>Encapsulate behavior</li>
         </ul>
       </div>
-      <pre
-        class="code-card-sample"
-        ngNonBindable
-      ><code>&#64;HostBinding('class.is-active') isActive = false;
-
-&#64;HostListener('mouseenter')
-onEnter() <span>&#123;</span>
-  this.isActive = true;
-<span>&#125;</span>
-
-&#64;HostListener('mouseleave')
-onLeave() <span>&#123;</span>
-  this.isActive = false;
-<span>&#125;</span></code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="hostBindingCode"></code>
+      </pre>
     </article>
 
     <article class="fundamentals-card">
@@ -259,16 +183,9 @@ onLeave() <span>&#123;</span>
           <li>Use custom tokens</li>
         </ul>
       </div>
-      <pre class="code-card-sample" ngNonBindable><code>
-        constructor(
-  &#64;Optional() &#64;Inject(API_URL) apiUrl: string | null,
-  &#64;SkipSelf() private parent: ParentService,
-  &#64;Self() private local: LocalService,
-  &#64;Host() private host: HostService
-)
-
-<span>&#123;</span><span>&#125;</span>
-</code></pre>
+      <pre class="code-card-sample">
+        <code class="language-ts" [textContent]="diParameterCode"></code>
+      </pre>
     </article>
   </div>
 </section>

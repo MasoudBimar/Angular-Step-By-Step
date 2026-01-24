@@ -28,7 +28,7 @@
 
 .layout-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--min-col-px, 280px), 1fr));
   gap: 18px;
 }
 
@@ -158,4 +158,35 @@
   gap: 4px;
   color: #1f2937;
   font-size: 0.9rem;
+}
+
+/* Inline code: <code>inside a sentence</code> */
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+  padding: 0.15em 0.35em;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.06);
+  white-space: pre;
+}
+
+/* Code blocks: <pre><code>...</code></pre> */
+pre {
+  padding: 16px;
+  border-radius: 12px;
+  overflow-x: auto;
+  line-height: 1.45;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* Avoid double padding when code is inside pre */
+pre code {
+  padding: 0;
+  background: transparent;
+  font-size: 0.9rem;
+  display: block;
+  white-space: pre;
+  /* preserve spaces */
+  tab-size: 2;
+  /* adjust tabs */
 }
