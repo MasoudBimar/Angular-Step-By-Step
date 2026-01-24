@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { CodeHighlighterComponent } from 'src/app/shared/code-highlighter/code-highlighter.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CodeHighlighterComponent],
   selector: 'app-lifecycles',
   templateUrl: './lifecycles.component.html',
   styleUrls: ['./lifecycles.component.scss']
