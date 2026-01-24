@@ -66,6 +66,154 @@ Angular-specific building blocks you will see often:
 - **HttpTestingController**: Intercepts HTTP calls in tests.
 - In Angular 18, the testing utility previously known as async has been replaced by `waitForAsync`, not strictly by `fakeAsync`.
 
+## TestBed and ComponentFixture (with configureTestingModule)
+
+Angular testing revolves around the **TestBed** (a test-only Angular module) and
+the **ComponentFixture** (a handle to the component instance and its DOM).
+
+### What they do
+
+- **TestBed**: Creates a testing module that mirrors how Angular wires up
+  providers, imports, and declarations.
+- **configureTestingModule**: Sets up the TestBed with components, providers,
+  and module imports needed by the unit under test.
+- **ComponentFixture**: Gives access to the component instance, DOM element,
+  and change detection.
+
+### Common methods you will use
+
+- `TestBed.configureTestingModule(...)`: Configure the testing module.
+- `TestBed.createComponent(...)`: Create a component and its fixture.
+- `TestBed.inject(...)`: Get a service instance from the test injector.
+- `fixture.componentInstance`: Access the component class instance.
+- `fixture.nativeElement`: Access the rendered DOM.
+- `fixture.detectChanges()`: Trigger change detection and render updates.
+
+### Example: component test
+
+```ts
+import { TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { MyComponent } from "./my.component";
+
+describe("MyComponent", () => {
+  let fixture: ComponentFixture<MyComponent>;
+  let component: MyComponent;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [MyComponent], // standalone component
+    });
+
+    fixture = TestBed.createComponent(MyComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it("renders the title", () => {
+    const title = fixture.debugElement.query(By.css("h1")).nativeElement;
+    expect(title.textContent).toContain("Hello");
+  });
+});
+```
+
+### Example: service test
+
+```ts
+import { TestBed } from "@angular/core/testing";
+import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
+import { UserService } from "./user.service";
+
+describe("UserService", () => {
+  let service: UserService;
+  let http: HttpTestingController;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [UserService],
+    });
+
+    service = TestBed.inject(UserService);
+    http = TestBed.inject(HttpTestingController);
+  });
+
+  it("calls the API", () => {
+    service.getUsers().subscribe();
+    http.expectOne("/api/users");
+  });
+});
+```
+
+### Best practices
+
+- Keep `configureTestingModule` minimal to reduce test setup cost.
+- Prefer **standalone** component imports (`imports: [MyComponent]`) when possible.
+- Always call `fixture.detectChanges()` after creating a component.
+- Use `TestBed.inject(...)` instead of manually constructing services.
+- Clean up async or HTTP resources in `afterEach` (for example `http.verify()`).
+
+## Setup and teardown hooks (beforeEach, beforeAll, afterEach, afterAll)
+
+These hooks help you organize test setup and cleanup in a predictable way.
+They run at different times in a test suite:
+
+- **beforeAll**: Runs once before all tests in a `describe` block.
+- **beforeEach**: Runs before every test in that `describe` block.
+- **afterEach**: Runs after every test in that `describe` block.
+- **afterAll**: Runs once after all tests in a `describe` block.
+
+### Common use cases
+
+- **beforeAll**: Heavy setup that can be shared (e.g., build a fixture once).
+- **beforeEach**: Fresh state per test (reset objects, create new component).
+- **afterEach**: Cleanup per test (reset spies, clear DOM, reset mocks).
+- **afterAll**: Global cleanup (disconnect test server, restore globals).
+
+### Example (Jasmine)
+
+```ts
+describe("UserService", () => {
+  let service: UserService;
+  let http: HttpTestingController;
+
+  beforeAll(() => {
+    // One-time setup (rare for Angular TestBed).
+  });
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [UserService],
+      imports: [HttpClientTestingModule],
+    });
+    service = TestBed.inject(UserService);
+    http = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    // Ensure no pending HTTP calls are left.
+    http.verify();
+  });
+
+  afterAll(() => {
+    // One-time cleanup if needed.
+  });
+
+  it("fetches users", () => {
+    service.getUsers().subscribe();
+    http.expectOne("/api/users");
+  });
+});
+```
+
+## Best practices for hooks
+
+- Prefer **beforeEach** for TestBed configuration to keep tests isolated.
+- Use **beforeAll/afterAll** only for truly shared, expensive setup/cleanup.
+- Keep hook logic minimal; complex logic belongs in helper functions.
+- Always reset or verify mocks/spies in **afterEach** to avoid leaking state.
+- Do not mutate shared objects across tests unless intentionally reset.
+
 ## Test runners vs test engines (frameworks)
 
 - **Test runner**: Orchestrates test execution and reports results.
@@ -114,5 +262,22 @@ export function sum(a: number, b: number) {
 ```
 
 ```ts
-describe;
+import { sum } from "./sample";
+
+describe("gettingSum", () => {
+  it("should retuns the sum of two numbers", () => {
+    const result = sum(1, 2);
+    expect(result).toBe(3);
+  });
+});
+```
+
+If the process inside the beforeEach is asynchronoud we need to use async for calling the beforeEach process:
+
+```ts
+beforeEach(async () => {
+  await TestBed.configureTestingModule({
+    imports: [RouterTestingModule, AppComponent],
+  }).compileComponents();
+});
 ```
