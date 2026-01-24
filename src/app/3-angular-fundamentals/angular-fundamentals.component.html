@@ -9,11 +9,13 @@
 
   <div class="layout-grid">
     <article class="fundamentals-card">
-      <div class="card-head">
+      <div class="code-card-head">
         <h3>Interpolation &amp; expressions</h3>
-        <p class="card-sub">Render values, expressions, and method output.</p>
+        <p class="code-card-sub">
+          Render values, expressions, and method output.
+        </p>
       </div>
-      <div class="card-demo">
+      <div class="code-card-demo">
         <p>Title: {{ title }}</p>
         <p>Uppercase: {{ title | uppercase }}</p>
         <p>Greeting: {{ getGreeting() }}</p>
@@ -21,7 +23,7 @@
         <p>User: {{ firstName + " " + lastName }}</p>
         <p>Enabled: {{ isActive ? "yes" : "no" }}</p>
       </div>
-      <pre class="code-sample" ngNonBindable><code>{{ title }}
+      <pre class="code-card-sample" ngNonBindable><code>{{ title }}
 {{ title | uppercase }}
 {{ getGreeting() }}
 {{ price * quantity }}
@@ -30,11 +32,11 @@
     </article>
 
     <article class="fundamentals-card">
-      <div class="card-head">
+      <div class="code-card-head">
         <h3>Property &amp; attribute binding</h3>
-        <p class="card-sub">Bind DOM properties and attributes.</p>
+        <p class="code-card-sub">Bind DOM properties and attributes.</p>
       </div>
-      <div class="card-demo">
+      <div class="code-card-demo">
         <h4 [textContent]="title"></h4>
         <div class="media-row">
           <img [src]="imgUrl2" alt="Angular logo" />
@@ -47,7 +49,7 @@
         </table>
       </div>
       <pre
-        class="code-sample"
+        class="code-card-sample"
         ngNonBindable
       ><code>&lt;h4 [textContent]="title"&gt;&lt;/h4&gt;
 &lt;img [src]="imgUrl2" /&gt;
@@ -55,11 +57,11 @@
     </article>
 
     <article class="fundamentals-card">
-      <div class="card-head">
+      <div class="code-card-head">
         <h3>Class &amp; style binding</h3>
-        <p class="card-sub">Toggle classes and inline styles.</p>
+        <p class="code-card-sub">Toggle classes and inline styles.</p>
       </div>
-      <div class="card-demo">
+      <div class="code-card-demo">
         <button class="btn btn-primary" [class.active]="isActive">
           Class toggle
         </button>
@@ -71,18 +73,18 @@
         </button>
       </div>
       <pre
-        class="code-sample"
+        class="code-card-sample"
         ngNonBindable
       ><code>&lt;button [class.active]="isActive"&gt;...&lt;/button&gt;
 &lt;button [style.backgroundColor]="isActive ? '#0f4c5c' : '#ef4444'"&gt;...&lt;/button&gt;</code></pre>
     </article>
 
     <article class="fundamentals-card">
-      <div class="card-head">
+      <div class="code-card-head">
         <h3>Event binding</h3>
-        <p class="card-sub">Handle click events and bubbling.</p>
+        <p class="code-card-sub">Handle click events and bubbling.</p>
       </div>
-      <div class="card-demo">
+      <div class="code-card-demo">
         <button class="btn btn-primary" (click)="sayHello($event)">
           Click me
         </button>
@@ -94,7 +96,7 @@
         <a href="#" (click)="anchorClicked($event)">Click link</a>
       </div>
       <pre
-        class="code-sample"
+        class="code-card-sample"
         ngNonBindable
       ><code>&lt;button (click)="sayHello($event)"&gt;...&lt;/button&gt;
 &lt;div (click)="sayHello2($event)"&gt;...&lt;/div&gt;
@@ -102,11 +104,11 @@
     </article>
 
     <article class="fundamentals-card">
-      <div class="card-head">
+      <div class="code-card-head">
         <h3>Keyboard &amp; template refs</h3>
-        <p class="card-sub">Filter events and read input values.</p>
+        <p class="code-card-sub">Filter events and read input values.</p>
       </div>
-      <div class="card-demo">
+      <div class="code-card-demo">
         <input
           type="text"
           class="form-control"
@@ -130,7 +132,7 @@
         />
       </div>
       <pre
-        class="code-sample"
+        class="code-card-sample"
         ngNonBindable
       ><code>&lt;input (keyup)="keyUpHandler($event)" /&gt;
 &lt;input (keyup.enter)="enterHandler($event)" /&gt;
@@ -138,11 +140,11 @@
     </article>
 
     <article class="fundamentals-card">
-      <div class="card-head">
+      <div class="code-card-head">
         <h3>Pipes</h3>
-        <p class="card-sub">Format values for display.</p>
+        <p class="code-card-sub">Format values for display.</p>
       </div>
-      <div class="card-demo">
+      <div class="code-card-demo">
         <p>Json: {{ person | json }}</p>
         <p>Upper: {{ name | uppercase }}</p>
         <p>Date: {{ createdAt | date: "yyyy-MM-dd" }}</p>
@@ -152,7 +154,7 @@
         <p>Number: {{ numberValue | number: "3.1-5" }}</p>
         <p>Persian: {{ dateObj | persianDate: "fa-IR" }}</p>
       </div>
-      <pre class="code-sample" ngNonBindable><code>{{ person | json }}
+      <pre class="code-card-sample" ngNonBindable><code>{{ person | json }}
 {{ name | uppercase }}
 {{ createdAt | date: "yyyy-MM-dd" }}
 {{ amount | currency: "USD" }}

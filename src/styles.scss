@@ -62,3 +62,100 @@
   font-weight: 700;
   color: #0f4c5c;
 }
+
+.code-card-sample {
+  margin: 0;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #1e293b;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-family: "JetBrains Mono", "Fira Code", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.fundamentals-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+}
+
+.fundamentals-card a {
+  color: #0f4c5c;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.fundamentals-card a:hover {
+  text-decoration: underline;
+}
+
+.fundamentals-card .form-control {
+  border-radius: 12px;
+  border-color: #d4dde5;
+}
+
+.fundamentals-card .form-control:focus {
+  border-color: #0f4c5c;
+  box-shadow: 0 0 0 3px rgba(15, 76, 92, 0.2);
+}
+
+.fundamentals-card .btn {
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.code-card-head {
+  display: grid;
+  gap: 4px;
+}
+
+.code-card-head h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #0f172a;
+}
+
+.code-card-sub {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.code-card-demo {
+  display: grid;
+  gap: 8px;
+}
+
+.code-card-demo p {
+  margin: 0;
+  color: #1f2937;
+}
+
+.card-demo h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.code-card-label {
+  font-weight: 600;
+  color: #0f172a;
+  font-size: 0.9rem;
+}
+
+.code-card-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  color: #1f2937;
+  font-size: 0.9rem;
+}

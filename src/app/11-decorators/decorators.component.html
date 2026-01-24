@@ -1,1 +1,274 @@
-<p>decorators works!</p>
+<section class="layout-shell">
+  <header class="layout-header">
+    <p class="eyebrow">Angular decorators</p>
+    <h2>Decorator samples</h2>
+    <p class="layout-subtext">
+      Class, property, method, and parameter decorators in practical use.
+    </p>
+  </header>
+
+  <div class="layout-grid">
+    <article class="fundamentals-card">
+      <div class="code-card-head">
+        <h3>&#64;Component</h3>
+        <p class="code-card-sub">Define a view, template, and metadata.</p>
+      </div>
+      <div class="code-card-demo">
+        <p class="code-card-label">Common use cases</p>
+        <ul class="code-card-list">
+          <li>Build standalone UI blocks</li>
+          <li>Declare view + styles</li>
+          <li>Configure change detection</li>
+        </ul>
+      </div>
+      <pre class="code-card-sample" ngNonBindable>
+        <code>
+        &#64;Component(<span>&#123;</span>
+  selector: 'app-profile-card',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './profile-card.component.html',
+  styleUrl: './profile-card.component.scss',
+<span>&#125;</span>)
+export class ProfileCardComponent<span>&#123;</span><span>&#125;</span>
+
+</code>
+</pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="code-card-head">
+        <h3>&#64;Directive</h3>
+        <p class="code-card-sub">Attach behavior to existing elements.</p>
+      </div>
+      <div class="code-card-demo">
+        <p class="code-card-label">Common use cases</p>
+        <ul class="code-card-list">
+          <li>Focus and accessibility helpers</li>
+          <li>Reusable DOM behavior</li>
+          <li>Lightweight UI enhancements</li>
+        </ul>
+      </div>
+      <pre
+        class="code-card-sample"
+        ngNonBindable
+      ><code>&#64;Directive(<span>&#123;</span>
+  selector: '[appAutoFocus]',
+  standalone: true,
+<span>&#125;</span>)
+export class AutoFocusDirective <span>&#123;</span>
+  constructor(private el: ElementRef) <span>&#123;</span><span>&#125;</span>
+
+  ngAfterViewInit() <span>&#123;</span>
+    this.el.nativeElement.focus();
+  <span>&#125;</span>
+<span>&#125;</span></code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="code-card-head">
+        <h3>&#64;Pipe</h3>
+        <p class="code-card-sub">Transform values for display.</p>
+      </div>
+      <div class="code-card-demo">
+        <p class="code-card-label">Common use cases</p>
+        <ul class="code-card-list">
+          <li>Format data in templates</li>
+          <li>Encapsulate view-only transforms</li>
+          <li>Keep templates readable</li>
+        </ul>
+      </div>
+      <pre
+        class="code-card-sample"
+        ngNonBindable
+      ><code>&#64;Pipe(<span>&#123;</span> name: 'initials', standalone: true <span>&#125;</span>)
+export class InitialsPipe implements PipeTransform <span>&#123;</span>
+  transform(value: string) <span>&#123;</span>
+    return value
+      .split(' ')
+      .map((part) =&gt; part[0])
+      .join('');
+  <span>&#125;</span>
+<span>&#125;</span></code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="code-card-head">
+        <h3>&#64;Injectable</h3>
+        <p class="code-card-sub">Register a service with the DI system.</p>
+      </div>
+      <div class="code-card-demo">
+        <p class="code-card-label">Common use cases</p>
+        <ul class="code-card-list">
+          <li>Share business logic</li>
+          <li>Fetch and cache data</li>
+          <li>Coordinate app state</li>
+        </ul>
+      </div>
+      <pre
+        class="code-card-sample"
+        ngNonBindable
+      ><code>&#64;Injectable(<span>&#123;</span> providedIn: 'root' <span>&#125;</span>)
+export class MovieService <span>&#123;</span>
+  getAll() <span>&#123;</span>
+    return this.http.get('/api/movies');
+  <span>&#125;</span>
+
+  constructor(private http: HttpClient) <span>&#123;</span><span>&#125;</span>
+<span>&#125;</span></code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="code-card-head">
+        <h3>&#64;NgModule</h3>
+        <p class="code-card-sub">Group declarations for non-standalone code.</p>
+      </div>
+      <div class="code-card-demo">
+        <p class="code-card-label">Common use cases</p>
+        <ul class="code-card-list">
+          <li>Legacy shared modules</li>
+          <li>Third-party module wrappers</li>
+          <li>Export reusable declarations</li>
+        </ul>
+      </div>
+      <pre
+        class="code-card-sample"
+        ngNonBindable
+      ><code>&#64;NgModule(<span>&#123;</span>
+  declarations: [LegacyCardComponent],
+  imports: [CommonModule],
+  exports: [LegacyCardComponent],
+<span>&#125;</span>)
+export class SharedModule <span>&#123;</span><span>&#125;</span></code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="code-card-head">
+        <h3>&#64;Input / &#64;Output</h3>
+        <p class="code-card-sub">Pass data in and emit events out.</p>
+      </div>
+      <div class="code-card-demo">
+        <p class="code-card-label">Common use cases</p>
+        <ul class="code-card-list">
+          <li>Component inputs and config</li>
+          <li>Two-way-ish event patterns</li>
+          <li>Declarative public APIs</li>
+        </ul>
+      </div>
+      <pre
+        class="code-card-sample"
+        ngNonBindable
+      ><code>export class RatingBadgeComponent <span>&#123;</span>
+  &#64;Input(<span>&#123;</span> required: true <span>&#125;</span>) value = 0;
+  &#64;Output() valueChange = new EventEmitter();
+
+  update(next: number) <span>&#123;</span>
+    this.value = next;
+    this.valueChange.emit(next);
+  <span>&#125;</span>
+<span>&#125;</span></code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="code-card-head">
+        <h3>&#64;ViewChild / &#64;ViewChildren</h3>
+        <p class="code-card-sub">Query elements inside the component view.</p>
+      </div>
+      <div class="code-card-demo">
+        <p class="code-card-label">Common use cases</p>
+        <ul class="code-card-list">
+          <li>Focus inputs after render</li>
+          <li>Access child components</li>
+          <li>Coordinate multiple items</li>
+        </ul>
+      </div>
+      <pre
+        class="code-card-sample"
+        ngNonBindable
+      ><code>&#64;ViewChild('search') searchInput!: ElementRef;
+&#64;ViewChildren(ItemCardComponent) cards!: QueryList;
+
+ngAfterViewInit() <span>&#123;</span>
+  this.searchInput.nativeElement.focus();
+<span>&#125;</span></code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="code-card-head">
+        <h3>&#64;ContentChild / &#64;ContentChildren</h3>
+        <p class="code-card-sub">Query projected content from parents.</p>
+      </div>
+      <div class="code-card-demo">
+        <p class="code-card-label">Common use cases</p>
+        <ul class="code-card-list">
+          <li>Read projected templates</li>
+          <li>Drive layouts from slots</li>
+          <li>Coordinate tab content</li>
+        </ul>
+      </div>
+      <pre
+        class="code-card-sample"
+        ngNonBindable
+      ><code>&#64;ContentChild('title') titleTpl?: TemplateRef;
+&#64;ContentChildren(TabComponent) tabs!: QueryList;
+
+ngAfterContentInit() <span>&#123;</span>
+  this.activeTab = this.tabs.first;
+<span>&#125;</span></code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="code-card-head">
+        <h3>&#64;HostBinding / &#64;HostListener</h3>
+        <p class="code-card-sub">Sync host styles and events.</p>
+      </div>
+      <div class="code-card-demo">
+        <p class="code-card-label">Common use cases</p>
+        <ul class="code-card-list">
+          <li>Toggle host classes</li>
+          <li>Respond to DOM events</li>
+          <li>Encapsulate behavior</li>
+        </ul>
+      </div>
+      <pre
+        class="code-card-sample"
+        ngNonBindable
+      ><code>&#64;HostBinding('class.is-active') isActive = false;
+
+&#64;HostListener('mouseenter')
+onEnter() <span>&#123;</span>
+  this.isActive = true;
+<span>&#125;</span>
+
+&#64;HostListener('mouseleave')
+onLeave() <span>&#123;</span>
+  this.isActive = false;
+<span>&#125;</span></code></pre>
+    </article>
+
+    <article class="fundamentals-card">
+      <div class="code-card-head">
+        <h3>DI parameter decorators</h3>
+        <p class="code-card-sub">Control where dependencies are resolved.</p>
+      </div>
+      <div class="code-card-demo">
+        <p class="code-card-label">Common use cases</p>
+        <ul class="code-card-list">
+          <li>Optional services</li>
+          <li>Skip or force host lookup</li>
+          <li>Use custom tokens</li>
+        </ul>
+      </div>
+      <pre class="code-card-sample" ngNonBindable><code>
+        constructor(
+  &#64;Optional() &#64;Inject(API_URL) apiUrl: string | null,
+  &#64;SkipSelf() private parent: ParentService,
+  &#64;Self() private local: LocalService,
+  &#64;Host() private host: HostService
+)
+
+<span>&#123;</span><span>&#125;</span>
+</code></pre>
+    </article>
+  </div>
+</section>
