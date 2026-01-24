@@ -1,0 +1,15 @@
+<div (mouseleave)="handleMouseLeave()" class="container">
+  @for (state of states; track i; let i = $index) {
+    <span
+      class="star"
+      (click)="changeHandler(i + 1)"
+      (mouseover)="handleHover(i + 1)"
+      style.height="{{ starWidth }}px"
+      style.width="{{ starWidth }}px"
+      [class]="{ hover: i < starHovered, selected: i < rate }"
+    >
+    </span>
+  }
+</div>
+<br />
+{{ rate }}/{{ states.length }}

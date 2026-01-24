@@ -10,8 +10,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class RateVersion3Component implements OnInit {
   constructor() { }
 
-  @Input() rateNumber: number = -1;
-  @Input() arr: Array<any> = [1, 2, 3, 4, 5]
+  @Input() rateNumber: number = 0;
+  @Input() arr: number[] = [1, 2, 3, 4, 5];
   @Output() rateSelected: EventEmitter<number> = new EventEmitter<number>();
   hoverTo: number = -1;
 

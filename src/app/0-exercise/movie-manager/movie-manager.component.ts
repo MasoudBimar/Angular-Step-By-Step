@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Movie, MovieService } from './movie.service';
-import { RateVersion2Component } from '../rate-version2/rate-version2.component';
+import { RateVersion2Component } from '../rate-panel/rate-version2/rate-version2.component';
 
 @Component({
   standalone: true,

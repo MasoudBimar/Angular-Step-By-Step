@@ -37,3 +37,14 @@
 .star-logo::before {
   content: "\2605";
 }
+
+.container {
+  align-items: center;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 3rem;
+  padding: 30px;
+
+}

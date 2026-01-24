@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="flex flex-wrap h-500">
+    <div class="w-full md:w-1/2 flex mx-auto justify-center items-center">
+      @for (star of stars; track i; let i = $index) {
+        <ul class="flex space-x-2 rating-list">
+          <li
+            (click)="countStar(star)"
+            (mouseenter)="hoveredValue = star"
+            (mouseleave)="hoveredValue = -1"
+            [class]="{
+              selected: i + 1 <= selectedValue || i + 1 <= hoveredValue,
+            }"
+          >
+            <i class="star-logo"></i>
+          </li>
+        </ul>
+      }
+    </div>
+    <div class="w-full flex justify-center">
+      <h3>{{ selectedValue + "/" + stars.length }}</h3>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,11 @@
 }
 
 .container {
+  align-items: center;
   border-radius: 20px;
+  display: flex;
   justify-content: center;
+  flex-direction: row;
+  font-size: 2rem;
+  padding: 30px;
 }

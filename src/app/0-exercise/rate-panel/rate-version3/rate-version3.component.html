@@ -1,7 +1,7 @@
 <div class="container">
   <span>Rate Me!! </span>
   <div class="stars-container">
-    @for (star of arr; track star; let i = $index) {
+    @for (star of arr; track i; let i = $index) {
       <div
         class="star"
         (click)="handleClick(star)"
@@ -20,5 +20,5 @@
     }
     <br />
   </div>
-  {{ rateNumber }} / {{ arr[arr.length - 1] }}
+  {{ rateNumber }} / {{ arr.length }}
 </div>

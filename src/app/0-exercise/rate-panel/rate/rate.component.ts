@@ -11,7 +11,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class RateComponent {
 
   @Input() stars: number[] = [1, 2, 3, 4, 5];
-  @Input() selectedValue!: number;
+  @Input() selectedValue: number = 0;
   @Output() rateSelected: EventEmitter<number> = new EventEmitter<number>();
   hoveredValue: number = -1;
 

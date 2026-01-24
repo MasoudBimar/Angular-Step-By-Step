@@ -89,9 +89,7 @@ export class SidebarComponent {
     { id: 'defer-loading', label: 'Defer Loading', route: 'defer-loading' },
     {
       id: 'code samples', label: 'exercises', children: [
-        { id: 'rate-1', label: 'Rate 1', route: '/exercise/rate-1' },
-        { id: 'rate-2', label: 'Rate 2', route: '/exercise/rate-2' },
-        { id: 'rate-3', label: 'Rate 3', route: '/exercise/rate-3' },
+        { id: 'rate-panel', label: 'Rate Panel', route: '/exercise/rate-panel' },
         { id: 'movies', label: 'Movies', route: '/exercise/movies' },
         { id: 'signal-counter', label: 'Signal Counter', route: '/exercise/signal-counter' },
         { id: 'signal-todo', label: 'Signal Todo', route: '/exercise/signal-todo' },

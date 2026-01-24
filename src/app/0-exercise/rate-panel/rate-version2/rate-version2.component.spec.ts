@@ -2,14 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RateVersion2Component } from './rate-version2.component';
 
-describe('RateComponent', () => {
+describe('RateVersion2Component', () => {
   let component: RateVersion2Component;
   let fixture: ComponentFixture<RateVersion2Component>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RateVersion2Component],
-      
+
     })
       .compileComponents();
 

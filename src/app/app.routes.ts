@@ -8,9 +8,9 @@ import { authGuard } from './13-routing/guards/auth.guard';
 import { RoutingComponent } from './13-routing/routing.component';
 import { ROUTING_ROUTES } from './13-routing/routing.routes';
 import { MovieManagerComponent } from './0-exercise/movie-manager/movie-manager.component';
-import { RateVersion2Component } from './0-exercise/rate-version2/rate-version2.component';
-import { RateVersion3Component } from './0-exercise/rate-version3/rate-version3.component';
-import { RateComponent } from './0-exercise/rate/rate.component';
+import { RateVersion2Component } from './0-exercise/rate-panel/rate-version2/rate-version2.component';
+import { RateVersion3Component } from './0-exercise/rate-panel/rate-version3/rate-version3.component';
+import { RateComponent } from './0-exercise/rate-panel/rate/rate.component';
 import { AngularFundamentalsComponent } from './3-angular-fundamentals/angular-fundamentals.component';
 import { CounterExampleComponent } from './3-angular-fundamentals/counter-example/counter-example.component';
 import { ToDoComponent } from './4-components-and-templates/todo-app/to-do/to-do.component';
@@ -23,6 +23,7 @@ import { ComponentsAndTemplatesComponent } from './4-components-and-templates/co
 import { ServicesComponent } from './14-services/services.component';
 import { SignalCounterComponent } from './0-exercise/signal-counter/signal-counter.component';
 import { SignalTodoAppComponent } from './0-exercise/signal-todo-app/signal-todo-app/signal-todo-app.component';
+import { RatePanelComponent } from './0-exercise/rate-panel/rate-panel.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
@@ -61,9 +62,7 @@ export const routes: Routes = [
   {
     path: 'exercise',
     children: [
-      { title: 'Rate Component 1', path: 'rate-1', component: RateComponent },
-      { title: 'Rate Component 2', path: 'rate-2', component: RateVersion2Component },
-      { title: 'Rate Component 3', path: 'rate-3', component: RateVersion3Component },
+      { title: 'Rate Components', path: 'rate-panel', component: RatePanelComponent },
       { title: 'Movies', path: 'movies', component: MovieManagerComponent },
       { title: 'Signal Counter', path: 'signal-counter', component: SignalCounterComponent },
       { title: 'Signal Todo', path: 'signal-todo', component: SignalTodoAppComponent },

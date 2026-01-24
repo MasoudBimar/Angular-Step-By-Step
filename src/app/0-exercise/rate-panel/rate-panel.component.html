@@ -1,0 +1,42 @@
+<section class="layout-shell">
+  <header class="layout-header">
+    <div>
+      <p class="eyebrow">Movie Manager</p>
+      <h2>Movie CRUD List</h2>
+      <p class="layout-subtext">Create, update, and review your movie list.</p>
+    </div>
+    <div class="meta-row">
+      <div class="meta-card">
+        <span>Set Rate Value</span>
+        <!-- Built-in number pipe for counts -->
+        <!-- <strong>{{ employees.length | number }}</strong> -->
+        <input type="number" (change)="setRateValue($event)" />
+      </div>
+      <div class="meta-card">
+        <span>Set Rate Range</span>
+        <input type="number" (change)="setRangeValue($event)" />
+      </div>
+    </div>
+  </header>
+  <div class="layout-grid">
+    <div class="meta-row g-4">
+      <div class="meta-card">
+        <app-rate [selectedValue]="rateValue" [stars]="rateValues"></app-rate>
+      </div>
+
+      <div class="meta-card">
+        <app-rate-version2
+          [rate]="rateValue"
+          [stars]="rangeValue"
+        ></app-rate-version2>
+      </div>
+
+      <div class="meta-card">
+        <app-rate-version3
+          [rateNumber]="rateValue"
+          [arr]="rateValues"
+        ></app-rate-version3>
+      </div>
+    </div>
+  </div>
+</section>

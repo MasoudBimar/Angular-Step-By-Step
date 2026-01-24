@@ -1,0 +1,26 @@
+.meta-row {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-top: 8px;
+}
+
+.meta-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 14px 16px;
+  border: 1px solid #e5e7eb;
+  display: grid;
+  gap: 6px;
+  box-shadow: 0 10px 18px rgba(15, 23, 42, 0.08);
+}
+
+.meta-card span {
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.meta-card strong {
+  font-size: 1.2rem;
+  color: #0f4c5c;
+}
