@@ -23,9 +23,12 @@
         <p>User: {{ firstName + " " + lastName }}</p>
         <p>Enabled: {{ isActive ? "yes" : "no" }}</p>
       </div>
-      <pre class="code-card-sample">
-        <code class="language-ts" [textContent]="interpolationCode"></code>
-      </pre>
+      <pre
+        class="code-card-sample"
+        highlighter
+        language="json"
+        [code]="interpolationCode"
+      ></pre>
     </article>
 
     <article class="fundamentals-card">
@@ -34,7 +37,7 @@
         <p class="code-card-sub">Bind DOM properties and attributes.</p>
       </div>
       <div class="code-card-demo">
-        <h4 class="language-ts" [textContent]="title"></h4>
+        <h4 [textContent]="title"></h4>
         <div class="media-row">
           <img [src]="imgUrl2" alt="Angular logo" />
           <img src="{{ imgUrl1 }}" alt="Angular sample" />
@@ -45,9 +48,12 @@
           </tr>
         </table>
       </div>
-      <pre class="code-card-sample">
-        <code class="language-ts" [textContent]="propertyBindingCode"></code>
-      </pre>
+      <pre
+        class="code-card-sample"
+        highlighter
+        language="html"
+        [code]="propertyBindingCode"
+      ></pre>
     </article>
 
     <article class="fundamentals-card">
@@ -66,9 +72,12 @@
           Style binding
         </button>
       </div>
-      <pre class="code-card-sample">
-        <code class="language-ts" [textContent]="classStyleBindingCode"></code>
-      </pre>
+      <pre
+        class="code-card-sample"
+        highlighter
+        language="html"
+        [code]="classStyleBindingCode"
+      ></pre>
     </article>
 
     <article class="fundamentals-card">
@@ -87,9 +96,12 @@
         </div>
         <a href="#" (click)="anchorClicked($event)">Click link</a>
       </div>
-      <pre class="code-card-sample">
-        <code class="language-ts" [textContent]="eventBindingCode"></code>
-      </pre>
+      <pre
+        class="code-card-sample"
+        highlighter
+        language="html"
+        [code]="eventBindingCode"
+      ></pre>
     </article>
 
     <article class="fundamentals-card">
@@ -120,9 +132,12 @@
           (keyup.enter)="enterHandler3($event)"
         />
       </div>
-      <pre class="code-card-sample">
-        <code class="language-ts" [textContent]="keyboardRefsCode"></code>
-      </pre>
+      <pre
+        class="code-card-sample"
+        highlighter
+        language="html"
+        [code]="keyboardRefsCode"
+      ></pre>
     </article>
 
     <article class="fundamentals-card">
@@ -140,9 +155,12 @@
         <p>Number: {{ numberValue | number: "3.1-5" }}</p>
         <p>Persian: {{ dateObj | persianDate: "fa-IR" }}</p>
       </div>
-      <pre class="code-card-sample">
-        <code class="language-ts" [textContent]="pipesCode"></code>
-      </pre>
+      <pre
+        class="code-card-sample"
+        highlighter
+        language="json"
+        [code]="pipesCode"
+      ></pre>
     </article>
   </div>
 </section>

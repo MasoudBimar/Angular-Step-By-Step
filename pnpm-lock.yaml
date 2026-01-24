@@ -62,6 +62,9 @@ importers:
       '@types/jasmine':
         specifier: ~4.0.0
         version: 4.0.3
+      '@types/prismjs':
+        specifier: ^1.26.5
+        version: 1.26.5
       jasmine-core:
         specifier: ~4.2.0
         version: 4.2.0
@@ -80,6 +83,9 @@ importers:
       karma-jasmine-html-reporter:
         specifier: ~2.0.0
         version: 2.0.0(jasmine-core@4.2.0)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4)
+      prismjs:
+        specifier: ^1.30.0
+        version: 1.30.0
       typescript:
         specifier: ~5.4.5
         version: 5.4.5
@@ -1667,6 +1673,9 @@ packages:
 
   '@types/node@25.0.3':
     resolution: {integrity: sha512-W609buLVRVmeW693xKfzHeIV6nJGGz98uCPfeXI1ELMLXVeKYZ9m15fAMSaUPBHYLGFsVRcMmSCksQOrZV9BYA==}
+
+  '@types/prismjs@1.26.5':
+    resolution: {integrity: sha512-AUZTa7hQ2KY5L7AmtSiqxlhWxb4ina0yd8hNbl4TWuqnv/pFP0nDMb3YrfSBf4hJVGLh2YEIBfKaBW/9UEl6IQ==}
 
   '@types/qs@6.14.0':
     resolution: {integrity: sha512-eOunJqu0K1923aExK6y8p6fsihYEn/BYuQ4g0CxAAgFc4b/ZLN4CrsRZ55srTdqoiLzU2B2evC+apEIxprEzkQ==}
@@ -3470,6 +3479,10 @@ packages:
   postcss@8.5.6:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
+
+  prismjs@1.30.0:
+    resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
+    engines: {node: '>=6'}
 
   proc-log@4.2.0:
     resolution: {integrity: sha512-g8+OnU/L2v+wyiVK+D5fA34J7EH8jZ8DDlvwhRCMxmMj7UCBvxiO1mGeN+36JXIKF4zevU4kRBd8lVgG9vLelA==}
@@ -6039,6 +6052,8 @@ snapshots:
     dependencies:
       undici-types: 7.16.0
 
+  '@types/prismjs@1.26.5': {}
+
   '@types/qs@6.14.0': {}
 
   '@types/range-parser@1.2.7': {}
@@ -8033,6 +8048,8 @@ snapshots:
       nanoid: 3.3.11
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  prismjs@1.30.0: {}
 
   proc-log@4.2.0: {}
 

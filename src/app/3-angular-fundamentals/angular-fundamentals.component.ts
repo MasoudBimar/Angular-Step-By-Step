@@ -8,6 +8,7 @@ import {
   PercentPipe,
   UpperCasePipe,
 } from '@angular/common';
+import { CodeHighlighterComponent } from '../shared/code-highlighter/code-highlighter.component';
 
 @Component({
   standalone: true,
@@ -19,6 +20,7 @@ import {
     CurrencyPipe,
     PercentPipe,
     JsonPipe,
+    CodeHighlighterComponent
   ],
   selector: 'app-angular-fundamentals',
   templateUrl: './angular-fundamentals.component.html',
@@ -39,36 +41,40 @@ export class AngularFundamentalsComponent {
 
   name = 'Sara';
 
-  readonly interpolationCode = `{{ title }}
-{{ title | uppercase }}
-{{ getGreeting() }}
-{{ price * quantity }}
-{{ firstName + " " + lastName }}
-{{ isActive ? "yes" : "no" }}`;
+  readonly interpolationCode = `
+  {{ title }}
+  {{ title | uppercase }}
+  {{ getGreeting() }}
+  {{ price * quantity }}
+  {{ firstName + " " + lastName }}
+  {{ isActive ? "yes" : "no" }}`;
 
-  readonly propertyBindingCode = `<h4 [textContent]="title"></h4>
-<img [src]="imgUrl2" />
-<td [attr.colspan]="colSpan">...</td>`;
+  readonly propertyBindingCode = `
+  <h4 [textContent]="title"></h4>
+  <img [src]="imgUrl2" />
+  <td [attr.colspan]="colSpan">...</td>`;
 
-  readonly classStyleBindingCode = `<button [class.active]="isActive">...</button>
-<button [style.backgroundColor]="isActive ? '#0f4c5c' : '#ef4444'">...</button>`;
+  readonly classStyleBindingCode = `
+  <button [class.active]="isActive">...</button>
+  <button [style.backgroundColor]="isActive ? '#0f4c5c' : '#ef4444'">...</button>`;
 
   readonly eventBindingCode = `<button (click)="sayHello($event)">...</button>
-<div (click)="sayHello2($event)">...</div>
-<a (click)="anchorClicked($event)">...</a>`;
+  <div (click)="sayHello2($event)">...</div>
+  <a (click)="anchorClicked($event)">...</a>`;
 
   readonly keyboardRefsCode = `<input (keyup)="keyUpHandler($event)" />
-<input (keyup.enter)="enterHandler($event)" />
-<input #inputValue (keyup.enter)="enterHandler2(inputValue.value)" />`;
+  <input (keyup.enter)="enterHandler($event)" />
+  <input #inputValue (keyup.enter)="enterHandler2(inputValue.value)" />`;
 
-  readonly pipesCode = `{{ person | json }}
-{{ name | uppercase }}
-{{ createdAt | date: "yyyy-MM-dd" }}
-{{ amount | currency: "USD" }}
-{{ ratio | percent: "1.0-2" }}
-{{ dateObj | date: "shortTime" }}
-{{ numberValue | number: "3.1-5" }}
-{{ dateObj | persianDate: "fa-IR" }}`;
+  readonly pipesCode = `
+  {{ person | json }}
+  {{ name | uppercase }}
+  {{ createdAt | date: "yyyy-MM-dd" }}
+  {{ amount | currency: "USD" }}
+  {{ ratio | percent: "1.0-2" }}
+  {{ dateObj | date: "shortTime" }}
+  {{ numberValue | number: "3.1-5" }}
+  {{ dateObj | persianDate: "fa-IR" }}`;
 
   getGreeting(): string {
     return `Hello ${this.name}`;
