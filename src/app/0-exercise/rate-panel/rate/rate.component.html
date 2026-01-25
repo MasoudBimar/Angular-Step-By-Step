@@ -3,14 +3,14 @@
     @for (star of stars; track i; let i = $index) {
       <li
         class="rate-star"
-        (click)="countStar(star)"
-        (mouseenter)="hoveredValue = star"
-        (mouseleave)="hoveredValue = -1"
-        [class.selected]="i < selectedValue || i < hoveredValue"
+        (click)="setRate(star)"
+        (mouseenter)="onMouseEnter(star)"
+        (mouseleave)="onMouseLeave()"
+        [class.selected]="i < rateValue || i < hoveredValue"
       >
         <span class="star-icon" aria-hidden="true">★</span>
       </li>
     }
   </ul>
-  <div class="rate-score">{{ selectedValue }}/{{ stars.length }}</div>
+  <div class="rate-score">{{ rateValue }}/{{ stars.length }}</div>
 </div>

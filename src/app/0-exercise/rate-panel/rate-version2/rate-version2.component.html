@@ -3,6 +3,7 @@
     @for (state of states; track i; let i = $index) {
       <span
         class="star"
+        data-testid="star-item"
         (click)="changeHandler(i + 1)"
         (mouseover)="handleHover(i + 1)"
         [style.height.px]="starWidth"

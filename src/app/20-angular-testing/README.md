@@ -80,6 +80,9 @@ the **ComponentFixture** (a handle to the component instance and its DOM).
 - **ComponentFixture**: Gives access to the component instance, DOM element,
   and change detection.
 
+> [!NOTE]
+> The `TestBed` is resposible for configuraing testing module such as providing services or other modules.
+
 ### Common methods you will use
 
 - `TestBed.configureTestingModule(...)`: Configure the testing module.
@@ -103,6 +106,7 @@ describe("MyComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MyComponent], // standalone component
+      declaration: [], // for non standalone components
     });
 
     fixture = TestBed.createComponent(MyComponent);

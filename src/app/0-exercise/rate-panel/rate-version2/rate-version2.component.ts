@@ -1,15 +1,22 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   standalone: true,
   imports: [],
   selector: 'app-rate-version2',
   templateUrl: './rate-version2.component.html',
-  styleUrls: ['./rate-version2.component.scss']
+  styleUrls: ['./rate-version2.component.scss'],
 })
 export class RateVersion2Component implements OnInit, OnChanges {
-  @Input() stars: number = 10;
+  @Input() stars: number = 5;
   @Input() rate: number = 0;
   @Input() starWidth: number = 32;
   @Output() rateChange = new EventEmitter<number>();
@@ -18,17 +25,14 @@ export class RateVersion2Component implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['stars'] || this.states.length === 0) {
-      this.states = Array.from({ length: this.stars }, (_, i) => i + 1)
+      this.states = Array.from({ length: this.stars }, (_, i) => i + 1);
     }
-
   }
 
   ngOnInit(): void {
-
     if (this.states.length === 0) {
-      this.states = Array.from({ length: this.stars }, (_, i) => i + 1)
+      this.states = Array.from({ length: this.stars }, (_, i) => i + 1);
     }
-
   }
 
   changeHandler(rate: number) {
@@ -38,14 +42,9 @@ export class RateVersion2Component implements OnInit, OnChanges {
 
   handleHover(rate: number) {
     this.starHovered = rate;
-
   }
 
   handleMouseLeave() {
     this.starHovered = 0;
   }
-
-
-
-
 }
