@@ -15,4 +15,18 @@ describe('formGuard', () => {
   it('should be created', () => {
     expect(executeGuard).toBeTruthy();
   });
+
+  it('should return false if form is direty & invalid', () => {
+    const component = new ReactiveFormComponent();
+    component.stockForm.markAsDirty();
+
+    const result = executeGuard(
+      component,
+      {} as any,
+      {} as any,
+      {} as any
+    );
+
+    expect(result).toBeFalse();
+  });
 });

@@ -16,7 +16,7 @@ export const formGuard: CanDeactivateFn<ReactiveFormComponent> = (
   currentState: RouterStateSnapshot,
   nextState: RouterStateSnapshot
 ) => {
-  if (component.stockForm.dirty) {
+  if (component.stockForm.dirty && component.stockForm.invalid) {
     console.log('cannot navigate a way from the form component');
     console.log(currentRoute, 'ActivatedRouteSnapshot');
     console.log(currentState, 'RouterStateSnapshot');
