@@ -5,14 +5,15 @@ import { Component, signal } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './signal-counter.component.html',
-  styleUrl: './signal-counter.component.scss'
+  styleUrl: './signal-counter.component.scss',
 })
 export class SignalCounterComponent {
   counter = signal<number>(0);
 
   updateCounter(direction: 'up' | 'down') {
-
-    direction === 'up' ? this.counter.update((value: number) => value + 1) : this.counter.update((value: number) => value - 1);
+    direction === 'up'
+      ? this.counter.update((value: number) => value + 1)
+      : this.counter.update((value: number) => value - 1);
   }
 
   onKeyDown(event: KeyboardEvent) {

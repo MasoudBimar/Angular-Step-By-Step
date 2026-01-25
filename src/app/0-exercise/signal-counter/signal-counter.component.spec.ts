@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignalCounterComponent } from './signal-counter.component';
+import { By } from '@angular/platform-browser';
 
 describe('SignalCounterComponent', () => {
   let component: SignalCounterComponent;
@@ -10,7 +11,7 @@ describe('SignalCounterComponent', () => {
     await TestBed.configureTestingModule({
       imports: [SignalCounterComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SignalCounterComponent);
     component = fixture.componentInstance;
@@ -20,4 +21,33 @@ describe('SignalCounterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should counter be set to zero', () => {
+    expect(component.counter()).toBe(0);
+  });
+
+  it('should increase the counter value by button click ', () => {
+    const debugElement = fixture.debugElement.query(By.css('[data-testid= "inc-button"]'));
+    (debugElement.nativeElement as HTMLButtonElement).click();
+    expect(component.counter()).toBe(1);
+  })
+
+  it('should change the counter value by button click', () => {
+    const upDebugElement = fixture.debugElement.query(By.css('[data-testid= "inc-button"]'));
+    const downDebugElement = fixture.debugElement.query(By.css('[data-testid= "dec-button"]'));
+    (upDebugElement.nativeElement as HTMLButtonElement).click();
+    (upDebugElement.nativeElement as HTMLButtonElement).click();
+    (downDebugElement.nativeElement as HTMLButtonElement).click();
+    expect(component.counter()).toBe(1);
+  })
+
+  it('should cahnge the counter value by keydown', () => {
+    const upDebugElement = fixture.debugElement.query(By.css('[data-testid= "counter-container"]'));
+
+    upDebugElement.triggerEventHandler('keydown', { key: 'ArrowUp', code: 'ArrowUp' });
+    upDebugElement.triggerEventHandler('keydown', { key: 'ArrowUp', code: 'ArrowUp' });
+    upDebugElement.triggerEventHandler('keydown', { key: 'ArrowDown', code: 'ArrowDown' });
+
+    expect(component.counter()).toBe(1);
+  })
 });

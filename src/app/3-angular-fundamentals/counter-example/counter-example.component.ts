@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./counter-example.component.scss']
 })
 export class CounterExampleComponent {
-  counter: number = 0;
+  protected counter: number = 0;
 
   // increment() {
   //   this.counter++;

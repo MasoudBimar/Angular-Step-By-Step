@@ -7,12 +7,21 @@
     </div>
   </header>
   <div class="layout-grid">
-    <div class="container" tabIndex="0" (keydown)="onKeyDown($event)">
+    <div
+      class="container"
+      tabIndex="0"
+      (keydown)="onKeyDown($event)"
+      data-testid="counter-container"
+    >
       <h1>Counter</h1>
       <div class="btn-container">
-        <button (click)="updateCounter('down')">Dec</button>
+        <button (click)="updateCounter('down')" data-testid="dec-button">
+          Dec
+        </button>
         <h2>{{ counter }}</h2>
-        <button (click)="updateCounter('up')">Inc</button>
+        <button (click)="updateCounter('up')" data-testid="inc-button">
+          Inc
+        </button>
       </div>
     </div>
   </div>
