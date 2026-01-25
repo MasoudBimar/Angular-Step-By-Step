@@ -259,6 +259,199 @@ In practice you might also encounter:
 - **Cypress** or **Playwright** for E2E testing.
 - **Testing Library** for a user-focused testing style.
 
+## Running tests with code coverage
+
+Use the Angular CLI flag `--code-coverage` (not `--coverage`):
+
+```bash
+ng test --code-coverage
+```
+
+If you use the npm script:
+
+```bash
+pnpm test -- --code-coverage
+```
+
+Coverage output is written to the `coverage/` folder. Open `coverage/index.html`
+to view the HTML report.
+
+### Enable coverage by default
+
+You can also enable it in `angular.json` so every test run includes coverage:
+
+```json
+{
+  "projects": {
+    "AngularStepByStep": {
+      "architect": {
+        "test": {
+          "options": {
+            "codeCoverage": true
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+## Spies & mocks in Jasmine/Karma (when and how)
+
+Spies and mocks help you **isolate a unit** and **verify interactions** without
+calling real dependencies (HTTP, timers, storage, global APIs, complex services).
+
+### When to use spies
+
+Use a spy when you want to:
+
+- Verify a function was called (and how often).
+- Inspect arguments passed to a dependency.
+- Stub a return value from a dependency.
+- Prevent side effects (e.g., real network or `window.open`).
+
+### When to use mocks/fakes
+
+Use a mock (or fake) when you need a **controlled implementation**:
+
+- The dependency has complex behavior and you want a simpler one.
+- You want deterministic results (no randomness, no time dependence).
+- The unit under test depends on observable streams or async behavior.
+
+### Core Jasmine spy helpers
+
+- `spyOn(obj, "method")`: Create a spy for an existing method.
+- `jasmine.createSpy("name")`: Create a standalone spy function.
+- `jasmine.createSpyObj("name", ["m1", "m2"])`: Create an object of spies.
+- `spy.and.returnValue(value)`: Stub a return value.
+- `spy.and.callFake(fn)`: Use a custom fake implementation.
+- `spy.and.stub()`: Prevent the real method from running.
+
+### Example: spy on a service method (return value + call assertion)
+
+```ts
+import { TestBed } from "@angular/core/testing";
+import { UsersService } from "./users.service";
+import { UsersComponent } from "./users.component";
+
+describe("UsersComponent", () => {
+  it("loads users on init", () => {
+    const service = TestBed.inject(UsersService);
+    const spy = spyOn(service, "getUsers").and.returnValue(["Ada", "Linus"]);
+
+    const fixture = TestBed.createComponent(UsersComponent);
+    fixture.detectChanges(); // triggers ngOnInit
+
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(fixture.componentInstance.users).toEqual(["Ada", "Linus"]);
+  });
+});
+```
+
+### Example: mock a dependency with `createSpyObj`
+
+```ts
+import { TestBed } from "@angular/core/testing";
+import { AuthService } from "./auth.service";
+import { LoginComponent } from "./login.component";
+
+describe("LoginComponent", () => {
+  it("shows an error when login fails", () => {
+    const authMock = jasmine.createSpyObj("AuthService", ["login"]);
+    authMock.login.and.returnValue(false);
+
+    TestBed.configureTestingModule({
+      imports: [LoginComponent],
+      providers: [{ provide: AuthService, useValue: authMock }],
+    });
+
+    const fixture = TestBed.createComponent(LoginComponent);
+    fixture.componentInstance.onSubmit();
+
+    expect(authMock.login).toHaveBeenCalled();
+    expect(fixture.componentInstance.error).toBeTrue();
+  });
+});
+```
+
+### Example: spy on a global API (safe and isolated)
+
+```ts
+describe("OpenLinkComponent", () => {
+  it("opens a new tab", () => {
+    spyOn(window, "open").and.stub();
+
+    const fixture = TestBed.createComponent(OpenLinkComponent);
+    fixture.componentInstance.openDocs();
+
+    expect(window.open).toHaveBeenCalledWith("https://docs.example.com", "_blank");
+  });
+});
+```
+
+### Example: `callFake` for custom behavior
+
+```ts
+describe("Calculator", () => {
+  it("uses a fake implementation", () => {
+    const dep = { getRate: () => 1 };
+    const spy = spyOn(dep, "getRate").and.callFake(() => 2);
+
+    expect(dep.getRate()).toBe(2);
+    expect(spy).toHaveBeenCalled();
+  });
+});
+```
+
+### Mock class with `useClass` (replace a service)
+
+Sometimes a spy object is not enough. A **mock class** can be clearer when the
+service has state, multiple methods, or more realistic behavior.
+
+Use `useClass` in the provider to replace the real service with your mock:
+
+```ts
+class MockUsersService {
+  users = ["Ada", "Linus"];
+  getUsers() {
+    return this.users;
+  }
+}
+
+describe("UsersComponent", () => {
+  it("renders users from the mock service", () => {
+    TestBed.configureTestingModule({
+      imports: [UsersComponent],
+      providers: [{ provide: UsersService, useClass: MockUsersService }],
+    });
+
+    const fixture = TestBed.createComponent(UsersComponent);
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.users).toEqual(["Ada", "Linus"]);
+  });
+});
+```
+
+### When to prefer `useClass`
+
+- The dependency has **stateful behavior** you want to control.
+- You want a **readable, reusable mock** across many tests.
+- You need **multiple methods** with consistent behavior.
+
+### When to prefer spies instead
+
+- You only need **one method** or a **single return value**.
+- You want to **assert calls/arguments** without writing a full class.
+
+### Common pitfalls
+
+- Spies only work on existing methods. Use `createSpy` or `createSpyObj` when
+  the method does not exist.
+- If you spy on a method, the real implementation is blocked unless you call
+  `and.callThrough()`.
+- Keep mocks minimal: only mock what the unit actually uses.
+
 ```ts
 export function sum(a: number, b: number) {
   return a + b;
@@ -276,7 +469,7 @@ describe("gettingSum", () => {
 });
 ```
 
-If the process inside the beforeEach is asynchronoud we need to use async for calling the beforeEach process:
+If the code inside `beforeEach` is asynchronous such as calling `compileComponents()` we need to make the `beforeEach` callback `async`.
 
 ```ts
 beforeEach(async () => {
