@@ -13,5 +13,4 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 export class AppComponent {
   title = 'AngularStepByStep';
 
-  constructor() { }
 }

@@ -4,7 +4,7 @@ import { RateVersion2Component } from './rate-version2.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-fdescribe('RateVersion2Component', () => {
+describe('RateVersion2Component', () => {
   let component: RateVersion2Component;
   let fixture: ComponentFixture<RateVersion2Component>;
 
