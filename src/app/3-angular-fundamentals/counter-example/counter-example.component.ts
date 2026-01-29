@@ -19,14 +19,14 @@ export class CounterExampleComponent {
   //   this.counter--;
   // }
 
-  updateCounter(direction: 'up' | 'down') {
-    // if (direction === 'up') {
-    //   this.counter++;
-    // } else if (direction === 'down') {
-    //   this.counter--;
-    // }
+  updateCounter(direction: 'up' | 'down'): void {
+    if (direction === 'up') {
+      this.counter++;
+    } else if (direction === 'down') {
+      this.counter--;
+    }
 
-    direction === 'up' ? this.counter++ : this.counter--;
+    // direction === 'up' ? this.counter++ : this.counter--;
   }
 
   onKeyDown(event: KeyboardEvent) {

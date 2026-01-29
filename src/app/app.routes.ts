@@ -1,4 +1,8 @@
 import { Routes } from '@angular/router';
+import { MovieManagerComponent } from './0-exercise/movie-manager/movie-manager.component';
+import { RatePanelComponent } from './0-exercise/rate-panel/rate-panel.component';
+import { SignalCounterComponent } from './0-exercise/signal-counter/signal-counter.component';
+import { SignalTodoAppComponent } from './0-exercise/signal-todo-app/signal-todo-app/signal-todo-app.component';
 import { LifecyclesComponent } from './10-component-lifecycles/lifecycles/lifecycles.component';
 import { ColorPickerComponent } from './11-decorators/color-picker/color-picker.component';
 import { DecoratorsComponent } from './11-decorators/decorators.component';
@@ -7,23 +11,16 @@ import { PostCollectionComponent } from './12-pipes/post-collection/post-collect
 import { authGuard } from './13-routing/guards/auth.guard';
 import { RoutingComponent } from './13-routing/routing.component';
 import { ROUTING_ROUTES } from './13-routing/routing.routes';
-import { MovieManagerComponent } from './0-exercise/movie-manager/movie-manager.component';
-import { RateVersion2Component } from './0-exercise/rate-panel/rate-version2/rate-version2.component';
-import { RateVersion3Component } from './0-exercise/rate-panel/rate-version3/rate-version3.component';
-import { RateComponent } from './0-exercise/rate-panel/rate/rate.component';
+import { ServicesComponent } from './14-services/services.component';
+import { DeferLoadingComponent } from './18-defer-loading/defer-loading.component';
 import { AngularFundamentalsComponent } from './3-angular-fundamentals/angular-fundamentals.component';
 import { CounterExampleComponent } from './3-angular-fundamentals/counter-example/counter-example.component';
+import { ComponentsAndTemplatesComponent } from './4-components-and-templates/components-and-templates.component';
 import { ToDoComponent } from './4-components-and-templates/todo-app/to-do/to-do.component';
 import { StructuralDirectivesComponent } from './5-structural-directives/structural-directives.component';
 import { AttributeDirectivesComponent } from './6-attribute-directives/attribute-directives.component';
 import { ComponentDirectivesComponent } from './7-component-directives/component-directives.component';
 import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
-import { DeferLoadingComponent } from './18-defer-loading/defer-loading.component';
-import { ComponentsAndTemplatesComponent } from './4-components-and-templates/components-and-templates.component';
-import { ServicesComponent } from './14-services/services.component';
-import { SignalCounterComponent } from './0-exercise/signal-counter/signal-counter.component';
-import { SignalTodoAppComponent } from './0-exercise/signal-todo-app/signal-todo-app/signal-todo-app.component';
-import { RatePanelComponent } from './0-exercise/rate-panel/rate-panel.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },

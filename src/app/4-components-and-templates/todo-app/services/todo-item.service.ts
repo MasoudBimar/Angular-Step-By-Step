@@ -8,7 +8,6 @@ import { TodoList } from '../model/to-do-list.model';
 
 export class TodoItemService {
 
-  constructor() { }
 
   getItems() {
     return new TodoList([

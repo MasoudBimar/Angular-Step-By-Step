@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -10,9 +10,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrls: ['./create-stock.component.scss']
 })
 export class CreateReactiveStockComponent {
-
+  private fb = inject(FormBuilder);
   public stockForm!: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor() {
     this.createForm();
   }
 

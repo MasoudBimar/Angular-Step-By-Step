@@ -21,9 +21,9 @@ export class ReactiveFormComponent implements OnInit {
     price: new FormControl(0, [Validators.required, Validators.min(0)]),
   })
 
-  constructor() { }
 
   ngOnInit(): void {
+    console.log('this is for demo')
   }
 
   onSubmit() {

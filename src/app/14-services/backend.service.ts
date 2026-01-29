@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
@@ -12,9 +12,9 @@ export class Employee {
   providedIn: 'root',
 })
 export class RestApiService {
+  private http = inject(HttpClient);
   // Define API
   apiURL = 'http://localhost:3000';
-  constructor(private http: HttpClient) { }
   /*========================================
     CRUD Methods for consuming RESTful API
   =========================================*/
@@ -31,13 +31,13 @@ export class RestApiService {
       .pipe(retry(1), catchError(this.handleError));
   }
   // HttpClient API get() method => Fetch employee
-  getEmployee(id: any): Observable<Employee> {
+  getEmployee(id: number | string): Observable<Employee> {
     return this.http
       .get<Employee>(this.apiURL + '/employees/' + id)
       .pipe(retry(1), catchError(this.handleError));
   }
   // HttpClient API post() method => Create employee
-  createEmployee(employee: any): Observable<Employee> {
+  createEmployee(employee: Employee): Observable<Employee> {
     return this.http
       .post<Employee>(
         this.apiURL + '/employees',
@@ -47,7 +47,7 @@ export class RestApiService {
       .pipe(retry(1), catchError(this.handleError));
   }
   // HttpClient API put() method => Update employee
-  updateEmployee(id: any, employee: any): Observable<Employee> {
+  updateEmployee(id: number | string, employee: Employee): Observable<Employee> {
     return this.http
       .put<Employee>(
         this.apiURL + '/employees/' + id,
@@ -57,7 +57,7 @@ export class RestApiService {
       .pipe(retry(1), catchError(this.handleError));
   }
   // HttpClient API delete() method => Delete employee
-  deleteEmployee(id: any) {
+  deleteEmployee(id: number | string) {
     return this.http
       .delete<Employee>(this.apiURL + '/employees/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError));

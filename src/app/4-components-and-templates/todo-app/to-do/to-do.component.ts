@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodoItem } from '../model/to-do-item.model';
 import { TodoItemService } from '../services/todo-item.service';
@@ -13,12 +13,12 @@ import { TodoList } from '../model/to-do-list.model';
   styleUrls: ['./to-do.component.scss']
 })
 export class ToDoComponent {
-
+  private readonly todoItemService = inject(TodoItemService);
   list: TodoList<TodoItem>;
 
   currentItem!: string;
 
-  constructor(public todoItemService: TodoItemService) {
+  constructor() {
     this.list = this.todoItemService.getItems();
   }
 

@@ -15,7 +15,7 @@ import 'prismjs/components/prism-json';
 })
 export class CodeHighlighterComponent implements AfterViewInit {
   @Input() language = 'html';
-  @Input() code: string = '';
+  @Input() code = '';
   @ViewChild('codeBlock') codeBlock?: ElementRef<HTMLElement>;
   private el = inject(ElementRef);
 

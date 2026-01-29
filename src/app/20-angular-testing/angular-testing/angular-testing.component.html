@@ -5,25 +5,41 @@
   <p data-testid="count">Count: {{ count }}</p>
 
   <div class="button-row">
-    <button type="button" data-testid="increment" (click)="increment()">Increment</button>
-    <button type="button" data-testid="toggle" (click)="toggle()">Toggle Details</button>
+    <button type="button" data-testid="increment" (click)="increment()">
+      Increment
+    </button>
+    <button type="button" data-testid="toggle" (click)="toggle()">
+      Toggle Details
+    </button>
     <button type="button" data-testid="save" (click)="save()">Save</button>
-    <button type="button" data-testid="load-users" (click)="loadUsers()">Load Users</button>
+    <button type="button" data-testid="load-users" (click)="loadUsers()">
+      Load Users
+    </button>
   </div>
 
-  <p data-testid="last-saved" *ngIf="lastSaved">{{ lastSaved }}</p>
+  @if (lastSaved) {
+    <p data-testid="last-saved">{{ lastSaved }}</p>
+  }
 
-  <div data-testid="details" *ngIf="isOpen">Details are visible.</div>
+  @if (isOpen) {
+    <div data-testid="details">Details are visible.</div>
+  }
 
-  <p data-testid="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  @if (errorMessage) {
+    <p data-testid="error">{{ errorMessage }}</p>
+  }
 
   <h3>Items</h3>
   <ul data-testid="items">
-    <li *ngFor="let item of items; trackBy: trackByName">{{ item }}</li>
+    @for (item of items; track $index) {
+      <li>{{ item }}</li>
+    }
   </ul>
 
   <h3>Users</h3>
   <ul data-testid="users">
-    <li *ngFor="let user of users">{{ user.name }}</li>
+    @for (user of users; track $index) {
+      <li>{{ user.name }}</li>
+    }
   </ul>
 </section>

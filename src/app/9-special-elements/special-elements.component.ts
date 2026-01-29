@@ -14,8 +14,8 @@ export class SpecialElementsComponent {
   em = '';
   ph = '';
   add = '';
-  submitted: boolean = false;
-  showHeading: boolean = true;
+  submitted = false;
+  showHeading = true;
   qualification = [{ school: '', degree: '', year: '' }];
 
   addQualification() {

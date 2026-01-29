@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./attribute-directives.component.scss']
 })
 export class AttributeDirectivesComponent {
-  isDarkMode: boolean = false;
+  isDarkMode = false;
 
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;

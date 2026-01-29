@@ -89,8 +89,18 @@
         <button class="btn btn-primary" (click)="sayHello($event)">
           Click me
         </button>
-        <div class="event-bubble" (click)="sayHello2($event)">
-          <button class="btn btn-primary" (click)="sayHello($event)">
+        <div
+          class="event-bubble"
+          (click)="sayHello2($event)"
+          (keyup)="sayHello2($event)"
+          tabindex="0"
+        >
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="sayHello($event)"
+            (keyup)="sayHello($event)"
+          >
             Bubble test
           </button>
         </div>

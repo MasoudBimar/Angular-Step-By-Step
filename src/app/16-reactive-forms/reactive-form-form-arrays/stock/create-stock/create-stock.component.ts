@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Stock } from '../../model/stock';
 import { JsonPipe } from '@angular/common';
@@ -11,11 +11,11 @@ import { JsonPipe } from '@angular/common';
   styleUrls: ['./create-stock.component.scss']
 })
 export class CreateFormArrayStockComponent {
-
+  private fb = inject(FormBuilder);
   public stock!: Stock;
   public stockForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
     this.createForm();
   }
 

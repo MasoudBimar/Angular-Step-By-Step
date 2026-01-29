@@ -1,6 +1,4 @@
-
-import { ArrayType } from '@angular/compiler';
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 interface SidebarItem {
@@ -18,6 +16,9 @@ interface SidebarItem {
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
+
+  private router = inject(Router);
+
   readonly menuItems: SidebarItem[] = [
     { id: 'getting-started', label: 'Getting Started' },
     {
@@ -99,7 +100,6 @@ export class SidebarComponent {
 
   private expandedItems = new Set<string>();
 
-  constructor(private router: Router) { }
 
   toggle(item: SidebarItem): void {
     if (!item.children?.length) {

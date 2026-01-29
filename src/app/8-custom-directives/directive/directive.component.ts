@@ -10,9 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DirectiveComponent implements OnInit {
 
-  constructor() { }
 
   ngOnInit(): void {
+    console.log('Just for demonstration')
   }
 
 }

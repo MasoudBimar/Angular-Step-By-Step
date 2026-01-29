@@ -69,8 +69,8 @@
                 [mass-attr]="
                   getProducts().length < 6 ? 'table-success' : 'table-warning'
                 "
-                [mass-product]="item"
-                (mass-category)="newProduct.category = $event"
+                [product]="item"
+                (changeCategory)="newProduct.category = $event"
               >
                 <td>{{ i + 1 }}</td>
                 <td>{{ item.name }}</td>

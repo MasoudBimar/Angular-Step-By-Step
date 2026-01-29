@@ -29,8 +29,8 @@ export class MassAttrDirective {
   click = new EventEmitter<string>();
 
   ngOnChanges(changes: SimpleChanges) {
-    let change = changes["bgClass"];
-    let classList = this.element.nativeElement.classList;
+    const change = changes["bgClass"];
+    const classList = this.element.nativeElement.classList;
     if (!change.isFirstChange() && classList.contains(change.previousValue)) {
       classList.remove(change.previousValue);
     }

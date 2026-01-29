@@ -7,6 +7,7 @@ export class SecondGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     // throw new Error("Method not implemented.");
     // ...
+    console.log(route, state);
     return true;
   }
 
@@ -22,5 +23,6 @@ export class SecondGuard implements CanActivate {
  * @returns A boolean value indicating whether the route can be activated
  */
 export const testGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  console.log(route, state);
   return true;
 }

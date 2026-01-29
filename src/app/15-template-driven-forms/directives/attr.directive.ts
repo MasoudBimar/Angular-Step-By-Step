@@ -14,16 +14,14 @@ export class MassAttrDirective {
   @HostBinding("class")
   bgClass: string | null = "";
 
-  @Input("mass-product")
-  product: Product = new Product();
+  @Input() product: Product = new Product();
 
-  @Output("mass-category")
-  click = new EventEmitter<string>();
+  @Output() changeCategory = new EventEmitter<string>();
 
   @HostListener("click")
   triggerCustomEvent() {
     if (this.product != null) {
-      this.click.emit(this.product.category);
+      this.changeCategory.emit(this.product.category);
     }
   }
 }

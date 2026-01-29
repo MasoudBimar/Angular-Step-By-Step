@@ -41,7 +41,7 @@ export function hiLowValidator(high: number, low: number): ValidatorFn {
 }
 
 @Directive({
-  selector: "input[high][low]",
+  selector: "input[appHiLow][high][low]",
   providers: [{ provide: NG_VALIDATORS, useExisting: HiLowValidatorDirective, multi: true }],
   standalone: true
 })

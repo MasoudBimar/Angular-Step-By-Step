@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Stock } from '../model/stock';
 
@@ -18,7 +18,8 @@ export class StockReactiveItemComponent {
     this.toggleFavorite = new EventEmitter<Stock>();
   }
 
-  onToggleFavorite(event: any) {
+  onToggleFavorite(event: Stock) {
+    console.log(event);
     this.toggleFavorite.emit(this.stock);
   }
 }

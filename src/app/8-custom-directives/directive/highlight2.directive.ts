@@ -1,12 +1,13 @@
-import {Directive, ElementRef, HostListener, Input} from '@angular/core';
+import { Directive, ElementRef, HostListener, inject, Input } from '@angular/core';
 
 @Directive({
   selector: '[appHighlight2]',
   standalone: true
 })
 export class Highlight2Directive {
-  @Input() appHighlight2!:string;
-  constructor(private el: ElementRef) {}
+  private el = inject(ElementRef);
+
+  @Input() appHighlight2!: string;
 
   @HostListener('mouseenter') onMouseEnter() {
     console.log(this.appHighlight2);

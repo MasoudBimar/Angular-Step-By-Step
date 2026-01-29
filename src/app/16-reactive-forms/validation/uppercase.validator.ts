@@ -1,4 +1,4 @@
-import { AbstractControl, FormControl, ValidationErrors, ValidatorFn } from "@angular/forms";
+import { AbstractControl, ValidationErrors } from "@angular/forms";
 
 /**
  * Validator function that automatically converts the control's value to uppercase.
