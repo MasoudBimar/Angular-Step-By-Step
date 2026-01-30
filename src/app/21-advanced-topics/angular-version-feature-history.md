@@ -205,6 +205,7 @@ Released: November 19, 2024.
 Highlights:
 
 - Signals as the default for state management
+- Angular directives, components and pipes are now standalone by default.
 - Signal-based router integration
 - Functional dependency injection with improved `inject()` capabilities
 - New `linkedSignal()` for synchronized state

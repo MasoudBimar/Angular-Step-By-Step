@@ -3,11 +3,10 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  standalone: true,
-  imports: [ReactiveFormsModule, JsonPipe],
-  selector: 'app-reactive-create-stock',
-  templateUrl: './create-stock.component.html',
-  styleUrls: ['./create-stock.component.scss']
+    imports: [ReactiveFormsModule, JsonPipe],
+    selector: 'app-reactive-create-stock',
+    templateUrl: './create-stock.component.html',
+    styleUrls: ['./create-stock.component.scss']
 })
 export class CreateReactiveStockComponent {
   private fb = inject(FormBuilder);

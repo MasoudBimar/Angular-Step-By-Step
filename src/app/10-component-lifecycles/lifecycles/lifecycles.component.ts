@@ -3,11 +3,10 @@ import { Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges 
 import { CodeHighlighterComponent } from 'src/app/shared/code-highlighter/code-highlighter.component';
 
 @Component({
-  standalone: true,
-  imports: [CommonModule, CodeHighlighterComponent],
-  selector: 'app-lifecycles',
-  templateUrl: './lifecycles.component.html',
-  styleUrls: ['./lifecycles.component.scss']
+    imports: [CommonModule, CodeHighlighterComponent],
+    selector: 'app-lifecycles',
+    templateUrl: './lifecycles.component.html',
+    styleUrls: ['./lifecycles.component.scss']
 })
 export class LifecyclesComponent implements OnInit, OnDestroy, DoCheck, OnChanges {
   @Input() inputs!: unknown;

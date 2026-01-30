@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 
 
 @Component({
-  standalone: true,
-  imports: [],
-  selector: 'app-counter-example',
-  templateUrl: './counter-example.component.html',
-  styleUrls: ['./counter-example.component.scss']
+    imports: [],
+    selector: 'app-counter-example',
+    templateUrl: './counter-example.component.html',
+    styleUrls: ['./counter-example.component.scss']
 })
 export class CounterExampleComponent {
   protected counter: number = 0;

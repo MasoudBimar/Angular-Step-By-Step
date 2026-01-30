@@ -4,11 +4,10 @@ import { Stock } from '../../model/stock';
 import { JsonPipe } from '@angular/common';
 
 @Component({
-  standalone: true,
-  imports: [ReactiveFormsModule, JsonPipe],
-  selector: 'app-form-array-create-stock',
-  templateUrl: './create-stock.component.html',
-  styleUrls: ['./create-stock.component.scss']
+    imports: [ReactiveFormsModule, JsonPipe],
+    selector: 'app-form-array-create-stock',
+    templateUrl: './create-stock.component.html',
+    styleUrls: ['./create-stock.component.scss']
 })
 export class CreateFormArrayStockComponent {
   private fb = inject(FormBuilder);

@@ -3,11 +3,10 @@ import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
-  standalone: true,
-  imports: [FormsModule, JsonPipe],
-  selector: 'app-create-stock',
-  templateUrl: './create-stock.component.html',
-  styleUrls: ['./create-stock.component.scss']
+    imports: [FormsModule, JsonPipe],
+    selector: 'app-create-stock',
+    templateUrl: './create-stock.component.html',
+    styleUrls: ['./create-stock.component.scss']
 })
 export class CreateStockComponent {
 

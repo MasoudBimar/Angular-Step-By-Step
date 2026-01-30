@@ -12,7 +12,6 @@ import {
 @Directive({
   selector: "input[appMassModel]",
   exportAs: "appMassModel",
-  standalone: true
 })
 /**
  * Directive that provides a minimal two-way binding surface for native `input` elements.

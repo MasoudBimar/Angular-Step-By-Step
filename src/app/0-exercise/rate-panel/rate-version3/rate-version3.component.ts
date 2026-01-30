@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
-  standalone: true,
-  imports: [],
-  selector: 'app-rate-version3',
-  templateUrl: './rate-version3.component.html',
-  styleUrls: ['./rate-version3.component.scss']
+    imports: [],
+    selector: 'app-rate-version3',
+    templateUrl: './rate-version3.component.html',
+    styleUrls: ['./rate-version3.component.scss']
 })
 
 export class RateVersion3Component {

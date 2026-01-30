@@ -43,7 +43,6 @@ export function hiLowValidator(high: number, low: number): ValidatorFn {
 @Directive({
   selector: "input[appHiLow][high][low]",
   providers: [{ provide: NG_VALIDATORS, useExisting: HiLowValidatorDirective, multi: true }],
-  standalone: true
 })
 /**
  * Angular directive that validates form control values against high and low boundaries.

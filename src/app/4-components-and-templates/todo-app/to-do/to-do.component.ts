@@ -6,11 +6,10 @@ import { TodoItemService } from '../services/todo-item.service';
 import { TodoList } from '../model/to-do-list.model';
 
 @Component({
-  standalone: true,
-  imports: [FormsModule],
-  selector: 'app-to-do',
-  templateUrl: './to-do.component.html',
-  styleUrls: ['./to-do.component.scss']
+    imports: [FormsModule],
+    selector: 'app-to-do',
+    templateUrl: './to-do.component.html',
+    styleUrls: ['./to-do.component.scss']
 })
 export class ToDoComponent {
   private readonly todoItemService = inject(TodoItemService);

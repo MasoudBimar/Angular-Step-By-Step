@@ -9,11 +9,10 @@ export class Person {
 
 
 @Component({
-  standalone: true,
-  imports: [],
-  selector: 'app-structural-directives',
-  templateUrl: './structural-directives.component.html',
-  styleUrls: ['./structural-directives.component.scss']
+    imports: [],
+    selector: 'app-structural-directives',
+    templateUrl: './structural-directives.component.html',
+    styleUrls: ['./structural-directives.component.scss']
 })
 export class StructuralDirectivesComponent {
   @Input() personList: Person[] = [

@@ -2,11 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 
 @Component({
-  standalone: true,
-  imports: [],
-  selector: 'app-rate',
-  templateUrl: './rate.component.html',
-  styleUrls: ['./rate.component.scss']
+    imports: [],
+    selector: 'app-rate',
+    templateUrl: './rate.component.html',
+    styleUrls: ['./rate.component.scss']
 })
 export class RateComponent {
 

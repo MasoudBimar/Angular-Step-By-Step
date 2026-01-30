@@ -5,11 +5,10 @@ import { Movie, MovieResult, MovieService } from './movie.service';
 import { RateVersion2Component } from '../rate-panel/rate-version2/rate-version2.component';
 
 @Component({
-  standalone: true,
-  imports: [ReactiveFormsModule, RateVersion2Component],
-  selector: 'app-movie-manager',
-  templateUrl: './movie-manager.component.html',
-  styleUrls: ['./movie-manager.component.scss']
+    imports: [ReactiveFormsModule, RateVersion2Component],
+    selector: 'app-movie-manager',
+    templateUrl: './movie-manager.component.html',
+    styleUrls: ['./movie-manager.component.scss']
 })
 export class MovieManagerComponent {
   private readonly movieService = inject(MovieService);

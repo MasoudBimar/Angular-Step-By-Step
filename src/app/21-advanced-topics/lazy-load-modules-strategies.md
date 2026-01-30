@@ -25,7 +25,7 @@ This guide documents how to migrate an Angular project from NgModules to a fully
 
 For each component:
 
-- Add `standalone: true` in `@Component`.
+- Add `standalone: true` in `@Component`. `for projects with angular < 19`
 - Replace `NgModule` declarations with local `imports`.
 - Import any dependencies used in the template:
   - `CommonModule` for `*ngIf`, `*ngFor`, `async`, etc.
@@ -38,7 +38,6 @@ Example:
 
 ```ts
 @Component({
-  standalone: true,
   imports: [RouterOutlet, SidebarComponent],
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -50,10 +49,12 @@ export class AppComponent {}
 
 For each directive and pipe, add `standalone: true`:
 
+> [!CAUTION]
+> In `Angular version 19` All Angular directives, components and pipes are now standalone by default.
+
 ```ts
 @Directive({
   selector: "[appHighlight]",
-  standalone: true,
 })
 export class HighlightDirective {}
 ```
@@ -61,7 +62,6 @@ export class HighlightDirective {}
 ```ts
 @Pipe({
   name: "persianDate",
-  standalone: true,
 })
 export class PersianDatePipe implements PipeTransform {}
 ```

@@ -3,7 +3,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'sumOfNumbers',
   pure: false,
-  standalone: true
 })
 export class SumOfNumbersPipe implements PipeTransform {
 

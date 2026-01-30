@@ -5,11 +5,10 @@ import { TodoItem } from '../model/to-do-item.model';
 import { TodoItemService } from '../service/todo-item.service';
 
 @Component({
-  selector: 'app-signal-todo-app',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './signal-todo-app.component.html',
-  styleUrl: './signal-todo-app.component.scss'
+    selector: 'app-signal-todo-app',
+    imports: [FormsModule],
+    templateUrl: './signal-todo-app.component.html',
+    styleUrl: './signal-todo-app.component.scss'
 })
 export class SignalTodoAppComponent {
   private readonly todoItemService = inject(TodoItemService);

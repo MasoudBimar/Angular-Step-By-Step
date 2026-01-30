@@ -4,11 +4,10 @@ import { RateVersion2Component } from './rate-version2/rate-version2.component';
 import { RateComponent } from './rate/rate.component';
 
 @Component({
-  selector: 'app-rate-panel',
-  standalone: true,
-  imports: [RateVersion3Component, RateVersion2Component, RateComponent],
-  templateUrl: './rate-panel.component.html',
-  styleUrl: './rate-panel.component.scss'
+    selector: 'app-rate-panel',
+    imports: [RateVersion3Component, RateVersion2Component, RateComponent],
+    templateUrl: './rate-panel.component.html',
+    styleUrl: './rate-panel.component.scss'
 })
 export class RatePanelComponent {
   rateValue: number = 0;

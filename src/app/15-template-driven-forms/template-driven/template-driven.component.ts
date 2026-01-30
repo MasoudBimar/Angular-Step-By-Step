@@ -4,11 +4,10 @@ import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Product } from 'src/app/shared/model/product.model';
 
 @Component({
-  standalone: true,
-  imports: [FormsModule],
-  selector: 'app-template-driven-form',
-  templateUrl: './template-driven.component.html',
-  styleUrls: ['./template-driven.component.scss']
+    imports: [FormsModule],
+    selector: 'app-template-driven-form',
+    templateUrl: './template-driven.component.html',
+    styleUrls: ['./template-driven.component.scss']
 })
 export class TemplateDrivenComponent {
   product: Product = new Product();

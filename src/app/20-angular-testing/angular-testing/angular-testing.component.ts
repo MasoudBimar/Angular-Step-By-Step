@@ -3,11 +3,10 @@ import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { AngularTestingService, User } from './angular-testing.service';
 
 @Component({
-  selector: 'app-angular-testing',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './angular-testing.component.html',
-  styleUrl: './angular-testing.component.scss'
+    selector: 'app-angular-testing',
+    imports: [CommonModule],
+    templateUrl: './angular-testing.component.html',
+    styleUrl: './angular-testing.component.scss'
 })
 export class AngularTestingComponent {
   @Input() title = 'Angular Testing Playground';

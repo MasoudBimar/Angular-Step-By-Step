@@ -2,7 +2,6 @@ import { Directive, ElementRef, HostListener, inject, Input } from '@angular/cor
 
 @Directive({
   selector: '[appHighlight2]',
-  standalone: true
 })
 export class Highlight2Directive {
   private el = inject(ElementRef);

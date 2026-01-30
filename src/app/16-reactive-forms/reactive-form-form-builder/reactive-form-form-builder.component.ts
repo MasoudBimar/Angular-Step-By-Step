@@ -5,11 +5,10 @@ import { CreateReactiveStockComponent } from './create-stock/create-stock.compon
 import { StockReactiveItemComponent } from './stock-item/stock-item.component';
 
 @Component({
-  standalone: true,
-  imports: [StockReactiveItemComponent, CreateReactiveStockComponent],
-  selector: 'app-reactive-form-form-builder',
-  templateUrl: './reactive-form-form-builder.component.html',
-  styleUrls: ['./reactive-form-form-builder.component.scss']
+    imports: [StockReactiveItemComponent, CreateReactiveStockComponent],
+    selector: 'app-reactive-form-form-builder',
+    templateUrl: './reactive-form-form-builder.component.html',
+    styleUrls: ['./reactive-form-form-builder.component.scss']
 })
 export class ReactiveFormFormBuilderComponent implements OnInit {
   title = 'Stock Market App';

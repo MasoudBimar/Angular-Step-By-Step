@@ -9,11 +9,10 @@ import {
 } from '@angular/core';
 
 @Component({
-  standalone: true,
-  imports: [],
-  selector: 'app-rate-version2',
-  templateUrl: './rate-version2.component.html',
-  styleUrls: ['./rate-version2.component.scss'],
+    imports: [],
+    selector: 'app-rate-version2',
+    templateUrl: './rate-version2.component.html',
+    styleUrls: ['./rate-version2.component.scss']
 })
 export class RateVersion2Component implements OnInit, OnChanges {
   @Input() stars: number = 5;

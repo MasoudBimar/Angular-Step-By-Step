@@ -5,11 +5,10 @@ import { CreateStockComponent } from './stock/create-stock/create-stock.componen
 import { StockItemComponent } from './stock/stock-item/stock-item.component';
 
 @Component({
-  standalone: true,
-  imports: [StockItemComponent, CreateStockComponent],
-  selector: 'app-full-template-driven',
-  templateUrl: './full-template-driven.component.html',
-  styleUrls: ['./full-template-driven.component.scss']
+    imports: [StockItemComponent, CreateStockComponent],
+    selector: 'app-full-template-driven',
+    templateUrl: './full-template-driven.component.html',
+    styleUrls: ['./full-template-driven.component.scss']
 })
 export class FullTemplateDrivenComponent implements OnInit {
 

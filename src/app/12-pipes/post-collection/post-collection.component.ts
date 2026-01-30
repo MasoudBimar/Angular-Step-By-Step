@@ -2,11 +2,10 @@ import { SlicePipe } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
-  standalone: true,
-  imports: [SlicePipe],
-  selector: 'app-post-collection',
-  templateUrl: './post-collection.component.html',
-  styleUrls: ['./post-collection.component.scss']
+    imports: [SlicePipe],
+    selector: 'app-post-collection',
+    templateUrl: './post-collection.component.html',
+    styleUrls: ['./post-collection.component.scss']
 })
 export class PostCollectionComponent {
   pageSize: number = 4;

@@ -3,11 +3,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Stock } from '../model/stock';
 
 @Component({
-  standalone: true,
-  imports: [],
-  selector: 'app-reactive-stock-item',
-  templateUrl: './stock-item.component.html',
-  styleUrls: ['./stock-item.component.scss']
+    imports: [],
+    selector: 'app-reactive-stock-item',
+    templateUrl: './stock-item.component.html',
+    styleUrls: ['./stock-item.component.scss']
 })
 export class StockReactiveItemComponent {
 

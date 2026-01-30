@@ -6,7 +6,6 @@ import { Product } from "../../shared/model/product.model";
 
 @Directive({
   selector: "[appMassAttr]",
-  standalone: true
 })
 export class MassAttrDirective {
 

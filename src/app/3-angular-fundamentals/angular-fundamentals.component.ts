@@ -11,20 +11,19 @@ import {
 import { CodeHighlighterComponent } from '../shared/code-highlighter/code-highlighter.component';
 
 @Component({
-  standalone: true,
-  imports: [
-    PersianDatePipe,
-    DecimalPipe,
-    DatePipe,
-    UpperCasePipe,
-    CurrencyPipe,
-    PercentPipe,
-    JsonPipe,
-    CodeHighlighterComponent
-  ],
-  selector: 'app-angular-fundamentals',
-  templateUrl: './angular-fundamentals.component.html',
-  styleUrls: ['./angular-fundamentals.component.scss'],
+    imports: [
+        PersianDatePipe,
+        DecimalPipe,
+        DatePipe,
+        UpperCasePipe,
+        CurrencyPipe,
+        PercentPipe,
+        JsonPipe,
+        CodeHighlighterComponent
+    ],
+    selector: 'app-angular-fundamentals',
+    templateUrl: './angular-fundamentals.component.html',
+    styleUrls: ['./angular-fundamentals.component.scss']
 })
 export class AngularFundamentalsComponent {
   title: string = 'Display data Using Interpolation';

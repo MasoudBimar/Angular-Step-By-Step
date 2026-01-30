@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 
 
 @Component({
-  standalone: true,
-  imports: [],
-  selector: 'app-typescript-preliminaries',
-  templateUrl: './typescript-preliminaries.component.html',
-  styleUrls: ['./typescript-preliminaries.component.scss']
+    imports: [],
+    selector: 'app-typescript-preliminaries',
+    templateUrl: './typescript-preliminaries.component.html',
+    styleUrls: ['./typescript-preliminaries.component.scss']
 })
 export class TypescriptPreliminariesComponent {
 

@@ -3,11 +3,10 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
-  imports: [FormsModule, NgTemplateOutlet],
-  selector: 'app-special-elements',
-  templateUrl: './special-elements.component.html',
-  styleUrls: ['./special-elements.component.scss']
+    imports: [FormsModule, NgTemplateOutlet],
+    selector: 'app-special-elements',
+    templateUrl: './special-elements.component.html',
+    styleUrls: ['./special-elements.component.scss']
 })
 export class SpecialElementsComponent {
   nm = '';

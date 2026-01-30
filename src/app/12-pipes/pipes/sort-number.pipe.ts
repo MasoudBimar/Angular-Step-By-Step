@@ -3,7 +3,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'sortNumber',
   pure: true,
-  standalone: true
 })
 export class SortNumberPipe implements PipeTransform {
 

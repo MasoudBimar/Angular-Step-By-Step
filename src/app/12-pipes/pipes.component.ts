@@ -4,11 +4,10 @@ import { PersianDatePipe } from './pipes/persian-date.pipe';
 import { CurrencyPipe, DatePipe, DecimalPipe, SlicePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
 
 @Component({
-  standalone: true,
-  imports: [AppendTextPipe, PersianDatePipe, SlicePipe, CurrencyPipe, TitleCasePipe, UpperCasePipe, DatePipe, DecimalPipe],
-  selector: 'app-pipes',
-  templateUrl: './pipes.component.html',
-  styleUrls: ['./pipes.component.scss']
+    imports: [AppendTextPipe, PersianDatePipe, SlicePipe, CurrencyPipe, TitleCasePipe, UpperCasePipe, DatePipe, DecimalPipe],
+    selector: 'app-pipes',
+    templateUrl: './pipes.component.html',
+    styleUrls: ['./pipes.component.scss']
 })
 export class PipesComponent {
   employees = [

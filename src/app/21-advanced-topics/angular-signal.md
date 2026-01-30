@@ -324,7 +324,6 @@ import { Component, computed, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 
 @Component({
-  standalone: true,
   imports: [],
   selector: "app-services",
   templateUrl: "./services.component.html",

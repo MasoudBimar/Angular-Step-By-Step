@@ -6,11 +6,10 @@ import { StockFormArrayItemComponent } from './stock/stock-item/stock-item.compo
 
 
 @Component({
-  standalone: true,
-  imports: [StockFormArrayItemComponent, CreateFormArrayStockComponent],
-  selector: 'app-reactive-form-form-arrays',
-  templateUrl: './reactive-form-form-arrays.component.html',
-  styleUrls: ['./reactive-form-form-arrays.component.scss']
+    imports: [StockFormArrayItemComponent, CreateFormArrayStockComponent],
+    selector: 'app-reactive-form-form-arrays',
+    templateUrl: './reactive-form-form-arrays.component.html',
+    styleUrls: ['./reactive-form-form-arrays.component.scss']
 })
 export class ReactiveFormFormArraysComponent implements OnInit {
 

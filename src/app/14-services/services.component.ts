@@ -3,11 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 
 @Component({
-  standalone: true,
-  imports: [AsyncPipe, NgTemplateOutlet],
-  selector: 'app-services',
-  templateUrl: './services.component.html',
-  styleUrls: ['./services.component.scss']
+    imports: [AsyncPipe, NgTemplateOutlet],
+    selector: 'app-services',
+    templateUrl: './services.component.html',
+    styleUrls: ['./services.component.scss']
 })
 export class ServicesComponent {
   private jsonPlaceHolderUrl = 'https://jsonplaceholder.typicode.com/users/';

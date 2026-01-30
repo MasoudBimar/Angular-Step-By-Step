@@ -2,11 +2,10 @@ import { Component, HostBinding, HostListener } from '@angular/core';
 
 
 @Component({
-  standalone: true,
-  imports: [],
-  selector: 'app-color-picker',
-  templateUrl: './color-picker.component.html',
-  styleUrls: ['./color-picker.component.scss']
+    imports: [],
+    selector: 'app-color-picker',
+    templateUrl: './color-picker.component.html',
+    styleUrls: ['./color-picker.component.scss']
 })
 export class ColorPickerComponent {
   @HostBinding('style.backgroundColor') selectedColor!: string;

@@ -7,11 +7,10 @@ import { Product } from './model/product.model';
 import { Model } from './model/repository.model';
 
 @Component({
-  standalone: true,
-  imports: [FormsModule, MassModel, MassAttrDirective],
-  selector: 'app-product-sample',
-  templateUrl: './product-sample.component.html',
-  styleUrls: ['./product-sample.component.scss']
+    imports: [FormsModule, MassModel, MassAttrDirective],
+    selector: 'app-product-sample',
+    templateUrl: './product-sample.component.html',
+    styleUrls: ['./product-sample.component.scss']
 })
 export class ProductSampleComponent {
   model: Model = new Model();

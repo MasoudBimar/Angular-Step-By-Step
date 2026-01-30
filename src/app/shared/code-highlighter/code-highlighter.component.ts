@@ -7,11 +7,10 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-json';
 
 @Component({
-  selector: 'app-code-highlighter, [highlighter]',
-  standalone: true,
-  imports: [],
-  template: `<code #codeBlock [class]="'language-' + language"></code>`,
-  styleUrl: './code-highlighter.component.scss'
+    selector: 'app-code-highlighter, [highlighter]',
+    imports: [],
+    template: `<code #codeBlock [class]="'language-' + language"></code>`,
+    styleUrl: './code-highlighter.component.scss'
 })
 export class CodeHighlighterComponent implements AfterViewInit {
   @Input() language = 'html';

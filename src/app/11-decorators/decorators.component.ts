@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { CodeHighlighterComponent } from '../shared/code-highlighter/code-highlighter.component';
 
 @Component({
-  standalone: true,
-  imports: [CodeHighlighterComponent],
-  selector: 'app-decorators',
-  templateUrl: './decorators.component.html',
-  styleUrls: ['./decorators.component.scss'],
+    imports: [CodeHighlighterComponent],
+    selector: 'app-decorators',
+    templateUrl: './decorators.component.html',
+    styleUrls: ['./decorators.component.scss']
 })
 export class DecoratorsComponent {
   readonly componentCode = `@Component({
