@@ -86,7 +86,7 @@ import { Component } from "@angular/core";
   selector: "app-property-binding-demo",
   template: `
     <input [value]="name | uppercase" />
-    <span [title]="createdAt | date : 'yyyy-MM-dd'">Created</span>
+    <span [title]="createdAt | date: 'yyyy-MM-dd'">Created</span>
   `,
 })
 export class PropertyBindingDemoComponent {
@@ -100,4 +100,4 @@ export class PropertyBindingDemoComponent {
 - Use interpolation `{{ }}` to render text content.
 - Use property binding `[prop]` to set DOM properties or directive inputs.
 
-Next Section : [Event Binding](/src/app/3-angular-fundamentals/Event-Binding.md)
+Next Section : [Event Binding](/src/app/3-angular-fundamentals/Event-binding.md)
