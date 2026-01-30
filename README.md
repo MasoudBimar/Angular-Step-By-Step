@@ -8,25 +8,30 @@ Angular Step-By-Step is a progressive learning repository designed to build a de
 
 ## Table of Contents
 
-- **Getting Started** — [Getting Started](src/app/1-getting-started//README.md) : prerequisites and setup
-- **Typescript Preliminaries** — [Typescript Preliminaries](src/app/2-typescript-preliminaries/README.md) : essential TypeScript concepts
-- **Angular Fundamentals** — [Angular Fundamentals](src/app/3-angular-fundamentals/README.md) : core Angular concepts and architecture
-- **Component & Templates** — [Component & Templates](src/app/4-components-and-templates/README.md) : How to handle data presentation and user interactions
-- **Structural Directives** — [Structural Directives](src/app/5-structural-directives//README.md) : Angular structural directives explained
-- **Attribute Directives** — [Attribute Directives](src/app/6-attribute-directives/README.md) : Angular attribute directives explained
-- **Component Directives** — [Component Directives](src/app/7-component-directives/README.md) : Angular Component directives explained
-- **Custom Directives** — [Custom Directives](src/app/8-custom-directives//README.md) : Angular custom directives explained
-- **Angular Special Elements** — [Special Elements](src/app/9-special-elements/README.md)
-- **Angular Component Lifecycles** — [Component Lifecycles](src/app/10-component-lifecycles/README.md) :
-- **Angular Decorators** — [Angular Decorators](src/app/11-decorators/README.md) :
-- **Angular Routing** — [Angular Routing](src/app/13-routing/README.md) :
-- **Angular Services** — [Angular Services](src/app/14-services/README.md) :
-- **Template Drive Forms** — [Template Drive Forms](src/app/session10/README.md) : Angular template-driven forms explained
-- **Reactive Forms** — [Reactive Forms](src/app/session11/README.md) : Angular reactive forms explained
-- **Sample Project Product** — building a sample project from scratch
-- **HTTP Client** — [HTTP Client](src/app/session12/README.md) : Angular HTTP client explained
-- **Routing & Navigation** — [Routing & Navigation](src/app/session13/README.md) : Angular routing and navigation explained
-- **License** — repository license
+1. [Angular Getting Started](src/app/1-getting-started//README.md) : prerequisites and setup
+2. [Typescript Preliminaries](src/app/2-typescript-preliminaries/README.md) : essential TypeScript concepts
+3. [Angular Fundamentals](src/app/3-angular-fundamentals/README.md) : core Angular concepts and architecture
+4. [Component & Templates](src/app/4-components-and-templates/README.md) : How to handle data presentation and user interactions
+5. [Structural Directives](src/app/5-structural-directives//README.md) : Angular structural directives explained
+6. [Attribute Directives](src/app/6-attribute-directives/README.md) : Angular attribute directives explained
+7. [Component Directives](src/app/7-component-directives/README.md) : Angular Component directives explained
+8. [Custom Directives](src/app/8-custom-directives//README.md) : Angular custom directives explained (creating and using)
+9. [Angular Special Elements](src/app/9-special-elements/README.md) : Angular special elements explained (`ng-container`, `ng-content`, `ng-template`, `ngTemplateOutlet`)
+10. [Angular Component Lifecycles](src/app/10-component-lifecycles/README.md) : Angular component lifecycles explained
+11. [Angular Decorators](src/app/11-decorators/README.md) : Angular decorators explained (`@Input`, `@Output`, `@ViewChild`, `@ContentChild`, `@HostListener`, `@HostBinding`)
+12. [Angular Pipes](src/app/12-pipes/README.md) : Angular pipes explained (built-in and custom)
+13. [Angular Routing & Navigation](src/app/13-routing/README.md) : Angular routing and navigation explained
+14. [Angular Services](src/app/14-services/README.md) : Angular services and dependency injection explained
+15. [Template Driven Forms](src/app/15-template-driven-forms/README.md) : Angular template-driven forms explained
+16. [Reactive Forms](src/app/16-reactive-forms/README.md) : Angular reactive forms explained (`FormControl`, `FormGroup`, `FormBuilder`, `Validators`)
+17. [Lazy Loading](src/app/17-lazy-loading/README.md) : Angular Lazy Loading (modules and components) explained
+18. [Defer Loading](src/app/18-defer-loading/README.md) : Angular Defer Loading explained (loading, triggers, placeholders)
+19. [Rendering Strategies](src/app/19-rendering-strategies/README.md) : Rendering strategies in Angular (CSR, SSR, SSG, SGA)
+20. [Angular Testing](src/app/20-angular-testing/README.md) : Testing Web Application (Unit tests, Integration tests, E2E tests `Karma`, `Jasmine`, `TestBed`) explained
+21. [Code Sample: Movie CRUD Sample](src/app/0-exercise/movie-manager/movie-manager.component.ts)
+22. [Code Sample: Rate Component](src/app/0-exercise/rate-panel/rate-panel.component.ts)
+23. [Code Sample: Signal-Counter](src/app/0-exercise/signal-counter/signal-counter.component.ts)
+24. [Code Sample: Signal-Todo](src/app/0-exercise/signal-todo-app/signal-todo-app/signal-todo-app.component.ts)
 
 Each numbered session contains small exercises and example codes.
 Look in the repository root for app folders or search by topic.

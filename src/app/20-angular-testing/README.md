@@ -1,4 +1,4 @@
-## Why we test software
+# Why we test software
 
 Software testing exists to build confidence that the system behaves correctly for
 users and other systems. The goal is to verify behavior, not to lock in a
