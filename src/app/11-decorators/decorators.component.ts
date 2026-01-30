@@ -2,15 +2,14 @@ import { Component } from '@angular/core';
 import { CodeHighlighterComponent } from '../shared/code-highlighter/code-highlighter.component';
 
 @Component({
-    imports: [CodeHighlighterComponent],
-    selector: 'app-decorators',
-    templateUrl: './decorators.component.html',
-    styleUrls: ['./decorators.component.scss']
+  imports: [CodeHighlighterComponent],
+  selector: 'app-decorators',
+  templateUrl: './decorators.component.html',
+  styleUrls: ['./decorators.component.scss']
 })
 export class DecoratorsComponent {
   readonly componentCode = `@Component({
   selector: 'app-profile-card',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './profile-card.component.html',
   styleUrl: './profile-card.component.scss',
@@ -19,7 +18,6 @@ export class ProfileCardComponent {}`;
 
   readonly directiveCode = `@Directive({
   selector: '[appAutoFocus]',
-  standalone: true,
 })
 export class AutoFocusDirective {
   constructor(private el: ElementRef) {}
@@ -29,7 +27,7 @@ export class AutoFocusDirective {
   }
 }`;
 
-  readonly pipeCode = `@Pipe({ name: 'initials', standalone: true })
+  readonly pipeCode = `@Pipe({ name: 'initials'})
 export class InitialsPipe implements PipeTransform {
   transform(value: string) {
     return value

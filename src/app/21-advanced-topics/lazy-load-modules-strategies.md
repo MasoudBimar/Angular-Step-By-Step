@@ -47,7 +47,7 @@ export class AppComponent {}
 
 ### 2) Convert directives and pipes to standalone
 
-For each directive and pipe, add `standalone: true`:
+For each directive and pipe, add `standalone: true` for Angular < 19:
 
 > [!CAUTION]
 > In `Angular version 19` All Angular directives, components and pipes are now standalone by default.

@@ -46,8 +46,6 @@ export class AdminRoutingModule {}
 
 ## Lazy-load a standalone component
 
-The component must be marked as `standalone: true`.
-
 ```ts
 // app-routing.module.ts
 export const routes: Routes = [

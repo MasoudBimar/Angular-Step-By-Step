@@ -2,7 +2,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'letterCount',
-  standalone: true
 })
 export class LetterCountPipe implements PipeTransform {
 
