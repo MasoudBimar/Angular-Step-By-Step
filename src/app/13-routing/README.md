@@ -160,8 +160,12 @@ Dynamic routing uses path parameters like `:id`.
 In Angular Route parameters are defined in the route configuration using a colon (`:`) followed by the parameter name. These parameters can then be accessed within the component associated with the route.
 
 ```ts
+import { Routes } from "@angular/router";
+
 // route config
-{ path: 'users/:id', component: UserDetailComponent }
+export const routes: Routes = [
+  { path: "users/:id", component: UserDetailComponent },
+];
 ```
 
 ### Reading route params and query params
@@ -175,7 +179,7 @@ Here is an example ot params and query params in an URL like `/users/42?page=2`.
 
 ```ts
 // user-detail.component.ts
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -186,12 +190,11 @@ import { ActivatedRoute } from "@angular/router";
   `,
 })
 export class UserDetailComponent implements OnInit {
+  private route = inject(ActivatedRoute);
   userId = "";
   page = "";
   paramId: number = 0;
   queryParamId: number = 0;
-
-  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     // directly read the params & queryParams
@@ -232,14 +235,22 @@ will not update and you may read the previous value.
 
 ```ts
 // users/1 -> users/2 keeps the same component instance
-ngOnInit(): void {
-  // Stays "1" when navigating to /users/2
-  this.userId = this.route.snapshot.paramMap.get("id") ?? "";
+import { OnInit, inject } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
-  // Use subscription to always get the latest param
-  this.route.paramMap.subscribe((params) => {
-    this.userId = params.get("id") ?? "";
-  });
+export class UserDetailComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  userId = "";
+
+  ngOnInit(): void {
+    // Stays "1" when navigating to /users/2
+    this.userId = this.route.snapshot.paramMap.get("id") ?? "";
+
+    // Use subscription to always get the latest param
+    this.route.paramMap.subscribe((params) => {
+      this.userId = params.get("id") ?? "";
+    });
+  }
 }
 ```
 
@@ -256,19 +267,22 @@ Router is a service that provides methods to navigate between routes in an Angul
 - `createUrlTree` : creates a UrlTree from an array of path segments and optional parameters.
 
 ```ts
-import { Router } from '@angular/router';
+import { inject } from "@angular/core";
+import { Router } from "@angular/router";
 
-constructor(private router: Router) {}
+export class UserActionsComponent {
+  private router = inject(Router);
 
-goToUser(id: number): void {
-  this.router.navigate(['/users', id], {
-    queryParams: { ref: 'list' },
-  });
-  // navigates to /users/:id?ref=list
-}
+  goToUser(id: number): void {
+    this.router.navigate(["/users", id], {
+      queryParams: { ref: "list" },
+    });
+    // navigates to /users/:id?ref=list
+  }
 
-goToHome(): void {
-  this.router.navigateByUrl('/home');
+  goToHome(): void {
+    this.router.navigateByUrl("/home");
+  }
 }
 ```
 
@@ -278,15 +292,19 @@ goToHome(): void {
 - Optional: use query params or define a second route for the same component.
 
 ```ts
+import { Routes } from "@angular/router";
+
 // Required param
-{ path: 'users/:id', component: UserDetailComponent }
+export const routes: Routes = [
+  { path: "users/:id", component: UserDetailComponent },
 
-// Optional param via query params
-{ path: 'users', component: UsersComponent }
+  // Optional param via query params
+  { path: "users", component: UsersComponent },
 
-// Optional param via multiple routes
-{ path: 'users', component: UsersComponent }
-{ path: 'users/:filter', component: UsersComponent }
+  // Optional param via multiple routes
+  { path: "users", component: UsersComponent },
+  { path: "users/:filter", component: UsersComponent },
+];
 ```
 
 ## Nested routes
@@ -298,14 +316,18 @@ Nested routes render child components inside a child `router-outlet`.
 the 'prefix' just match the beginning of the URL segment. so with this example
 
 ```ts
-   {path: 'admin', component: AdminComponent}
-   {path: 'adminPanel', redirectTo: 'admin', pathMatch: 'prefix' },
-   // it will only  redirect 'adminPanel' to 'admin' because 'admin' is the prefix of 'adminPanel'
+import { Routes } from "@angular/router";
+
+export const routes: Routes = [
+  { path: "admin", component: AdminComponent },
+  { path: "adminPanel", redirectTo: "admin", pathMatch: "prefix" },
+  // it will only redirect 'adminPanel' to 'admin' because 'admin' is the prefix of 'adminPanel'
+];
 ```
 
 ```ts
 // app-routing.module.ts
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: "admin",
     component: AdminComponent,
@@ -333,13 +355,21 @@ const routes: Routes = [
 Use a wildcard route to catch unknown paths.
 
 ```ts
-{ path: '**', component: NotFoundComponent } // wildcard route
+import { Routes } from "@angular/router";
+
+export const routes: Routes = [
+  { path: "**", component: NotFoundComponent }, // wildcard route
+];
 ```
 
 ## Redirecting routes
 
 ```ts
-{ path: '', redirectTo: 'home', pathMatch: 'full' }
+import { Routes } from "@angular/router";
+
+export const routes: Routes = [
+  { path: "", redirectTo: "home", pathMatch: "full" },
+];
 ```
 
 ## Snapshot vs subscribe
@@ -383,9 +413,18 @@ Common use cases:
 @Injectable({ providedIn: "root" })
 export class TraditionalNotationGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    // throw new Error("Method not implemented.");
-    // ...
-    return true;
+    const hasToken = !!localStorage.getItem("token");
+    const requestedId = route.paramMap.get("id");
+
+    if (!hasToken) {
+      sessionStorage.setItem("returnUrl", state.url);
+    }
+
+    if (requestedId) {
+      sessionStorage.setItem("requestedUserId", requestedId);
+    }
+
+    return hasToken;
   }
 }
 ```
@@ -401,12 +440,21 @@ import { CanActivateFn } from "@angular/router";
 // state param provides the current state of the router
 export const authGuard: CanActivateFn = (route, state): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree => {
   const isLoggedIn = !!localStorage.getItem("token");
+  const returnUrl = state.url;
+  const requestedId = route.paramMap.get("id") ?? "";
+
+  if (!isLoggedIn) {
+    sessionStorage.setItem("returnUrl", returnUrl);
+    if (requestedId) {
+      sessionStorage.setItem("requestedUserId", requestedId);
+    }
+  }
   return isLoggedIn;
 };
 ```
 
 ```ts
-const routes: Routes = [{ path: "admin", component: AdminComponent, canActivate: [authGuard] }];
+export const routes: Routes = [{ path: "admin", component: AdminComponent, canActivate: [authGuard] }];
 ```
 
 ### `canActivateChild`
@@ -418,12 +466,18 @@ import { CanActivateChildFn } from "@angular/router";
 
 export const adminChildGuard: CanActivateChildFn = (childRoute, state) => {
   const isAdmin = !!localStorage.getItem("isAdmin");
+  const attemptedUrl = state.url;
+  const childPath = childRoute.url.map((segment) => segment.path).join("/");
+
+  if (!isAdmin) {
+    sessionStorage.setItem("blockedChildUrl", childPath ? `${attemptedUrl}/${childPath}` : attemptedUrl);
+  }
   return isAdmin;
 };
 ```
 
 ```ts
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: "admin",
     component: AdminComponent,
@@ -464,7 +518,7 @@ export class ProfileComponent implements CanLeave {
   }
 }
 
-const routes: Routes = [{ path: "profile", component: ProfileComponent, canDeactivate: [leaveGuard] }];
+export const routes: Routes = [{ path: "profile", component: ProfileComponent, canDeactivate: [leaveGuard] }];
 ```
 
 ### `canMatch` (inroduced in Angular 14.2)
@@ -478,12 +532,18 @@ import { CanMatchFn } from "@angular/router";
 
 export const featureGuard: CanMatchFn = (route, segments) => {
   const enabled = localStorage.getItem("featureX") === "true";
+  const attemptedUrl = segments.map((segment) => segment.path).join("/");
+  const routePath = route.path ?? "";
+
+  if (!enabled) {
+    sessionStorage.setItem("blockedMatch", routePath || attemptedUrl);
+  }
   return enabled;
 };
 ```
 
 ```ts
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: "labs",
     canMatch: [featureGuard],
@@ -500,6 +560,12 @@ import { CanMatchFn } from "@angular/router";
 export const isAdminMatchGuard: CanMatchFn = (route, segments) => {
   // for a this url /home/main/page1 segments array return three values for every path segment
   const isAdmin = false; /* fethcing configuration somewhere*/
+  const attemptedUrl = segments.map((segment) => segment.path).join("/");
+  const routePath = route.path ?? "";
+
+  if (!isAdmin) {
+    sessionStorage.setItem("skippedMatch", routePath || attemptedUrl);
+  }
   return isAdmin;
 };
 ```
@@ -509,7 +575,7 @@ export const isAdminMatchGuard: CanMatchFn = (route, segments) => {
 > in this example if it returens false first one get skipped to render second one.
 
 ```ts
-const routes: Routes = [
+export const routes: Routes = [
   { path: "dashboard", component: AdminDashboardComponent, canMatch: [isAdminMatchGuard] },
   { path: "dashboard", component: CustomerDashboardComponent },
 ];

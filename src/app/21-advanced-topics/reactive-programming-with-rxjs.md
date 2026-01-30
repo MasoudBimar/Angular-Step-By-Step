@@ -16,7 +16,7 @@ responses, user input, timers, websockets).
 > Observer is a consumer of the Observable stream. It defines callback functions to handle the data, error, and completion events emitted by the Observable.
 
 ```ts
-import { Observable, interval } from "rxjs";
+import { interval } from "rxjs";
 import { map, take } from "rxjs/operators";
 
 const ticks$ = interval(1000).pipe(
@@ -122,7 +122,7 @@ Creation operators produce Observables from values, collections, timers, or DOM 
 > the `empty` operator is deprecated and `EMPTY` is available, `EMPTY` Just emits 'complete', and nothing else.
 
 ```ts
-import { EMPTY, from, fromEvent, interval, of } from "rxjs";
+import { EMPTY, from, fromEvent, interval, merge, of } from "rxjs";
 import { map, take } from "rxjs/operators";
 
 const empty$ = EMPTY;
@@ -130,6 +130,10 @@ const status$ = of("draft", "review", "published");
 const ids$ = from([101, 102, 103]);
 const ticks$ = interval(1000).pipe(take(3));
 const clicks$ = fromEvent<MouseEvent>(document, "click").pipe(map((event) => ({ x: event.clientX, y: event.clientY })));
+
+const demo$ = merge(empty$, status$, ids$, ticks$, clicks$);
+const subscription = demo$.subscribe((value) => console.log("stream value", value));
+subscription.unsubscribe();
 ```
 
 - `of` emits the provided values in order.
@@ -179,6 +183,9 @@ const save$ = saveClicks$.pipe(withLatestFrom(formState$));
 const name$ = combineLatest([of("Ada"), of("Lovelace")]).pipe(map(([first, last]) => `${first} ${last}`));
 const sequential$ = concat(of("init"), of("ready"));
 const parallel$ = merge(of("ui"), of("data"));
+
+const combined$ = merge(save$, name$, sequential$, parallel$);
+combined$.subscribe((value) => console.log("combined", value));
 ```
 
 - `combineLatest` emits when any input emits, using the latest value of all.
@@ -192,6 +199,7 @@ Higher-order operators map values to inner Observables and control concurrency.
 
 ```ts
 import { FormControl } from "@angular/forms";
+import { merge } from "rxjs";
 import { concatMap, exhaustMap, mergeMap, switchMap } from "rxjs/operators";
 
 const termControl = new FormControl("");
@@ -203,6 +211,9 @@ const queued$ = termControl.valueChanges.pipe(concatMap((term) => this.http.get(
 const parallel$ = termControl.valueChanges.pipe(mergeMap((term) => this.http.get(`/api/search?q=${term}`), 2));
 
 const ignoreWhileBusy$ = termControl.valueChanges.pipe(exhaustMap((term) => this.http.get(`/api/search?q=${term}`)));
+
+const strategies$ = merge(latestOnly$, queued$, parallel$, ignoreWhileBusy$);
+strategies$.subscribe((result) => console.log("strategy result", result));
 ```
 
 - `switchMap` cancels the previous inner stream and keeps only the latest.
@@ -231,6 +242,7 @@ import { switchMap } from "rxjs/operators";
 
 const termControl = new FormControl("");
 const results$ = termControl.valueChanges.pipe(switchMap((term) => this.http.get(`/api/search?q=${term}`)));
+results$.subscribe((results) => console.log("results", results));
 ```
 
 - `switchMap` cancels the previous request and keeps only the latest. `latest wins, cancel previous`
@@ -346,6 +358,7 @@ import { mergeMap } from "rxjs/operators";
 
 const ids$ = from([1, 2, 3]);
 const users$ = ids$.pipe(mergeMap((id) => this.http.get(`/api/users/${id}`), 2));
+users$.subscribe((user) => console.log("user", user));
 ```
 
 Here the second argument `2` limits concurrency to two in-flight requests.

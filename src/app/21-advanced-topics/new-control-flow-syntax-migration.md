@@ -128,7 +128,7 @@ Legacy: `<li *ngFor="let hero of heroes">{{ hero.name }}</li>`
 <li *ngFor="let hero of heroes">{{ hero.name }}</li>
 
 <!-- After -->
-@for (hero of heroes) {
+@for (hero of heroes; track hero.id) {
 <li>{{ hero.name }}</li>
 }
 ```
@@ -142,7 +142,7 @@ Legacy: `<li *ngFor="let hero of heroes; index as i; odd as isOdd">...</li>`
 <li *ngFor="let hero of heroes; index as i; odd as isOdd">{{ i }} - {{ hero.name }} - odd: {{ isOdd }}</li>
 
 <!-- After -->
-@for (hero of heroes; let i = $index; let isOdd = $odd) {
+@for (hero of heroes; track hero.id; let i = $index; let isOdd = $odd) {
 <li>{{ i }} - {{ hero.name }} - odd: {{ isOdd }}</li>
 }
 ```

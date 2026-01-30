@@ -39,16 +39,21 @@ node main.js # run js code with node
 ### Type annotations: `let count: number = 5;`
 
 ```ts
-# Variable Declarations with Type Annotations
+// Variable Declarations with Type Annotations
+// eslint-disable-next-line no-var
 var number = 1;
-let count = 2; // let supported in ES6
+const count = 2; // let supported in ES6
 
 function testVar() {
-  if (true) {
-   let x = 1;
+  const isEnabled = count > 0;
+  if (isEnabled) {
+    const x = 1;
+    console.log(">>>>> ", x);
   }
-  console.log('>>>>> ', x)
+  console.log("total:", number + count);
 }
+
+testVar();
 
 ```
 
@@ -57,16 +62,18 @@ function testVar() {
 ### Type annotations catch errors at compile time (assigning a boolean/string to a `number`).
 
 ```ts
-# Type checking with Type Annotations:
-let a: number;
+// Type checking with Type Annotations:
+let a: number = 0;
 
-# Error: type 'boolean' is not assignable to type 'number'.
+// Error: type 'boolean' is not assignable to type 'number'.
 a = false; // raise error
+console.log(a);
 
-let b: number;
+let b: number = 0;
 
-# Error: type 'string' is not assignable to type 'number'.
+// Error: type 'string' is not assignable to type 'number'.
 b = "test"; // raise error
+console.log(b);
 ```
 
 ### Typed function parameters: `function log(message: string)`.
@@ -76,7 +83,7 @@ function log(message: string) {
   console.log(message);
 }
 
-var message = "hello world";
+const message = "hello world";
 
 log(message);
 ```
@@ -84,26 +91,27 @@ log(message);
 ### Type assertions: `(<string>value)` or `value as string`.
 
 ```ts
-type assertion
-
-let message2: string;
-message2 = 'abc';
-let isEndWithC = message2.endsWith('c');
-let isEndWithB1 = (<string>message2).endsWith('c');
-let isEndWithB2 = (message2 as string).endsWith('c');
+// type assertion
+const message2: string = "abc";
+const isEndWithC = message2.endsWith("c");
+// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+const isEndWithB1 = (<string>message2).endsWith("c");
+const isEndWithB2 = (message2 as string).endsWith("c");
+console.log(isEndWithC, isEndWithB1, isEndWithB2);
 ```
 
 ### Arrow functions: `const doLog = (message: string) => { ... }`.
 
 ```ts
-let log2 = function (message: any) {
+const log2 = function (message: string) {
   console.log(message);
 };
 
-let doLog = (message: string) => {
+const doLog = (message: string) => {
   console.log(message);
 };
 
+log2("string");
 doLog("string"); // Lambda Expression in C#
 ```
 
@@ -113,9 +121,13 @@ doLog("string"); // Lambda Expression in C#
 - This pattern is the base for callbacks and event handlers.
 
 ```ts
-function myFunc(func: any) {
+function myFunc(func: () => void) {
   func();
 }
+
+myFunc(() => {
+  console.log("callback executed");
+});
 ```
 
 ## fibunacci function — loops and recursion
@@ -155,7 +167,7 @@ function fib2(num: number): number {
   }
 }
 
-let res2 = fib2(16); // 987
+const res2 = fib2(16); // 987
 console.log("res for " + 16 + " is ", res2);
 
 fib(1); // 1
@@ -204,7 +216,7 @@ class Person {
 
   divide(a: number, b: number) {
     if (b !== 0) {
-      let res = a / b;
+      const res = a / b;
       console.log(a + "divide by " + b + "=" + res);
     } else {
       console.log("inputs are not valid");
@@ -223,23 +235,27 @@ class Student extends Person {
   }
 }
 
-let s1: Student = new Student("a", "b", 12, 1234567);
-// s1.setName()
+const student = new Student("a", "b", 12, 1234567);
+student.setName("Alex");
+student.greeting();
 
-class person {
+class PersonRecord {
   ssn!: number;
 }
+
+const personRecord = new PersonRecord();
+personRecord.ssn = 123456789;
 ```
 
 ```ts
-interface shape {
+interface Shape {
   draw(): void;
   area(): void;
 }
 
-class square implements shape {
+class Square implements Shape {
   draw() {
-    console.log("drawwing");
+    console.log("drawing");
   }
 
   area() {
@@ -247,9 +263,9 @@ class square implements shape {
   }
 }
 
-class circle implements shape {
+class Circle implements Shape {
   draw() {
-    console.log("drawwing");
+    console.log("drawing");
   }
 
   area() {
@@ -257,18 +273,11 @@ class circle implements shape {
   }
 }
 
-class circle extends shape {
-  draw() {
-    console.log("drawwing");
-  }
+const square: Shape = new Square();
+square.area();
 
-  area() {
-    console.log("circle calc area");
-  }
-}
-
-let c: shape = new square();
-c.area();
+const circle: Shape = new Circle();
+circle.draw();
 ```
 
 ## Takeaways

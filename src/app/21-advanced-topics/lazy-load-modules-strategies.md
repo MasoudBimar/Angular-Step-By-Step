@@ -169,19 +169,28 @@ Set standalone by default in `angular.json`:
 ### 1) Convert the lazy route entrypoints first (Module → Route config)
 
 ```ts
-loadChildren: () => import("./feature/feature.module").then((m) => m.FeatureModule);
+export const route = {
+  path: "feature",
+  loadChildren: () => import("./feature/feature.module").then((m) => m.FeatureModule),
+};
 ```
 
 A. Lazy-load a route array (best for feature areas):
 
 ```ts
-loadChildren: () => import("./feature/feature.routes").then((r) => r.FEATURE_ROUTES);
+export const route = {
+  path: "feature",
+  loadChildren: () => import("./feature/feature.routes").then((r) => r.FEATURE_ROUTES),
+};
 ```
 
 B. Lazy-load a component (best for “single page” features):
 
 ```ts
-loadComponent: () => import("./feature/feature.page").then((c) => c.FeaturePage);
+export const route = {
+  path: "feature",
+  loadComponent: () => import("./feature/feature.page").then((c) => c.FeaturePage),
+};
 ```
 
 ### 2) Create feature.routes.ts per feature

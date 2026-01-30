@@ -59,10 +59,11 @@ const count = signal(0);
 count.set(1); // changing the signal value
 count.update((v) => v + 1);
 
-changeValue(){
-  this.count.set(5);
-}
+const changeValue = () => {
+  count.set(5);
+};
 
+changeValue();
 ```
 
 > [!TIP]
@@ -73,43 +74,43 @@ Or using the generic type of signal:
 ```ts
 import { signal } from "@angular/core";
 
-countObj = signal<object>({});
-count = signal<string>("");
-countArray = signal<string[]>([]);
+const countObj = signal<Record<string, unknown>>({});
+const count = signal<string>("");
+const countArray = signal<string[]>([]);
+
+countObj.set({ total: 1 });
+count.set("ready");
+countArray.set(["first", "second"]);
 ```
 
 Update the signal value with changing the value of object:
 
 ```ts
-user = signal({
+const user = signal({
   name: "Masoud",
   email: "masoudbimar@gmail.com",
 });
 
-ngOninit(): void{
-  this.user.update((userDetail) => {
-    ...userDetail,
-    issueDate: "01-01-2020", // add new property
-    name: 'MasoudBimmer' // update existing property
-
-  })
-}
+user.update((userDetail) => ({
+  ...userDetail,
+  issueDate: "01-01-2020", // add new property
+  name: "MasoudBimmer", // update existing property
+}));
 ```
 
 Mutating the signal value: (available in angular 16)
 
 ```ts
-  items = signal([
-    {
-      name: 'user1',
-      email: 'a@b.com'
-    }
-  ]);
-  ngOninit(): void{
-  this.user.mutate((userdetails) => {
-    userdetails.push({name: 'user2', email: 'x@y.com'})
-  } );
-  }
+const items = signal([
+  {
+    name: "user1",
+    email: "a@b.com",
+  },
+]);
+
+this.user.mutate((userdetails) => {
+  userdetails.push({ name: "user2", email: "x@y.com" });
+});
 ```
 
 > [!Caution]
@@ -202,6 +203,7 @@ const first = signal("Ada");
 const last = signal("Lovelace");
 
 const fullName = computed(() => `${first()} ${last()}`);
+console.log(fullName());
 ```
 
 ### 3) effect()
@@ -226,9 +228,10 @@ import { effect, signal } from "@angular/core";
 
 const count = signal(0);
 
-private protected logEffect = effect(() => {
+const logEffect = effect(() => {
   console.log("Count changed:", count());
 });
+console.log(logEffect);
 ```
 
 ---
@@ -277,6 +280,7 @@ const selectedLabel = computed(() => {
   const cached = untracked(() => cache());
   return cached.get(id) ?? "Unknown";
 });
+console.log(selectedLabel());
 ```
 
 Be careful: when you use `untracked()`, changes to that signal will not trigger updates. Only use it when you are sure you do not want reactive updates.
@@ -288,8 +292,11 @@ Be careful: when you use `untracked()`, changes to that signal will not trigger 
 In templates, signals can be read directly without `.value` or async pipes:
 
 ```html
-<button (click)="count.update(v => v + 1)">Count: {{ count() }}</button>
+<button (click)="count.set(count() + 1)">Count: {{ count() }}</button>
 ```
+
+> [!NOTE]
+> Support for using arrow functions directly within Angular templates is available starting with Angular v21.2
 
 Signals are reactive in templates because Angular tracks reads during rendering.
 
