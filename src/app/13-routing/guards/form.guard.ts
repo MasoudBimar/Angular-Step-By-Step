@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, CanActivateFn, CanDeactivateFn, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanDeactivateFn, RouterStateSnapshot } from '@angular/router';
 import { ReactiveFormComponent } from 'src/app/16-reactive-forms/reactive-form/reactive-form.component';
 
 /**

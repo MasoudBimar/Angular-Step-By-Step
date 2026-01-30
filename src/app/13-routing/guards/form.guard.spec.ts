@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn, CanDeactivateFn } from '@angular/router';
+import { ActivatedRouteSnapshot, CanDeactivateFn, RouterStateSnapshot } from '@angular/router';
 
 import { formGuard } from './form.guard';
 import { ReactiveFormComponent } from './../../16-reactive-forms/reactive-form/reactive-form.component';
@@ -22,9 +22,9 @@ describe('formGuard', () => {
 
     const result = executeGuard(
       component,
-      {} as any,
-      {} as any,
-      {} as any
+      {} as ActivatedRouteSnapshot,
+      {} as RouterStateSnapshot,
+      {} as RouterStateSnapshot
     );
 
     expect(result).toBeFalse();

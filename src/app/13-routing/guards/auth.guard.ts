@@ -4,9 +4,11 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 export const authGuard: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
+  _route: ActivatedRouteSnapshot,
+  _state: RouterStateSnapshot
 ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> => {
+  void _route;
+  void _state;
   const router = inject(Router);
   const authService = inject(AuthService);
 

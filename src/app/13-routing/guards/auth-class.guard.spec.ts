@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { AuthGuardClassBased } from './auth-class.guard';
 
@@ -26,7 +26,7 @@ describe('AuthGuardClassBased', () => {
   it('calls isLoggedIn when route activation is checked', () => {
     authMock.isLoggedIn.and.returnValue(true);
 
-    const result = guard.canActivate({} as any, {} as any);
+    const result = guard.canActivate({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot);
 
     expect(authMock.isLoggedIn).toHaveBeenCalledTimes(1);
     expect(result).toBeTrue();
@@ -35,7 +35,7 @@ describe('AuthGuardClassBased', () => {
   it('navigates away and returns false when user is not logged in', () => {
     authMock.isLoggedIn.and.returnValue(false);
 
-    const result = guard.canActivate({} as any, {} as any);
+    const result = guard.canActivate({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot);
 
     expect(authMock.isLoggedIn).toHaveBeenCalledTimes(1);
     expect(routerMock.navigate).toHaveBeenCalledWith(['to-do']);
