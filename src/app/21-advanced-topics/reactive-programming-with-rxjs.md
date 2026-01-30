@@ -354,6 +354,6 @@ Here the second argument `2` limits concurrency to two in-flight requests.
 
 [Advanced Topics -- Angular Version Feature History](/src/app/21-advanced-topics/angular-version-feature-history.md)
 
-[Advanced Topics -- Lazy Load Module Strategies](/src/app/21-advanced-topics/lazy-load-module-strategies.md)
+[Advanced Topics -- Lazy Load Module Strategies](/src/app/21-advanced-topics/lazy-load-modules-strategies.md)
 
 [Advanced Topics -- New Control Flow Syntax](/src/app/21-advanced-topics/new-control-flow-syntax.md)
