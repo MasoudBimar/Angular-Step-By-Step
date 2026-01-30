@@ -142,7 +142,7 @@ export class FastListComponent {
 Use the constructor to inject dependencies, not to run heavy logic.
 
 ```ts
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { LoggerService } from "./logger.service";
 
 @Component({
@@ -150,7 +150,9 @@ import { LoggerService } from "./logger.service";
   template: `<p>Check the console</p>`,
 })
 export class LoggerDemoComponent {
-  constructor(private logger: LoggerService) {
+  private logger = inject(LoggerService);
+
+  constructor() {
     this.logger.info("component created");
   }
 }
