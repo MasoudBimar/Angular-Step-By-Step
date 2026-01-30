@@ -19,8 +19,7 @@ export class StockFormArrayItemComponent {
     this.toggleFavorite = new EventEmitter<Stock>();
   }
 
-  onToggleFavorite(event: Stock) {
-    console.log(event);
+  onToggleFavorite() {
     this.toggleFavorite.emit(this.stock);
   }
 }

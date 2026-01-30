@@ -18,8 +18,7 @@ export class StockReactiveItemComponent {
     this.toggleFavorite = new EventEmitter<Stock>();
   }
 
-  onToggleFavorite(event: Stock) {
-    console.log(event);
+  onToggleFavorite() {
     this.toggleFavorite.emit(this.stock);
   }
 }

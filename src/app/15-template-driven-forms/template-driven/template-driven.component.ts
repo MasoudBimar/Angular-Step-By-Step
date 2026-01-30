@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Product } from 'src/app/shared/model/product.model';
 
 @Component({
@@ -23,8 +23,8 @@ export class TemplateDrivenComponent {
     }
   }
 
-  getValidationMessages(productForm: NgForm): string[] {
-    return Object.keys(productForm.controls);
+  getValidationMessages(productForm: NgModel): string[] {
+    return Object.keys(productForm.control);
   }
 
   reset(productForm: NgForm) {
