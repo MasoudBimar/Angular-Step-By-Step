@@ -9,7 +9,7 @@ export class SumOfNumbersPipe implements PipeTransform {
 
   transform(values: number[]): number {
     let sum: number = 0;
-    for (let value of values) {
+    for (const value of values) {
       sum += value;
     }
     return sum;
