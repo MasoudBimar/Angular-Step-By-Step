@@ -142,7 +142,7 @@ import { Component } from "@angular/core";
 })
 export class EventBindingDemoComponent {
   handleShift(event: KeyboardEvent): void {
-    console.log("Shift+Y detected");
+    console.log("Shift+Y detected", event.key);
   }
 
   handleEvent(event: KeyboardEvent): void {
