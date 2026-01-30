@@ -1,4 +1,4 @@
-import { AsyncPipe, JsonPipe, NgTemplateOutlet } from '@angular/common';
+import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 
@@ -14,8 +14,6 @@ export class ServicesComponent {
   private readonly http = inject(HttpClient);
   readonly users$ = this.http.get<User[]>(this.jsonPlaceHolderUrl);
 
-  constructor() { }
-
   trackByUserId(index: number, user: User) {
     return user.id;
   }
@@ -24,7 +22,9 @@ export class ServicesComponent {
     this.http.patch(this.jsonPlaceHolderUrl + user.id, user).subscribe(result => console.log(result));
   }
 
-  info(id: number) { }
+  info(id: number) {
+    console.log('User info requested for', id);
+  }
 
   delete(id: number) {
     this.http.delete(this.jsonPlaceHolderUrl + id).subscribe(result => console.log(result));
