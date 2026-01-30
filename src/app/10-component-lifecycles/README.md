@@ -423,3 +423,5 @@ export class MessagesComponent {
 
 > [!CAUTION]
 > In Angular 21 (released in late 2025), traditional class-based lifecycle hooks (like ngOnInit) are still supported but are increasingly being replaced by modern, functional alternatives designed for a signal-driven and "Zoneless" ecosystem
+
+Next Section: [Decorators](/src/app/11-decorators/README.md)

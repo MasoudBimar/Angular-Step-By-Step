@@ -99,7 +99,7 @@ export class ProfileComponent {
     <input formControlName="name" />
   </label>
   @if (profileForm.get('name')?.invalid && profileForm.get('name')?.touched) {
-    <div>Name is required</div>
+  <div>Name is required</div>
   }
 
   <label>
@@ -166,10 +166,10 @@ export class SkillsComponent {
 <form [formGroup]="form">
   <div formArrayName="skills">
     @for (ctrl of skills.controls; let i = $index) {
-      <div>
-        <input [formControlName]="i" />
-        <button type="button" (click)="removeSkill(i)">Remove</button>
-      </div>
+    <div>
+      <input [formControlName]="i" />
+      <button type="button" (click)="removeSkill(i)">Remove</button>
+    </div>
     }
   </div>
   <button type="button" (click)="addSkill()">Add skill</button>
@@ -222,7 +222,7 @@ Template display:
 
 ```html
 @if (form.get('name')?.errors?.['minlength']) {
-  <div>Name must be at least 2 characters</div>
+<div>Name must be at least 2 characters</div>
 }
 ```
 
@@ -251,7 +251,7 @@ Template display:
 
 ```html
 @if (form.get('username')?.errors?.['noSpaces']) {
-  <div>No spaces allowed.</div>
+<div>No spaces allowed.</div>
 }
 ```
 
@@ -266,7 +266,7 @@ export function uniqueUsernameValidator(taken: string[]): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
     return of(taken).pipe(
       delay(300),
-      map((list) => (list.includes(control.value) ? { usernameTaken: true } : null))
+      map((list) => (list.includes(control.value) ? { usernameTaken: true } : null)),
     );
   };
 }
@@ -284,10 +284,9 @@ Template display:
 
 ```html
 @if (form.get('username')?.pending) {
-  <div>Checking availability...</div>
-}
-@if (form.get('username')?.errors?.['usernameTaken']) {
-  <div>Username is already taken.</div>
+<div>Checking availability...</div>
+} @if (form.get('username')?.errors?.['usernameTaken']) {
+<div>Username is already taken.</div>
 }
 ```
 
@@ -296,3 +295,5 @@ Template display:
 - Use `markAllAsTouched()` before submit to show errors.
 - `FormBuilder` reduces boilerplate and makes arrays easier to manage.
 - Prefer reactive forms for dynamic forms and complex validation.
+
+Next Section: [Lazy Loading](/src/app/17-lazy-loading/README.md)

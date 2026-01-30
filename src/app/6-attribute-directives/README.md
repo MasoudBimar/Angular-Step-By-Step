@@ -108,7 +108,7 @@ import { Component } from "@angular/core";
       [ngClass]="{
         class1: hasClass1,
         class2: hasClass2,
-        class3: hasClass3
+        class3: hasClass3,
       }"
     >
       Status
@@ -254,7 +254,10 @@ import { Directive, ElementRef, HostListener, Input, Renderer2 } from "@angular/
 export class HighlightDirective {
   @Input() appHighlight = "gold";
 
-  constructor(private elementRef: ElementRef<HTMLElement>, private renderer: Renderer2) {}
+  constructor(
+    private elementRef: ElementRef<HTMLElement>,
+    private renderer: Renderer2,
+  ) {}
 
   @HostListener("mouseenter")
   onEnter(): void {

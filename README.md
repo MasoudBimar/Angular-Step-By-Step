@@ -1,6 +1,6 @@
 # Angular-Step-By-Step
 
-[![Lessons](https://img.shields.io/badge/lessons-1-brightgreen)](src/app/session1/README.md) [![Contribute](https://img.shields.io/badge/contribute-welcome-blue)](https://github.com/issues) [![License](https://img.shields.io/badge/license-check-lightgrey)](LICENSE)
+[![Lessons](https://img.shields.io/badge/lessons-20-brightgreen)](src/app/session1/README.md) [![Contribute](https://img.shields.io/badge/contribute-welcome-blue)](https://github.com/issues) [![License](https://img.shields.io/badge/license-check-lightgrey)](LICENSE)
 
 A practical, hands-on learning guide to Angular — one concept at a time.
 

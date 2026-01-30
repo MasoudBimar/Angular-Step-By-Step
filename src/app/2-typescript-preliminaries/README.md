@@ -2,17 +2,27 @@
 
 ## Table of contents
 
-- [Typescript Language Basics](#typescript-language-basics)
-- [Functions as values (callbacks)](#functions-as-values-callbacks)
-- [fibunacci function — loops and recursion](#fibunacci-function-loops-and-recursion)
-- [Inheritance — interfaces and polymorphism](#inheritance-interfaces-and-polymorphism)
-- [4.class.ts — classes, access modifiers, inheritance](#4classts-classes-access-modifiers-inheritance)
-- [Takeaways](#takeaways)
-- [For more information and resources check this repository main README.md Angular-Step-BY-Step](#for-more-information-and-resources-check-this-repository-main-readmemd-angular-step-by-step)
+- [TypeScript preliminaries](#typescript-preliminaries)
+  - [Table of contents](#table-of-contents)
+  - [Typescript Language Basics](#typescript-language-basics)
+    - [TypeScript is a superset of JavaScript: compile with `tsc` and run with Node](#typescript-is-a-superset-of-javascript-compile-with-tsc-and-run-with-node)
+    - [All ts code is valid js code](#all-ts-code-is-valid-js-code)
+    - [Type annotations: `let count: number = 5;`](#type-annotations-let-count-number--5)
+    - [`var` vs `let`: `var` is function-scoped, `let` is block-scoped.](#var-vs-let-var-is-function-scoped-let-is-block-scoped)
+    - [Type annotations catch errors at compile time (assigning a boolean/string to a `number`).](#type-annotations-catch-errors-at-compile-time-assigning-a-booleanstring-to-a-number)
+    - [Typed function parameters: `function log(message: string)`.](#typed-function-parameters-function-logmessage-string)
+    - [Type assertions: `(<string>value)` or `value as string`.](#type-assertions-stringvalue-or-value-as-string)
+    - [Arrow functions: `const doLog = (message: string) => { ... }`.](#arrow-functions-const-dolog--message-string----)
+  - [Functions as values (callbacks)](#functions-as-values-callbacks)
+  - [fibunacci function — loops and recursion](#fibunacci-function--loops-and-recursion)
+  - [Inheritance — interfaces and polymorphism](#inheritance--interfaces-and-polymorphism)
+  - [4.class.ts — classes, access modifiers, inheritance](#4classts--classes-access-modifiers-inheritance)
+  - [Takeaways](#takeaways)
+  - [For more information and resources check this repository main README.md Angular-Step-BY-Step](#for-more-information-and-resources-check-this-repository-main-readmemd-angular-step-by-step)
 
 ## Typescript Language Basics
 
-### TypeScript is a superset of JavaScript: compile with `tsc` and run with Node.
+### TypeScript is a superset of JavaScript: compile with `tsc` and run with Node
 
 ### All ts code is valid js code
 
@@ -174,7 +184,11 @@ fib(4);
 class Person {
   ssn: string = "";
 
-  constructor(protected fname: string, protected lastName: string, protected age: number) {}
+  constructor(
+    protected fname: string,
+    protected lastName: string,
+    protected age: number,
+  ) {}
 
   setName(name: string) {
     if (name && name.length > 0) {
@@ -199,7 +213,12 @@ class Person {
 }
 
 class Student extends Person {
-  constructor(protected override fname: string, protected override lastName: string, protected override age: number, public sNumber: number) {
+  constructor(
+    protected override fname: string,
+    protected override lastName: string,
+    protected override age: number,
+    public sNumber: number,
+  ) {
     super(fname, lastName, age);
   }
 }
@@ -263,5 +282,3 @@ c.area();
 [[Typescript-Step-BY-Step](src/app/1.getting-started//README.md)](https://github.com/MasoudBimar/Typescript-Step-by-Step)
 
 Next Section : [Angular Fundamentals](/src/app/3-angular-fundamentals/README.md)
-
-

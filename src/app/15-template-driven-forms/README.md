@@ -249,3 +249,5 @@ export class SkillsComponent {
 > [!TIP]
 > If the form is simple and mostly static, template-driven forms are quick and
 > readable. For complex or dynamic forms, reactive forms are more maintainable.
+
+Next Section: [Reactive Forms](/src/app/16-reactive-forms/README.md)

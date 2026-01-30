@@ -426,3 +426,5 @@ export class DashboardComponent {
 > [!TIP]
 > If you track multiple subscriptions, use a `Subscription` container and
 > call `unsubscribe()` in `ngOnDestroy`.
+
+Next Section: [Template Driven Forms](/src/app/15-template-driven-forms/README.md)

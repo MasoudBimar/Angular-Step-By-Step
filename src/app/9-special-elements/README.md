@@ -25,12 +25,10 @@ When to use:
 
 ```html
 <ng-container>
-  @if (items.length) {
-    @for (item of items) {
-      <li>{{ item }}</li>
-    }
-  } @else {
-    <p>No items yet.</p>
+  @if (items.length) { @for (item of items) {
+  <li>{{ item }}</li>
+  } } @else {
+  <p>No items yet.</p>
   }
 </ng-container>
 ```
@@ -92,9 +90,9 @@ When to use:
 </ng-template>
 
 @if (dataLoaded) {
-  <p>Data ready.</p>
+<p>Data ready.</p>
 } @else {
-  <ng-container [ngTemplateOutlet]="loading"></ng-container>
+<ng-container [ngTemplateOutlet]="loading"></ng-container>
 }
 ```
 
@@ -179,3 +177,5 @@ it treat the value provided by `$implicit` as a default value
 - `ng-content` enables content projection and slots.
 - `ng-template` defines inert markup until instantiated.
 - `ngTemplateOutlet` renders templates dynamically with context.
+
+Next Section: [Component Lifecycles](/src/app/10-component-lifecycles/README.md)

@@ -272,3 +272,5 @@ onShowData(){
 <h2>loading data</h2>
 }
 ```
+
+Next Section: [Rendering Strategies](/src/app/19-rendering-strategies/README.md)

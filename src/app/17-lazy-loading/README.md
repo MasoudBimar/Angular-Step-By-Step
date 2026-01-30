@@ -140,3 +140,5 @@ export class CustomPreloadingStrategy implements PreloadingStratergy {
   }
 }
 ```
+
+Next Section: [Defer Loading](/src/app/18-defer-loading/README.md)

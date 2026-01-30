@@ -71,7 +71,12 @@ import { API_URL } from "./tokens";
   providers: [LoggerService],
 })
 export class PanelComponent {
-  constructor(@Inject(API_URL) public apiUrl: string, @Self() private localLogger: LoggerService, @SkipSelf() @Optional() private parentLogger?: LoggerService, @Host() @Optional() private hostLogger?: LoggerService) {}
+  constructor(
+    @Inject(API_URL) public apiUrl: string,
+    @Self() private localLogger: LoggerService,
+    @SkipSelf() @Optional() private parentLogger?: LoggerService,
+    @Host() @Optional() private hostLogger?: LoggerService,
+  ) {}
 }
 ```
 
@@ -391,3 +396,5 @@ export class HighlightDirective {
 - `@Input()` values are set after construction; use `ngOnInit` or `ngOnChanges`.
 - `@ViewChild()` and `@ContentChild()` are available after `ngAfterViewInit` and `ngAfterContentInit`.
 - Avoid heavy work in query hooks; use them to read DOM or call child APIs.
+
+Next Section: [Angular Pipes](/src/app/12-pipes/README.md)

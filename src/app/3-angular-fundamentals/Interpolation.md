@@ -87,9 +87,9 @@ import { Component } from "@angular/core";
   selector: "app-interpolation-demo",
   template: `
     <p>Upper: {{ name | uppercase }}</p>
-    <p>Date: {{ createdAt | date : "yyyy-MM-dd" }}</p>
-    <p>Price: {{ amount | currency : "USD" }}</p>
-    <p>Percent: {{ ratio | percent : "1.0-2" }}</p>
+    <p>Date: {{ createdAt | date: "yyyy-MM-dd" }}</p>
+    <p>Price: {{ amount | currency: "USD" }}</p>
+    <p>Percent: {{ ratio | percent: "1.0-2" }}</p>
   `,
 })
 export class InterpolationDemoComponent {
@@ -126,7 +126,7 @@ import { Component } from "@angular/core";
     <p>{{ isActive ? "Enabled" : "Disabled" }}</p>
     <p>{{ user?.name ?? "Guest" }}</p>
     <p>{{ message.trim().toUpperCase() }}</p>
-    <p>{{ createdAt | date : "yyyy-MM-dd" }}</p>
+    <p>{{ createdAt | date: "yyyy-MM-dd" }}</p>
   `,
 })
 export class ExpressionDemoComponent {

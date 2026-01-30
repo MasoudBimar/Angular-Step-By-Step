@@ -126,7 +126,7 @@ export class PipesComponent {
 <!-- keyvalue -->
 <ul>
   @for (item of scores | keyvalue) {
-    <li>{{ item.key }}: {{ item.value }}</li>
+  <li>{{ item.key }}: {{ item.value }}</li>
   }
 </ul>
 
@@ -238,3 +238,5 @@ export class AppComponent {
 <p>The sum of array is {{number | sumOfNumbers}}</p>
 <button (click)="updateArray()">update the array</button>
 ```
+
+Next Section: [Routing & Navigation](/src/app/13-routing/README.md)

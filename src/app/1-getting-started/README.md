@@ -236,4 +236,4 @@ Recommended VS Code extensions:
 - Prettier
 - EditorConfig
 
-Next Section: [Typescript Preliminaries](/src/app/2.typescript-preliminaries/README.md)
+Next Section: [Typescript Preliminaries](/src/app/2-typescript-preliminaries/README.md)
