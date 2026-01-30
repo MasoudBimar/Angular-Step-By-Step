@@ -11,9 +11,11 @@ export class SignalCounterComponent {
   counter = signal<number>(0);
 
   updateCounter(direction: 'up' | 'down') {
-    direction === 'up'
-      ? this.counter.update((value: number) => value + 1)
-      : this.counter.update((value: number) => value - 1);
+    if (direction === 'up') {
+      this.counter.update((value: number) => value + 1);
+    } else {
+      this.counter.update((value: number) => value - 1);
+    }
   }
 
   onKeyDown(event: KeyboardEvent) {

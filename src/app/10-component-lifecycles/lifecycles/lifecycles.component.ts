@@ -10,7 +10,7 @@ import { CodeHighlighterComponent } from 'src/app/shared/code-highlighter/code-h
   styleUrls: ['./lifecycles.component.scss']
 })
 export class LifecyclesComponent implements OnInit, OnDestroy, DoCheck, OnChanges {
-  @Input() inputs!: any;
+  @Input() inputs!: unknown;
 
   readonly onChangesCode = `ngOnChanges(changes: SimpleChanges) {
   if (changes['userId']) {

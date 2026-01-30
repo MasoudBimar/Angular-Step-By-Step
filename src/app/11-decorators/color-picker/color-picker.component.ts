@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, HostBinding, HostListener } from '@angular/core';
 
 
 @Component({
