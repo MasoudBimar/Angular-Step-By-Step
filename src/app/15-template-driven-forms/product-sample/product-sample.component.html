@@ -12,26 +12,29 @@
       <h3>Create a product</h3>
       <form class="panel-form" (ngSubmit)="submitForm()">
         <div class="mb-3">
-          <label class="form-label">Name</label>
+          <label for="product-name" class="form-label">Name</label>
           <input
             class="form-control"
             name="name"
+            id="product-name"
             [(ngModel)]="newProduct.name"
           />
         </div>
         <div class="mb-3">
-          <label class="form-label">Category</label>
+          <label for="product-category" class="form-label">Category</label>
           <input
             class="form-control"
             name="category"
+            id="product-category"
             [(ngModel)]="newProduct.category"
           />
         </div>
         <div class="mb-3">
-          <label class="form-label">Price</label>
+          <label for="product-price" class="form-label">Price</label>
           <input
             class="form-control"
             name="price"
+            id="product-price"
             [(ngModel)]="newProduct.price"
           />
         </div>
@@ -47,10 +50,10 @@
         </div>
         <input
           class="signal-input"
-          [(massModel)]="newProduct.name"
-          #massModel="massModel"
+          [(appMassModel)]="newProduct.name"
+          #appMassModel="appMassModel"
         />
-        <div class="signal-meta">Direction: {{ massModel.direction }}</div>
+        <div class="signal-meta">Direction: {{ appMassModel.direction }}</div>
       </div>
 
       <div class="table-card">
@@ -66,7 +69,7 @@
           <tbody>
             @for (item of getProducts(); track item; let i = $index) {
               <tr
-                [mass-attr]="
+                [appMassAttr]="
                   getProducts().length < 6 ? 'table-success' : 'table-warning'
                 "
                 [product]="item"
@@ -74,12 +77,10 @@
               >
                 <td>{{ i + 1 }}</td>
                 <td>{{ item.name }}</td>
-                <td
-                  [mass-attr]="item.category == 'Soccer' ? 'table-info' : null"
-                >
+                <td [appMassAttr]="item.category === 'Soccer' ? 'table-info' : null">
                   {{ item.category }}
                 </td>
-                <td [mass-attr]="'table-info'">{{ item.price }}</td>
+                <td [appMassAttr]="'table-info'">{{ item.price }}</td>
               </tr>
             }
           </tbody>

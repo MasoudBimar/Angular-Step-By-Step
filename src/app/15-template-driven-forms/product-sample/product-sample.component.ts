@@ -1,9 +1,8 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MassAttrDirective } from '../directives/attr.directive';
 import { MassModel } from '../directives/two-way.directive';
-import { ProductFormGroup } from './model/form.model';
 import { Product } from './model/product.model';
 import { Model } from './model/repository.model';
 
@@ -14,12 +13,8 @@ import { Model } from './model/repository.model';
   templateUrl: './product-sample.component.html',
   styleUrls: ['./product-sample.component.scss']
 })
-export class ProductSampleComponent implements OnInit {
+export class ProductSampleComponent {
   model: Model = new Model();
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   getProduct(key: number): Product | undefined {
     return this.model.getProduct(key);

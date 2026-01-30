@@ -1,35 +1,29 @@
 import {
   Directive, ElementRef, Input, SimpleChanges, Output,
-  EventEmitter, HostListener, HostBinding
+  EventEmitter, HostListener, HostBinding, OnChanges, inject
 } from "@angular/core";
 import { Product } from "../../shared/model/product.model";
 
 @Directive({
-  selector: "[mass-attr-2]",
+  selector: "[appMassAttr2]",
   standalone: true
 })
-export class MassAttrDirective {
+export class MassAttrDirective implements OnChanges {
 
-  constructor(private element: ElementRef) {
-    this.element.nativeElement.addEventListener("click", () => {
-      if (this.product != null) {
-        this.click.emit(this.product.category);
-      }
-    });
-  }
+  private readonly element = inject(ElementRef<HTMLElement>);
 
-  @Input("mass-attr")
+  @Input()
   @HostBinding("class")
-  bgClass: string | null = "";
+  appMassAttr2: string | null = "";
 
-  @Input("mass-product")
+  @Input()
   product: Product = new Product();
 
-  @Output("mass-category")
-  click = new EventEmitter<string>();
+  @Output()
+  categoryChange = new EventEmitter<string>();
 
   ngOnChanges(changes: SimpleChanges) {
-    const change = changes["bgClass"];
+    const change = changes["appMassAttr2"];
     const classList = this.element.nativeElement.classList;
     if (!change.isFirstChange() && classList.contains(change.previousValue)) {
       classList.remove(change.previousValue);
@@ -42,7 +36,7 @@ export class MassAttrDirective {
   @HostListener("click")
   triggerCustomEvent() {
     if (this.product != null) {
-      this.click.emit(this.product.category);
+      this.categoryChange.emit(this.product.category);
     }
   }
 }

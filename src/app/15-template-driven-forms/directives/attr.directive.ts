@@ -1,18 +1,18 @@
 import {
-  Directive, ElementRef, Input, SimpleChanges, Output,
+  Directive, Input, Output,
   EventEmitter, HostListener, HostBinding
 } from "@angular/core";
 import { Product } from "../../shared/model/product.model";
 
 @Directive({
-  selector: "[mass-attr]",
+  selector: "[appMassAttr]",
   standalone: true
 })
 export class MassAttrDirective {
 
-  @Input("mass-attr")
+  @Input()
   @HostBinding("class")
-  bgClass: string | null = "";
+  appMassAttr: string | null = "";
 
   @Input() product: Product = new Product();
 

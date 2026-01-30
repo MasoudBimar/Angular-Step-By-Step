@@ -13,29 +13,26 @@ import { Product } from 'src/app/shared/model/product.model';
 export class TemplateDrivenComponent {
   product: Product = new Product();
   categories: { id: string, name: string }[] = [{ id: 'cat1', name: 'category 1' }, { id: 'cat2', name: 'category 2' }, { id: 'cat3', name: 'category 3' }];
-  constructor() {
-
-  }
 
   onSubmit(productForm: NgForm) {
     console.log(productForm, productForm.value);
     if (productForm.valid) {
-      console.log('submiot for to serrver', name);
+      console.log('submit form to server', productForm.value.name);
     } else {
       console.log('form is invalid');
     }
   }
 
-  getValidationMessages(productForm: any): string[] {
-    return [''];
+  getValidationMessages(productForm: NgForm): string[] {
+    return Object.keys(productForm.controls);
   }
 
-  reset(productForm: NgForm,) {
+  reset(productForm: NgForm) {
     productForm.resetForm();
   }
 
-  preset(productForm: NgForm,) {
-    productForm.resetForm({ name: 'default name', price: 0 })
+  preset(productForm: NgForm) {
+    productForm.resetForm({ name: 'default name', price: 0 });
   }
 
 }

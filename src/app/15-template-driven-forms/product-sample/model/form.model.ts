@@ -1,20 +1,20 @@
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { LimitValidator } from "./limit.formvalidator";
 
 export class ProductFormControl extends FormControl {
   label: string;
   modelProperty: string;
 
-  constructor(label: string, property: string, value: any, validator: any) {
+  constructor(label: string, property: string, value: unknown, validator: ValidatorFn | ValidatorFn[] | null) {
     super(value, validator);
     this.label = label;
     this.modelProperty = property;
   }
 
   getValidationMessages() {
-    let messages: string[] = [];
+    const messages: string[] = [];
     if (this.errors) {
-      for (let errorName in this.errors) {
+      for (const errorName in this.errors) {
         switch (errorName) {
           case "required":
             messages.push(`You must enter a ${this.label}`);
@@ -57,7 +57,7 @@ export class ProductFormGroup extends FormGroup {
         Validators.maxLength(10)])),
 
       price: new ProductFormControl("Price", "price", "",
-        Validators.compose([Validators.required, LimitValidator.Limit(100), Validators.pattern("^[0-9\.]+$")]))
+        Validators.compose([Validators.required, LimitValidator.Limit(100), Validators.pattern("^[0-9.]+$")]))
     });
   }
 
@@ -66,12 +66,12 @@ export class ProductFormGroup extends FormGroup {
       .map(k => this.controls[k] as ProductFormControl);
   }
 
-  getValidationMessages(name: string): string[] {
+  getValidationMessages(): string[] {
     return (this.controls['name'] as ProductFormControl).getValidationMessages();
   }
 
   getFormValidationMessages(): string[] {
-    let messages: string[] = [];
+    const messages: string[] = [];
     Object.values(this.controls).forEach(c =>
       messages.push(...(c as ProductFormControl).getValidationMessages()));
     return messages;
