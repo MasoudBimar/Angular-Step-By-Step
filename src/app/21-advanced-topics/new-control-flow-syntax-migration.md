@@ -283,3 +283,11 @@ always review the results and adjust any complex templates manually.
 ---
 
 If you want, share a specific template and I can propose a precise migration.
+
+[Advanced Topics -- Angular Signal API](/src/app/21-advanced-topics/angular-signal.md)
+
+[Advanced Topics -- Angular Version Feature History](/src/app/21-advanced-topics/angular-version-feature-history.md)
+
+[Advanced Topics -- Lazy Load Module Strategies](/src/app/21-advanced-topics/lazy-load-module-strategies.md)
+
+[Advanced Topics -- Reactive programming With RXJS](/src/app/21-advanced-topics/reactive-programming-with-rxjs.md)

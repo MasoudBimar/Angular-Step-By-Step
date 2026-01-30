@@ -93,12 +93,12 @@ export class UserService {
 Showing fetched data as Observable using async pipe in template:
 
 ```html
-  <!-- for iterating over observable data we need the aliasing with 'as' keyword -->
-  @if (data$ | async; as data) {
-    <p>Data: {{ data }}</p>
-  } @else {
-    <p>Loading...</p>
-  }
+<!-- for iterating over observable data we need the aliasing with 'as' keyword -->
+@if (data$ | async; as data) {
+<p>Data: {{ data }}</p>
+} @else {
+<p>Loading...</p>
+}
 ```
 
 ## Operators and Transformations
@@ -349,3 +349,11 @@ const users$ = ids$.pipe(mergeMap((id) => this.http.get(`/api/users/${id}`), 2))
 ```
 
 Here the second argument `2` limits concurrency to two in-flight requests.
+
+[Advanced Topics -- Angular Signal API](/src/app/21-advanced-topics/angular-signal.md)
+
+[Advanced Topics -- Angular Version Feature History](/src/app/21-advanced-topics/angular-version-feature-history.md)
+
+[Advanced Topics -- Lazy Load Module Strategies](/src/app/21-advanced-topics/lazy-load-module-strategies.md)
+
+[Advanced Topics -- New Control Flow Syntax](/src/app/21-advanced-topics/new-control-flow-syntax.md)

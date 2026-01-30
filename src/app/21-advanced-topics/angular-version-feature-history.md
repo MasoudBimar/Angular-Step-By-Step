@@ -240,3 +240,11 @@ Highlights:
 - Unified signal and observable composition
 - TypeScript 5.6+ support
 - Improved developer experience with better compiler diagnostics
+
+[Advanced Topics -- Angular Signal API](/src/app/21-advanced-topics/angular-signal.md)
+
+[Advanced Topics -- Lazy Load Module Strategies](/src/app/21-advanced-topics/lazy-load-module-strategies.md)
+
+[Advanced Topics -- New Control Flow Syntax](/src/app/21-advanced-topics/new-control-flow-syntax.md)
+
+[Advanced Topics -- Reactive programming With RXJS](/src/app/21-advanced-topics/reactive-programming-with-rxjs.md)

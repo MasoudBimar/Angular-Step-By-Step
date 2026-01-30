@@ -348,9 +348,9 @@ Template excerpt:
 <input type="search" class="form-control form-control-sm" placeholder="Filter by name" (input)="filter.set($any($event.target).value)" />
 
 @for (user of filteredUsers(); track trackByUserId($index, user)) {
-  <tr>
-    ...
-  </tr>
+<tr>
+  ...
+</tr>
 }
 ```
 
@@ -400,3 +400,11 @@ This keeps the HTTP call as an Observable, but adds a signal-backed filter and c
 - They provide fine-grained updates and explicit dependencies.
 - They complement RxJS rather than replace it.
 - The API started in Angular 16 and stabilized/matured through 21.
+
+[Advanced Topics -- Angular Version Feature History](/src/app/21-advanced-topics/angular-version-feature-history.md)
+
+[Advanced Topics -- Lazy Load Module Strategies](/src/app/21-advanced-topics/lazy-load-module-strategies.md)
+
+[Advanced Topics -- New Control Flow Syntax](/src/app/21-advanced-topics/new-control-flow-syntax.md)
+
+[Advanced Topics -- Reactive programming With RXJS](/src/app/21-advanced-topics/reactive-programming-with-rxjs.md)
