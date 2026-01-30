@@ -479,12 +479,12 @@ beforeEach(async () => {
 });
 ```
 
-[Advanced Topics -- Angular Signal API](/src/app/21-advanced-topics/angular-signal.md/README.md)
+[Advanced Topics -- Angular Signal API](/src/app/21-advanced-topics/angular-signal.md)
 
-[Advanced Topics -- Angular Version Feature History](/src/app/21-advanced-topics/angular-version-feature-history.md/README.md)
+[Advanced Topics -- Angular Version Feature History](/src/app/21-advanced-topics/angular-version-feature-history.md)
 
-[Advanced Topics -- Lazy Load Module Strategies](/src/app/21-advanced-topics/lazy-load-module-strategies.md/README.md)
+[Advanced Topics -- Lazy Load Module Strategies](/src/app/21-advanced-topics/lazy-load-module-strategies.md)
 
-[Advanced Topics -- New Control Flow Syntax](/src/app/21-advanced-topics/new-control-flow-syntax.md/README.md)
+[Advanced Topics -- New Control Flow Syntax](/src/app/21-advanced-topics/new-control-flow-syntax.md)
 
-[Advanced Topics -- Reactive programming With RXJS](/src/app/21-advanced-topics/reactive-programming-with-rxjs.md/README.md)
+[Advanced Topics -- Reactive programming With RXJS](/src/app/21-advanced-topics/reactive-programming-with-rxjs.md)
