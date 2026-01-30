@@ -17,7 +17,7 @@ Lazy loading splits your app into smaller bundles and loads them on demand. This
 
 ```ts
 // app-routing.module.ts
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: "admin",
     loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
@@ -32,7 +32,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AdminComponent } from "./admin.component";
 import { AdminUsersComponent } from "./admin-users.component";
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: "", component: AdminComponent },
   { path: "users", component: AdminUsersComponent },
 ];
@@ -50,7 +50,7 @@ The component must be marked as `standalone: true`.
 
 ```ts
 // app-routing.module.ts
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: "about",
     loadComponent: () => import("./about/about.component").then((m) => m.AboutComponent),
@@ -66,7 +66,7 @@ Preloading loads lazy routes in the background after the initial navigation. The
 
 ```ts
 // app-routing.module.ts
-import { PreloadAllModules, RouterModule } from "@angular/router";
+import { PreloadAllModules } from "@angular/router";
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
@@ -83,7 +83,7 @@ Preloading:
 
 ```ts
 // app.config.ts
-import { PreloadAllModules, RouterModule } from "@angular/router";
+import { PreloadAllModules } from "@angular/router";
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes, withPreloading(PreloadAllModules))],
@@ -116,7 +116,7 @@ export class AppRoutingModule {}
 
 ```ts
 // routes with preload flag
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: "reports",
     loadChildren: () => import("./reports/reports.module").then((m) => m.ReportsModule),
@@ -135,8 +135,8 @@ Common usecases:
 
 ```ts
 export class CustomPreloadingStrategy implements PreloadingStratergy {
-  override preload(route: Route, fn: Function): Observable<any> {
-    return route.data && route.data.preload ? return fn() : EMPTY;
+  override preload(route: Route, fn: () => Observable<unknown>): Observable<unknown> {
+    return route.data?.["preload"] ? fn() : EMPTY;
   }
 }
 ```

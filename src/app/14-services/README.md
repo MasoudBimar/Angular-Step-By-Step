@@ -50,7 +50,7 @@ ng generate service users
 ## Service example
 
 ```ts
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
@@ -61,7 +61,7 @@ export interface User {
 
 @Injectable({ providedIn: "root" })
 export class UsersService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>("/api/users");
@@ -72,14 +72,14 @@ export class UsersService {
 Usage in a component:
 
 ```ts
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { UsersService, User } from "./users.service";
 
 @Component({
   selector: "app-users",
   template: `
     <ul>
-      @for (user of users) {
+      @for (user of users; track $index) {
         <li>{{ user.name }}</li>
       }
     </ul>
@@ -88,7 +88,7 @@ import { UsersService, User } from "./users.service";
 export class UsersComponent implements OnInit {
   users: User[] = [];
 
-  constructor(private usersService: UsersService) {}
+  private usersService = inject(UsersService);
 
   ngOnInit(): void {
     this.usersService.getUsers().subscribe((data) => {
@@ -177,7 +177,7 @@ By this keys Angular can differentiate between different dependencies of the sam
 > Token can be of three types: `Type token`, `String token`, `Injection token object`.
 
 ```ts
-import { Component, Inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { InjectionToken } from "@angular/core";
 
 export const API_URL = new InjectionToken<string>("API_URL");
@@ -188,7 +188,8 @@ export const API_URL = new InjectionToken<string>("API_URL");
   providers: [{ provide: API_URL, useValue: "/api" }],
 })
 export class UsersComponent {
-  constructor(@Inject(API_URL) private apiUrl: string) {}
+  readonly apiUrl = inject(API_URL);
+  // constructor(@Inject(API_URL) private apiUrl: string) {}
 }
 ```
 
@@ -220,7 +221,7 @@ This injection token is defined by pairing a string key with a use\* provider (e
 > can collide. Prefer `InjectionToken`.
 
 ```ts
-import { Component, Inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 
 @Component({
   selector: "app-legacy",
@@ -254,7 +255,7 @@ export const API_CONFIG = new InjectionToken<ApiConfig>("API_CONFIG");
 Provide it and inject the config:
 
 ```ts
-import { Injectable, Inject } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { API_CONFIG, ApiConfig } from "./api-config.token";
 
 @Injectable({ providedIn: "root" })
@@ -417,7 +418,9 @@ Usage with a component provider (so the service is destroyed with the component)
   providers: [PollingService],
 })
 export class DashboardComponent {
-  constructor(private polling: PollingService) {
+  private polling = inject(PollingService);
+
+  constructor() {
     this.polling.start();
   }
 }

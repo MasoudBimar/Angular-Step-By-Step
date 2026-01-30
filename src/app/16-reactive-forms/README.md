@@ -114,7 +114,7 @@ export class ProfileComponent {
 ## `FormBuilder` (less boilerplate)
 
 ```ts
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
 @Component({
@@ -122,7 +122,7 @@ import { FormBuilder, Validators } from "@angular/forms";
   templateUrl: "./login.component.html",
 })
 export class LoginComponent {
-  constructor(private fb: FormBuilder) {}
+  private fb = inject(FormBuilder);
 
   form = this.fb.group({
     username: ["", [Validators.required, Validators.minLength(3)]],
@@ -134,7 +134,7 @@ export class LoginComponent {
 ## `FormArray` (dynamic lists)
 
 ```ts
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormArray, FormBuilder, FormControl, Validators } from "@angular/forms";
 
 @Component({
@@ -142,7 +142,7 @@ import { FormArray, FormBuilder, FormControl, Validators } from "@angular/forms"
   templateUrl: "./skills.component.html",
 })
 export class SkillsComponent {
-  constructor(private fb: FormBuilder) {}
+  private fb = inject(FormBuilder);
 
   form = this.fb.group({
     skills: this.fb.array<FormControl<string>>([this.fb.control("", { nonNullable: true, validators: [Validators.required] })]),
@@ -165,7 +165,7 @@ export class SkillsComponent {
 ```html
 <form [formGroup]="form">
   <div formArrayName="skills">
-    @for (ctrl of skills.controls; let i = $index) {
+    @for (ctrl of skills.controls; track $index; let i = $index) {
     <div>
       <input [formControlName]="i" />
       <button type="button" (click)="removeSkill(i)">Remove</button>

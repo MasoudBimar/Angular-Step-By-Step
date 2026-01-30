@@ -248,16 +248,17 @@ expected usage:
 
 ```ts
 // component.ts
+export class ReviewsComponent {
+  loadData = false;
+  showReviews = false;
 
-loadData: boolean = false;
-showReviews: boolean = false;
+  onPrefetch(): void {
+    this.loadData = true;
+  }
 
-onPrefetch(){
-  this.loadData = true;
-}
-
-onShowData(){
-  this.showReviews = true;
+  onShowData(): void {
+    this.showReviews = true;
+  }
 }
 ```
 

@@ -220,7 +220,7 @@ import { FormArray, FormControl, FormGroup } from "@angular/forms";
   template: `
     <form [formGroup]="form">
       <div formArrayName="skills">
-        @for (ctrl of skills.controls; let i = $index) {
+        @for (ctrl of skills.controls; track $index; let i = $index) {
           <label>
             Skill {{ i + 1 }}
             <input [formControlName]="i" />
