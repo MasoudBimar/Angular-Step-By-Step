@@ -87,7 +87,7 @@ Avoid heavy work here:
 > If you try to access input properties in the constructor, they will be undefined.
 
 ```ts
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { UsersService } from "./users.service";
 
 @Component({
@@ -97,7 +97,7 @@ import { UsersService } from "./users.service";
 export class UsersComponent {
   title = "Users";
 
-  constructor(private users: UsersService) {}
+  private users = inject(UsersService);
 }
 ```
 
@@ -168,12 +168,11 @@ export class UserBadgeComponent implements OnChanges {
 Simple Change Structure
 
 ```ts
-export declare interface SimpleChanges {
-  [propName: string]: SimpleChange;
-}
+export type SimpleChanges = Record<string, SimpleChange>;
+
 export declare class SimpleChange {
-  previousValue: any;
-  currentValue: any;
+  previousValue: unknown;
+  currentValue: unknown;
   firstChange: boolean;
 }
 ```
@@ -195,15 +194,15 @@ When to use:
 > Never use `ngOnChanges` and `ngDoCheck` hooks together in the same component.
 
 ```ts
-import { Component, Input, ngDoCheck } from "@angular/core";
+import { Component, DoCheck, Input } from "@angular/core";
 
 @Component({
   selector: "app-user-badge",
   template: `<p>{{ label }}</p>`,
 })
-export class UserBadgeComponent implements OnChanges {
-  @Input() user: { name: string } = {};
-  private previousUserName: string | undefiend;
+export class UserBadgeComponent implements DoCheck {
+  @Input() user: { name: string } = { name: "" };
+  private previousUserName: string | undefined;
 
   ngDoCheck(): void {
     if (this.user.name !== this.previousUserName) {
@@ -324,7 +323,9 @@ import { Component, OnDestroy } from "@angular/core";
   template: `<p>Polling...</p>`,
 })
 export class PollingComponent implements OnDestroy {
-  private timerId = window.setInterval(() => {}, 2000);
+  private timerId = window.setInterval(() => {
+    console.log("polling...");
+  }, 2000);
 
   ngOnDestroy(): void {
     window.clearInterval(this.timerId);
@@ -384,7 +385,7 @@ import { Component, ElementRef, afterNextRender, inject, signal } from "@angular
   template: `
     <button (click)="add()">Add</button>
     <ul>
-      @for (m of messages()) {
+      @for (m of messages(); track $index) {
         <li>{{ m }}</li>
       }
     </ul>

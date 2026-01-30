@@ -25,7 +25,7 @@ When to use:
 
 ```html
 <ng-container>
-  @if (items.length) { @for (item of items) {
+  @if (items.length) { @for (item of items; track $index) {
   <li>{{ item }}</li>
   } } @else {
   <p>No items yet.</p>
@@ -135,7 +135,7 @@ The second example use default variable for passing data
   <p>{{msg}}</p>
 </ng-template>
 
-<ng-container [ngTemplateOutlet]="basicTemplate; context: {showMessage: 'This message was paased via ngTemplateOutlet'}"></ng-container>
+<ng-container [ngTemplateOutlet]="basicTemplate" [ngTemplateOutletContext]="{ $implicit: 'This message was passed via ngTemplateOutlet' }"></ng-container>
 ```
 
 > [!TIP] Context object can contain any properties inside the template like object, function or boolean value.

@@ -125,7 +125,7 @@ export class PipesComponent {
 
 <!-- keyvalue -->
 <ul>
-  @for (item of scores | keyvalue) {
+  @for (item of scores | keyvalue; track $index) {
   <li>{{ item.key }}: {{ item.value }}</li>
   }
 </ul>
@@ -203,17 +203,31 @@ export class SharedModule {}
 > A Pure change is just a simple change in the input value such as strin, boolean, number or change in the reference for object, arrays or functions
 
 ```ts
+import { Pipe, PipeTransform } from "@angular/core";
+
 @Pipe({
-  name: 'filterByState',
-  pure: true # Default Bevavior
+  name: "filterByState",
+  pure: true, // Default behavior
 })
+export class FilterByStatePipe implements PipeTransform {
+  transform(value: unknown): unknown {
+    return value;
+  }
+}
 ```
 
 ```ts
+import { Pipe, PipeTransform } from "@angular/core";
+
 @Pipe({
-  name: 'filterByState',
-  pure: false # impure
+  name: "filterByState",
+  pure: false, // impure
 })
+export class FilterByStatePipe implements PipeTransform {
+  transform(value: unknown): unknown {
+    return value;
+  }
+}
 ```
 
 > [!CAUTION]

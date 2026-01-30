@@ -213,7 +213,7 @@ export class NgModelDemoComponent {
 Create a directive that changes the host element.
 
 ```ts
-import { Directive, ElementRef, HostListener, Input } from "@angular/core";
+import { Directive, ElementRef, HostListener, Input, inject } from "@angular/core";
 
 @Directive({
   selector: "[appHighlight]",
@@ -221,7 +221,7 @@ import { Directive, ElementRef, HostListener, Input } from "@angular/core";
 export class HighlightDirective {
   @Input() appHighlight = "gold";
 
-  constructor(private elementRef: ElementRef<HTMLElement>) {}
+  private elementRef = inject(ElementRef<HTMLElement>);
 
   @HostListener("mouseenter")
   onEnter(): void {
@@ -246,7 +246,7 @@ Usage:
 Using `Renderer2` avoids direct DOM access, which is safer for server-side rendering and Web Workers.
 
 ```ts
-import { Directive, ElementRef, HostListener, Input, Renderer2 } from "@angular/core";
+import { Directive, ElementRef, HostListener, Input, Renderer2, inject } from "@angular/core";
 
 @Directive({
   selector: "[appHighlight]",
@@ -254,10 +254,8 @@ import { Directive, ElementRef, HostListener, Input, Renderer2 } from "@angular/
 export class HighlightDirective {
   @Input() appHighlight = "gold";
 
-  constructor(
-    private elementRef: ElementRef<HTMLElement>,
-    private renderer: Renderer2,
-  ) {}
+  private elementRef = inject(ElementRef<HTMLElement>);
+  private renderer = inject(Renderer2);
 
   @HostListener("mouseenter")
   onEnter(): void {

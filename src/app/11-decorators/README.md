@@ -65,6 +65,7 @@ import { Component, Host, Inject, Optional, Self, SkipSelf } from "@angular/core
 import { LoggerService } from "./logger.service";
 import { API_URL } from "./tokens";
 
+/* eslint-disable @angular-eslint/prefer-inject */
 @Component({
   selector: "app-panel",
   template: `<ng-content></ng-content>`,
@@ -78,6 +79,7 @@ export class PanelComponent {
     @Host() @Optional() private hostLogger?: LoggerService,
   ) {}
 }
+/* eslint-enable @angular-eslint/prefer-inject */
 ```
 
 ## Property Decorator
@@ -106,7 +108,7 @@ import { Component, Input } from "@angular/core";
   template: `<h3>{{ name }}</h3>`,
 })
 export class UserCardComponent {
-  @Input("aliasName") name = "";
+  @Input() name = "";
 }
 ```
 
@@ -191,7 +193,6 @@ import { Directive, HostBinding } from "@angular/core";
 export class HighlightDirective {
   @HostBinding("style.backgroundColor") bgColor = "#fff000";
   @HostBinding("style.color") color = "#111004ff";
-  constructor() {}
 }
 ```
 
@@ -247,7 +248,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
   template: `
     <input  />
     <button #btnFocus (click)="focus()">Focus</button>
-    <app-child> </app-child> </app-child>
+    <app-child></app-child>
   `,
 })
 export class SearchComponent implements AfterViewInit {
@@ -273,7 +274,7 @@ import { Component, QueryList, ViewChildren } from "@angular/core";
 @Component({
   selector: "app-tabs",
   template: `
-    @for (tab of tabs) {
+    @for (tab of tabs; track $index) {
       <app-tab></app-tab>
     }
   `,
@@ -387,7 +388,6 @@ export class HighlightDirective {
       this.color = "#111004ff";
     }
   }
-  constructor() {}
 }
 ```
 

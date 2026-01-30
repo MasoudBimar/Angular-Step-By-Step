@@ -214,7 +214,7 @@ export class StructuralDemoComponent {
     { id: 3, name: "Three" },
   ];
 
-  trackByFn(item: any) {
+  trackByFn(item: { id: number }) {
     return item.id;
   }
 }
@@ -267,16 +267,14 @@ Use `@switch` with `@case` and `@default` for a cleaner multi-branch template.
 Custom structural directives let you define your own `*myDirective` syntax.
 
 ```ts
-import { Directive, Input, TemplateRef, ViewContainerRef } from "@angular/core";
+import { Directive, Input, TemplateRef, ViewContainerRef, inject } from "@angular/core";
 
 @Directive({
   selector: "[appUnless]",
 })
 export class UnlessDirective {
-  constructor(
-    private templateRef: TemplateRef<unknown>,
-    private viewContainer: ViewContainerRef,
-  ) {}
+  private templateRef = inject(TemplateRef<unknown>);
+  private viewContainer = inject(ViewContainerRef);
 
   @Input() set appUnless(condition: boolean) {
     this.viewContainer.clear();
