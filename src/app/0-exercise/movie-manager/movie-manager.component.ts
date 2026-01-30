@@ -1,8 +1,7 @@
 
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Movie, MovieService } from './movie.service';
+import { Movie, MovieResult, MovieService } from './movie.service';
 import { RateVersion2Component } from '../rate-panel/rate-version2/rate-version2.component';
 
 @Component({
@@ -13,32 +12,38 @@ import { RateVersion2Component } from '../rate-panel/rate-version2/rate-version2
   styleUrls: ['./movie-manager.component.scss']
 })
 export class MovieManagerComponent {
+  private readonly movieService = inject(MovieService);
+  private readonly fb = inject(FormBuilder);
+
   title = 'AngularApp2';
   priceError = '';
-  movies?: Observable<any>;
-  movies2?: any[];
-  movieForm: FormGroup;
+  movies2: Movie[] = [];
+  movieForm: FormGroup = this.fb.group({
+    id: [null, Validators.required],
+    title: [null, [Validators.required, Validators.minLength(2)]],
+    genres: [0, [Validators.required]]
+  });
   genres: string[] = ['drama', 'comedy', 'horror', 'Crime'];
 
-  constructor(public movieService: MovieService, public fb: FormBuilder) {
-    this.movieService.getMovieList('matrix').subscribe((result: any) => {
-      let movieArray = Array.isArray(result) ? result : [result];
-      this.movies2 = movieArray.map(x => ({ Id: x.imdbID, Title: x.Title, imdbRating: Math.round(+x.imdbRating), Genre: x.Genre }))
-    });
-    this.movieForm = this.fb.group({
-      id: [null, Validators.required],
-      title: [null, [Validators.required, Validators.minLength(2)]],
-      genres: [0, [Validators.required]]
+  constructor() {
+    this.movieService.getMovieList('matrix').subscribe((result: MovieResult) => {
+      const movieArray = Array.isArray(result) ? result : [result];
+      this.movies2 = movieArray.map(movie => ({
+        imdbID: movie.imdbID,
+        Title: movie.Title ?? '',
+        imdbRating: Math.round(Number(movie.imdbRating ?? 0)),
+        Genre: movie.Genre ?? ''
+      }));
     });
   }
 
 
-  delete(id: number) {
+  delete(id: number | string) {
     this.movieService.deleteMovie(id);
   }
 
   onSubmit() {
-    this.movieService.createMovie(this.movieForm.value).subscribe((result: any) => {
+    this.movieService.createMovie(this.movieForm.value).subscribe((result: Movie) => {
       console.log(result);
     });
   }
@@ -52,13 +57,13 @@ export class MovieManagerComponent {
   }
 
   update() {
-    this.movieService.updateMovie(this.movieForm.value).subscribe((result: any) => {
+    this.movieService.updateMovie(this.movieForm.value).subscribe((result: Movie) => {
       console.log(result);
     });
   }
 
-  getOneMovie(id: number) {
-    this.movieService.getMovie(id).subscribe((result: any) => {
+  getOneMovie(id: number | string) {
+    this.movieService.getMovie(id).subscribe((result: Movie) => {
       console.log(result);
     });
   }

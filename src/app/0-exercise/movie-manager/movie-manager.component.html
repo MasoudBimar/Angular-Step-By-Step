@@ -81,7 +81,7 @@
             >
               <h5 class="card-title mb-0">Movies</h5>
               <span class="badge bg-secondary"
-                >Total: {{ movies2?.length || 0 }}</span
+                >Total: {{ movies2.length || 0 }}</span
               >
             </div>
             <div class="table-responsive">
@@ -100,7 +100,7 @@
                   @for (movie of movies2; track movie; let i = $index) {
                     <tr>
                       <th scope="row">{{ i + 1 }}</th>
-                      <td>{{ movie.Id }}</td>
+                      <td>{{ movie.imdbID }}</td>
                       <td>{{ movie.Title }}</td>
                       <td>{{ movie.Genre }}</td>
                       <td>
@@ -118,13 +118,13 @@
                           </button>
                           <button
                             class="btn btn-outline-info"
-                            (click)="getOneMovie(movie.id)"
+                            (click)="getOneMovie(movie.imdbID)"
                           >
                             Info
                           </button>
                           <button
                             class="btn btn-outline-danger"
-                            (click)="delete(movie.id)"
+                            (click)="delete(movie.imdbID)"
                           >
                             Delete
                           </button>
