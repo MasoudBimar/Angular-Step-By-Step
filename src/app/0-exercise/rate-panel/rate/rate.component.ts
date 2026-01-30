@@ -11,13 +11,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class RateComponent {
 
   @Input() stars: number[] = [1, 2, 3, 4, 5];
-  @Input('rate') rateValue: number = 0;
+  @Input() rate: number = 0;
   @Output() rateSelected: EventEmitter<number> = new EventEmitter<number>();
   protected hoveredValue: number = 0;
 
   setRate(star: number) {
-    this.rateValue = star;
-    this.rateSelected.emit(this.rateValue);
+    this.rate = star;
+    this.rateSelected.emit(this.rate);
   }
 
   onMouseEnter(starValue: number) {

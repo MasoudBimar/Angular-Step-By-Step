@@ -5,7 +5,12 @@
       <div
         class="star"
         (click)="handleClick(star)"
+        (keydown.enter)="handleClick(star)"
+        (keydown.space)="handleClick(star)"
         (mouseenter)="handleHover(star)"
+        (focus)="handleHover(star)"
+        role="button"
+        tabindex="0"
       >
         <span
           class="star-icon star-hover"

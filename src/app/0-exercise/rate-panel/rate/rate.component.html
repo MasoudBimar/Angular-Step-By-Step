@@ -4,13 +4,19 @@
       <li
         class="rate-star"
         (click)="setRate(star)"
+        (keydown.enter)="setRate(star)"
+        (keydown.space)="setRate(star)"
         (mouseenter)="onMouseEnter(star)"
+        (focus)="onMouseEnter(star)"
         (mouseleave)="onMouseLeave()"
-        [class.selected]="i < rateValue || i < hoveredValue"
+        (blur)="onMouseLeave()"
+        [class.selected]="i < rate || i < hoveredValue"
+        role="button"
+        tabindex="0"
       >
         <span class="star-icon" aria-hidden="true">★</span>
       </li>
     }
   </ul>
-  <div class="rate-score">{{ rateValue }}/{{ stars.length }}</div>
+  <div class="rate-score">{{ rate }}/{{ stars.length }}</div>
 </div>

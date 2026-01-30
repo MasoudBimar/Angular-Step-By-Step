@@ -5,11 +5,16 @@
         class="star"
         data-testid="star-item"
         (click)="changeHandler(i + 1)"
+        (keydown.enter)="changeHandler(i + 1)"
+        (keydown.space)="changeHandler(i + 1)"
         (mouseover)="handleHover(i + 1)"
+        (focus)="handleHover(i + 1)"
         [style.height.px]="starWidth"
         [style.width.px]="starWidth"
         [class.hover]="i < starHovered"
         [class.selected]="i < rate"
+        role="button"
+        tabindex="0"
       >
       </span>
     }
