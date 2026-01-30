@@ -233,10 +233,10 @@ We use projection when:
 
 > [!NOTE] > `ngAfterContentInit` Calls only once throught the component lifecycle.
 
+When to use `ngAfterContentInit`:
+
 > [!TIP]
 > There are two more child decorators that are used for trigering the `ngAfterContentInit` hook: `@ViewChild `& `@ContentChild`.
-
-When to use `ngAfterContentInit`:
 
 - You need access to projected content (content children).
 - You need to run logic after projected content updates.

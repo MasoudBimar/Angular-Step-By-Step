@@ -7,7 +7,7 @@
   - [Case 1 — Native DOM element (most basic)](#case-1--native-dom-element-most-basic)
   - [Case 2 — Component instance](#case-2--component-instance)
   - [Case 3 — Directive instance via exportAs](#case-3--directive-instance-via-exportas)
-  - [Case 4 — Structural directive context (\*ngFor, \*ngIf)](#case-4--structural-directive-context-ngfor-ngif)
+  - [Case 4 — Structural directive context (`*ngFor`,`*ngIf`)](#case-4--structural-directive-context-ngforngif)
   - [Case 5 — ng-template explicit variables](#case-5--ng-template-explicit-variables)
   - [@let in Angular 17+](#let-in-angular-17)
 
@@ -81,7 +81,7 @@ export class HighlightDirective {
 export class TemplateVarDemoComponent {}
 ```
 
-## Case 4 — Structural directive context (*ngFor, *ngIf)
+## Case 4 — Structural directive context (`*ngFor`,`*ngIf`)
 
 Angular exposes context variables like `index`, `first`, and `last` in structural directives.
 

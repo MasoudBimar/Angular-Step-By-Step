@@ -8,11 +8,11 @@
     - [TypeScript is a superset of JavaScript: compile with `tsc` and run with Node](#typescript-is-a-superset-of-javascript-compile-with-tsc-and-run-with-node)
     - [All ts code is valid js code](#all-ts-code-is-valid-js-code)
     - [Type annotations: `let count: number = 5;`](#type-annotations-let-count-number--5)
-    - [`var` vs `let`: `var` is function-scoped, `let` is block-scoped.](#var-vs-let-var-is-function-scoped-let-is-block-scoped)
-    - [Type annotations catch errors at compile time (assigning a boolean/string to a `number`).](#type-annotations-catch-errors-at-compile-time-assigning-a-booleanstring-to-a-number)
-    - [Typed function parameters: `function log(message: string)`.](#typed-function-parameters-function-logmessage-string)
-    - [Type assertions: `(<string>value)` or `value as string`.](#type-assertions-stringvalue-or-value-as-string)
-    - [Arrow functions: `const doLog = (message: string) => { ... }`.](#arrow-functions-const-dolog--message-string----)
+    - [`var` vs `let`: `var` is function-scoped, `let` is block-scoped](#var-vs-let-var-is-function-scoped-let-is-block-scoped)
+    - [Type annotations catch errors at compile time (assigning a boolean/string to a `number`)](#type-annotations-catch-errors-at-compile-time-assigning-a-booleanstring-to-a-number)
+    - [Typed function parameters: `function log(message: string)`](#typed-function-parameters-function-logmessage-string)
+    - [Type assertions: `(<string>value)` or `value as string`](#type-assertions-stringvalue-or-value-as-string)
+    - [Arrow functions: `const doLog = (message: string) => { ... }`](#arrow-functions-const-dolog--message-string----)
   - [Functions as values (callbacks)](#functions-as-values-callbacks)
   - [fibunacci function — loops and recursion](#fibunacci-function--loops-and-recursion)
   - [Inheritance — interfaces and polymorphism](#inheritance--interfaces-and-polymorphism)
@@ -54,12 +54,11 @@ function testVar() {
 }
 
 testVar();
-
 ```
 
-### `var` vs `let`: `var` is function-scoped, `let` is block-scoped.
+### `var` vs `let`: `var` is function-scoped, `let` is block-scoped
 
-### Type annotations catch errors at compile time (assigning a boolean/string to a `number`).
+### Type annotations catch errors at compile time (assigning a boolean/string to a `number`)
 
 ```ts
 // Type checking with Type Annotations:
@@ -76,7 +75,7 @@ b = "test"; // raise error
 console.log(b);
 ```
 
-### Typed function parameters: `function log(message: string)`.
+### Typed function parameters: `function log(message: string)`
 
 ```ts
 function log(message: string) {
@@ -88,7 +87,7 @@ const message = "hello world";
 log(message);
 ```
 
-### Type assertions: `(<string>value)` or `value as string`.
+### Type assertions: `(<string>value)` or `value as string`
 
 ```ts
 // type assertion
@@ -100,7 +99,7 @@ const isEndWithB2 = (message2 as string).endsWith("c");
 console.log(isEndWithC, isEndWithB1, isEndWithB2);
 ```
 
-### Arrow functions: `const doLog = (message: string) => { ... }`.
+### Arrow functions: `const doLog = (message: string) => { ... }`
 
 ```ts
 const log2 = function (message: string) {
@@ -288,6 +287,6 @@ circle.draw();
 
 ## For more information and resources check this repository main README.md Angular-Step-BY-Step
 
-[[Typescript-Step-BY-Step](src/app/1.getting-started//README.md)](https://github.com/MasoudBimar/Typescript-Step-by-Step)
+[Typescript-Step-BY-Step](https://github.com/MasoudBimar/Typescript-Step-by-Step)
 
 Next Section : [Angular Fundamentals](/src/app/3-angular-fundamentals/README.md)

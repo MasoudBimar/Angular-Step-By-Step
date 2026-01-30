@@ -96,9 +96,9 @@ When to use:
 }
 ```
 
-> [!TIP] > `ng-template` is lightweight; it only appears in the DOM when instantiated (wont rendered independently).
-
-> [!TIP] > `ng-template` is usefull when we need to render a block of code multiple time and we need to make it reusable.
+> [!TIP]
+> `ng-template` is lightweight; it only appears in the DOM when instantiated (wont rendered independently).
+> `ng-template` is usefull when we need to render a block of code multiple time and we need to make it reusable.
 
 ## Comparing ng-template and ng-container
 

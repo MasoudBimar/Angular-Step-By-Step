@@ -13,13 +13,13 @@
   - [Accessing `FormControl` in a template-driven form](#accessing-formcontrol-in-a-template-driven-form)
   - [FormArray (dynamic lists)](#formarray-dynamic-lists)
 
-Template-driven forms are built mostly in the template using directives like
-`ngForm` and `ngModel`. They are a good fit for small to medium forms where the
-logic is simple and the structure is known ahead of time.
-
 > [!NOTE]
 > Template-driven forms still use `FormControl` and `FormGroup` internally. You
 > can access them from `NgForm` if you need programmatic control.
+
+Template-driven forms are built mostly in the template using directives like
+`ngForm` and `ngModel`. They are a good fit for small to medium forms where the
+logic is simple and the structure is known ahead of time.
 
 > [!NOTE]
 > ngForm is a built-in directive provided by FormsModule

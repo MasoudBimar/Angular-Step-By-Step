@@ -231,14 +231,14 @@ Historically, Angular CLI projects were created with **Karma** (runner) and
 **Jasmine** (framework). Many teams now use **Jest** as an alternative because it
 is fast and provides a runner + framework in one tool.
 
+> [!NOTE]
+> Jasmine is an open sourece javascript framewoek for writing unit & integration tests
+
 So far, the commonly used tools in Angular testing include:
 
 - **Karma**: Test runner.
 - **Jasmine**: Test framework and assertion library.
 - **Jest**: Alternative runner + framework.
-
-> [!NOTE]
-> Jasmine is an open sourece javascript framewoek for writing unit & integration tests
 
 > [!NOTE]
 > Karma is a tool (Test Runner) that executes the source code against the tests written using Jasmine & display the results (passing/failing)

@@ -12,7 +12,7 @@
   - [`@Output()` (property decorator, child -\> parent events)](#output-property-decorator-child---parent-events)
   - [`@HostBinding()` (property decorator, bind to host element)](#hostbinding-property-decorator-bind-to-host-element)
   - [`@ViewChild()` and `@ViewChildren()` (property decorator, query the component view)](#viewchild-and-viewchildren-property-decorator-query-the-component-view)
-    - [Accessing different DOM elements using `ViewChild`:](#accessing-different-dom-elements-using-viewchild)
+    - [Accessing different DOM elements using `ViewChild`](#accessing-different-dom-elements-using-viewchild)
   - [`@ContentChild()` and `@ContentChildren()` (property decorator, query projected content)](#contentchild-and-contentchildren-property-decorator-query-projected-content)
   - [`@HostListener()` (method decorator, listen on the host element)](#hostlistener-method-decorator-listen-on-the-host-element)
   - [Quick tips](#quick-tips)
@@ -235,7 +235,7 @@ export class SearchComponent implements AfterViewInit {
 }
 ```
 
-### Accessing different DOM elements using `ViewChild`:
+### Accessing different DOM elements using `ViewChild`
 
 > [!CAUTION]
 > When we are dealing with DOM manipulation, its better to implement the `ngAfterViewInit` hook and access it there.
@@ -246,7 +246,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
 @Component({
   selector: "app-search",
   template: `
-    <input  />
+    <input />
     <button #btnFocus (click)="focus()">Focus</button>
     <app-child></app-child>
   `,

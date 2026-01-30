@@ -47,10 +47,10 @@ export class AttrDirectiveDemoComponent {
 > [!CAUTION]
 > Deprecation: ngStyle and ngClass were officially marked as deprecated starting with Angular 19.1.
 
+Use `ngClass` to toggle classes based on component state.
+
 > [!NOTE]
 > Angular has moved towards encouraging native [style] and [class] bindings over the ngStyle and ngClass directives for better performance and simplicity. However, ngStyle and ngClass are still available for use in existing applications.
-
-Use `ngClass` to toggle classes based on component state.
 
 ```ts
 import { Component } from "@angular/core";

@@ -163,15 +163,15 @@ export class EventBindingDemoComponent {
 > [!NOTE]
 > The keypress event is combination of key up and key down events.
 
-> [!TIP]
-> The keyup event can be usefull in many application areas like form validtion and search functionalities.
-
 | MouseEvent | FocusEvent | TouchEvent  | DragEvent | KeyboardEvent |
 | :--------: | :--------: | :---------: | :-------: | :-----------: |
 |   click    |   focus    | touchstart  |   drag    |   keypress    |
 |  mouseup   |    blur    |  touchmove  |   drop    |     keyup     |
 | mouseleave |  focusin   | touchcancel |  dragend  |    keydown    |
 | mouseover  |  focusout  |  touchend   | dragover  |               |
+
+> [!TIP]
+> The keyup event can be usefull in many application areas like form validtion and search functionalities.
 
 ## Usefull HTMLInputElement Events & KeyboardEvent
 

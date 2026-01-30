@@ -198,13 +198,13 @@ There are two ways to use `on viewport` trigger
 
 ## Prefetch
 
+> [!TIP]
+> Generally `on idle` is the best option to prefetch the data
+
 For prefetching the data in the memory before the @defer is executed we can use `prefetch`
 
 > [!NOTE]
 > We can use prefetch with all 6 triggers `on odle`, `on viewport`, `on interaction`, `on hover`, `on immediate`, `on timer`
-
-> [!TIP]
-> Generally `on idle` is the best option to prefetch the data
 
 In this example reviews component will be prefetched when the application is completely rednered but it won't be displayed until `on interaction` trigger is fired
 

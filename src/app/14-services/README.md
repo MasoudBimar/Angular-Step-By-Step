@@ -163,18 +163,15 @@ export class ProductsService {
 
 ### Injecting tokens
 
+> [!NOTE]
+> Token can be of three types: `Type token`, `String token`, `Injection token object`.
+
 Angular Injecting tokens are created with the `InjectionToken` class.
 With tokens acts like a unique key to register and retrieve dependencies.
 By this keys Angular can differentiate between different dependencies of the same type.
 
 > [!NOTE]
 > Tokens are usefull when we have multiple dependecies and we want to decide which one to Inject and use in out component or service.
-
-> [!NOTE]
-> The Providers Array takes an object with two properties, `provide` for the token and `useValue, useClass, useExisting, useFactory` for which dependecy we want to use.
-
-> [!NOTE]
-> Token can be of three types: `Type token`, `String token`, `Injection token object`.
 
 ```ts
 import { Component, inject } from "@angular/core";
@@ -192,6 +189,9 @@ export class UsersComponent {
   // constructor(@Inject(API_URL) private apiUrl: string) {}
 }
 ```
+
+> [!NOTE]
+> The Providers Array takes an object with two properties, `provide` for the token and `useValue, useClass, useExisting, useFactory` for which dependecy we want to use.
 
 Correct way to inject with `inject()` in standalone components:
 
