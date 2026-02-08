@@ -69,6 +69,8 @@ cd Angular-Step-By-Step
 
 ## Contributing
 
+Contributions are welcome:
+
 - Suggest a fix, update or improvement via issues or pull requests.
 - Add reproducible examples and short explanations (keep lessons focused).
 - Use clear commit messages and include the lesson folder path in your PR.
