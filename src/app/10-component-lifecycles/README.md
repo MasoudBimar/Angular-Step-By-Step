@@ -16,7 +16,7 @@
     - [How to make sure changes in the 'ngAfterViewInit' won't cause **Expression has changed after it was checked**?](#how-to-make-sure-changes-in-the-ngafterviewinit-wont-cause-expression-has-changed-after-it-was-checked)
     - [`ngOnDestroy`](#ngondestroy)
   - [Render hooks (signals-friendly)](#render-hooks-signals-friendly)
-    - [`afterRender()`](#afterrender)
+    - [`afterEveryRender()` (afterRender till ANgular 20)](#aftereveryrender-afterrender-till-angular-20)
     - [`afterNextRender()`](#afternextrender)
   - [Tips \& Tricks](#tips--tricks)
   - [Key points](#key-points)
@@ -337,12 +337,12 @@ export class PollingComponent implements OnDestroy {
 
 These helpers run after render and are useful when your template is driven by signals. They are functions, not class lifecycle methods.
 
-### `afterRender()`
+### `afterEveryRender()` (afterRender till ANgular 20)
 
 Runs after every render. Use it when you need the DOM now (measure, focus, or integrate with DOM-only libraries).
 
 ```ts
-import { Component, ElementRef, afterRender, inject, signal } from "@angular/core";
+import { Component, ElementRef, afterEveryRender, inject, signal } from "@angular/core";
 
 @Component({
   selector: "app-panel",
@@ -358,7 +358,7 @@ export class PanelComponent {
   isOpen = signal(false);
 
   constructor() {
-    afterRender(() => {
+    afterEveryRender(() => {
       const panel = this.host.nativeElement.querySelector(".panel");
       if (panel && this.isOpen()) {
         panel.setAttribute("tabindex", "-1");
@@ -406,7 +406,7 @@ export class MessagesComponent {
 ```
 
 > [!TIP]
-> Use `afterRender`/`afterNextRender` inside an injection context (constructor or field initializer).
+> Use `afterEveryRender`/`afterNextRender` inside an injection context (constructor or field initializer).
 
 ## Tips & Tricks
 
