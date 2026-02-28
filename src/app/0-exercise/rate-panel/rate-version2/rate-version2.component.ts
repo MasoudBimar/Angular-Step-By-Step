@@ -5,14 +5,15 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges,
+  SimpleChanges, ChangeDetectionStrategy
 } from '@angular/core';
 
 @Component({
-    imports: [],
-    selector: 'app-rate-version2',
-    templateUrl: './rate-version2.component.html',
-    styleUrls: ['./rate-version2.component.scss']
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [],
+  selector: 'app-rate-version2',
+  templateUrl: './rate-version2.component.html',
+  styleUrls: ['./rate-version2.component.scss']
 })
 export class RateVersion2Component implements OnInit, OnChanges {
   @Input() stars: number = 5;
@@ -47,3 +48,4 @@ export class RateVersion2Component implements OnInit, OnChanges {
     this.starHovered = 0;
   }
 }
+

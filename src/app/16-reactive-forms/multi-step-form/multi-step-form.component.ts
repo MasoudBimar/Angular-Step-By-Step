@@ -1,8 +1,9 @@
 
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ReactiveFormsModule],
     selector: 'app-multi-step-form',
     templateUrl: './multi-step-form.component.html',
@@ -70,3 +71,5 @@ export class MultiStepFormComponent {
   }
 
 }
+
+

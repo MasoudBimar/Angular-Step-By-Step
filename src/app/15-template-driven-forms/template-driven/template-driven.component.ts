@@ -1,9 +1,10 @@
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Product } from 'src/app/shared/model/product.model';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FormsModule],
     selector: 'app-template-driven-form',
     templateUrl: './template-driven.component.html',
@@ -35,3 +36,5 @@ export class TemplateDrivenComponent {
   }
 
 }
+
+

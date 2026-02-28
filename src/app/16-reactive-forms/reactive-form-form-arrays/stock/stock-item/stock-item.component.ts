@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 
 import { Stock } from '../../model/stock';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
     selector: 'app-form-array-stock-item',
     templateUrl: './stock-item.component.html',
@@ -22,3 +23,5 @@ export class StockFormArrayItemComponent {
     this.toggleFavorite.emit(this.stock);
   }
 }
+
+

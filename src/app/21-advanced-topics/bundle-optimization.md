@@ -227,6 +227,23 @@ Ensure production config enables optimization features:
 
 If debugging production issues, temporarily enable source maps in a separate debug config, not normal production deploys.
 
+## 11) Going Zone-less with Angular 20+
+
+If you are using Angular 20 or later, consider going zone-less to reduce bundle size and improve performance. This involves:
+
+- Removing `zone.js` from your project.
+- Refactoring code to use `NgZone` or `runOutsideAngular` for change detection
+- Ensuring third-party libraries are compatible with zone-less operation.
+- Testing thoroughly to catch any change detection issues that may arise from going zone-less.
+
+Neeed to provide this `provideZonelessChangeDetection()` in app.comfig.ts or main.ts
+And also set all chage detection strategy to `OnPush` for better performance.
+
+## 13) reduce css bundle size using gzip
+
+- installing gzip `npm install --save-dev gzipper`
+- add a post build command : `"postbuild": "gzipper compress ./dist/your-app-name --gzip"`
+
 ## Common Problems and Fast Solutions
 
 ### Problem: Initial bundle is too large

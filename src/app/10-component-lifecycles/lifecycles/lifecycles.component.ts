@@ -1,8 +1,9 @@
 
-import { Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { CodeHighlighterComponent } from 'src/app/shared/code-highlighter/code-highlighter.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CodeHighlighterComponent],
     selector: 'app-lifecycles',
     templateUrl: './lifecycles.component.html',
@@ -65,3 +66,5 @@ export class LifecyclesComponent implements OnInit, OnDestroy, DoCheck, OnChange
     console.log(this.inputs, changes);
   }
 }
+
+

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 export class Person {
   public fn!: string;
@@ -9,6 +9,7 @@ export class Person {
 
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
     selector: 'app-structural-directives',
     templateUrl: './structural-directives.component.html',
@@ -25,3 +26,5 @@ export class StructuralDirectivesComponent {
     // this.raiseEvent.emit(event);
   }
 }
+
+

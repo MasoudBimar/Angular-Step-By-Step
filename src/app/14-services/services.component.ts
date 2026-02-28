@@ -1,8 +1,9 @@
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AsyncPipe, NgTemplateOutlet],
     selector: 'app-services',
     templateUrl: './services.component.html',
@@ -37,3 +38,5 @@ interface User {
   email: string;
   address: { street: string, city: string, zipcode: string };
 }
+
+

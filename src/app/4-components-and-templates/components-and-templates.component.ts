@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
     selector: 'app-components-and-templates',
     templateUrl: './components-and-templates.component.html',
@@ -10,3 +11,5 @@ import { Component } from '@angular/core';
 export class ComponentsAndTemplatesComponent {
 
 }
+
+

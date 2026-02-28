@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RateVersion3Component } from './rate-version3/rate-version3.component';
 import { RateVersion2Component } from './rate-version2/rate-version2.component';
 import { RateComponent } from './rate/rate.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-rate-panel',
     imports: [RateVersion3Component, RateVersion2Component, RateComponent],
     templateUrl: './rate-panel.component.html',
@@ -24,3 +25,5 @@ export class RatePanelComponent {
   }
 
 }
+
+

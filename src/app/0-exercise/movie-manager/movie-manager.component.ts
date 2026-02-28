@@ -1,10 +1,11 @@
 
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Movie, MovieResult, MovieService } from './movie.service';
 import { RateVersion2Component } from '../rate-panel/rate-version2/rate-version2.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ReactiveFormsModule, RateVersion2Component],
     selector: 'app-movie-manager',
     templateUrl: './movie-manager.component.html',
@@ -67,3 +68,5 @@ export class MovieManagerComponent {
     });
   }
 }
+
+

@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, Input, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, Input, AfterViewInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
@@ -7,6 +7,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-json';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-code-highlighter, [highlighter]',
     imports: [],
     template: `<code #codeBlock [class]="'language-' + language"></code>`,
@@ -37,3 +38,5 @@ export class CodeHighlighterComponent implements AfterViewInit {
     return code;
   }
 }
+
+

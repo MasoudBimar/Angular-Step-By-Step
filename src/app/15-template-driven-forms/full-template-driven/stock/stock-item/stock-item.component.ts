@@ -1,9 +1,10 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 
 import { Stock } from '../../model/stock';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
     selector: 'app-stock-item',
     templateUrl: './stock-item.component.html',
@@ -18,3 +19,5 @@ export class StockItemComponent {
     this.toggleFavorite.emit(this.stock);
   }
 }
+
+

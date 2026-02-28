@@ -1,8 +1,9 @@
 
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, ChangeDetectionStrategy } from '@angular/core';
 import { AngularTestingService, User } from './angular-testing.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-angular-testing',
     imports: [],
     templateUrl: './angular-testing.component.html',
@@ -61,3 +62,5 @@ export class AngularTestingComponent {
   }
 
 }
+
+

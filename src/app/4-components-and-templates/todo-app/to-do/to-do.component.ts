@@ -1,11 +1,12 @@
 
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodoItem } from '../model/to-do-item.model';
 import { TodoItemService } from '../services/todo-item.service';
 import { TodoList } from '../model/to-do-list.model';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FormsModule],
     selector: 'app-to-do',
     templateUrl: './to-do.component.html',
@@ -30,3 +31,5 @@ export class ToDoComponent {
   }
 
 }
+
+

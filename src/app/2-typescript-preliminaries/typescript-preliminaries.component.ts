@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
     selector: 'app-typescript-preliminaries',
     templateUrl: './typescript-preliminaries.component.html',
@@ -10,3 +11,5 @@ import { Component } from '@angular/core';
 export class TypescriptPreliminariesComponent {
 
 }
+
+

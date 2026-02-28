@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 import { Stock } from '../model/stock';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
     selector: 'app-reactive-stock-item',
     templateUrl: './stock-item.component.html',
@@ -21,3 +22,5 @@ export class StockReactiveItemComponent {
     this.toggleFavorite.emit(this.stock);
   }
 }
+
+

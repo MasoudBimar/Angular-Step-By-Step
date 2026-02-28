@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
     selector: 'app-attribute-directives',
     templateUrl: './attribute-directives.component.html',
@@ -13,3 +14,5 @@ export class AttributeDirectivesComponent {
     this.isDarkMode = !this.isDarkMode;
   }
 }
+
+

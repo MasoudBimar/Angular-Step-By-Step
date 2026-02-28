@@ -1,8 +1,9 @@
 import { JsonPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ReactiveFormsModule, JsonPipe],
     selector: 'app-reactive-form',
     templateUrl: './reactive-form.component.html',
@@ -30,3 +31,5 @@ export class ReactiveFormComponent implements OnInit {
   }
 
 }
+
+

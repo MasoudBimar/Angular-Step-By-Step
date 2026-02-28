@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CodeHighlighterComponent } from '../shared/code-highlighter/code-highlighter.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CodeHighlighterComponent],
   selector: 'app-decorators',
   templateUrl: './decorators.component.html',
@@ -96,3 +97,5 @@ onLeave() {
   @Host() private host: HostService
 ) {}`;
 }
+
+

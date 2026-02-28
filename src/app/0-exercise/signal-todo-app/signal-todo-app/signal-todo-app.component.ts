@@ -1,10 +1,11 @@
 
-import { Component, computed, inject, signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject, signal, WritableSignal, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodoItem } from '../model/to-do-item.model';
 import { TodoItemService } from '../service/todo-item.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-signal-todo-app',
     imports: [FormsModule],
     templateUrl: './signal-todo-app.component.html',
@@ -52,3 +53,5 @@ export class SignalTodoAppComponent {
     return item.id;
   }
 }
+
+

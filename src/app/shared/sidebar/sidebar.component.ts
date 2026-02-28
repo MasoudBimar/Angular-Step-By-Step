@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 interface SidebarItem {
@@ -9,6 +9,7 @@ interface SidebarItem {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, RouterLinkActive],
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
@@ -125,3 +126,5 @@ export class SidebarComponent {
     return route.startsWith('/') ? route : `/${route}`;
   }
 }
+
+

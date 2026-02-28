@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AppendTextPipe } from './pipes/append-text.pipe';
 import { PersianDatePipe } from './pipes/persian-date.pipe';
 import { CurrencyPipe, DatePipe, DecimalPipe, SlicePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AppendTextPipe, PersianDatePipe, SlicePipe, CurrencyPipe, TitleCasePipe, UpperCasePipe, DatePipe, DecimalPipe],
     selector: 'app-pipes',
     templateUrl: './pipes.component.html',
@@ -18,3 +19,5 @@ export class PipesComponent {
     { name: 'emma rivera', state: 'Washington', salary: 88000, issueDate: new Date() }
   ];
 }
+
+

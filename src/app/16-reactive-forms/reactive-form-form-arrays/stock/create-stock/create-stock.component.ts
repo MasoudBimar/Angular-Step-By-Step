@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Stock } from '../../model/stock';
 import { JsonPipe } from '@angular/common';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ReactiveFormsModule, JsonPipe],
     selector: 'app-form-array-create-stock',
     templateUrl: './create-stock.component.html',
@@ -51,3 +52,5 @@ export class CreateFormArrayStockComponent {
     console.log('Saving stock', this.stock);
   }
 }
+
+

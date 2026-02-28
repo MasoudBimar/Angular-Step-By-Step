@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-signal-counter',
     imports: [],
     templateUrl: './signal-counter.component.html',
@@ -25,3 +26,5 @@ export class SignalCounterComponent {
     }
   }
 }
+
+

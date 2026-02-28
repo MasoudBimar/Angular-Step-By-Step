@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { PersianDatePipe } from '../12-pipes/pipes/persian-date.pipe';
 import {
   CurrencyPipe,
@@ -11,6 +11,7 @@ import {
 import { CodeHighlighterComponent } from '../shared/code-highlighter/code-highlighter.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         PersianDatePipe,
         DecimalPipe,
@@ -127,3 +128,5 @@ export class AngularFundamentalsComponent {
     console.log('Enter Event Handler 3 >>>', target.value);
   }
 }
+
+

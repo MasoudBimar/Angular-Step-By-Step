@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
     selector: 'app-rate-version3',
     templateUrl: './rate-version3.component.html',
@@ -20,3 +21,5 @@ export class RateVersion3Component {
   handleLeave = () => { this.hoverTo = -1 }
 
 }
+
+

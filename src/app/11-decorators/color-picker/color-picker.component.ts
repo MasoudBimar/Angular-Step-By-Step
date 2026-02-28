@@ -1,7 +1,8 @@
-import { Component, HostBinding, HostListener } from '@angular/core';
+import { Component, HostBinding, HostListener, ChangeDetectionStrategy } from '@angular/core';
 
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
     selector: 'app-color-picker',
     templateUrl: './color-picker.component.html',
@@ -20,3 +21,5 @@ export class ColorPickerComponent {
     if (value) this.selectedColor = value;
   }
 }
+
+

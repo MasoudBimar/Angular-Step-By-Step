@@ -1,7 +1,8 @@
 import { SlicePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [SlicePipe],
     selector: 'app-post-collection',
     templateUrl: './post-collection.component.html',
@@ -143,3 +144,5 @@ export class PostCollectionComponent {
     this.endIndex += this.pageSize;
   }
 }
+
+

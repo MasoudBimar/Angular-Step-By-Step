@@ -1,9 +1,10 @@
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterOutlet, SidebarComponent],
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -13,3 +14,5 @@ export class AppComponent {
   title = 'AngularStepByStep';
 
 }
+
+
