@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { AngularTestingService, User } from './angular-testing.service';
 
 @Component({
     selector: 'app-angular-testing',
-    imports: [CommonModule],
+    imports: [],
     templateUrl: './angular-testing.component.html',
     styleUrl: './angular-testing.component.scss'
 })
