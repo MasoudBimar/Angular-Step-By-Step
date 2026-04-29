@@ -12,10 +12,12 @@
       <div class="panel-header">
         <div>
           <p class="eyebrow">Time Lapse</p>
-          <h2>{{ isRunning() ? 'Running' : elapsed() > 0 ? 'Paused' : 'Ready' }}</h2>
+          <h2>
+            {{ isRunning() ? "Running" : elapsed() > 0 ? "Paused" : "Ready" }}
+          </h2>
         </div>
         <span class="status-pill" [class.status-pill--active]="isRunning()">
-          {{ isRunning() ? 'Live' : 'Idle' }}
+          {{ isRunning() ? "Live" : "Idle" }}
         </span>
       </div>
 
@@ -31,7 +33,7 @@
           [class.btn-primary]="!isRunning()"
           (click)="startOrPause()"
         >
-          {{ isRunning() ? 'Pause' : elapsed() > 0 ? 'Resume' : 'Start' }}
+          {{ isRunning() ? "Pause" : elapsed() > 0 ? "Resume" : "Start" }}
         </button>
         <button
           type="button"

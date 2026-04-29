@@ -22,6 +22,7 @@ import { AttributeDirectivesComponent } from './6-attribute-directives/attribute
 import { ComponentDirectivesComponent } from './7-component-directives/component-directives.component';
 import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
 import { StopWatchComponent } from './0-exercise/stop-watch/stop-watch.component';
+import { GuessNumberGameComponent } from './0-exercise/guess-number-game/guess-number-game.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
@@ -65,6 +66,7 @@ export const routes: Routes = [
       { title: 'Signal Counter', path: 'signal-counter', component: SignalCounterComponent },
       { title: 'Signal Todo', path: 'signal-todo', component: SignalTodoAppComponent },
       { title: 'Stop Watch', path: 'stop-watch', component: StopWatchComponent },
+      { title: 'Guess Number Game', path: 'guess-number-game', component: GuessNumberGameComponent },
     ]
   }
 ];

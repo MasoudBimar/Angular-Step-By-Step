@@ -1,0 +1,69 @@
+<section class="layout-shell">
+  <header class="layout-header">
+    <div>
+      <p class="eyebrow">Game Exercise</p>
+      <h2>Guess Number Game</h2>
+      <p class="layout-subtext">
+        Guess the hidden number from 0 to 100 before your attempts run out.
+      </p>
+    </div>
+  </header>
+
+  <div class="layout-grid guess-grid">
+    <div class="panel guess-panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Hidden Number</p>
+          <h2>{{ isGameOver() ? 'Round Complete' : 'Your Guess' }}</h2>
+        </div>
+        <span class="attempt-pill">{{ attemptsLeft() }} attempts left</span>
+      </div>
+
+      <div class="guess-display">
+        <span class="guess-display__label">Last Guess</span>
+        <strong>{{ lastGuess() ?? '--' }}</strong>
+      </div>
+
+      <div
+        class="message"
+        [class.message--success]="hasWon()"
+        [class.message--danger]="!hasWon() && attemptsLeft() === 0"
+        aria-live="polite"
+      >
+        {{ message() }}
+      </div>
+
+      <label class="guess-field">
+        <span>Enter a number</span>
+        <input
+          type="number"
+          class="form-control"
+          min="0"
+          max="100"
+          placeholder="0 - 100"
+          #inputElement
+          [disabled]="isGameOver()"
+          (keyup.enter)="submit(inputElement.value)"
+        />
+      </label>
+
+      <div class="guess-actions">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="submit(inputElement.value)"
+          [disabled]="isGameOver()"
+        >
+          Submit Guess
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="reset(inputElement)"
+        >
+          New Game
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
