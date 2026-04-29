@@ -21,6 +21,7 @@ import { StructuralDirectivesComponent } from './5-structural-directives/structu
 import { AttributeDirectivesComponent } from './6-attribute-directives/attribute-directives.component';
 import { ComponentDirectivesComponent } from './7-component-directives/component-directives.component';
 import { SpecialElementsComponent } from './9-special-elements/special-elements.component';
+import { StopWatchComponent } from './0-exercise/stop-watch/stop-watch.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'to-do', pathMatch: 'full' },
@@ -63,6 +64,7 @@ export const routes: Routes = [
       { title: 'Movies', path: 'movies', component: MovieManagerComponent },
       { title: 'Signal Counter', path: 'signal-counter', component: SignalCounterComponent },
       { title: 'Signal Todo', path: 'signal-todo', component: SignalTodoAppComponent },
+      { title: 'Stop Watch', path: 'stop-watch', component: StopWatchComponent },
     ]
   }
 ];

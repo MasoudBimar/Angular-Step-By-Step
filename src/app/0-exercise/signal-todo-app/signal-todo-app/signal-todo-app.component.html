@@ -17,7 +17,6 @@
         <input
           #todoInput
           tabindex="0"
-         
           class="field-input"
           placeholder="Enter task title"
           (keydown.enter)="addNewItem(todoInput)"
@@ -41,7 +40,7 @@
           @if (openItems().length === 0) {
             <p class="todo-empty">No open tasks yet.</p>
           }
-          @for (task of openItems(); track trackById(i, task); let i = $index) {
+          @for (task of openItems(); track trackById(task); let i = $index) {
             <div class="todo-item">
               <span class="index">{{ i + 1 }}</span>
               <span class="item-title">{{ task.title }}</span>
@@ -76,7 +75,7 @@
           @if (doneItems().length === 0) {
             <p class="todo-empty">No completed tasks yet.</p>
           }
-          @for (task of doneItems(); track trackById(i, task); let i = $index) {
+          @for (task of doneItems(); track trackById(task); let i = $index) {
             <div class="todo-item">
               <span class="index">{{ i + 1 }}</span>
               <span class="item-title">{{ task.title }}</span>

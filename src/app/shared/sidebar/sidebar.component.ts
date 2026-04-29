@@ -10,10 +10,10 @@ interface SidebarItem {
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, RouterLinkActive],
-    selector: 'app-sidebar',
-    templateUrl: './sidebar.component.html',
-    styleUrls: ['./sidebar.component.scss']
+  imports: [RouterLink, RouterLinkActive],
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
 
@@ -94,6 +94,7 @@ export class SidebarComponent {
         { id: 'movies', label: 'Movies', route: '/exercise/movies' },
         { id: 'signal-counter', label: 'Signal Counter', route: '/exercise/signal-counter' },
         { id: 'signal-todo', label: 'Signal Todo', route: '/exercise/signal-todo' },
+        { id: 'stop-watch', label: 'Stop Watch', route: '/exercise/stop-watch' },
       ]
     }
   ];

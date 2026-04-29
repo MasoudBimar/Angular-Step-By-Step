@@ -1,0 +1,47 @@
+<section class="layout-shell">
+  <header class="layout-header">
+    <div>
+      <p class="eyebrow">Timer Exercise</p>
+      <h2>Stopwatch</h2>
+      <p class="layout-subtext">Start, pause, and stop the time lapse.</p>
+    </div>
+  </header>
+
+  <div class="layout-grid stopwatch-grid">
+    <div class="panel stopwatch-panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Time Lapse</p>
+          <h2>{{ isRunning() ? 'Running' : elapsed() > 0 ? 'Paused' : 'Ready' }}</h2>
+        </div>
+        <span class="status-pill" [class.status-pill--active]="isRunning()">
+          {{ isRunning() ? 'Live' : 'Idle' }}
+        </span>
+      </div>
+
+      <div class="time-display" aria-live="polite">
+        {{ displayTime() }}
+      </div>
+
+      <div class="stopwatch-actions">
+        <button
+          type="button"
+          class="btn"
+          [class.btn-warning]="isRunning()"
+          [class.btn-primary]="!isRunning()"
+          (click)="startOrPause()"
+        >
+          {{ isRunning() ? 'Pause' : elapsed() > 0 ? 'Resume' : 'Start' }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          [disabled]="elapsed() === 0"
+          (click)="stop()"
+        >
+          Stop
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

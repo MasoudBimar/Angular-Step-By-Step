@@ -6,10 +6,10 @@ import { TodoItemService } from '../service/todo-item.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-    selector: 'app-signal-todo-app',
-    imports: [FormsModule],
-    templateUrl: './signal-todo-app.component.html',
-    styleUrl: './signal-todo-app.component.scss'
+  selector: 'app-signal-todo-app',
+  imports: [FormsModule],
+  templateUrl: './signal-todo-app.component.html',
+  styleUrl: './signal-todo-app.component.scss'
 })
 export class SignalTodoAppComponent {
   private readonly todoItemService = inject(TodoItemService);
@@ -49,7 +49,7 @@ export class SignalTodoAppComponent {
     );
   }
 
-  trackById(index: number, item: TodoItem) {
+  trackById(item: TodoItem) {
     return item.id;
   }
 }

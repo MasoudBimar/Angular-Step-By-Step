@@ -4,17 +4,17 @@ import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [AsyncPipe, NgTemplateOutlet],
-    selector: 'app-services',
-    templateUrl: './services.component.html',
-    styleUrls: ['./services.component.scss']
+  imports: [AsyncPipe, NgTemplateOutlet],
+  selector: 'app-services',
+  templateUrl: './services.component.html',
+  styleUrls: ['./services.component.scss']
 })
 export class ServicesComponent {
   private jsonPlaceHolderUrl = 'https://jsonplaceholder.typicode.com/users/';
   private readonly http = inject(HttpClient);
   readonly users$ = this.http.get<User[]>(this.jsonPlaceHolderUrl);
 
-  trackByUserId(index: number, user: User) {
+  trackByUserId(user: User) {
     return user.id;
   }
 

@@ -33,11 +33,7 @@
               </tr>
             </thead>
             <tbody>
-              @for (
-                user of users;
-                track trackByUserId(i, user);
-                let i = $index
-              ) {
+              @for (user of users; track trackByUserId(user); let i = $index) {
                 <tr>
                   <td>{{ i + 1 }}</td>
                   <td>{{ user.name }}</td>
