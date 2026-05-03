@@ -1,23 +1,15 @@
-import { describe } from 'vitest';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { TicTacToeGameComponent } from './tic-tac-toe-game.component';
 
 describe('TicTacToeGameComponent', () => {
   let component: TicTacToeGameComponent;
-  let fixture: ComponentFixture<TicTacToeGameComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TicTacToeGameComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(TicTacToeGameComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    component = new TicTacToeGameComponent();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
   it('should alternate turns after a valid move', () => {
@@ -55,7 +47,7 @@ describe('TicTacToeGameComponent', () => {
     );
 
     expect(component.winner()).toBeUndefined();
-    expect(component.isDraw()).toBeTrue();
+    expect(component.isDraw()).toBe(true);
     expect(component.statusText()).toBe('Draw');
   });
 
@@ -64,8 +56,8 @@ describe('TicTacToeGameComponent', () => {
 
     component.reset();
 
-    expect(component.board().every(cell => cell === null)).toBeTrue();
+    expect(component.board().every(cell => cell === null)).toBe(true);
     expect(component.playerTurn()).toBe('X');
-    expect(component.gameOver()).toBeFalse();
+    expect(component.gameOver()).toBe(false);
   });
 });
