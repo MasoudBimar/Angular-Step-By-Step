@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { RateVersion2Component } from './rate-version2.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -26,7 +26,7 @@ describe('RateVersion2Component', () => {
 
   it('should create 5 array star by default', () => {
     expect(component['states']).toEqual([1, 2, 3, 4, 5]);
-  })
+  });
 
   it('should create corresponding array star based on input', () => {
     fixture.componentRef.setInput('stars', 10);
@@ -35,7 +35,7 @@ describe('RateVersion2Component', () => {
   });
 
   it('should emit rateChange Event', () => {
-    spyOn(component.rateChange, 'emit');
+    vi.spyOn(component.rateChange, 'emit');
     component.changeHandler(4);
     expect(component.rateChange.emit).toHaveBeenCalledWith(4);
   });
@@ -54,7 +54,7 @@ describe('RateVersion2Component', () => {
 
   it('should emit star item value corresponding the star that get clicked', () => {
     fixture.componentRef.setInput('stars', 10);
-    spyOn(component.rateChange, 'emit');
+    vi.spyOn(component.rateChange, 'emit');
     fixture.detectChanges();
     const debugElements: DebugElement[] = fixture.debugElement.queryAll(By.css('[data-testid="star-item"]'));
     (debugElements[3].nativeElement as HTMLSpanElement).click();

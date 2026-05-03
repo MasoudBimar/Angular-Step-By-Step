@@ -3,8 +3,11 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { AngularTestingComponent } from './angular-testing.component';
 import { AngularTestingService } from './angular-testing.service';
+import '@angular/compiler';
+
 
 describe('AngularTestingComponent (basics)', () => {
   let component: AngularTestingComponent;
@@ -66,7 +69,7 @@ describe('AngularTestingComponent (basics)', () => {
     component.count = 2;
     fixture.detectChanges();
 
-    const emitSpy = spyOn(component.saved, 'emit');
+    const emitSpy = vi.spyOn(component.saved, 'emit');
     fixture.debugElement.query(By.css('[data-testid="save"]')).triggerEventHandler('click', null);
     fixture.detectChanges();
 
@@ -95,7 +98,7 @@ describe('AngularTestingComponent (basics)', () => {
 
   it('can spy on a dependency method', () => {
     const service = TestBed.inject(AngularTestingService);
-    const spy = spyOn(service, 'getUsers').and.returnValue(of([{ id: 1, name: 'Spy User' }]));
+    const spy = vi.spyOn(service, 'getUsers').mockReturnValue(of([{ id: 1, name: 'Spy User' }]));
 
     component.loadUsers();
     fixture.detectChanges();

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { beforeEach, describe, expect, it } from 'vitest';
 import { ColorPickerComponent } from './color-picker.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -23,7 +23,7 @@ describe('ColorPickerComponent', () => {
   });
 
   it('should change the background color with calling colorChange', () => {
-    spyOn(component, 'colorChange').and.callThrough();
+    vi.spyOn(component, 'colorChange');
     const debugElement: DebugElement = fixture.debugElement.query(By.css(`[data-testid="input-color-picker"]`));
     const inputElement = debugElement.nativeElement as HTMLInputElement;
     if (inputElement) {
@@ -35,5 +35,5 @@ describe('ColorPickerComponent', () => {
     fixture.detectChanges();
     const color = getComputedStyle(fixture.debugElement.nativeElement).backgroundColor;
     expect(color).toBe('rgb(255, 0, 0)');
-  })
+  });
 });

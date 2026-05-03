@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
+import { beforeEach, describe, expect, it } from 'vitest';
 import { By } from '@angular/platform-browser';
 import { Stock } from '../../model/stock';
 import { StockItemComponent } from './stock-item.component';
@@ -23,7 +23,7 @@ describe('Full Template Driven Stock Item Component', () => {
 
   it('should create stock component and render stock data', () => {
     const nameEl = fixture.debugElement.query(By.css('[data-testid="stock-name"]'));
-    expect(nameEl.nativeElement.textContent.trim()).withContext('Testing Stock (TS)').not.toBeNull();
+    expect(nameEl.nativeElement.textContent.trim(), 'Testing Stock (TS)').not.toBeNull();
     const priceEl = fixture.debugElement.query(By.css('.stock-price.negative'));
     expect(priceEl.nativeElement.textContent.trim()).toEqual('$ 100');
     const addToFavoriteBtnEl = fixture.debugElement.query(By.css('button'));

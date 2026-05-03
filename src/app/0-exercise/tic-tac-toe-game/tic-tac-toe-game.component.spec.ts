@@ -1,6 +1,18 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { TicTacToeGameComponent } from './tic-tac-toe-game.component';
 
+// migrate from Jasmine to Vitest
+// Converts fit and fdescribe to it.only and describe.only.
+// Converts xit and xdescribe to it.skip and describe.skip.
+// Converts spyOn calls to the equivalent vi.spyOn.
+// Replaces jasmine.objectContaining with expect.objectContaining.
+// Replaces jasmine.any with expect.any.
+// Replaces jasmine.createSpy with vi.fn.
+// Updates beforeAll, beforeEach, afterAll, and afterEach to their Vitest equivalents.
+// Converts fail() to Vitest's vi.fail().
+// Adjusts expectations to match Vitest APIs
+// Adds TODO comments for code that cannot be automatically converted
+
 describe('TicTacToeGameComponent', () => {
   let component: TicTacToeGameComponent;
 

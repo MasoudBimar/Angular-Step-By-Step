@@ -1,16 +1,22 @@
+import type { MockedObject } from "vitest";
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { AuthGuardClassBased } from './auth-class.guard';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 describe('AuthGuardClassBased', () => {
   let guard: AuthGuardClassBased;
-  let authMock: jasmine.SpyObj<AuthService>;
-  let routerMock: jasmine.SpyObj<Router>;
+  let authMock: MockedObject<AuthService>;
+  let routerMock: MockedObject<Router>;
 
   beforeEach(() => {
-    authMock = jasmine.createSpyObj<AuthService>('AuthService', ['isLoggedIn']);
-    routerMock = jasmine.createSpyObj<Router>('Router', ['navigate']);
+    authMock = {
+      isLoggedIn: vi.fn().mockName("AuthService.isLoggedIn")
+    };
+    routerMock = {
+      navigate: vi.fn().mockName("Router.navigate")
+    };
 
     TestBed.configureTestingModule({
       providers: [
@@ -24,21 +30,21 @@ describe('AuthGuardClassBased', () => {
   });
 
   it('calls isLoggedIn when route activation is checked', () => {
-    authMock.isLoggedIn.and.returnValue(true);
+    authMock.isLoggedIn.mockReturnValue(true);
 
     const result = guard.canActivate({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot);
 
     expect(authMock.isLoggedIn).toHaveBeenCalledTimes(1);
-    expect(result).toBeTrue();
+    expect(result).toBe(true);
   });
 
   it('navigates away and returns false when user is not logged in', () => {
-    authMock.isLoggedIn.and.returnValue(false);
+    authMock.isLoggedIn.mockReturnValue(false);
 
     const result = guard.canActivate({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot);
 
     expect(authMock.isLoggedIn).toHaveBeenCalledTimes(1);
     expect(routerMock.navigate).toHaveBeenCalledWith(['to-do']);
-    expect(result).toBeFalse();
+    expect(result).toBe(false);
   });
 });
