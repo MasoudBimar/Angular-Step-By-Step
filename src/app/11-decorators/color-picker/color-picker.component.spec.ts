@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { ColorPickerComponent } from './color-picker.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';

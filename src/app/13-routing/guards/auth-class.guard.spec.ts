@@ -1,14 +1,21 @@
-import type { MockedObject } from "vitest";
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { AuthGuardClassBased } from './auth-class.guard';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+
+type AuthServiceMock = {
+  isLoggedIn: Mock<AuthService['isLoggedIn']>;
+};
+
+type RouterMock = {
+  navigate: Mock<Router['navigate']>;
+};
 
 describe('AuthGuardClassBased', () => {
   let guard: AuthGuardClassBased;
-  let authMock: MockedObject<AuthService>;
-  let routerMock: MockedObject<Router>;
+  let authMock: AuthServiceMock;
+  let routerMock: RouterMock;
 
   beforeEach(() => {
     authMock = {
