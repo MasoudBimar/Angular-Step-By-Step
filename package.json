@@ -12,23 +12,23 @@
   "private": true,
   "packageManager": "pnpm@10.29.3",
   "dependencies": {
-    "@angular/animations": "^20.3.17",
-    "@angular/common": "^20.3.17",
-    "@angular/compiler": "^20.3.17",
-    "@angular/core": "^20.3.17",
-    "@angular/forms": "^20.3.17",
-    "@angular/platform-browser": "^20.3.17",
-    "@angular/platform-browser-dynamic": "^20.3.17",
-    "@angular/router": "^20.3.17",
+    "@angular/animations": "^21.2.11",
+    "@angular/common": "^21.2.11",
+    "@angular/compiler": "^21.2.11",
+    "@angular/core": "^21.2.11",
+    "@angular/forms": "^21.2.11",
+    "@angular/platform-browser": "^21.2.11",
+    "@angular/platform-browser-dynamic": "^21.2.11",
+    "@angular/router": "^21.2.11",
     "bootstrap": "5.3.8",
     "rxjs": "^7.8.0",
     "tslib": "^2.5.0"
   },
   "devDependencies": {
     "@angular-eslint/builder": "21.0.1",
-    "@angular/build": "^20.3.18",
-    "@angular/cli": "~20.3.18",
-    "@angular/compiler-cli": "^20.3.17",
+    "@angular/build": "^21.2.9",
+    "@angular/cli": "~21.2.9",
+    "@angular/compiler-cli": "^21.2.11",
     "@eslint/js": "^9.39.1",
     "@types/jasmine": "~4.0.0",
     "@types/prismjs": "^1.26.5",
@@ -41,7 +41,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "prismjs": "^1.30.0",
-    "typescript": "~5.8.3",
+    "typescript": "~5.9.3",
     "typescript-eslint": "8.46.4"
   }
 }
