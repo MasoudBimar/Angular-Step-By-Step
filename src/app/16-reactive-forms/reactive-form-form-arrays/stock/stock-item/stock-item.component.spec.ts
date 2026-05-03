@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { By } from '@angular/platform-browser';
 import { Stock } from '../../model/stock';
@@ -9,12 +9,12 @@ describe('Reactive Form Array Stock Item Component', () => {
   let fixture: ComponentFixture<StockFormArrayItemComponent>;
   let component: StockFormArrayItemComponent;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [StockFormArrayItemComponent],
 
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StockFormArrayItemComponent);
