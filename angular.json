@@ -93,7 +93,7 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
             "codeCoverage": true,
             "main": "src/test.ts",
@@ -108,7 +108,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "browsers": [
+              "chromium"
+            ]
           }
         },
         "lint": {
