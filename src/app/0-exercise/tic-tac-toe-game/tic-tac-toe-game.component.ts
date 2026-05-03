@@ -1,11 +1,18 @@
 import { Component, computed, signal } from '@angular/core';
 
 type Player = 'X' | 'O';
+type CellValue = Player | null;
 
-interface SelectedCell {
-  readonly type: Player | undefined;
-  readonly idx: number;
-  winnerState?: boolean;
+interface BoardCell {
+  readonly id: number;
+  readonly label: number;
+  readonly value: CellValue;
+  readonly isWinningCell: boolean;
+}
+
+interface GameResult {
+  readonly winner: Player;
+  readonly line: readonly number[];
 }
 
 const WINNING_COMBINATIONS = [
@@ -19,6 +26,12 @@ const WINNING_COMBINATIONS = [
   [2, 4, 6],
 ] as const;
 
+const BOARD_SIZE = 9;
+const EMPTY_BOARD: readonly CellValue[] = Array.from(
+  { length: BOARD_SIZE },
+  () => null
+);
+
 @Component({
   selector: 'app-tic-tac-toe-game',
   templateUrl: './tic-tac-toe-game.component.html',
@@ -27,17 +40,29 @@ const WINNING_COMBINATIONS = [
 export class TicTacToeGameComponent {
   readonly playerTurn = signal<Player>('X');
 
-  readonly defaultCells: readonly SelectedCell[] = Array.from(
-    { length: 9 },
-    (_, index) => ({ type: undefined, idx: index + 1 })
+  readonly board = signal<readonly CellValue[]>(EMPTY_BOARD);
+
+  readonly winnerResult = computed(() => this.findWinner(this.board()));
+
+  readonly winner = computed(() => this.winnerResult()?.winner);
+
+  readonly winningCells = computed(
+    () => new Set(this.winnerResult()?.line ?? [])
   );
 
-  readonly cells = signal<readonly SelectedCell[]>(this.defaultCells);
+  readonly cells = computed<readonly BoardCell[]>(() => {
+    const winningCells = this.winningCells();
 
-  readonly winner = computed(() => this.findWinner(this.cells()));
+    return this.board().map((value, index) => ({
+      id: index,
+      label: index + 1,
+      value,
+      isWinningCell: winningCells.has(index),
+    }));
+  });
 
   readonly isDraw = computed(
-    () => !this.winner() && this.cells().every(cell => cell.type !== undefined)
+    () => !this.winner() && this.board().every(Boolean)
   );
 
   readonly gameOver = computed(() => Boolean(this.winner() || this.isDraw()));
@@ -54,41 +79,35 @@ export class TicTacToeGameComponent {
     return `${this.playerTurn()}'s turn`;
   });
 
-  selectCell(idx: number): void {
-    const cellIndex = idx - 1;
+  selectCell(cellIndex: number): void {
     const currentTurn = this.playerTurn();
-    const targetCell = this.cells()[cellIndex];
+    const targetCell = this.board()[cellIndex];
 
-    if (!targetCell || targetCell.type || this.gameOver()) {
+    if (targetCell !== null || this.gameOver()) {
       return;
     }
 
-    this.cells.update(cells =>
-      cells.map(cell =>
-        cell.idx === idx ? { ...cell, type: currentTurn } : cell
-      )
+    const nextBoard = this.board().map((cell, index) =>
+      index === cellIndex ? currentTurn : cell
     );
 
-    if (!this.findWinner(this.cells())) {
+    this.board.set(nextBoard);
+
+    if (!this.findWinner(nextBoard)) {
       this.playerTurn.set(currentTurn === 'X' ? 'O' : 'X');
     }
   }
 
   reset(): void {
-    this.cells.set(this.defaultCells);
+    this.board.set(EMPTY_BOARD);
     this.playerTurn.set('X');
   }
 
-  private findWinner(cells: readonly SelectedCell[]): Player | undefined {
-    const board = cells.map(cell => cell.type);
-
+  private findWinner(board: readonly CellValue[]): GameResult | undefined {
     for (const [a, b, c] of WINNING_COMBINATIONS) {
       const first = board[a];
       if (first && first === board[b] && first === board[c]) {
-        cells[a].winnerState = true;
-        cells[b].winnerState = true;
-        cells[c].winnerState = true;
-        return first;
+        return { winner: first, line: [a, b, c] };
       }
     }
 

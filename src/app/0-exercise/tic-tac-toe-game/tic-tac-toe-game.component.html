@@ -22,17 +22,20 @@
 
   <div class="layout-grid">
     <div class="panel tic-tac-toe-panel">
-      <div class="board" role="grid">
-        @for (cell of cells(); track cell.idx) {
+      <div class="board" role="grid" aria-label="Tic tac toe board">
+        @for (cell of cells(); track cell.id) {
           <button
             type="button"
             class="cell-btn"
-            [disabled]="cell.type || gameOver()"
-            (click)="selectCell(cell.idx)"
-            aria-label="Cell {{ cell.idx }}"
-            [class.status-pill--winner]="cell.winnerState"
+            role="gridcell"
+            [disabled]="cell.value !== null || gameOver()"
+            (click)="selectCell(cell.id)"
+            [attr.aria-label]="
+              'Cell ' + cell.label + (cell.value ? ', ' + cell.value : ', empty')
+            "
+            [class.cell-btn--winner]="cell.isWinningCell"
           >
-            {{ cell.type ?? "" }}
+            {{ cell.value ?? "" }}
           </button>
         }
       </div>
