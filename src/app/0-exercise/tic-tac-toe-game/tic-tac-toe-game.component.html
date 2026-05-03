@@ -1,0 +1,47 @@
+<section class="layout-shell">
+  <header class="layout-header">
+    <div>
+      <p class="eyebrow">Game Exercise</p>
+      <h2>Tic Tac Toe</h2>
+      <p class="layout-subtext">
+        Place three matching symbols in a row to win.
+      </p>
+    </div>
+
+    <div class="header-meta">
+      <span
+        class="status-pill"
+        [class.status-pill--winner]="winner()"
+        [class.status-pill--draw]="!winner() && isDraw()"
+        aria-live="polite"
+      >
+        {{ statusText() }}
+      </span>
+    </div>
+  </header>
+
+  <div class="layout-grid">
+    <div class="panel tic-tac-toe-panel">
+      <div class="board" role="grid">
+        @for (cell of cells(); track cell.idx) {
+          <button
+            type="button"
+            class="cell-btn"
+            [disabled]="cell.type || gameOver()"
+            (click)="selectCell(cell.idx)"
+            aria-label="Cell {{ cell.idx }}"
+            [class.status-pill--winner]="cell.winnerState"
+          >
+            {{ cell.type ?? "" }}
+          </button>
+        }
+      </div>
+
+      <div class="board-actions">
+        <button type="button" class="btn btn-primary" (click)="reset()">
+          Start new game
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,82 @@
+.tic-tac-toe-panel {
+  display: grid;
+  gap: 18px;
+  max-width: 520px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.cell-btn {
+  min-height: 120px;
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 700;
+  transition: transform 0.18s ease, border-color 0.18s ease,
+    background-color 0.18s ease, color 0.18s ease;
+}
+
+.cell-btn:hover,
+.cell-btn:focus-visible {
+  border-color: #0f4c5c;
+  background: #effaf4;
+  color: #075c3d;
+  transform: translateY(-1px);
+}
+
+.cell-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.board-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1rem;
+  border-radius: 999px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  font-weight: 700;
+  min-width: 140px;
+  text-align: center;
+}
+
+.status-pill--winner {
+  background: #dcfce7;
+  border-color: #86efac;
+  color: #166534;
+}
+
+.status-pill--draw {
+  background: #fef3c7;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.cell {
+  // border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  // padding: 5px;
+  margin: 10px;
+  min-width: 235px;
+  min-height: 235px;
+}

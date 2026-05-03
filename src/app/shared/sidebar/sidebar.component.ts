@@ -96,6 +96,7 @@ export class SidebarComponent {
         { id: 'signal-todo', label: 'Signal Todo', route: '/exercise/signal-todo' },
         { id: 'stop-watch', label: 'Stop Watch', route: '/exercise/stop-watch' },
         { id: 'guess-number-game', label: 'Guess Number Game', route: '/exercise/guess-number-game' },
+        { id: 'tic-tac-toe-game', label: 'Tic Tac Toe Game', route: '/exercise/tic-tac-toe-game' },
       ]
     }
   ];
